@@ -1,0 +1,2021 @@
+INFO:     Will watch for changes in these directories: ['/Users/benita/development/edensummariser/backend']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [92703] using WatchFiles
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [92758]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:64449 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:64452 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:64452 - "OPTIONS /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64452 - "POST /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64449 - "OPTIONS /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64452 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64455 - "POST /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64455 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64459 - "POST /audio/ingest HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 192, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 783, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 49, in audit_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 36, in require_api_token
+    |     return await call_next(request)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 355, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/api/routers/audio.py", line 37, in upload_audio
+    |     await storage.upload_fileobj(buf, key, content_type=file.content_type)
+    |   File "/Users/benita/development/edensummariser/backend/app/storage.py", line 31, in upload_fileobj
+    |     return await asyncio.to_thread(_upload)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/threads.py", line 25, in to_thread
+    |     return await loop.run_in_executor(None, func_call)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    |     result = self.fn(*self.args, **self.kwargs)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/storage.py", line 28, in _upload
+    |     self.client.upload_fileobj(file_obj, self.bucket, key, ExtraArgs=extra_args or None)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    |     return func(*args, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/boto3/s3/inject.py", line 675, in upload_fileobj
+    |     return future.result()
+    |            ^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 111, in result
+    |     return self._coordinator.result()
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 287, in result
+    |     raise self._exception
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 142, in __call__
+    |     return self._execute_main(kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 165, in _execute_main
+    |     return_value = self._main(**kwargs)
+    |                    ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/upload.py", line 825, in _main
+    |     response = client.upload_part(
+    |                ^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 602, in _api_call
+    |     return self._make_api_call(operation_name, kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    |     return func(*args, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 1060, in _make_api_call
+    |     http, parsed_response = self._make_request(
+    |                             ^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 1084, in _make_request
+    |     return self._endpoint.make_request(operation_model, request_dict)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/endpoint.py", line 119, in make_request
+    |     return self._send_request(request_dict, operation_model)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/endpoint.py", line 196, in _send_request
+    |     request = self.create_request(request_dict, operation_model)
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/endpoint.py", line 132, in create_request
+    |     self._event_emitter.emit(
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/hooks.py", line 412, in emit
+    |     return self._emitter.emit(aliased_event_name, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/hooks.py", line 256, in emit
+    |     return self._emit(event_name, kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/hooks.py", line 239, in _emit
+    |     response = handler(**kwargs)
+    |                ^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/signers.py", line 108, in handler
+    |     return self.sign(operation_name, request)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/signers.py", line 200, in sign
+    |     auth.add_auth(request)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/auth.py", line 427, in add_auth
+    |     self._modify_request_before_signing(request)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/auth.py", line 488, in _modify_request_before_signing
+    |     request.headers['X-Amz-Content-SHA256'] = self.payload(request)
+    |                                               ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/auth.py", line 341, in payload
+    |     for chunk in iter(read_chunksize, b''):
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/utils.py", line 526, in read
+    |     data = self._fileobj.read(amount_to_read)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/upload.py", line 91, in read
+    |     raise self._transfer_coordinator.exception
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 142, in __call__
+    |     return self._execute_main(kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 165, in _execute_main
+    |     return_value = self._main(**kwargs)
+    |                    ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/upload.py", line 825, in _main
+    |     response = client.upload_part(
+    |                ^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 602, in _api_call
+    |     return self._make_api_call(operation_name, kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    |     return func(*args, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 1078, in _make_api_call
+    |     raise error_class(parsed_response, operation_name)
+    | botocore.exceptions.ClientError: An error occurred (XMinioStorageFull) when calling the UploadPart operation: Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed.
+    +------------------------------------
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 49, in audit_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 36, in require_api_token
+    return await call_next(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/audio.py", line 37, in upload_audio
+    await storage.upload_fileobj(buf, key, content_type=file.content_type)
+  File "/Users/benita/development/edensummariser/backend/app/storage.py", line 31, in upload_fileobj
+    return await asyncio.to_thread(_upload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/storage.py", line 28, in _upload
+    self.client.upload_fileobj(file_obj, self.bucket, key, ExtraArgs=extra_args or None)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/boto3/s3/inject.py", line 675, in upload_fileobj
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 287, in result
+    raise self._exception
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 142, in __call__
+    return self._execute_main(kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 165, in _execute_main
+    return_value = self._main(**kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/upload.py", line 825, in _main
+    response = client.upload_part(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 602, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 1060, in _make_api_call
+    http, parsed_response = self._make_request(
+                            ^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 1084, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/endpoint.py", line 196, in _send_request
+    request = self.create_request(request_dict, operation_model)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/endpoint.py", line 132, in create_request
+    self._event_emitter.emit(
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+               ^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/signers.py", line 108, in handler
+    return self.sign(operation_name, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/signers.py", line 200, in sign
+    auth.add_auth(request)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/auth.py", line 427, in add_auth
+    self._modify_request_before_signing(request)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/auth.py", line 488, in _modify_request_before_signing
+    request.headers['X-Amz-Content-SHA256'] = self.payload(request)
+                                              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/auth.py", line 341, in payload
+    for chunk in iter(read_chunksize, b''):
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/utils.py", line 526, in read
+    data = self._fileobj.read(amount_to_read)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/upload.py", line 91, in read
+    raise self._transfer_coordinator.exception
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 142, in __call__
+    return self._execute_main(kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 165, in _execute_main
+    return_value = self._main(**kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/upload.py", line 825, in _main
+    response = client.upload_part(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 602, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 1078, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (XMinioStorageFull) when calling the UploadPart operation: Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed.
+INFO:     127.0.0.1:64491 - "POST /audio/ingest HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 192, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 783, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 49, in audit_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 36, in require_api_token
+    |     return await call_next(request)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 355, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/api/routers/audio.py", line 37, in upload_audio
+    |     await storage.upload_fileobj(buf, key, content_type=file.content_type)
+    |   File "/Users/benita/development/edensummariser/backend/app/storage.py", line 31, in upload_fileobj
+    |     return await asyncio.to_thread(_upload)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/threads.py", line 25, in to_thread
+    |     return await loop.run_in_executor(None, func_call)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    |     result = self.fn(*self.args, **self.kwargs)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/storage.py", line 28, in _upload
+    |     self.client.upload_fileobj(file_obj, self.bucket, key, ExtraArgs=extra_args or None)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    |     return func(*args, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/boto3/s3/inject.py", line 675, in upload_fileobj
+    |     return future.result()
+    |            ^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 111, in result
+    |     return self._coordinator.result()
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 287, in result
+    |     raise self._exception
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 142, in __call__
+    |     return self._execute_main(kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 165, in _execute_main
+    |     return_value = self._main(**kwargs)
+    |                    ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/upload.py", line 796, in _main
+    |     client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 602, in _api_call
+    |     return self._make_api_call(operation_name, kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    |     return func(*args, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 1078, in _make_api_call
+    |     raise error_class(parsed_response, operation_name)
+    | botocore.exceptions.ClientError: An error occurred (XMinioStorageFull) when calling the PutObject operation: Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed.
+    +------------------------------------
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 49, in audit_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 36, in require_api_token
+    return await call_next(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/audio.py", line 37, in upload_audio
+    await storage.upload_fileobj(buf, key, content_type=file.content_type)
+  File "/Users/benita/development/edensummariser/backend/app/storage.py", line 31, in upload_fileobj
+    return await asyncio.to_thread(_upload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/storage.py", line 28, in _upload
+    self.client.upload_fileobj(file_obj, self.bucket, key, ExtraArgs=extra_args or None)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/boto3/s3/inject.py", line 675, in upload_fileobj
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 287, in result
+    raise self._exception
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 142, in __call__
+    return self._execute_main(kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 165, in _execute_main
+    return_value = self._main(**kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/upload.py", line 796, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 602, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 1078, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (XMinioStorageFull) when calling the PutObject operation: Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed.
+INFO:     127.0.0.1:64494 - "POST /audio/ingest HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 192, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 783, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 49, in audit_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 36, in require_api_token
+    |     return await call_next(request)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 355, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/api/routers/audio.py", line 37, in upload_audio
+    |     await storage.upload_fileobj(buf, key, content_type=file.content_type)
+    |   File "/Users/benita/development/edensummariser/backend/app/storage.py", line 31, in upload_fileobj
+    |     return await asyncio.to_thread(_upload)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/threads.py", line 25, in to_thread
+    |     return await loop.run_in_executor(None, func_call)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    |     result = self.fn(*self.args, **self.kwargs)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/storage.py", line 28, in _upload
+    |     self.client.upload_fileobj(file_obj, self.bucket, key, ExtraArgs=extra_args or None)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    |     return func(*args, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/boto3/s3/inject.py", line 675, in upload_fileobj
+    |     return future.result()
+    |            ^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 111, in result
+    |     return self._coordinator.result()
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 287, in result
+    |     raise self._exception
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 142, in __call__
+    |     return self._execute_main(kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 165, in _execute_main
+    |     return_value = self._main(**kwargs)
+    |                    ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/upload.py", line 796, in _main
+    |     client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 602, in _api_call
+    |     return self._make_api_call(operation_name, kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    |     return func(*args, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 1078, in _make_api_call
+    |     raise error_class(parsed_response, operation_name)
+    | botocore.exceptions.ClientError: An error occurred (XMinioStorageFull) when calling the PutObject operation: Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed.
+    +------------------------------------
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 49, in audit_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 36, in require_api_token
+    return await call_next(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/audio.py", line 37, in upload_audio
+    await storage.upload_fileobj(buf, key, content_type=file.content_type)
+  File "/Users/benita/development/edensummariser/backend/app/storage.py", line 31, in upload_fileobj
+    return await asyncio.to_thread(_upload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/storage.py", line 28, in _upload
+    self.client.upload_fileobj(file_obj, self.bucket, key, ExtraArgs=extra_args or None)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/boto3/s3/inject.py", line 675, in upload_fileobj
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 287, in result
+    raise self._exception
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 142, in __call__
+    return self._execute_main(kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 165, in _execute_main
+    return_value = self._main(**kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/upload.py", line 796, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 602, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 1078, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (XMinioStorageFull) when calling the PutObject operation: Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed.
+INFO:     127.0.0.1:64496 - "POST /audio/ingest HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 192, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 783, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 49, in audit_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 36, in require_api_token
+    |     return await call_next(request)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 355, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/api/routers/audio.py", line 37, in upload_audio
+    |     await storage.upload_fileobj(buf, key, content_type=file.content_type)
+    |   File "/Users/benita/development/edensummariser/backend/app/storage.py", line 31, in upload_fileobj
+    |     return await asyncio.to_thread(_upload)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/threads.py", line 25, in to_thread
+    |     return await loop.run_in_executor(None, func_call)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    |     result = self.fn(*self.args, **self.kwargs)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/storage.py", line 28, in _upload
+    |     self.client.upload_fileobj(file_obj, self.bucket, key, ExtraArgs=extra_args or None)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    |     return func(*args, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/boto3/s3/inject.py", line 675, in upload_fileobj
+    |     return future.result()
+    |            ^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 111, in result
+    |     return self._coordinator.result()
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 287, in result
+    |     raise self._exception
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 142, in __call__
+    |     return self._execute_main(kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 165, in _execute_main
+    |     return_value = self._main(**kwargs)
+    |                    ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/upload.py", line 796, in _main
+    |     client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 602, in _api_call
+    |     return self._make_api_call(operation_name, kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    |     return func(*args, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 1078, in _make_api_call
+    |     raise error_class(parsed_response, operation_name)
+    | botocore.exceptions.ClientError: An error occurred (XMinioStorageFull) when calling the PutObject operation: Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed.
+    +------------------------------------
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 49, in audit_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 36, in require_api_token
+    return await call_next(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/audio.py", line 37, in upload_audio
+    await storage.upload_fileobj(buf, key, content_type=file.content_type)
+  File "/Users/benita/development/edensummariser/backend/app/storage.py", line 31, in upload_fileobj
+    return await asyncio.to_thread(_upload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/storage.py", line 28, in _upload
+    self.client.upload_fileobj(file_obj, self.bucket, key, ExtraArgs=extra_args or None)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/boto3/s3/inject.py", line 675, in upload_fileobj
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 287, in result
+    raise self._exception
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 142, in __call__
+    return self._execute_main(kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 165, in _execute_main
+    return_value = self._main(**kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/upload.py", line 796, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 602, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 1078, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (XMinioStorageFull) when calling the PutObject operation: Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed.
+INFO:     127.0.0.1:64500 - "POST /audio/ingest HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 192, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 783, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 49, in audit_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 36, in require_api_token
+    |     return await call_next(request)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 355, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/api/routers/audio.py", line 37, in upload_audio
+    |     await storage.upload_fileobj(buf, key, content_type=file.content_type)
+    |   File "/Users/benita/development/edensummariser/backend/app/storage.py", line 31, in upload_fileobj
+    |     return await asyncio.to_thread(_upload)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/threads.py", line 25, in to_thread
+    |     return await loop.run_in_executor(None, func_call)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    |     result = self.fn(*self.args, **self.kwargs)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/storage.py", line 28, in _upload
+    |     self.client.upload_fileobj(file_obj, self.bucket, key, ExtraArgs=extra_args or None)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    |     return func(*args, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/boto3/s3/inject.py", line 675, in upload_fileobj
+    |     return future.result()
+    |            ^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 111, in result
+    |     return self._coordinator.result()
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 287, in result
+    |     raise self._exception
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 142, in __call__
+    |     return self._execute_main(kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 165, in _execute_main
+    |     return_value = self._main(**kwargs)
+    |                    ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/upload.py", line 796, in _main
+    |     client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 602, in _api_call
+    |     return self._make_api_call(operation_name, kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    |     return func(*args, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 1078, in _make_api_call
+    |     raise error_class(parsed_response, operation_name)
+    | botocore.exceptions.ClientError: An error occurred (XMinioStorageFull) when calling the PutObject operation: Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed.
+    +------------------------------------
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 49, in audit_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 36, in require_api_token
+    return await call_next(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/audio.py", line 37, in upload_audio
+    await storage.upload_fileobj(buf, key, content_type=file.content_type)
+  File "/Users/benita/development/edensummariser/backend/app/storage.py", line 31, in upload_fileobj
+    return await asyncio.to_thread(_upload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/storage.py", line 28, in _upload
+    self.client.upload_fileobj(file_obj, self.bucket, key, ExtraArgs=extra_args or None)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/boto3/s3/inject.py", line 675, in upload_fileobj
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 287, in result
+    raise self._exception
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 142, in __call__
+    return self._execute_main(kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 165, in _execute_main
+    return_value = self._main(**kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/upload.py", line 796, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 602, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 1078, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (XMinioStorageFull) when calling the PutObject operation: Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed.
+INFO:     127.0.0.1:64502 - "POST /audio/ingest HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 192, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 783, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 49, in audit_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 36, in require_api_token
+    |     return await call_next(request)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 355, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/api/routers/audio.py", line 37, in upload_audio
+    |     await storage.upload_fileobj(buf, key, content_type=file.content_type)
+    |   File "/Users/benita/development/edensummariser/backend/app/storage.py", line 31, in upload_fileobj
+    |     return await asyncio.to_thread(_upload)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/threads.py", line 25, in to_thread
+    |     return await loop.run_in_executor(None, func_call)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    |     result = self.fn(*self.args, **self.kwargs)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/storage.py", line 28, in _upload
+    |     self.client.upload_fileobj(file_obj, self.bucket, key, ExtraArgs=extra_args or None)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    |     return func(*args, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/boto3/s3/inject.py", line 675, in upload_fileobj
+    |     return future.result()
+    |            ^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 111, in result
+    |     return self._coordinator.result()
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 287, in result
+    |     raise self._exception
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 142, in __call__
+    |     return self._execute_main(kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 165, in _execute_main
+    |     return_value = self._main(**kwargs)
+    |                    ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/upload.py", line 796, in _main
+    |     client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 602, in _api_call
+    |     return self._make_api_call(operation_name, kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    |     return func(*args, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 1078, in _make_api_call
+    |     raise error_class(parsed_response, operation_name)
+    | botocore.exceptions.ClientError: An error occurred (XMinioStorageFull) when calling the PutObject operation: Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed.
+    +------------------------------------
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 49, in audit_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 36, in require_api_token
+    return await call_next(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/audio.py", line 37, in upload_audio
+    await storage.upload_fileobj(buf, key, content_type=file.content_type)
+  File "/Users/benita/development/edensummariser/backend/app/storage.py", line 31, in upload_fileobj
+    return await asyncio.to_thread(_upload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/storage.py", line 28, in _upload
+    self.client.upload_fileobj(file_obj, self.bucket, key, ExtraArgs=extra_args or None)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/boto3/s3/inject.py", line 675, in upload_fileobj
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 287, in result
+    raise self._exception
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 142, in __call__
+    return self._execute_main(kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 165, in _execute_main
+    return_value = self._main(**kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/upload.py", line 796, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 602, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 1078, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (XMinioStorageFull) when calling the PutObject operation: Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed.
+INFO:     127.0.0.1:64504 - "POST /audio/ingest HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 192, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 783, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 49, in audit_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 36, in require_api_token
+    |     return await call_next(request)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 355, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/api/routers/audio.py", line 37, in upload_audio
+    |     await storage.upload_fileobj(buf, key, content_type=file.content_type)
+    |   File "/Users/benita/development/edensummariser/backend/app/storage.py", line 31, in upload_fileobj
+    |     return await asyncio.to_thread(_upload)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/threads.py", line 25, in to_thread
+    |     return await loop.run_in_executor(None, func_call)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    |     result = self.fn(*self.args, **self.kwargs)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/storage.py", line 28, in _upload
+    |     self.client.upload_fileobj(file_obj, self.bucket, key, ExtraArgs=extra_args or None)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    |     return func(*args, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/boto3/s3/inject.py", line 675, in upload_fileobj
+    |     return future.result()
+    |            ^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 111, in result
+    |     return self._coordinator.result()
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 287, in result
+    |     raise self._exception
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 142, in __call__
+    |     return self._execute_main(kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 165, in _execute_main
+    |     return_value = self._main(**kwargs)
+    |                    ^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/upload.py", line 796, in _main
+    |     client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 602, in _api_call
+    |     return self._make_api_call(operation_name, kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    |     return func(*args, **kwargs)
+    |            ^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 1078, in _make_api_call
+    |     raise error_class(parsed_response, operation_name)
+    | botocore.exceptions.ClientError: An error occurred (XMinioStorageFull) when calling the PutObject operation: Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed.
+    +------------------------------------
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 49, in audit_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 36, in require_api_token
+    return await call_next(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/audio.py", line 37, in upload_audio
+    await storage.upload_fileobj(buf, key, content_type=file.content_type)
+  File "/Users/benita/development/edensummariser/backend/app/storage.py", line 31, in upload_fileobj
+    return await asyncio.to_thread(_upload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/storage.py", line 28, in _upload
+    self.client.upload_fileobj(file_obj, self.bucket, key, ExtraArgs=extra_args or None)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/boto3/s3/inject.py", line 675, in upload_fileobj
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 111, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/futures.py", line 287, in result
+    raise self._exception
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 142, in __call__
+    return self._execute_main(kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/tasks.py", line 165, in _execute_main
+    return_value = self._main(**kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/s3transfer/upload.py", line 796, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 602, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/botocore/client.py", line 1078, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (XMinioStorageFull) when calling the PutObject operation: Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed.
+INFO:     127.0.0.1:64561 - "POST /auth/token HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:64568 - "POST /auth/token HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64568 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64568 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64568 - "OPTIONS /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64570 - "OPTIONS /extractions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64571 - "OPTIONS /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64570 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:64572 - "OPTIONS /extractions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64572 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:64575 - "OPTIONS /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64576 - "OPTIONS /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64568 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64570 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64571 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64575 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64581 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64582 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64581 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:64582 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:64582 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64581 - "GET /extractions/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/storage.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [92758]
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [93076]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Initialized LocalStorage at /Users/benita/development/edensummariser/backend/storage_data
+INFO:     127.0.0.1:64674 - "OPTIONS /audio/ingest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64674 - "POST /audio/ingest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64681 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64680 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64692 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64691 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64694 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64693 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64691 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64694 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64693 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64692 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64694 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:64692 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:64691 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64693 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64694 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64692 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64708 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:64709 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64712 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64708 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64707 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64711 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:64710 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64709 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64786 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:64788 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64786 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64787 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64789 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:64790 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64785 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64788 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64786 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64787 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64800 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64801 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:64803 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:64802 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64801 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64800 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64824 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64825 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64825 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64833 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64832 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64824 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [93076]
+INFO:     Stopping reloader process [92703]

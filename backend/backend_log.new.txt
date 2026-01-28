@@ -1,0 +1,265 @@
+INFO:     Will watch for changes in these directories: ['/Users/benita/development/edensummariser/backend']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [95227] using WatchFiles
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [95282]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Initialized LocalStorage at /Users/benita/development/edensummariser/backend/storage_data
+INFO:     127.0.0.1:65009 - "POST /auth/token HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65013 - "POST /audio/ingest HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 550, in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/asyncpg/prepared_stmt.py", line 177, in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/asyncpg/prepared_stmt.py", line 268, in __bind_execute
+    data, status, _ = await self.__do_execute(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/asyncpg/prepared_stmt.py", line 257, in __do_execute
+    return await executor(protocol)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "asyncpg/protocol/protocol.pyx", line 205, in bind_execute
+asyncpg.exceptions.InvalidTextRepresentationError: invalid input value for enum meetingtype: "native"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.Error: <class 'asyncpg.exceptions.InvalidTextRepresentationError'>: invalid input value for enum meetingtype: "native"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 49, in audit_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 36, in require_api_token
+    return await call_next(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/audio.py", line 41, in upload_audio
+    await db.flush() # get ID
+    ^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 787, in flush
+    await greenlet_spawn(self.sync_session.flush, objects=objects)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4331, in flush
+    self._flush(objects)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4466, in _flush
+    with util.safe_reraise():
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 4427, in _flush
+    flush_context.execute()
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/orm/persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+             ^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
+    self._adapt_connection.await_(
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
+    self._handle_exception(error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
+    self._adapt_connection._handle_exception(error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
+    raise translated_error from error
+sqlalchemy.exc.DBAPIError: (sqlalchemy.dialects.postgresql.asyncpg.Error) <class 'asyncpg.exceptions.InvalidTextRepresentationError'>: invalid input value for enum meetingtype: "native"
+[SQL: INSERT INTO meetings (title, description, language, start_time, duration_minutes, end_time, organizer_id, organization_id, meeting_type, external_link, ai_transcription, ai_translation, ai_recording) VALUES ($1::VARCHAR, $2::VARCHAR, $3::VARCHAR, $4::TIMESTAMP WITH TIME ZONE, $5::INTEGER, $6::TIMESTAMP WITH TIME ZONE, $7::INTEGER, $8::INTEGER, $9::meetingtype, $10::VARCHAR, $11::BOOLEAN, $12::BOOLEAN, $13::BOOLEAN) RETURNING meetings.id, meetings.created_at]
+[parameters: ('Recording test_audio.txt', None, 'en', None, None, None, 1, None, 'native', None, True, False, True)]
+(Background on this error at: https://sqlalche.me/e/20/dbapi)
+WARNING:  WatchFiles detected changes in 'app/api/routers/audio.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [95282]
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [96119]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Initialized LocalStorage at /Users/benita/development/edensummariser/backend/storage_data
+INFO:     127.0.0.1:65026 - "OPTIONS /audio/ingest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65026 - "POST /audio/ingest HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:65031 - "POST /audio/ingest HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:65035 - "POST /audio/ingest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65042 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65042 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65053 - "OPTIONS /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65055 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65060 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65059 - "OPTIONS /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65055 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65055 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65053 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65053 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65064 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65064 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65066 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:65066 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:65076 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65076 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65076 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65076 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65091 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65092 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65091 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:65092 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:65091 - "OPTIONS /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65093 - "OPTIONS /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65092 - "POST /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65091 - "POST /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65093 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65092 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65096 - "POST /audio/ingest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65098 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65096 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65098 - "OPTIONS /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65096 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65105 - "OPTIONS /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65106 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65096 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65098 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65113 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:65111 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:65110 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65112 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65111 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65110 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [96119]
+INFO:     Stopping reloader process [95227]

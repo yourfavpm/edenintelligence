@@ -1,0 +1,12 @@
+from .meetings import router as meetings
+from .auth import router as auth
+from .organizations import router as organizations
+from .listeners import router as listeners
+from .audio import router as audio
+from .translations import router as translations
+from .summaries import router as summaries
+from .extractions import router as extractions
+from .transcripts import router as transcripts
+from .dashboard import router as dashboard
+from .consents import router as consents
+from .privacy import router as privacy

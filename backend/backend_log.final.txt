@@ -1,0 +1,232 @@
+INFO:     Will watch for changes in these directories: ['/Users/benita/development/edensummariser/backend']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [96596] using WatchFiles
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [96653]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Initialized LocalStorage at /Users/benita/development/edensummariser/backend/storage_data
+INFO:     127.0.0.1:65156 - "POST /audio/ingest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65167 - "POST /auth/token HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65167 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65169 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:65171 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:65167 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65170 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65169 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65171 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65179 - "OPTIONS /dashboard/meetings/3/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65178 - "OPTIONS /dashboard/meetings/3/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65179 - "GET /dashboard/meetings/3/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65178 - "GET /dashboard/meetings/3/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65179 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65178 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65178 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65195 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65194 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65179 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65178 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65195 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65225 - "POST /audio/ingest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65225 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65227 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65237 - "OPTIONS /dashboard/meetings/4/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65240 - "OPTIONS /dashboard/meetings/4/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65239 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65237 - "GET /dashboard/meetings/4/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65241 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65240 - "GET /dashboard/meetings/4/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65237 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65239 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65239 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65252 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65237 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65251 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65239 - "OPTIONS /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65252 - "OPTIONS /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65251 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65237 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65264 - "OPTIONS /extractions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65266 - "OPTIONS /extractions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65266 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:65263 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65265 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65264 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:65267 - "OPTIONS /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65263 - "OPTIONS /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65265 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65267 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65270 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:65271 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:65270 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65271 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65291 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:65293 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:65290 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65290 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65291 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65292 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65318 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65319 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65318 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65319 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65319 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65330 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65318 - "GET /dashboard/meetings/4/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65329 - "GET /dashboard/meetings/4/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65319 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65330 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65367 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65366 - "GET /dashboard/meetings/4/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65368 - "GET /dashboard/meetings/4/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65369 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65376 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65377 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/ai/transcribe.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [96653]
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [97376]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Initialized LocalStorage at /Users/benita/development/edensummariser/backend/storage_data
+INFO:     127.0.0.1:65432 - "POST /audio/ingest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65454 - "OPTIONS /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65455 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65457 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65456 - "OPTIONS /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65457 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65455 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65456 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65454 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65455 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65457 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65469 - "OPTIONS /audio/ingest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65469 - "POST /audio/ingest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65469 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65471 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65471 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65479 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65478 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65469 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65471 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65479 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65492 - "OPTIONS /dashboard/meetings/6/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65494 - "OPTIONS /dashboard/meetings/6/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65493 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65495 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65494 - "GET /dashboard/meetings/6/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65492 - "GET /dashboard/meetings/6/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65499 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65500 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49225 - "GET /dashboard/meetings/6/detail HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49226 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49227 - "GET /dashboard/meetings/6/detail HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49228 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49225 - "OPTIONS /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49226 - "OPTIONS /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49227 - "OPTIONS /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49229 - "OPTIONS /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49228 - "POST /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49225 - "POST /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49226 - "POST /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49227 - "POST /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49228 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49226 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49225 - "GET /dashboard/meetings/6/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49229 - "GET /dashboard/meetings/6/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49227 - "OPTIONS /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49226 - "OPTIONS /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49228 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49225 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49229 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49227 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49226 - "OPTIONS /dashboard/meetings/2/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49225 - "OPTIONS /dashboard/meetings/2/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49228 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49229 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49227 - "GET /dashboard/meetings/2/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49226 - "GET /dashboard/meetings/2/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49225 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49228 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49227 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49229 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49228 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49229 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49225 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49227 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49229 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49227 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49225 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49228 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49229 - "OPTIONS /dashboard/meetings/5/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49225 - "OPTIONS /dashboard/meetings/5/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49227 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49228 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49229 - "GET /dashboard/meetings/5/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49225 - "GET /dashboard/meetings/5/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49228 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49227 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49227 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49255 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49254 - "GET /dashboard/meetings/6/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49228 - "GET /dashboard/meetings/6/detail HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/ai/transcribe.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [97376]
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [98439]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/ai/transcribe.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [98439]
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [98443]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/schemas.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [98443]
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [98456]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [98456]
+INFO:     Stopping reloader process [96596]

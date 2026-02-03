@@ -67,10 +67,10 @@ export default function SearchBar() {
                 // setResults(response.results);
 
                 // Mock results for now
-                const mockResults: SearchResult[] = [
+                const mockResults: SearchResult[] = ([
                     {
                         id: 1,
-                        type: 'meeting',
+                        type: 'meeting' as const,
                         title: 'Team Standup - Jan 25',
                         description: 'Daily sync with engineering team',
                         date: '2026-01-25',
@@ -78,12 +78,12 @@ export default function SearchBar() {
                     },
                     {
                         id: 2,
-                        type: 'action-item',
+                        type: 'action-item' as const,
                         title: 'Review Q1 roadmap',
                         description: 'From Product Planning Meeting',
                         href: '/action-items',
                     },
-                ].filter(r => r.title.toLowerCase().includes(query.toLowerCase()));
+                ] as SearchResult[]).filter(r => r.title.toLowerCase().includes(query.toLowerCase()));
 
                 setResults(mockResults);
             } catch (err) {

@@ -25,7 +25,7 @@ export default function TranscriptTab({ meeting }: TranscriptTabProps) {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                 </svg>
                 <p className="text-lg font-medium">No transcript available yet.</p>
-                <p className="text-sm">Transcption is currently in progress.</p>
+                <p className="text-sm">Transcription is currently in progress.</p>
                 <div className="max-w-md mx-auto mt-8">
                     <TranscriptSkeleton />
                 </div>
@@ -73,17 +73,17 @@ export default function TranscriptTab({ meeting }: TranscriptTabProps) {
                     <div key={i} className="flex gap-4 group">
                         {/* Speaker Avatar */}
                         <div className="w-10 h-10 rounded-full bg-neutral-100 flex-shrink-0 flex items-center justify-center text-neutral-500 font-bold text-xs ring-2 ring-white shadow-sm">
-                            {segment.speaker?.charAt(0) || '?'}
+                            {(segment as any).speaker_id?.charAt(0) || '?'}
                         </div>
 
                         {/* Content */}
                         <div className="flex-1 space-y-1">
                             <div className="flex items-center gap-2">
-                                <span className="font-bold text-sm text-neutral-900">{segment.speaker || 'Unknown Speaker'}</span>
+                                <span className="font-bold text-sm text-neutral-900">{(segment as any).speaker_id || 'Unknown Speaker'}</span>
                                 <span className="text-[10px] text-neutral-400 font-mono">{formatTime(segment.start_time)}</span>
                             </div>
                             <p className="text-neutral-700 leading-relaxed text-[15px] group-hover:text-black transition-colors">
-                                {segment.text}
+                                {showTranslated ? (segment as any).translated_text : segment.original_text}
                             </p>
                         </div>
                     </div>

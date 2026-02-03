@@ -1,232 +1,1122 @@
 INFO:     Will watch for changes in these directories: ['/Users/benita/development/edensummariser/backend']
-INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [96596] using WatchFiles
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [38372] using WatchFiles
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.4.2 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "<string>", line 1, in <module>
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 2, in <module>
+    from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/__init__.py", line 1, in <module>
+    from .meetings import router as meetings
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/meetings.py", line 9, in <module>
+    from app.tasks import enqueue_recording_processing
+  File "/Users/benita/development/edensummariser/backend/app/tasks.py", line 1, in <module>
+    from . import ai
+  File "/Users/benita/development/edensummariser/backend/app/ai/__init__.py", line 2, in <module>
+    from . import pipeline
+  File "/Users/benita/development/edensummariser/backend/app/ai/pipeline.py", line 13, in <module>
+    from app.ai import transcribe
+  File "/Users/benita/development/edensummariser/backend/app/ai/transcribe.py", line 5, in <module>
+    import torch
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/__init__.py", line 1477, in <module>
+    from .functional import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/functional.py", line 9, in <module>
+    import torch.nn.functional as F
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
 /Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
 * 'orm_mode' has been renamed to 'from_attributes'
   warnings.warn(message, UserWarning)
-/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
-* 'orm_mode' has been renamed to 'from_attributes'
-  warnings.warn(message, UserWarning)
-INFO:     Started server process [96653]
+INFO:     Started server process [38428]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 Initialized LocalStorage at /Users/benita/development/edensummariser/backend/storage_data
-INFO:     127.0.0.1:65156 - "POST /audio/ingest HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65167 - "POST /auth/token HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65167 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65169 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
-INFO:     127.0.0.1:65171 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
-INFO:     127.0.0.1:65167 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65170 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65169 - "GET /extractions/ HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65171 - "GET /extractions/ HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65179 - "OPTIONS /dashboard/meetings/3/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65178 - "OPTIONS /dashboard/meetings/3/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65179 - "GET /dashboard/meetings/3/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65178 - "GET /dashboard/meetings/3/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65179 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65178 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65178 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65195 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65194 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65179 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65178 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65195 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65225 - "POST /audio/ingest HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65225 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65227 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65237 - "OPTIONS /dashboard/meetings/4/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65240 - "OPTIONS /dashboard/meetings/4/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65239 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65237 - "GET /dashboard/meetings/4/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65241 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65240 - "GET /dashboard/meetings/4/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65237 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65239 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65239 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65252 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65237 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65251 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65239 - "OPTIONS /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65252 - "OPTIONS /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65251 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65237 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65264 - "OPTIONS /extractions HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65266 - "OPTIONS /extractions HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65266 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
-INFO:     127.0.0.1:65263 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65265 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65264 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
-INFO:     127.0.0.1:65267 - "OPTIONS /extractions/ HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65263 - "OPTIONS /extractions/ HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65265 - "GET /extractions/ HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65267 - "GET /extractions/ HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65270 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
-INFO:     127.0.0.1:65271 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
-INFO:     127.0.0.1:65270 - "GET /extractions/ HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65271 - "GET /extractions/ HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65291 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
-INFO:     127.0.0.1:65293 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
-INFO:     127.0.0.1:65290 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65290 - "GET /extractions/ HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65291 - "GET /extractions/ HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65292 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65318 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65319 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65318 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65319 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65319 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65330 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65318 - "GET /dashboard/meetings/4/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65329 - "GET /dashboard/meetings/4/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65319 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65330 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65367 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65366 - "GET /dashboard/meetings/4/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65368 - "GET /dashboard/meetings/4/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65369 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65376 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65377 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-WARNING:  WatchFiles detected changes in 'app/ai/transcribe.py'. Reloading...
+INFO:     127.0.0.1:55561 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:55562 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:55562 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55561 - "GET /extractions/ HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 35
+DEBUG: Processing detail for meeting 35
+DEBUG: Returning detail for meeting 35: 1 audio files, 2 transcripts, 1 summaries, 1 extractions
+DEBUG: Returning detail for meeting 35: 1 audio files, 2 transcripts, 1 summaries, 1 extractions
+INFO:     127.0.0.1:55561 - "GET /dashboard/meetings/35/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55562 - "GET /dashboard/meetings/35/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55562 - "OPTIONS /audio/34/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55561 - "OPTIONS /audio/34/download HTTP/1.1" 200 OK
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/9e1a699ab35c4036aa75400f8c621fa8/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 34
+INFO:     127.0.0.1:55562 - "GET /audio/34/download HTTP/1.1" 200 OK
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/9e1a699ab35c4036aa75400f8c621fa8/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 34
+INFO:     127.0.0.1:55561 - "GET /audio/34/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55573 - "OPTIONS /extractions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55574 - "OPTIONS /extractions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55573 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:55574 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:55575 - "OPTIONS /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55576 - "OPTIONS /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55575 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55573 - "GET /extractions/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/tasks.py'. Reloading...
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [96653]
+INFO:     Finished server process [38428]
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.4.2 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "<string>", line 1, in <module>
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 2, in <module>
+    from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/__init__.py", line 1, in <module>
+    from .meetings import router as meetings
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/meetings.py", line 9, in <module>
+    from app.tasks import enqueue_recording_processing
+  File "/Users/benita/development/edensummariser/backend/app/tasks.py", line 1, in <module>
+    from . import ai
+  File "/Users/benita/development/edensummariser/backend/app/ai/__init__.py", line 2, in <module>
+    from . import pipeline
+  File "/Users/benita/development/edensummariser/backend/app/ai/pipeline.py", line 13, in <module>
+    from app.ai import transcribe
+  File "/Users/benita/development/edensummariser/backend/app/ai/transcribe.py", line 5, in <module>
+    import torch
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/__init__.py", line 1477, in <module>
+    from .functional import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/functional.py", line 9, in <module>
+    import torch.nn.functional as F
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
 /Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
 * 'orm_mode' has been renamed to 'from_attributes'
   warnings.warn(message, UserWarning)
-/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
-* 'orm_mode' has been renamed to 'from_attributes'
-  warnings.warn(message, UserWarning)
-INFO:     Started server process [97376]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-Initialized LocalStorage at /Users/benita/development/edensummariser/backend/storage_data
-INFO:     127.0.0.1:65432 - "POST /audio/ingest HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65454 - "OPTIONS /dashboard/meetings/1/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65455 - "OPTIONS /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65457 - "OPTIONS /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65456 - "OPTIONS /dashboard/meetings/1/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65457 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65455 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65456 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65454 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65455 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65457 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65469 - "OPTIONS /audio/ingest HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65469 - "POST /audio/ingest HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65469 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65471 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65471 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65479 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65478 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65469 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65471 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65479 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65492 - "OPTIONS /dashboard/meetings/6/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65494 - "OPTIONS /dashboard/meetings/6/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65493 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65495 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65494 - "GET /dashboard/meetings/6/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65492 - "GET /dashboard/meetings/6/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65499 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65500 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49225 - "GET /dashboard/meetings/6/detail HTTP/1.1" 401 Unauthorized
-INFO:     127.0.0.1:49226 - "GET /auth/me HTTP/1.1" 401 Unauthorized
-INFO:     127.0.0.1:49227 - "GET /dashboard/meetings/6/detail HTTP/1.1" 401 Unauthorized
-INFO:     127.0.0.1:49228 - "GET /auth/me HTTP/1.1" 401 Unauthorized
-INFO:     127.0.0.1:49225 - "OPTIONS /auth/refresh HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49226 - "OPTIONS /auth/refresh HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49227 - "OPTIONS /auth/refresh HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49229 - "OPTIONS /auth/refresh HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49228 - "POST /auth/refresh HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49225 - "POST /auth/refresh HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49226 - "POST /auth/refresh HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49227 - "POST /auth/refresh HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49228 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49226 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49225 - "GET /dashboard/meetings/6/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49229 - "GET /dashboard/meetings/6/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49227 - "OPTIONS /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49226 - "OPTIONS /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49228 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49225 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49229 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49227 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49226 - "OPTIONS /dashboard/meetings/2/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49225 - "OPTIONS /dashboard/meetings/2/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49228 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49229 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49227 - "GET /dashboard/meetings/2/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49226 - "GET /dashboard/meetings/2/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49225 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49228 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49227 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49229 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49228 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49229 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49225 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49227 - "GET /dashboard/meetings/1/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49229 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49227 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49225 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49228 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49229 - "OPTIONS /dashboard/meetings/5/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49225 - "OPTIONS /dashboard/meetings/5/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49227 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49228 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49229 - "GET /dashboard/meetings/5/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49225 - "GET /dashboard/meetings/5/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49228 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49227 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49227 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49255 - "GET /auth/me HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49254 - "GET /dashboard/meetings/6/detail HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49228 - "GET /dashboard/meetings/6/detail HTTP/1.1" 200 OK
-WARNING:  WatchFiles detected changes in 'app/ai/transcribe.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [97376]
-/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
-* 'orm_mode' has been renamed to 'from_attributes'
-  warnings.warn(message, UserWarning)
-/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
-* 'orm_mode' has been renamed to 'from_attributes'
-  warnings.warn(message, UserWarning)
-INFO:     Started server process [98439]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-WARNING:  WatchFiles detected changes in 'app/ai/transcribe.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [98439]
-/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
-* 'orm_mode' has been renamed to 'from_attributes'
-  warnings.warn(message, UserWarning)
-/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
-* 'orm_mode' has been renamed to 'from_attributes'
-  warnings.warn(message, UserWarning)
-INFO:     Started server process [98443]
+INFO:     Started server process [38941]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 WARNING:  WatchFiles detected changes in 'app/schemas.py'. Reloading...
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [98443]
+INFO:     Finished server process [38941]
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.4.2 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "<string>", line 1, in <module>
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 2, in <module>
+    from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/__init__.py", line 1, in <module>
+    from .meetings import router as meetings
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/meetings.py", line 9, in <module>
+    from app.tasks import enqueue_recording_processing
+  File "/Users/benita/development/edensummariser/backend/app/tasks.py", line 1, in <module>
+    from . import ai
+  File "/Users/benita/development/edensummariser/backend/app/ai/__init__.py", line 2, in <module>
+    from . import pipeline
+  File "/Users/benita/development/edensummariser/backend/app/ai/pipeline.py", line 13, in <module>
+    from app.ai import transcribe
+  File "/Users/benita/development/edensummariser/backend/app/ai/transcribe.py", line 5, in <module>
+    import torch
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/__init__.py", line 1477, in <module>
+    from .functional import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/functional.py", line 9, in <module>
+    import torch.nn.functional as F
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
 /Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
 * 'orm_mode' has been renamed to 'from_attributes'
   warnings.warn(message, UserWarning)
-/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
-* 'orm_mode' has been renamed to 'from_attributes'
-  warnings.warn(message, UserWarning)
-INFO:     Started server process [98456]
+INFO:     Started server process [38983]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'app/schemas.py'. Reloading...
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [98456]
-INFO:     Stopping reloader process [96596]
+INFO:     Finished server process [38983]
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.4.2 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "<string>", line 1, in <module>
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 2, in <module>
+    from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/__init__.py", line 1, in <module>
+    from .meetings import router as meetings
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/meetings.py", line 9, in <module>
+    from app.tasks import enqueue_recording_processing
+  File "/Users/benita/development/edensummariser/backend/app/tasks.py", line 1, in <module>
+    from . import ai
+  File "/Users/benita/development/edensummariser/backend/app/ai/__init__.py", line 2, in <module>
+    from . import pipeline
+  File "/Users/benita/development/edensummariser/backend/app/ai/pipeline.py", line 13, in <module>
+    from app.ai import transcribe
+  File "/Users/benita/development/edensummariser/backend/app/ai/transcribe.py", line 5, in <module>
+    import torch
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/__init__.py", line 1477, in <module>
+    from .functional import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/functional.py", line 9, in <module>
+    import torch.nn.functional as F
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [39016]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Initialized LocalStorage at /Users/benita/development/edensummariser/backend/storage_data
+INFO:     127.0.0.1:55655 - "OPTIONS /audio/ingest HTTP/1.1" 200 OK
+DEBUG: Processing upload for Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 (content_type: audio/mpeg)
+DEBUG: Read 15185087 bytes from upload
+INFO:     127.0.0.1:55655 - "POST /audio/ingest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55655 - "OPTIONS /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55671 - "OPTIONS /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55655 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55671 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55655 - "OPTIONS /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55671 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55728 - "OPTIONS /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55729 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55729 - "GET /auth/me HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 43
+INFO:     127.0.0.1:55671 - "GET /auth/me HTTP/1.1" 200 OK
+DEBUG: Returning detail for meeting 43: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+INFO:     127.0.0.1:55655 - "GET /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 43
+DEBUG: Returning detail for meeting 43: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+INFO:     127.0.0.1:55728 - "GET /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55729 - "OPTIONS /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55671 - "OPTIONS /audio/42/download HTTP/1.1" 200 OK
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/19d73f1e648c4dcdb182f0ba252b1219/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 42
+INFO:     127.0.0.1:55728 - "GET /audio/42/download HTTP/1.1" 200 OK
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/19d73f1e648c4dcdb182f0ba252b1219/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 42
+INFO:     127.0.0.1:55655 - "GET /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55739 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55740 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55740 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55750 - "GET /auth/me HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 43
+DEBUG: Processing detail for meeting 43
+DEBUG: Returning detail for meeting 43: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+DEBUG: Returning detail for meeting 43: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+INFO:     127.0.0.1:55739 - "GET /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55749 - "GET /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/19d73f1e648c4dcdb182f0ba252b1219/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 42
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/19d73f1e648c4dcdb182f0ba252b1219/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 42
+INFO:     127.0.0.1:55740 - "GET /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55750 - "GET /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55757 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55756 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 43
+INFO:     127.0.0.1:55767 - "GET /auth/me HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 43
+DEBUG: Returning detail for meeting 43: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+DEBUG: Returning detail for meeting 43: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+INFO:     127.0.0.1:55766 - "GET /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55769 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55768 - "GET /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/19d73f1e648c4dcdb182f0ba252b1219/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 42
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/19d73f1e648c4dcdb182f0ba252b1219/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 42
+INFO:     127.0.0.1:55767 - "GET /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55766 - "GET /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55777 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55776 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55864 - "GET /dashboard/meetings/43/detail HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:55865 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:55866 - "GET /dashboard/meetings/43/detail HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:55867 - "GET /auth/me HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:55864 - "OPTIONS /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55865 - "OPTIONS /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55866 - "OPTIONS /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55868 - "OPTIONS /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55867 - "POST /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55864 - "POST /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55865 - "POST /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55866 - "POST /auth/refresh HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55867 - "GET /auth/me HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 43
+INFO:     127.0.0.1:55865 - "GET /auth/me HTTP/1.1" 200 OK
+DEBUG: Returning detail for meeting 43: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+INFO:     127.0.0.1:55864 - "GET /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 43
+DEBUG: Returning detail for meeting 43: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+INFO:     127.0.0.1:55868 - "GET /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/19d73f1e648c4dcdb182f0ba252b1219/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 42
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/19d73f1e648c4dcdb182f0ba252b1219/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 42
+INFO:     127.0.0.1:55866 - "GET /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55867 - "GET /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55885 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55886 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 43
+INFO:     127.0.0.1:55972 - "GET /auth/me HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 43
+DEBUG: Returning detail for meeting 43: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+DEBUG: Returning detail for meeting 43: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+INFO:     127.0.0.1:55971 - "GET /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55974 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55973 - "GET /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/19d73f1e648c4dcdb182f0ba252b1219/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 42
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/19d73f1e648c4dcdb182f0ba252b1219/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 42
+INFO:     127.0.0.1:55972 - "GET /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55971 - "GET /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55980 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55979 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 43
+INFO:     127.0.0.1:56017 - "GET /auth/me HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 43
+DEBUG: Returning detail for meeting 43: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+DEBUG: Returning detail for meeting 43: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+INFO:     127.0.0.1:56019 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56016 - "GET /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56018 - "GET /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/19d73f1e648c4dcdb182f0ba252b1219/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 42
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/19d73f1e648c4dcdb182f0ba252b1219/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 42
+INFO:     127.0.0.1:56017 - "GET /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56019 - "GET /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56016 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56018 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 43
+INFO:     127.0.0.1:56191 - "GET /auth/me HTTP/1.1" 200 OK
+DEBUG: Returning detail for meeting 43: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+DEBUG: Processing detail for meeting 43
+INFO:     127.0.0.1:56193 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56189 - "GET /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+DEBUG: Returning detail for meeting 43: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+INFO:     127.0.0.1:56192 - "GET /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/19d73f1e648c4dcdb182f0ba252b1219/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 42
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/19d73f1e648c4dcdb182f0ba252b1219/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 42
+INFO:     127.0.0.1:56191 - "GET /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56193 - "GET /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56230 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56231 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56230 - "OPTIONS /meetings/40 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56231 - "DELETE /meetings/40 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56230 - "OPTIONS /meetings/38 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56231 - "DELETE /meetings/38 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56230 - "OPTIONS /dashboard/meetings/22/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56231 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56243 - "OPTIONS /dashboard/meetings/22/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56244 - "GET /auth/me HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 22
+DEBUG: Returning detail for meeting 22: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+INFO:     127.0.0.1:56230 - "GET /dashboard/meetings/22/detail HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 22
+DEBUG: Returning detail for meeting 22: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+INFO:     127.0.0.1:56231 - "GET /dashboard/meetings/22/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56243 - "OPTIONS /audio/23/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56244 - "OPTIONS /audio/23/download HTTP/1.1" 200 OK
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/e0f9bb84c847499fa558dbf1c769096e/recording_1769545637240.webm for audio 23
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/e0f9bb84c847499fa558dbf1c769096e/recording_1769545637240.webm for audio 23
+INFO:     127.0.0.1:56230 - "GET /audio/23/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56231 - "GET /audio/23/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56247 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56248 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56247 - "OPTIONS /dashboard/meetings/16/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56248 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56252 - "OPTIONS /dashboard/meetings/16/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56253 - "GET /auth/me HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 16
+DEBUG: Processing detail for meeting 16
+DEBUG: Returning detail for meeting 16: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+INFO:     127.0.0.1:56247 - "GET /dashboard/meetings/16/detail HTTP/1.1" 200 OK
+DEBUG: Returning detail for meeting 16: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+INFO:     127.0.0.1:56248 - "GET /dashboard/meetings/16/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56252 - "OPTIONS /audio/19/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56253 - "OPTIONS /audio/19/download HTTP/1.1" 200 OK
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/aaeee7d740ec41388181b66c8ccd4006/recording_1769495366748.webm for audio 19
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/aaeee7d740ec41388181b66c8ccd4006/recording_1769495366748.webm for audio 19
+INFO:     127.0.0.1:56248 - "GET /audio/19/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56247 - "GET /audio/19/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56252 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56253 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56252 - "OPTIONS /meetings/16 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56253 - "DELETE /meetings/16 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56252 - "OPTIONS /meetings/19 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56253 - "DELETE /meetings/19 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56252 - "OPTIONS /meetings/22 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56253 - "DELETE /meetings/22 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56252 - "OPTIONS /meetings/23 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56253 - "DELETE /meetings/23 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56252 - "OPTIONS /meetings/24 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56253 - "DELETE /meetings/24 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56252 - "OPTIONS /meetings/26 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56253 - "DELETE /meetings/26 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56252 - "OPTIONS /meetings/28 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56253 - "DELETE /meetings/28 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56252 - "OPTIONS /meetings/29 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56253 - "DELETE /meetings/29 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56252 - "OPTIONS /meetings/30 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56253 - "DELETE /meetings/30 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56252 - "OPTIONS /meetings/31 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56253 - "DELETE /meetings/31 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56433 - "OPTIONS /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56434 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56435 - "OPTIONS /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56436 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 43
+INFO:     127.0.0.1:56434 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56436 - "GET /auth/me HTTP/1.1" 200 OK
+DEBUG: Returning detail for meeting 43: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+DEBUG: Processing detail for meeting 43
+INFO:     127.0.0.1:56433 - "GET /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+DEBUG: Returning detail for meeting 43: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+INFO:     127.0.0.1:56435 - "GET /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56434 - "OPTIONS /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56436 - "OPTIONS /audio/42/download HTTP/1.1" 200 OK
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/19d73f1e648c4dcdb182f0ba252b1219/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 42
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/19d73f1e648c4dcdb182f0ba252b1219/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 42
+INFO:     127.0.0.1:56435 - "GET /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56433 - "GET /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56433 - "OPTIONS /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56435 - "OPTIONS /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56433 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56435 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'app/core/config.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [39016]
+Process SpawnProcess-5:
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 2, in <module>
+    from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/__init__.py", line 1, in <module>
+    from .meetings import router as meetings
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/meetings.py", line 5, in <module>
+    from app.db import get_db
+  File "/Users/benita/development/edensummariser/backend/app/db.py", line 5, in <module>
+    from app.core.config import settings
+  File "/Users/benita/development/edensummariser/backend/app/core/config.py", line 6, in <module>
+    class Settings(BaseSettings):
+  File "/Users/benita/development/edensummariser/backend/app/core/config.py", line 41, in Settings
+    CORS_ORIGINS: List[str] = ["http://localhost:3000"]
+                  ^^^^
+NameError: name 'List' is not defined
+WARNING:  WatchFiles detected changes in 'modal_worker.py'. Reloading...
+Process SpawnProcess-6:
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 2, in <module>
+    from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/__init__.py", line 1, in <module>
+    from .meetings import router as meetings
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/meetings.py", line 5, in <module>
+    from app.db import get_db
+  File "/Users/benita/development/edensummariser/backend/app/db.py", line 5, in <module>
+    from app.core.config import settings
+  File "/Users/benita/development/edensummariser/backend/app/core/config.py", line 6, in <module>
+    class Settings(BaseSettings):
+  File "/Users/benita/development/edensummariser/backend/app/core/config.py", line 41, in Settings
+    CORS_ORIGINS: List[str] = ["http://localhost:3000"]
+                  ^^^^
+NameError: name 'List' is not defined
+WARNING:  WatchFiles detected changes in 'app/core/config.py'. Reloading...
+Process SpawnProcess-7:
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 2, in <module>
+    from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/__init__.py", line 1, in <module>
+    from .meetings import router as meetings
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/meetings.py", line 5, in <module>
+    from app.db import get_db
+  File "/Users/benita/development/edensummariser/backend/app/db.py", line 5, in <module>
+    from app.core.config import settings
+  File "/Users/benita/development/edensummariser/backend/app/core/config.py", line 6, in <module>
+    class Settings(BaseSettings):
+  File "/Users/benita/development/edensummariser/backend/app/core/config.py", line 42, in Settings
+    CORS_ORIGINS: List[str] = ["http://localhost:3000"]
+                  ^^^^
+NameError: name 'List' is not defined
+WARNING:  WatchFiles detected changes in 'app/tasks.py'. Reloading...
+Process SpawnProcess-8:
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 2, in <module>
+    from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/__init__.py", line 1, in <module>
+    from .meetings import router as meetings
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/meetings.py", line 5, in <module>
+    from app.db import get_db
+  File "/Users/benita/development/edensummariser/backend/app/db.py", line 5, in <module>
+    from app.core.config import settings
+  File "/Users/benita/development/edensummariser/backend/app/core/config.py", line 6, in <module>
+    class Settings(BaseSettings):
+  File "/Users/benita/development/edensummariser/backend/app/core/config.py", line 42, in Settings
+    CORS_ORIGINS: List[str] = ["http://localhost:3000"]
+                  ^^^^
+NameError: name 'List' is not defined
+WARNING:  WatchFiles detected changes in 'app/ai/pipeline.py'. Reloading...
+Process SpawnProcess-9:
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 2, in <module>
+    from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/__init__.py", line 1, in <module>
+    from .meetings import router as meetings
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/meetings.py", line 5, in <module>
+    from app.db import get_db
+  File "/Users/benita/development/edensummariser/backend/app/db.py", line 5, in <module>
+    from app.core.config import settings
+  File "/Users/benita/development/edensummariser/backend/app/core/config.py", line 6, in <module>
+    class Settings(BaseSettings):
+  File "/Users/benita/development/edensummariser/backend/app/core/config.py", line 42, in Settings
+    CORS_ORIGINS: List[str] = ["http://localhost:3000"]
+                  ^^^^
+NameError: name 'List' is not defined
+WARNING:  WatchFiles detected changes in 'app/main.py'. Reloading...
+Process SpawnProcess-10:
+Traceback (most recent call last):
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 2, in <module>
+    from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/__init__.py", line 1, in <module>
+    from .meetings import router as meetings
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/meetings.py", line 5, in <module>
+    from app.db import get_db
+  File "/Users/benita/development/edensummariser/backend/app/db.py", line 5, in <module>
+    from app.core.config import settings
+  File "/Users/benita/development/edensummariser/backend/app/core/config.py", line 6, in <module>
+    class Settings(BaseSettings):
+  File "/Users/benita/development/edensummariser/backend/app/core/config.py", line 42, in Settings
+    CORS_ORIGINS: List[str] = ["http://localhost:3000"]
+                  ^^^^
+NameError: name 'List' is not defined
+WARNING:  WatchFiles detected changes in 'app/core/config.py'. Reloading...
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.4.2 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "<string>", line 1, in <module>
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 2, in <module>
+    from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/__init__.py", line 1, in <module>
+    from .meetings import router as meetings
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/meetings.py", line 9, in <module>
+    from app.tasks import enqueue_recording_processing
+  File "/Users/benita/development/edensummariser/backend/app/tasks.py", line 1, in <module>
+    from . import ai
+  File "/Users/benita/development/edensummariser/backend/app/ai/__init__.py", line 2, in <module>
+    from . import pipeline
+  File "/Users/benita/development/edensummariser/backend/app/ai/pipeline.py", line 13, in <module>
+    from app.ai import transcribe
+  File "/Users/benita/development/edensummariser/backend/app/ai/transcribe.py", line 5, in <module>
+    import torch
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/__init__.py", line 1477, in <module>
+    from .functional import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/functional.py", line 9, in <module>
+    import torch.nn.functional as F
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [40139]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Initialized LocalStorage at /Users/benita/development/edensummariser/backend/storage_data
+INFO:     127.0.0.1:57303 - "GET /health HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 192, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 783, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 53, in audit_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 47, in require_api_token
+    |     raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid API token")
+    | fastapi.exceptions.HTTPException: 401: Invalid API token
+    +------------------------------------
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 53, in audit_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 47, in require_api_token
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid API token")
+fastapi.exceptions.HTTPException: 401: Invalid API token
+WARNING:  WatchFiles detected changes in 'app/main.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [40139]
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.4.2 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "<string>", line 1, in <module>
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 2, in <module>
+    from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/__init__.py", line 1, in <module>
+    from .meetings import router as meetings
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/meetings.py", line 9, in <module>
+    from app.tasks import enqueue_recording_processing
+  File "/Users/benita/development/edensummariser/backend/app/tasks.py", line 1, in <module>
+    from . import ai
+  File "/Users/benita/development/edensummariser/backend/app/ai/__init__.py", line 2, in <module>
+    from . import pipeline
+  File "/Users/benita/development/edensummariser/backend/app/ai/pipeline.py", line 13, in <module>
+    from app.ai import transcribe
+  File "/Users/benita/development/edensummariser/backend/app/ai/transcribe.py", line 5, in <module>
+    import torch
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/__init__.py", line 1477, in <module>
+    from .functional import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/functional.py", line 9, in <module>
+    import torch.nn.functional as F
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [40646]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Initialized LocalStorage at /Users/benita/development/edensummariser/backend/storage_data
+INFO:     127.0.0.1:57320 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57395 - "POST /auth/token HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57395 - "OPTIONS /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57395 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57395 - "OPTIONS /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57399 - "OPTIONS /extractions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57400 - "OPTIONS /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57399 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57401 - "OPTIONS /extractions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57404 - "OPTIONS /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57401 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57399 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57404 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57400 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57395 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57401 - "OPTIONS /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57399 - "OPTIONS /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 43
+DEBUG: Processing detail for meeting 43
+DEBUG: Returning detail for meeting 43: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+DEBUG: Returning detail for meeting 43: 1 audio files, 0 transcripts, 0 summaries, 0 extractions
+INFO:     127.0.0.1:57400 - "GET /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57404 - "GET /dashboard/meetings/43/detail HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57395 - "OPTIONS /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57401 - "OPTIONS /audio/42/download HTTP/1.1" 200 OK
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/19d73f1e648c4dcdb182f0ba252b1219/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 42
+INFO:     127.0.0.1:57399 - "GET /audio/42/download HTTP/1.1" 200 OK
+DEBUG: Serving local file /Users/benita/development/edensummariser/backend/storage_data/audio/19d73f1e648c4dcdb182f0ba252b1219/Pastor Chris Oyakhilome – First Fruit Offering 1.mp3 for audio 42
+INFO:     127.0.0.1:57400 - "GET /audio/42/download HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57409 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57410 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
+INFO:     127.0.0.1:57409 - "GET /extractions/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57410 - "GET /extractions/ HTTP/1.1" 200 OK

@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 from pydantic_settings import BaseSettings
 
@@ -30,7 +30,19 @@ class Settings(BaseSettings):
     USE_LOCAL_STORAGE: bool = False
     STORAGE_PATH: str = "storage_data"
 
+    # AI Configuration
+    WHISPER_MODEL: str = "large-v3"
+    HF_TOKEN: Optional[str] = None
+    USE_GPU: bool = False
+    USE_MODAL_AI: bool = False
+    OPENAI_API_KEY: Optional[str] = None # For LLM-based layers
+
+    # Production Configs
+    DOMAIN: str = "localhost"
+    CORS_ORIGINS: List[str] = ["http://localhost:3000"]
+
     class Config:
+        case_sensitive = True
         env_file = ".env"
         extra = "ignore"
 

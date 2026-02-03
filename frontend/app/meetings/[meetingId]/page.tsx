@@ -13,7 +13,6 @@ import { MeetingDetail } from '../../../types/api';
 import SummaryTab from '../../../components/meetings/SummaryTab';
 import TranscriptTab from '../../../components/meetings/TranscriptTab';
 import ActionItemsTab from '../../../components/meetings/ActionItemsTab';
-// import RecordingTab from '../../../components/meetings/RecordingTab'; // Removed
 import AudioPlayer from '../../../components/AudioPlayer';
 
 // =============================================================================

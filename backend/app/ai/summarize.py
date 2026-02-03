@@ -1,69 +1,39 @@
 import json
 from typing import List, Dict, Any
-
-# Prompt templates
-PROMPTS = {
-    "short": "Provide a concise executive summary (1-2 sentences), key points (3 bullets), decisions (if any), and risks/blocks.",
-    "medium": "Provide an executive summary (3-4 sentences), key points (5 bullets), decisions (list), and risks/blocks with brief context.",
-    "long": "Provide a detailed executive summary, key points, decisions, and risks with rationale and recommended next steps.",
-}
-
-
-def _extract_candidates_from_segments(segments: List[Dict[str, Any]]) -> List[str]:
-    # simple heuristic: return sentences from segment texts
-    texts = [s.get("text", "") for s in segments]
-    candidates = []
-    for t in texts:
-        # split on period, exclamation, question
-        parts = [p.strip() for p in t.replace("!", ".").replace("?", ".").split(".") if p.strip()]
-        candidates.extend(parts)
-    return candidates
-
-
-def _mock_llm_summarize(segments: List[Dict[str, Any]], length: str, tone: str) -> Dict[str, Any]:
-    # Very lightweight mock: pick candidates and format output according to prompt
-    candidates = _extract_candidates_from_segments(segments)
-    if not candidates:
-        exec_summary = "No transcribed content to summarize."
-        key_points = []
-        decisions = []
-        risks = []
-    else:
-        # executive summary: join first N candidates
-        n_exec = {"short": 1, "medium": 3, "long": 5}.get(length, 1)
-        exec_summary = " ".join(candidates[:n_exec])
-        # key points: pick up to 5 distinct candidates
-        kp = []
-        seen = set()
-        for c in candidates:
-            if c not in seen:
-                kp.append(c)
-                seen.add(c)
-            if len(kp) >= 5:
-                break
-        # decisions: heuristic extract lines containing decision words
-        decisions = [c for c in candidates if any(w in c.lower() for w in ("decide", "decision", "we will", "action:"))]
-        # risks: heuristic extract lines containing risk words
-        risks = [c for c in candidates if any(w in c.lower() for w in ("risk", "blocker", "blocked", "issue"))]
-        key_points = kp
-        # embellish based on tone
-        if tone == "formal":
-            exec_summary = exec_summary
-        else:
-            exec_summary = exec_summary
-
-    return {
-        "executive_summary": exec_summary,
-        "key_points": key_points,
-        "decisions": decisions,
-        "risks": risks,
-    }
-
+from app.ai import extract
+from app.core.config import settings
 
 def summarize_from_segments(segments: List[Dict[str, Any]], length: str = "short", tone: str = "formal") -> Dict[str, Any]:
-    """Return structured summary dict given transcript segments.
-    Output keys: executive_summary, key_points (list), decisions (list), risks (list), length, tone
     """
-    out = _mock_llm_summarize(segments, length, tone)
-    out.update({"length": length, "tone": tone})
-    return out
+    Return structured summary dict by first extracting validated facts.
+    Ensures 'Never generate summaries directly from raw transcripts'.
+    """
+    # 1. Run the 5-Layer Accuracy Extraction
+    extraction_res = extract.extract_from_segments(segments)
+    
+    # 2. Derive summary specifically from these facts
+    actions = extraction_res.get("actions", [])
+    decisions = extraction_res.get("decisions", [])
+    risks = extraction_res.get("risks", [])
+    
+    # Prompt for LLM if available, otherwise use a template-based approach for facts
+    facts_summary = f"Summary of validated facts:\n"
+    if actions:
+        facts_summary += f"- {len(actions)} action items were identified.\n"
+    if decisions:
+        facts_summary += f"- {len(decisions)} decisions were reached.\n"
+    if risks:
+        facts_summary += f"- {len(risks)} potential risks were noted.\n"
+    
+    # In a real system, we'd send these facts to gpt-4o to generate a natural language summary
+    # For now, we use a structured fallback if OPENAI_API_KEY is missing.
+    summary_text = extraction_res.get("summary", "Meeting insights derived from validated segments.")
+    
+    return {
+        "executive_summary": summary_text,
+        "key_points": [a["task"] for a in actions[:3]] + [d["decision"] for d in decisions[:2]],
+        "decisions": [d["decision"] for d in decisions],
+        "risks": [r["risk"] for r in risks],
+        "length": length,
+        "tone": tone
+    }

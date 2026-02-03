@@ -92,10 +92,10 @@ export interface MeetingUpdate {
 
 // --- Transcript ---
 export interface TranscriptSegment {
-  speaker: string;
+  speaker_id: string;
   start_time: number;
   end_time: number;
-  text: string;
+  original_text: string;
   detected_language: string | null;
 }
 
@@ -110,10 +110,11 @@ export interface TranscriptRead {
 
 // --- Translation ---
 export interface TranslatedSegment {
-  speaker: string;
+  speaker_id: string;
   start_time: number;
   end_time: number;
-  text: string;
+  original_text: string;
+  translated_text: string;
   detected_language: string | null;
 }
 

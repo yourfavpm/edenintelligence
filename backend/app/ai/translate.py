@@ -1,21 +1,30 @@
-import json
 from typing import List, Dict, Any
-
-# Mock translation: preserve speaker, timestamps; replace text with pseudo-translation
-
-def _mock_translate_text(text: str, target: str) -> str:
-    # naive mock: append language tag
-    return f"{text} [{target}]"
-
+from app.core.config import settings
 
 def translate_segments(segments: List[Dict[str, Any]], target_language: str) -> Dict[str, Any]:
+    """
+    Translate segments while preserving speaker context and timestamps.
+    """
+    # In a production system, this could use OpenAI or NLLB.
+    # For now, we wrap the text but maintain the speaker and structure.
+    
     translated = []
     for s in segments:
+        original_text = s.get("original_text", s.get("text", ""))
+        
+        # Mock translation logic
+        # Ideally: translated_text = call_mt_service(original_text, target_language, context=s.get("speaker_id"))
+        translated_text = f"{original_text} [{target_language}]"
+        
         translated.append({
-            "speaker": s.get("speaker"),
+            "speaker_id": s.get("speaker_id", "UNKNOWN"),
             "start_time": s.get("start_time"),
             "end_time": s.get("end_time"),
-            "text": _mock_translate_text(s.get("text", ""), target_language),
-            "detected_language": target_language,
+            "original_text": original_text,
+            "translated_text": translated_text
         })
-    return {"segments": translated, "target_language": target_language}
+        
+    return {
+        "segments": translated,
+        "target_language": target_language
+    }

@@ -68,7 +68,15 @@ def process_recording(recording_id: int) -> Dict[str, Any]:
                     logger.info("AudioFile %s already exists for key %s, reusing", af.id, rec.s3_key)
 
                 # run transcription (mocked) synchronously here
-                result = transcribe.transcribe_bytes_to_segments(data)
+                from app.core.config import settings
+                if settings.USE_MODAL_AI:
+                    logger.info("Using Modal.com for transcription of recording %s", recording_id)
+                    import modal
+                    f = modal.Function.lookup("eden-ai-worker", "transcribe_audio")
+                    result = f.remote(data)
+                else:
+                    logger.info("Using local worker for transcription of recording %s", recording_id)
+                    result = transcribe.transcribe_bytes_to_segments(data)
                 segments_json = json.dumps(result.get("segments", []))
                 # encrypt segments at rest if configured
                 enc_segments = crypto.encrypt_text(segments_json)

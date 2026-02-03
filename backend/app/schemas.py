@@ -247,11 +247,21 @@ class AudioIngestRead(BaseModel):
 
 # --- Transcript schemas ---
 class TranscriptSegment(BaseModel):
-    speaker: str
+    speaker_id: str
     start_time: float
     end_time: float
-    text: str
+    original_text: str
     detected_language: Optional[str] = None
+
+    @model_validator(mode='before')
+    @classmethod
+    def map_legacy_fields(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            if 'speaker' in data and 'speaker_id' not in data:
+                data['speaker_id'] = data['speaker']
+            if 'text' in data and 'original_text' not in data:
+                data['original_text'] = data['text']
+        return data
 
 class TranscriptRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -266,19 +276,36 @@ class TranscriptRead(BaseModel):
     @classmethod
     def parse_segments(cls, v: Any) -> Any:
         if isinstance(v, str):
+            from app.core import crypto
+            decocumented = crypto.decrypt_text(v)
             try:
-                return json.loads(v)
+                return json.loads(decocumented)
             except Exception:
                 return []
         return v
 
 # --- Translation schemas ---
 class TranslatedSegment(BaseModel):
-    speaker: str
+    speaker_id: str
     start_time: float
     end_time: float
-    text: str
+    original_text: str
+    translated_text: str
     detected_language: Optional[str] = None
+
+    @model_validator(mode='before')
+    @classmethod
+    def map_legacy_fields(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            if 'speaker' in data and 'speaker_id' not in data:
+                data['speaker_id'] = data['speaker']
+            if 'text' in data and 'translated_text' not in data:
+                # Fallback: if 'translated_text' is missing but 'text' is there, use it
+                if 'translated_text' not in data:
+                    data['translated_text'] = data['text']
+            if 'original_text' not in data and 'text' in data:
+                data['original_text'] = data['text']
+        return data
 
 class TranslatedTranscriptRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -294,8 +321,10 @@ class TranslatedTranscriptRead(BaseModel):
     @classmethod
     def parse_segments(cls, v: Any) -> Any:
         if isinstance(v, str):
+            from app.core import crypto
+            decocumented = crypto.decrypt_text(v)
             try:
-                return json.loads(v)
+                return json.loads(decocumented)
             except Exception:
                 return []
         return v

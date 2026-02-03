@@ -23,3 +23,7 @@ dist/
 .DS_Store
 .idea/
 .vscode/
+
+# Project Specific
+backend/storage_data/
+backend/backend_log*.txt

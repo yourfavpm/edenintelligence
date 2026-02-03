@@ -149,7 +149,7 @@ def enqueue_audio_processing(audio_id: int):
 
 @celery_app.task(bind=True, name="app.tasks.process_transcription")
 def process_transcription(self, audio_id: int):
-    """Download audio bytes, transcribe with AssemblyAI, and persist Transcript record."""
+    """Download audio bytes, transcribe with WhisperX + pyannote, and persist Transcript record."""
     from app.db import SyncSessionLocal
     from app.models.models import AudioFile, Transcript, Meeting
     
@@ -169,10 +169,23 @@ def process_transcription(self, audio_id: int):
             data = asyncio.run(storage.download_to_bytes(a.s3_key))
             print(f"DEBUG: Downloaded {len(data)} bytes")
             
-            # Transcribe with AssemblyAI
-            result = transcribe.transcribe_bytes_to_segments(data)
+            # Transcribe with WhisperX (internal model handles speaker-aware segments)
+            from app.core.config import settings
+            if settings.USE_MODAL_AI:
+                print(f"DEBUG: Using Modal.com for transcription of audio {audio_id}")
+                import modal
+                f = modal.Function.lookup("eden-ai-worker", "transcribe_audio")
+                result = f.remote(data)
+            else:
+                print(f"DEBUG: Using local worker for transcription of audio {audio_id}")
+                result = transcribe.transcribe_bytes_to_segments(data)
+            
             segments = result.get("segments", [])
             segments_json = json.dumps(segments)
+            
+            # Encrypt segments at rest if configured
+            from app.core import crypto
+            enc_segments = crypto.encrypt_text(segments_json)
             detected = result.get("detected_language")
             
             print(f"DEBUG: Saving transcript with {len(segments)} segments")
@@ -180,8 +193,9 @@ def process_transcription(self, audio_id: int):
             tr = Transcript(
                 audio_file_id=a.id,
                 meeting_id=a.meeting_id,
-                segments=segments_json,
-                detected_language=detected
+                segments=enc_segments,
+                detected_language=detected,
+                encrypted=(enc_segments != segments_json)
             )
             db.add(tr)
             
@@ -193,7 +207,7 @@ def process_transcription(self, audio_id: int):
             print(f"DEBUG: Transcription completed and saved for audio {audio_id}")
             debug_log(f"SUCCESS: Transcription saved for audio {audio_id}. Enqueueing follow-ups.")
 
-            # Enqueue follow-up AI tasks
+            # Enqueue follow-up AI tasks (fact-based summarization and extraction)
             enqueue_summarization(tr.id)
             enqueue_extraction(tr.id)
             print(f"DEBUG: Enqueued summarization and extraction for transcript {tr.id}")

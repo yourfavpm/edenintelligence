@@ -1,145 +1,488 @@
 INFO:     Will watch for changes in these directories: ['/Users/benita/development/edensummariser/backend']
-INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [87276] using WatchFiles
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [36002] using WatchFiles
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.4.1 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "<string>", line 1, in <module>
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 2, in <module>
+    from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/__init__.py", line 1, in <module>
+    from .meetings import router as meetings
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/meetings.py", line 9, in <module>
+    from app.tasks import enqueue_recording_processing
+  File "/Users/benita/development/edensummariser/backend/app/tasks.py", line 1, in <module>
+    from . import ai
+  File "/Users/benita/development/edensummariser/backend/app/ai/__init__.py", line 2, in <module>
+    from . import pipeline
+  File "/Users/benita/development/edensummariser/backend/app/ai/pipeline.py", line 13, in <module>
+    from app.ai import transcribe
+  File "/Users/benita/development/edensummariser/backend/app/ai/transcribe.py", line 5, in <module>
+    import torch
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/__init__.py", line 1477, in <module>
+    from .functional import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/functional.py", line 9, in <module>
+    import torch.nn.functional as F
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
 /Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
 * 'orm_mode' has been renamed to 'from_attributes'
   warnings.warn(message, UserWarning)
-/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
-* 'orm_mode' has been renamed to 'from_attributes'
-  warnings.warn(message, UserWarning)
-INFO:     Started server process [87331]
+INFO:     Started server process [36057]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-Traceback (most recent call last):
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 526, in _prepare_and_execute
-    prepared_stmt, attributes = await adapt_connection._prepare(
-                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 773, in _prepare
-    prepared_stmt = await self._connection.prepare(
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/asyncpg/connection.py", line 638, in prepare
-    return await self._prepare(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/asyncpg/connection.py", line 657, in _prepare
-    stmt = await self._get_statement(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/asyncpg/connection.py", line 443, in _get_statement
-    statement = await self._protocol.prepare(
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "asyncpg/protocol/protocol.pyx", line 165, in prepare
-asyncpg.exceptions.UndefinedFunctionError: operator does not exist: integer = character varying
-HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+Initialized LocalStorage at /Users/benita/development/edensummariser/backend/storage_data
+INFO:     127.0.0.1:55340 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55339 - "GET /dashboard/meetings?limit=20&offset=0 HTTP/1.1" 200 OK
+DEBUG: Processing detail for meeting 42
+INFO:     127.0.0.1:55339 - "GET /auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55352 - "GET /auth/me HTTP/1.1" 200 OK
+DEBUG: Returning detail for meeting 42: 1 audio files, 1 transcripts, 1 summaries, 1 extractions
+INFO:     127.0.0.1:55340 - "GET /dashboard/meetings/42/detail HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 192, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 783, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 54, in audit_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 41, in require_api_token
+    |     return await call_next(request)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 377, in app
+    |     content = await serialize_response(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 215, in serialize_response
+    |     raise ResponseValidationError(
+    | fastapi.exceptions.ResponseValidationError: 10 validation errors:
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 0, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 0.24, 'end_time': 284.109, 'text': "So you need to look at this and even not just from, even not just from the. Even not just from logo itself only as you said the name and some other things like that. Because you just see Eden for example. Now when you go to the splash screen, that splash screen already needs to change because does it sell you. Splash when you first open. What you see when you first open is the dispatch screen. Right? We need to show for example now it says show me a quote snippet suggested. Do you know if that's hard coded? Okay, so what do you, what areas do you know? Do you know if pastor want us to go start this push with what you're working on or with this talking to now? So now you have to build it. Okay, so this flash screen needs to sell us from the beginning. The chatbots check. Oh, it's fine in the middle, but then we need to have some things here, some things there. So this is real estate for like the program does. So when you go here, you should not be thinking, oh, what should I do with eating? Because for example, now if I say come and explore our platform. If you don't have a use case in mind already and you go there, don't just sit down, be thinking, what can I do? Right, so we need to already tell them what you can do by the time they get here. I was looking for, I think because I use my own a lot already. But normally when you open up a new chat, GPT clinical, clinical, it will tell you there at the bottom, those nice colorful icons. Oh, generate an image. Oh, do this. Oh, do that. Oh, do this. We need to now have that branding there. So if we should not actually successfully get somebody to click from any of these things and to come here, we need to show them very, very clearly what to do. Okay, so we need to have some of our branding elements in terms of what can we do here Immediately they go into the platform. Right. So right now we only have chats. We took down the image stuff. Right. It's not up right now. So what are you building yours business of? Okay, so what changes are you making? No, but those are just, I mean. Oh yeah, outward facing changes are you making. Are you just adding features, icing changes? So what? No, I mean in terms of the plan, not necessarily what you've done already, what are you planning to do? Have you written down anywhere what it is that you tend to do? Like next three months, one month or you're just kind of as you go. See now that's what pastor was saying to how would she feel right when it comes like this? I don't want to come with the plan. You can't just wait for, oh, this was next. In the next two weeks, three weeks, one month, two months, three months. Here's the roadmap of what things are going to do because it will help you. Because if you are just building here and there, here and there, here and there. So what about when you finish your task? What do you do next? You just sit down. Now, when you have that roadmap like that, you already know once I'm done here, I'm going to the next one. So is it like a overall product manager? Is that Pastor that the operate manager for all products? He does that himself. Easy. So what are we doing for. You found it. Okay. Which other pages are we making?", 'detected_language': 'en'}}
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 0, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 0.24, 'end_time': 284.109, 'text': "So you need to look at this and even not just from, even not just from the. Even not just from logo itself only as you said the name and some other things like that. Because you just see Eden for example. Now when you go to the splash screen, that splash screen already needs to change because does it sell you. Splash when you first open. What you see when you first open is the dispatch screen. Right? We need to show for example now it says show me a quote snippet suggested. Do you know if that's hard coded? Okay, so what do you, what areas do you know? Do you know if pastor want us to go start this push with what you're working on or with this talking to now? So now you have to build it. Okay, so this flash screen needs to sell us from the beginning. The chatbots check. Oh, it's fine in the middle, but then we need to have some things here, some things there. So this is real estate for like the program does. So when you go here, you should not be thinking, oh, what should I do with eating? Because for example, now if I say come and explore our platform. If you don't have a use case in mind already and you go there, don't just sit down, be thinking, what can I do? Right, so we need to already tell them what you can do by the time they get here. I was looking for, I think because I use my own a lot already. But normally when you open up a new chat, GPT clinical, clinical, it will tell you there at the bottom, those nice colorful icons. Oh, generate an image. Oh, do this. Oh, do that. Oh, do this. We need to now have that branding there. So if we should not actually successfully get somebody to click from any of these things and to come here, we need to show them very, very clearly what to do. Okay, so we need to have some of our branding elements in terms of what can we do here Immediately they go into the platform. Right. So right now we only have chats. We took down the image stuff. Right. It's not up right now. So what are you building yours business of? Okay, so what changes are you making? No, but those are just, I mean. Oh yeah, outward facing changes are you making. Are you just adding features, icing changes? So what? No, I mean in terms of the plan, not necessarily what you've done already, what are you planning to do? Have you written down anywhere what it is that you tend to do? Like next three months, one month or you're just kind of as you go. See now that's what pastor was saying to how would she feel right when it comes like this? I don't want to come with the plan. You can't just wait for, oh, this was next. In the next two weeks, three weeks, one month, two months, three months. Here's the roadmap of what things are going to do because it will help you. Because if you are just building here and there, here and there, here and there. So what about when you finish your task? What do you do next? You just sit down. Now, when you have that roadmap like that, you already know once I'm done here, I'm going to the next one. So is it like a overall product manager? Is that Pastor that the operate manager for all products? He does that himself. Easy. So what are we doing for. You found it. Okay. Which other pages are we making?", 'detected_language': 'en'}}
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 1, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'B', 'start_time': 284.189, 'end_time': 310.96, 'text': "I mean, I know Dawi made a tik tok at one point, but then I. I can't remember the password that she used. But yeah, also Instagram for the email she used to attach them. Instagram and TikTok.", 'detected_language': 'en'}}
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 1, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'B', 'start_time': 284.189, 'end_time': 310.96, 'text': "I mean, I know Dawi made a tik tok at one point, but then I. I can't remember the password that she used. But yeah, also Instagram for the email she used to attach them. Instagram and TikTok.", 'detected_language': 'en'}}
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 2, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 317.11, 'end_time': 317.59, 'text': 'Original.', 'detected_language': 'en'}}
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 2, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 317.11, 'end_time': 317.59, 'text': 'Original.', 'detected_language': 'en'}}
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 3, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'B', 'start_time': 326.71, 'end_time': 327.99, 'text': "That's the name she chose.", 'detected_language': 'en'}}
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 3, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'B', 'start_time': 326.71, 'end_time': 327.99, 'text': "That's the name she chose.", 'detected_language': 'en'}}
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 4, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 328.63, 'end_time': 360.08, 'text': "Okay, what about medium substack blogging content? But you know those platforms, They're always in charge of creating these materials. Do we have anybody for creating those things now? Content? Yeah. Okay.", 'detected_language': 'en'}}
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 4, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 328.63, 'end_time': 360.08, 'text': "Okay, what about medium substack blogging content? But you know those platforms, They're always in charge of creating these materials. Do we have anybody for creating those things now? Content? Yeah. Okay.", 'detected_language': 'en'}}
+    | 
+    |   File "/Users/benita/development/edensummariser/backend/app/api/routers/dashboard.py", line 67, in meeting_detail
+    |     GET /dashboard/meetings/{meeting_id}/detail
+    +------------------------------------
 
 The above exception was the direct cause of the following exception:
 
 Traceback (most recent call last):
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
-    self.dialect.do_execute(
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
-    cursor.execute(statement, parameters)
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
-    self._adapt_connection.await_(
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
-    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
-    value = await result
-            ^^^^^^^^^^^^
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
-    self._handle_exception(error)
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
-    self._adapt_connection._handle_exception(error)
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
-    raise translated_error from error
-sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.ProgrammingError: <class 'asyncpg.exceptions.UndefinedFunctionError'>: operator does not exist: integer = character varying
-HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 54, in audit_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 41, in require_api_token
+    return await call_next(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 377, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 215, in serialize_response
+    raise ResponseValidationError(
+fastapi.exceptions.ResponseValidationError: 10 validation errors:
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 0, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 0.24, 'end_time': 284.109, 'text': "So you need to look at this and even not just from, even not just from the. Even not just from logo itself only as you said the name and some other things like that. Because you just see Eden for example. Now when you go to the splash screen, that splash screen already needs to change because does it sell you. Splash when you first open. What you see when you first open is the dispatch screen. Right? We need to show for example now it says show me a quote snippet suggested. Do you know if that's hard coded? Okay, so what do you, what areas do you know? Do you know if pastor want us to go start this push with what you're working on or with this talking to now? So now you have to build it. Okay, so this flash screen needs to sell us from the beginning. The chatbots check. Oh, it's fine in the middle, but then we need to have some things here, some things there. So this is real estate for like the program does. So when you go here, you should not be thinking, oh, what should I do with eating? Because for example, now if I say come and explore our platform. If you don't have a use case in mind already and you go there, don't just sit down, be thinking, what can I do? Right, so we need to already tell them what you can do by the time they get here. I was looking for, I think because I use my own a lot already. But normally when you open up a new chat, GPT clinical, clinical, it will tell you there at the bottom, those nice colorful icons. Oh, generate an image. Oh, do this. Oh, do that. Oh, do this. We need to now have that branding there. So if we should not actually successfully get somebody to click from any of these things and to come here, we need to show them very, very clearly what to do. Okay, so we need to have some of our branding elements in terms of what can we do here Immediately they go into the platform. Right. So right now we only have chats. We took down the image stuff. Right. It's not up right now. So what are you building yours business of? Okay, so what changes are you making? No, but those are just, I mean. Oh yeah, outward facing changes are you making. Are you just adding features, icing changes? So what? No, I mean in terms of the plan, not necessarily what you've done already, what are you planning to do? Have you written down anywhere what it is that you tend to do? Like next three months, one month or you're just kind of as you go. See now that's what pastor was saying to how would she feel right when it comes like this? I don't want to come with the plan. You can't just wait for, oh, this was next. In the next two weeks, three weeks, one month, two months, three months. Here's the roadmap of what things are going to do because it will help you. Because if you are just building here and there, here and there, here and there. So what about when you finish your task? What do you do next? You just sit down. Now, when you have that roadmap like that, you already know once I'm done here, I'm going to the next one. So is it like a overall product manager? Is that Pastor that the operate manager for all products? He does that himself. Easy. So what are we doing for. You found it. Okay. Which other pages are we making?", 'detected_language': 'en'}}
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 0, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 0.24, 'end_time': 284.109, 'text': "So you need to look at this and even not just from, even not just from the. Even not just from logo itself only as you said the name and some other things like that. Because you just see Eden for example. Now when you go to the splash screen, that splash screen already needs to change because does it sell you. Splash when you first open. What you see when you first open is the dispatch screen. Right? We need to show for example now it says show me a quote snippet suggested. Do you know if that's hard coded? Okay, so what do you, what areas do you know? Do you know if pastor want us to go start this push with what you're working on or with this talking to now? So now you have to build it. Okay, so this flash screen needs to sell us from the beginning. The chatbots check. Oh, it's fine in the middle, but then we need to have some things here, some things there. So this is real estate for like the program does. So when you go here, you should not be thinking, oh, what should I do with eating? Because for example, now if I say come and explore our platform. If you don't have a use case in mind already and you go there, don't just sit down, be thinking, what can I do? Right, so we need to already tell them what you can do by the time they get here. I was looking for, I think because I use my own a lot already. But normally when you open up a new chat, GPT clinical, clinical, it will tell you there at the bottom, those nice colorful icons. Oh, generate an image. Oh, do this. Oh, do that. Oh, do this. We need to now have that branding there. So if we should not actually successfully get somebody to click from any of these things and to come here, we need to show them very, very clearly what to do. Okay, so we need to have some of our branding elements in terms of what can we do here Immediately they go into the platform. Right. So right now we only have chats. We took down the image stuff. Right. It's not up right now. So what are you building yours business of? Okay, so what changes are you making? No, but those are just, I mean. Oh yeah, outward facing changes are you making. Are you just adding features, icing changes? So what? No, I mean in terms of the plan, not necessarily what you've done already, what are you planning to do? Have you written down anywhere what it is that you tend to do? Like next three months, one month or you're just kind of as you go. See now that's what pastor was saying to how would she feel right when it comes like this? I don't want to come with the plan. You can't just wait for, oh, this was next. In the next two weeks, three weeks, one month, two months, three months. Here's the roadmap of what things are going to do because it will help you. Because if you are just building here and there, here and there, here and there. So what about when you finish your task? What do you do next? You just sit down. Now, when you have that roadmap like that, you already know once I'm done here, I'm going to the next one. So is it like a overall product manager? Is that Pastor that the operate manager for all products? He does that himself. Easy. So what are we doing for. You found it. Okay. Which other pages are we making?", 'detected_language': 'en'}}
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 1, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'B', 'start_time': 284.189, 'end_time': 310.96, 'text': "I mean, I know Dawi made a tik tok at one point, but then I. I can't remember the password that she used. But yeah, also Instagram for the email she used to attach them. Instagram and TikTok.", 'detected_language': 'en'}}
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 1, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'B', 'start_time': 284.189, 'end_time': 310.96, 'text': "I mean, I know Dawi made a tik tok at one point, but then I. I can't remember the password that she used. But yeah, also Instagram for the email she used to attach them. Instagram and TikTok.", 'detected_language': 'en'}}
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 2, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 317.11, 'end_time': 317.59, 'text': 'Original.', 'detected_language': 'en'}}
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 2, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 317.11, 'end_time': 317.59, 'text': 'Original.', 'detected_language': 'en'}}
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 3, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'B', 'start_time': 326.71, 'end_time': 327.99, 'text': "That's the name she chose.", 'detected_language': 'en'}}
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 3, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'B', 'start_time': 326.71, 'end_time': 327.99, 'text': "That's the name she chose.", 'detected_language': 'en'}}
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 4, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 328.63, 'end_time': 360.08, 'text': "Okay, what about medium substack blogging content? But you know those platforms, They're always in charge of creating these materials. Do we have anybody for creating those things now? Content? Yeah. Okay.", 'detected_language': 'en'}}
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 4, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 328.63, 'end_time': 360.08, 'text': "Okay, what about medium substack blogging content? But you know those platforms, They're always in charge of creating these materials. Do we have anybody for creating those things now? Content? Yeah. Okay.", 'detected_language': 'en'}}
+
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/dashboard.py", line 67, in meeting_detail
+    GET /dashboard/meetings/{meeting_id}/detail
+DEBUG: Processing detail for meeting 42
+DEBUG: Returning detail for meeting 42: 1 audio files, 1 transcripts, 1 summaries, 1 extractions
+INFO:     127.0.0.1:55351 - "GET /dashboard/meetings/42/detail HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 79, in collapse_excgroups
+  |     yield
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 192, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 783, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 54, in audit_middleware
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |   File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/app/main.py", line 41, in require_api_token
+    |     return await call_next(request)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    |     await self.simple_response(scope, receive, send, request_headers=headers)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    |     await route.handle(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    |     await self.app(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 377, in app
+    |     content = await serialize_response(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 215, in serialize_response
+    |     raise ResponseValidationError(
+    | fastapi.exceptions.ResponseValidationError: 10 validation errors:
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 0, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 0.24, 'end_time': 284.109, 'text': "So you need to look at this and even not just from, even not just from the. Even not just from logo itself only as you said the name and some other things like that. Because you just see Eden for example. Now when you go to the splash screen, that splash screen already needs to change because does it sell you. Splash when you first open. What you see when you first open is the dispatch screen. Right? We need to show for example now it says show me a quote snippet suggested. Do you know if that's hard coded? Okay, so what do you, what areas do you know? Do you know if pastor want us to go start this push with what you're working on or with this talking to now? So now you have to build it. Okay, so this flash screen needs to sell us from the beginning. The chatbots check. Oh, it's fine in the middle, but then we need to have some things here, some things there. So this is real estate for like the program does. So when you go here, you should not be thinking, oh, what should I do with eating? Because for example, now if I say come and explore our platform. If you don't have a use case in mind already and you go there, don't just sit down, be thinking, what can I do? Right, so we need to already tell them what you can do by the time they get here. I was looking for, I think because I use my own a lot already. But normally when you open up a new chat, GPT clinical, clinical, it will tell you there at the bottom, those nice colorful icons. Oh, generate an image. Oh, do this. Oh, do that. Oh, do this. We need to now have that branding there. So if we should not actually successfully get somebody to click from any of these things and to come here, we need to show them very, very clearly what to do. Okay, so we need to have some of our branding elements in terms of what can we do here Immediately they go into the platform. Right. So right now we only have chats. We took down the image stuff. Right. It's not up right now. So what are you building yours business of? Okay, so what changes are you making? No, but those are just, I mean. Oh yeah, outward facing changes are you making. Are you just adding features, icing changes? So what? No, I mean in terms of the plan, not necessarily what you've done already, what are you planning to do? Have you written down anywhere what it is that you tend to do? Like next three months, one month or you're just kind of as you go. See now that's what pastor was saying to how would she feel right when it comes like this? I don't want to come with the plan. You can't just wait for, oh, this was next. In the next two weeks, three weeks, one month, two months, three months. Here's the roadmap of what things are going to do because it will help you. Because if you are just building here and there, here and there, here and there. So what about when you finish your task? What do you do next? You just sit down. Now, when you have that roadmap like that, you already know once I'm done here, I'm going to the next one. So is it like a overall product manager? Is that Pastor that the operate manager for all products? He does that himself. Easy. So what are we doing for. You found it. Okay. Which other pages are we making?", 'detected_language': 'en'}}
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 0, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 0.24, 'end_time': 284.109, 'text': "So you need to look at this and even not just from, even not just from the. Even not just from logo itself only as you said the name and some other things like that. Because you just see Eden for example. Now when you go to the splash screen, that splash screen already needs to change because does it sell you. Splash when you first open. What you see when you first open is the dispatch screen. Right? We need to show for example now it says show me a quote snippet suggested. Do you know if that's hard coded? Okay, so what do you, what areas do you know? Do you know if pastor want us to go start this push with what you're working on or with this talking to now? So now you have to build it. Okay, so this flash screen needs to sell us from the beginning. The chatbots check. Oh, it's fine in the middle, but then we need to have some things here, some things there. So this is real estate for like the program does. So when you go here, you should not be thinking, oh, what should I do with eating? Because for example, now if I say come and explore our platform. If you don't have a use case in mind already and you go there, don't just sit down, be thinking, what can I do? Right, so we need to already tell them what you can do by the time they get here. I was looking for, I think because I use my own a lot already. But normally when you open up a new chat, GPT clinical, clinical, it will tell you there at the bottom, those nice colorful icons. Oh, generate an image. Oh, do this. Oh, do that. Oh, do this. We need to now have that branding there. So if we should not actually successfully get somebody to click from any of these things and to come here, we need to show them very, very clearly what to do. Okay, so we need to have some of our branding elements in terms of what can we do here Immediately they go into the platform. Right. So right now we only have chats. We took down the image stuff. Right. It's not up right now. So what are you building yours business of? Okay, so what changes are you making? No, but those are just, I mean. Oh yeah, outward facing changes are you making. Are you just adding features, icing changes? So what? No, I mean in terms of the plan, not necessarily what you've done already, what are you planning to do? Have you written down anywhere what it is that you tend to do? Like next three months, one month or you're just kind of as you go. See now that's what pastor was saying to how would she feel right when it comes like this? I don't want to come with the plan. You can't just wait for, oh, this was next. In the next two weeks, three weeks, one month, two months, three months. Here's the roadmap of what things are going to do because it will help you. Because if you are just building here and there, here and there, here and there. So what about when you finish your task? What do you do next? You just sit down. Now, when you have that roadmap like that, you already know once I'm done here, I'm going to the next one. So is it like a overall product manager? Is that Pastor that the operate manager for all products? He does that himself. Easy. So what are we doing for. You found it. Okay. Which other pages are we making?", 'detected_language': 'en'}}
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 1, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'B', 'start_time': 284.189, 'end_time': 310.96, 'text': "I mean, I know Dawi made a tik tok at one point, but then I. I can't remember the password that she used. But yeah, also Instagram for the email she used to attach them. Instagram and TikTok.", 'detected_language': 'en'}}
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 1, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'B', 'start_time': 284.189, 'end_time': 310.96, 'text': "I mean, I know Dawi made a tik tok at one point, but then I. I can't remember the password that she used. But yeah, also Instagram for the email she used to attach them. Instagram and TikTok.", 'detected_language': 'en'}}
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 2, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 317.11, 'end_time': 317.59, 'text': 'Original.', 'detected_language': 'en'}}
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 2, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 317.11, 'end_time': 317.59, 'text': 'Original.', 'detected_language': 'en'}}
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 3, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'B', 'start_time': 326.71, 'end_time': 327.99, 'text': "That's the name she chose.", 'detected_language': 'en'}}
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 3, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'B', 'start_time': 326.71, 'end_time': 327.99, 'text': "That's the name she chose.", 'detected_language': 'en'}}
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 4, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 328.63, 'end_time': 360.08, 'text': "Okay, what about medium substack blogging content? But you know those platforms, They're always in charge of creating these materials. Do we have anybody for creating those things now? Content? Yeah. Okay.", 'detected_language': 'en'}}
+    |   {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 4, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 328.63, 'end_time': 360.08, 'text': "Okay, what about medium substack blogging content? But you know those platforms, They're always in charge of creating these materials. Do we have anybody for creating those things now? Content? Yeah. Okay.", 'detected_language': 'en'}}
+    | 
+    |   File "/Users/benita/development/edensummariser/backend/app/api/routers/dashboard.py", line 67, in meeting_detail
+    |     GET /dashboard/meetings/{meeting_id}/detail
+    +------------------------------------
 
 The above exception was the direct cause of the following exception:
 
 Traceback (most recent call last):
-  File "/Users/benita/development/edensummariser/backend/app/api/routers/auth.py", line 148, in get_current_user
-    q = await db.execute(select(User).filter_by(id=user_id))
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 449, in execute
-    result = await greenlet_spawn(
-             ^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
-    result = context.throw(*sys.exc_info())
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
-    return self._execute_internal(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
-    result: Result[Any] = compile_state_cls.orm_execute_statement(
-                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
-    result = conn.execute(
-             ^^^^^^^^^^^^^
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
-    return meth(
-           ^^^^^
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 527, in _execute_on_connection
-    return connection._execute_clauseelement(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
-    ret = self._execute_context(
-          ^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
-    return self._exec_single_context(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
-    self._handle_dbapi_exception(
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2363, in _handle_dbapi_exception
-    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
-    self.dialect.do_execute(
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
-    cursor.execute(statement, parameters)
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 585, in execute
-    self._adapt_connection.await_(
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
-    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
-    value = await result
-            ^^^^^^^^^^^^
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 563, in _prepare_and_execute
-    self._handle_exception(error)
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 513, in _handle_exception
-    self._adapt_connection._handle_exception(error)
-  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 797, in _handle_exception
-    raise translated_error from error
-sqlalchemy.exc.ProgrammingError: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedFunctionError'>: operator does not exist: integer = character varying
-HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
-[SQL: SELECT users.id, users.email, users.display_name, users.hashed_password, users.is_active, users.is_verified, users.google_id, users.preferred_language, users.created_at 
-FROM users 
-WHERE users.id = $1::VARCHAR]
-[parameters: ('1',)]
-(Background on this error at: https://sqlalche.me/e/20/f405)
-Auth error: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) <class 'asyncpg.exceptions.UndefinedFunctionError'>: operator does not exist: integer = character varying
-HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
-[SQL: SELECT users.id, users.email, users.display_name, users.hashed_password, users.is_active, users.is_verified, users.google_id, users.preferred_language, users.created_at 
-FROM users 
-WHERE users.id = $1::VARCHAR]
-[parameters: ('1',)]
-(Background on this error at: https://sqlalche.me/e/20/f405)
-INFO:     127.0.0.1:63964 - "GET /auth/me HTTP/1.1" 401 Unauthorized
-WARNING:  WatchFiles detected changes in 'app/api/routers/auth.py'. Reloading...
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/applications.py", line 1135, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 54, in audit_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 41, in require_api_token
+    return await call_next(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 377, in app
+    content = await serialize_response(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/fastapi/routing.py", line 215, in serialize_response
+    raise ResponseValidationError(
+fastapi.exceptions.ResponseValidationError: 10 validation errors:
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 0, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 0.24, 'end_time': 284.109, 'text': "So you need to look at this and even not just from, even not just from the. Even not just from logo itself only as you said the name and some other things like that. Because you just see Eden for example. Now when you go to the splash screen, that splash screen already needs to change because does it sell you. Splash when you first open. What you see when you first open is the dispatch screen. Right? We need to show for example now it says show me a quote snippet suggested. Do you know if that's hard coded? Okay, so what do you, what areas do you know? Do you know if pastor want us to go start this push with what you're working on or with this talking to now? So now you have to build it. Okay, so this flash screen needs to sell us from the beginning. The chatbots check. Oh, it's fine in the middle, but then we need to have some things here, some things there. So this is real estate for like the program does. So when you go here, you should not be thinking, oh, what should I do with eating? Because for example, now if I say come and explore our platform. If you don't have a use case in mind already and you go there, don't just sit down, be thinking, what can I do? Right, so we need to already tell them what you can do by the time they get here. I was looking for, I think because I use my own a lot already. But normally when you open up a new chat, GPT clinical, clinical, it will tell you there at the bottom, those nice colorful icons. Oh, generate an image. Oh, do this. Oh, do that. Oh, do this. We need to now have that branding there. So if we should not actually successfully get somebody to click from any of these things and to come here, we need to show them very, very clearly what to do. Okay, so we need to have some of our branding elements in terms of what can we do here Immediately they go into the platform. Right. So right now we only have chats. We took down the image stuff. Right. It's not up right now. So what are you building yours business of? Okay, so what changes are you making? No, but those are just, I mean. Oh yeah, outward facing changes are you making. Are you just adding features, icing changes? So what? No, I mean in terms of the plan, not necessarily what you've done already, what are you planning to do? Have you written down anywhere what it is that you tend to do? Like next three months, one month or you're just kind of as you go. See now that's what pastor was saying to how would she feel right when it comes like this? I don't want to come with the plan. You can't just wait for, oh, this was next. In the next two weeks, three weeks, one month, two months, three months. Here's the roadmap of what things are going to do because it will help you. Because if you are just building here and there, here and there, here and there. So what about when you finish your task? What do you do next? You just sit down. Now, when you have that roadmap like that, you already know once I'm done here, I'm going to the next one. So is it like a overall product manager? Is that Pastor that the operate manager for all products? He does that himself. Easy. So what are we doing for. You found it. Okay. Which other pages are we making?", 'detected_language': 'en'}}
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 0, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 0.24, 'end_time': 284.109, 'text': "So you need to look at this and even not just from, even not just from the. Even not just from logo itself only as you said the name and some other things like that. Because you just see Eden for example. Now when you go to the splash screen, that splash screen already needs to change because does it sell you. Splash when you first open. What you see when you first open is the dispatch screen. Right? We need to show for example now it says show me a quote snippet suggested. Do you know if that's hard coded? Okay, so what do you, what areas do you know? Do you know if pastor want us to go start this push with what you're working on or with this talking to now? So now you have to build it. Okay, so this flash screen needs to sell us from the beginning. The chatbots check. Oh, it's fine in the middle, but then we need to have some things here, some things there. So this is real estate for like the program does. So when you go here, you should not be thinking, oh, what should I do with eating? Because for example, now if I say come and explore our platform. If you don't have a use case in mind already and you go there, don't just sit down, be thinking, what can I do? Right, so we need to already tell them what you can do by the time they get here. I was looking for, I think because I use my own a lot already. But normally when you open up a new chat, GPT clinical, clinical, it will tell you there at the bottom, those nice colorful icons. Oh, generate an image. Oh, do this. Oh, do that. Oh, do this. We need to now have that branding there. So if we should not actually successfully get somebody to click from any of these things and to come here, we need to show them very, very clearly what to do. Okay, so we need to have some of our branding elements in terms of what can we do here Immediately they go into the platform. Right. So right now we only have chats. We took down the image stuff. Right. It's not up right now. So what are you building yours business of? Okay, so what changes are you making? No, but those are just, I mean. Oh yeah, outward facing changes are you making. Are you just adding features, icing changes? So what? No, I mean in terms of the plan, not necessarily what you've done already, what are you planning to do? Have you written down anywhere what it is that you tend to do? Like next three months, one month or you're just kind of as you go. See now that's what pastor was saying to how would she feel right when it comes like this? I don't want to come with the plan. You can't just wait for, oh, this was next. In the next two weeks, three weeks, one month, two months, three months. Here's the roadmap of what things are going to do because it will help you. Because if you are just building here and there, here and there, here and there. So what about when you finish your task? What do you do next? You just sit down. Now, when you have that roadmap like that, you already know once I'm done here, I'm going to the next one. So is it like a overall product manager? Is that Pastor that the operate manager for all products? He does that himself. Easy. So what are we doing for. You found it. Okay. Which other pages are we making?", 'detected_language': 'en'}}
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 1, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'B', 'start_time': 284.189, 'end_time': 310.96, 'text': "I mean, I know Dawi made a tik tok at one point, but then I. I can't remember the password that she used. But yeah, also Instagram for the email she used to attach them. Instagram and TikTok.", 'detected_language': 'en'}}
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 1, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'B', 'start_time': 284.189, 'end_time': 310.96, 'text': "I mean, I know Dawi made a tik tok at one point, but then I. I can't remember the password that she used. But yeah, also Instagram for the email she used to attach them. Instagram and TikTok.", 'detected_language': 'en'}}
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 2, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 317.11, 'end_time': 317.59, 'text': 'Original.', 'detected_language': 'en'}}
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 2, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 317.11, 'end_time': 317.59, 'text': 'Original.', 'detected_language': 'en'}}
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 3, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'B', 'start_time': 326.71, 'end_time': 327.99, 'text': "That's the name she chose.", 'detected_language': 'en'}}
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 3, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'B', 'start_time': 326.71, 'end_time': 327.99, 'text': "That's the name she chose.", 'detected_language': 'en'}}
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 4, 'speaker_id'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 328.63, 'end_time': 360.08, 'text': "Okay, what about medium substack blogging content? But you know those platforms, They're always in charge of creating these materials. Do we have anybody for creating those things now? Content? Yeah. Okay.", 'detected_language': 'en'}}
+  {'type': 'missing', 'loc': ('response', 'transcripts', 0, 'segments', 4, 'original_text'), 'msg': 'Field required', 'input': {'speaker': 'A', 'start_time': 328.63, 'end_time': 360.08, 'text': "Okay, what about medium substack blogging content? But you know those platforms, They're always in charge of creating these materials. Do we have anybody for creating those things now? Content? Yeah. Okay.", 'detected_language': 'en'}}
+
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/dashboard.py", line 67, in meeting_detail
+    GET /dashboard/meetings/{meeting_id}/detail
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [87331]
-/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
-* 'orm_mode' has been renamed to 'from_attributes'
-  warnings.warn(message, UserWarning)
-/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
-* 'orm_mode' has been renamed to 'from_attributes'
-  warnings.warn(message, UserWarning)
-INFO:     Started server process [87877]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [87877]
-INFO:     Stopping reloader process [87276]
+INFO:     Finished server process [36057]
+INFO:     Stopping reloader process [36002]

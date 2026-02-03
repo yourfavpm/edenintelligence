@@ -10,16 +10,15 @@ app = FastAPI(title=settings.PROJECT_NAME)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "http://localhost:3001",
-        "http://127.0.0.1:3001",
-    ],
+    allow_origins=settings.CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "service": settings.PROJECT_NAME}
 
 @app.on_event("startup")
 async def on_startup():
@@ -31,7 +30,7 @@ async def require_api_token(request: Request, call_next):
         return await call_next(request)
         
     # Open paths
-    if request.url.path.startswith("/auth/") or request.url.path.startswith("/docs") or request.url.path.startswith("/openapi.json"):
+    if request.url.path.startswith("/auth/") or request.url.path.startswith("/docs") or request.url.path.startswith("/openapi.json") or request.url.path == "/health":
         return await call_next(request)
 
     # User-facing paths (secured by get_current_user)

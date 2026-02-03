@@ -22,3 +22,4 @@ pydantic-settings
 requests
 openai
 matplotlib
+psycopg2-binary

@@ -55,10 +55,9 @@ export default function CreateMeetingPage() {
         setLoading(true);
         setError(null);
         try {
-            // 1. Create Meeting
             const meeting = await createMeeting({
                 ...formData,
-                start_time: formData.start_time ? new Date(formData.start_time).toISOString() : null,
+                start_time: formData.start_time ? new Date(formData.start_time).toISOString() : undefined,
             });
 
             // 2. Add Participants if any

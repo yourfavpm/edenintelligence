@@ -3,7 +3,15 @@
 // =============================================================================
 
 // --- Enums ---
-export type MeetingType = 'native' | 'external';
+export enum MeetingType {
+  NATIVE = 'native',
+  EXTERNAL = 'external',
+  ZOOM = 'external',
+  GOOGLE_MEET = 'external',
+  TEAMS = 'external',
+  IN_PERSON = 'native',
+  OTHER = 'external',
+}
 
 export type ProcessingStatus =
   | 'uploaded'

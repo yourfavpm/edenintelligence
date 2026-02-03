@@ -1120,3 +1120,295 @@ INFO:     127.0.0.1:57409 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
 INFO:     127.0.0.1:57410 - "GET /extractions HTTP/1.1" 307 Temporary Redirect
 INFO:     127.0.0.1:57409 - "GET /extractions/ HTTP/1.1" 200 OK
 INFO:     127.0.0.1:57410 - "GET /extractions/ HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in '.venv/lib/python3.11/site-packages/modal/image.py', '.venv/lib/python3.11/site-packages/modal/cli/programs/run_jupyter.py', '.venv/lib/python3.11/site-packages/modal/__main__.py', '.venv/lib/python3.11/site-packages/modal/retries.py', '.venv/lib/python3.11/site-packages/modal/_utils/hash_utils.py', '.venv/lib/python3.11/site-packages/modal/cli/dashboard.py', '.venv/lib/python3.11/site-packages/modal_version/__init__.py', '.venv/lib/python3.11/site-packages/modal/_utils/auth_token_manager.py', '.venv/lib/python3.11/site-packages/typer/core.py', '.venv/lib/python3.11/site-packages/toml/encoder.py', '.venv/lib/python3.11/site-packages/typer/_completion_shared.py', '.venv/lib/python3.11/site-packages/modal/serving.py', '.venv/lib/python3.11/site-packages/modal/cli/app.py', '.venv/lib/python3.11/site-packages/grpclib/health/v1/__init__.py', '.venv/lib/python3.11/site-packages/synchronicity/interface.py', '.venv/lib/python3.11/site-packages/modal/cli/import_refs.py', '.venv/lib/python3.11/site-packages/modal/app.py', '.venv/lib/python3.11/site-packages/modal/functions.py', '.venv/lib/python3.11/site-packages/typer/__main__.py', '.venv/lib/python3.11/site-packages/modal/proxy.py', '.venv/lib/python3.11/site-packages/modal_proto/task_command_router_pb2.py', '.venv/lib/python3.11/site-packages/modal/_utils/time_utils.py', '.venv/lib/python3.11/site-packages/modal/output.py', '.venv/lib/python3.11/site-packages/modal/cli/launch.py', '.venv/lib/python3.11/site-packages/h2/settings.py', '.venv/lib/python3.11/site-packages/modal/_runtime/container_io_manager.py', '.venv/lib/python3.11/site-packages/modal/billing.py', '.venv/lib/python3.11/site-packages/toml/decoder.py', '.venv/lib/python3.11/site-packages/grpclib/encoding/proto.py', '.venv/lib/python3.11/site-packages/hpack/huffman_table.py', '.venv/lib/python3.11/site-packages/modal/container_process.py', '.venv/lib/python3.11/site-packages/modal/_clustered_functions.py', '.venv/lib/python3.11/site-packages/synchronicity/exceptions.py', '.venv/lib/python3.11/site-packages/modal/_location.py', '.venv/lib/python3.11/site-packages/modal/_output.py', '.venv/lib/python3.11/site-packages/h2/errors.py', '.venv/lib/python3.11/site-packages/modal/_utils/browser_utils.py', '.venv/lib/python3.11/site-packages/h2/frame_buffer.py', '.venv/lib/python3.11/site-packages/grpclib/channelz/v1/channelz_grpc.py', '.venv/lib/python3.11/site-packages/modal/server.py', '.venv/lib/python3.11/site-packages/modal/_resolver.py', '.venv/lib/python3.11/site-packages/modal/_utils/bytes_io_segment_payload.py', '.venv/lib/python3.11/site-packages/modal/cli/token.py', '.venv/lib/python3.11/site-packages/modal/_object.py', '.venv/lib/python3.11/site-packages/modal/schedule.py', '.venv/lib/python3.11/site-packages/cbor2/tool.py', '.venv/lib/python3.11/site-packages/modal/_pty.py', '.venv/lib/python3.11/site-packages/hpack/huffman.py', '.venv/lib/python3.11/site-packages/modal/environments.py', '.venv/lib/python3.11/site-packages/modal/client.py', '.venv/lib/python3.11/site-packages/toml/tz.py', '.venv/lib/python3.11/site-packages/grpclib/reflection/_deprecated.py', '.venv/lib/python3.11/site-packages/modal/_resources.py', '.venv/lib/python3.11/site-packages/typer/testing.py', '.venv/lib/python3.11/site-packages/modal/_utils/app_utils.py', '.venv/lib/python3.11/site-packages/h2/utilities.py', '.venv/lib/python3.11/site-packages/typer/_completion_classes.py', '.venv/lib/python3.11/site-packages/modal/cli/programs/__init__.py', '.venv/lib/python3.11/site-packages/synchronicity/combined_types.py', '.venv/lib/python3.11/site-packages/modal_proto/modal_api_grpc.py', '.venv/lib/python3.11/site-packages/synchronicity/type_stubs.py', '.venv/lib/python3.11/site-packages/cbor2/__init__.py', '.venv/lib/python3.11/site-packages/grpclib/stream.py', '.venv/lib/python3.11/site-packages/grpclib/channelz/v1/__init__.py', '.venv/lib/python3.11/site-packages/hpack/__init__.py', '.venv/lib/python3.11/site-packages/h2/config.py', '.venv/lib/python3.11/site-packages/modal_proto/api_grpc.py', '.venv/lib/python3.11/site-packages/modal/cli/_traceback.py', '.venv/lib/python3.11/site-packages/modal/_traceback.py', '.venv/lib/python3.11/site-packages/modal_proto/api_pb2_grpc.py', '.venv/lib/python3.11/site-packages/grpclib/_compat.py', '.venv/lib/python3.11/site-packages/grpclib/channelz/v1/channelz_pb2.py', '.venv/lib/python3.11/site-packages/modal/cli/config.py', '.venv/lib/python3.11/site-packages/modal/config.py', '.venv/lib/python3.11/site-packages/synchronicity/synchronizer.py', '.venv/lib/python3.11/site-packages/modal/cli/network_file_system.py', '.venv/lib/python3.11/site-packages/grpclib/metadata.py', '.venv/lib/python3.11/site-packages/grpclib/events.py', '.venv/lib/python3.11/site-packages/grpclib/reflection/v1/reflection_pb2.py', '.venv/lib/python3.11/site-packages/grpclib/reflection/service.py', '.venv/lib/python3.11/site-packages/modal/network_file_system.py', '.venv/lib/python3.11/site-packages/grpclib/reflection/v1alpha/reflection_pb2.py', '.venv/lib/python3.11/site-packages/modal/queue.py', '.venv/lib/python3.11/site-packages/modal/cli/programs/vscode.py', '.venv/lib/python3.11/site-packages/modal_docs/__init__.py', '.venv/lib/python3.11/site-packages/grpclib/reflection/__init__.py', '.venv/lib/python3.11/site-packages/typer/main.py', '.venv/lib/python3.11/site-packages/modal/_tunnel.py', '.venv/lib/python3.11/site-packages/modal/_utils/pattern_utils.py', '.venv/lib/python3.11/site-packages/hpack/exceptions.py', '.venv/lib/python3.11/site-packages/cbor2/decoder.py', '.venv/lib/python3.11/site-packages/modal/_server.py', '.venv/lib/python3.11/site-packages/modal_docs/gen_cli_docs.py', '.venv/lib/python3.11/site-packages/grpclib/exceptions.py', '.venv/lib/python3.11/site-packages/modal/_serialization.py', '.venv/lib/python3.11/site-packages/grpclib/health/v1/health_grpc.py', '.venv/lib/python3.11/site-packages/typer/models.py', '.venv/lib/python3.11/site-packages/typer/colors.py', '.venv/lib/python3.11/site-packages/modal/call_graph.py', '.venv/lib/python3.11/site-packages/modal/file_pattern_matcher.py', '.venv/lib/python3.11/site-packages/h2/windows.py', '.venv/lib/python3.11/site-packages/typer/_typing.py', '.venv/lib/python3.11/site-packages/hyperframe/flags.py', '.venv/lib/python3.11/site-packages/synchronicity/async_wrap.py', '.venv/lib/python3.11/site-packages/modal/scheduler_placement.py', '.venv/lib/python3.11/site-packages/grpclib/plugin/main.py', '.venv/lib/python3.11/site-packages/modal/parallel_map.py', '.venv/lib/python3.11/site-packages/grpclib/reflection/v1/__init__.py', '.venv/lib/python3.11/site-packages/modal_version/__main__.py', '.venv/lib/python3.11/site-packages/modal/_vendor/cloudpickle.py', '.venv/lib/python3.11/site-packages/modal/cli/utils.py', '.venv/lib/python3.11/site-packages/modal/_utils/rand_pb_testing.py', '.venv/lib/python3.11/site-packages/typer/completion.py', '.venv/lib/python3.11/site-packages/cbor2/_encoder.py', '.venv/lib/python3.11/site-packages/typer/cli.py', '.venv/lib/python3.11/site-packages/grpclib/_registry.py', '.venv/lib/python3.11/site-packages/grpclib/const.py', '.venv/lib/python3.11/site-packages/modal/_utils/docker_utils.py', '.venv/lib/python3.11/site-packages/modal/_billing.py', '.venv/lib/python3.11/site-packages/grpclib/channelz/service.py', '.venv/lib/python3.11/site-packages/modal/_utils/http_utils.py', '.venv/lib/python3.11/site-packages/modal/_utils/function_utils.py', '.venv/lib/python3.11/site-packages/grpclib/server.py', '.venv/lib/python3.11/site-packages/grpclib/testing.py', '.venv/lib/python3.11/site-packages/typer/utils.py', '.venv/lib/python3.11/site-packages/hyperframe/__init__.py', '.venv/lib/python3.11/site-packages/modal/_utils/package_utils.py', '.venv/lib/python3.11/site-packages/modal/_container_entrypoint.py', '.venv/lib/python3.11/site-packages/modal/_vendor/__init__.py', '.venv/lib/python3.11/site-packages/modal/_partial_function.py', '.venv/lib/python3.11/site-packages/modal/_type_manager.py', '.venv/lib/python3.11/site-packages/modal/sandbox.py', '.venv/lib/python3.11/site-packages/modal/_utils/task_command_router_client.py', '.venv/lib/python3.11/site-packages/modal/_runtime/gpu_memory_snapshot.py', '.venv/lib/python3.11/site-packages/modal/stream_type.py', '.venv/lib/python3.11/site-packages/modal/mount.py', '.venv/lib/python3.11/site-packages/modal/_runtime/execution_context.py', '.venv/lib/python3.11/site-packages/modal/_grpc_client.py', '.venv/lib/python3.11/site-packages/modal/_functions.py', '.venv/lib/python3.11/site-packages/grpclib/client.py', '.venv/lib/python3.11/site-packages/modal_proto/task_command_router_pb2_grpc.py', '.venv/lib/python3.11/site-packages/modal/_utils/shell_utils.py', '.venv/lib/python3.11/site-packages/modal/cli/environment.py', '.venv/lib/python3.11/site-packages/h2/__init__.py', '.venv/lib/python3.11/site-packages/modal/cli/volume.py', '.venv/lib/python3.11/site-packages/modal_docs/mdmd/__init__.py', '.venv/lib/python3.11/site-packages/grpclib/health/check.py', '.venv/lib/python3.11/site-packages/modal/volume.py', '.venv/lib/python3.11/site-packages/modal_docs/gen_reference_docs.py', '.venv/lib/python3.11/site-packages/cbor2/encoder.py', '.venv/lib/python3.11/site-packages/modal/_runtime/user_code_event_loop.py', '.venv/lib/python3.11/site-packages/grpclib/encoding/base.py', '.venv/lib/python3.11/site-packages/modal/cli/__init__.py', '.venv/lib/python3.11/site-packages/modal/exception.py', '.venv/lib/python3.11/site-packages/modal/__init__.py', '.venv/lib/python3.11/site-packages/modal/_utils/git_utils.py', '.venv/lib/python3.11/site-packages/typer/_types.py', '.venv/lib/python3.11/site-packages/modal/cli/dict.py', '.venv/lib/python3.11/site-packages/modal/cloud_bucket_mount.py', '.venv/lib/python3.11/site-packages/modal/dict.py', '.venv/lib/python3.11/site-packages/grpclib/reflection/v1/reflection_grpc.py', '.venv/lib/python3.11/site-packages/grpclib/reflection/v1alpha/reflection_grpc.py', '.venv/lib/python3.11/site-packages/grpclib/config.py', '.venv/lib/python3.11/site-packages/grpclib/_typing.py', '.venv/lib/python3.11/site-packages/modal/_utils/blob_utils.py', '.venv/lib/python3.11/site-packages/modal/snapshot.py', '.venv/lib/python3.11/site-packages/modal/running_app.py', '.venv/lib/python3.11/site-packages/modal/token_flow.py', '.venv/lib/python3.11/site-packages/modal_docs/mdmd/signatures.py', '.venv/lib/python3.11/site-packages/modal/cli/secret.py', '.venv/lib/python3.11/site-packages/modal/cli/queues.py', '.venv/lib/python3.11/site-packages/modal/secret.py', '.venv/lib/python3.11/site-packages/hpack/struct.py', '.venv/lib/python3.11/site-packages/synchronicity/async_utils.py', '.venv/lib/python3.11/site-packages/modal/_utils/grpc_utils.py', '.venv/lib/python3.11/site-packages/typer/__init__.py', '.venv/lib/python3.11/site-packages/modal/cli/shell.py', '.venv/lib/python3.11/site-packages/modal/cls.py', '.venv/lib/python3.11/site-packages/modal/io_streams.py', '.venv/lib/python3.11/site-packages/toml/ordered.py', '.venv/lib/python3.11/site-packages/hyperframe/frame.py', '.venv/lib/python3.11/site-packages/toml/__init__.py', '.venv/lib/python3.11/site-packages/modal/_utils/jwt_utils.py', '.venv/lib/python3.11/site-packages/modal_proto/__init__.py', '.venv/lib/python3.11/site-packages/modal/experimental/__init__.py', '.venv/lib/python3.11/site-packages/synchronicity/__init__.py', '.venv/lib/python3.11/site-packages/modal/experimental/ipython.py', '.venv/lib/python3.11/site-packages/synchronicity/annotations.py', '.venv/lib/python3.11/site-packages/modal/_utils/name_utils.py', '.venv/lib/python3.11/site-packages/grpclib/reflection/v1alpha/__init__.py', '.venv/lib/python3.11/site-packages/hpack/huffman_constants.py', '.venv/lib/python3.11/site-packages/modal/_utils/async_utils.py', '.venv/lib/python3.11/site-packages/modal/cli/run.py', '.venv/lib/python3.11/site-packages/cbor2/types.py', '.venv/lib/python3.11/site-packages/modal/object.py', '.venv/lib/python3.11/site-packages/grpclib/plugin/__init__.py', '.venv/lib/python3.11/site-packages/modal_docs/mdmd/mdmd.py', '.venv/lib/python3.11/site-packages/modal/_runtime/user_code_imports.py', '.venv/lib/python3.11/site-packages/modal/_utils/mount_utils.py', '.venv/lib/python3.11/site-packages/modal/_runtime/__init__.py', '.venv/lib/python3.11/site-packages/grpclib/utils.py', '.venv/lib/python3.11/site-packages/modal/_utils/__init__.py', '.venv/lib/python3.11/site-packages/modal/gpu.py', '.venv/lib/python3.11/site-packages/modal/_utils/grpc_testing.py', '.venv/lib/python3.11/site-packages/grpclib/health/service.py', '.venv/lib/python3.11/site-packages/grpclib/health/__init__.py', '.venv/lib/python3.11/site-packages/modal_proto/api_pb2.py', '.venv/lib/python3.11/site-packages/modal/runner.py', '.venv/lib/python3.11/site-packages/grpclib/encoding/__init__.py', '.venv/lib/python3.11/site-packages/grpclib/channelz/__init__.py', '.venv/lib/python3.11/site-packages/modal/_runtime/asgi.py', '.venv/lib/python3.11/site-packages/modal/experimental/flash.py', '.venv/lib/python3.11/site-packages/modal/_ipython.py', '.venv/lib/python3.11/site-packages/modal/_vendor/a2wsgi_wsgi.py', '.venv/lib/python3.11/site-packages/modal/_vendor/tblib.py', '.venv/lib/python3.11/site-packages/modal/_utils/deprecation.py', '.venv/lib/python3.11/site-packages/hpack/hpack.py', '.venv/lib/python3.11/site-packages/typer/rich_utils.py', '.venv/lib/python3.11/site-packages/modal/_watcher.py', '.venv/lib/python3.11/site-packages/synchronicity/overload_tracking.py', '.venv/lib/python3.11/site-packages/modal/cli/container.py', '.venv/lib/python3.11/site-packages/cbor2/_types.py', '.venv/lib/python3.11/site-packages/modal/cli/_download.py', '.venv/lib/python3.11/site-packages/h2/stream.py', '.venv/lib/python3.11/site-packages/modal/cli/cluster.py', '.venv/lib/python3.11/site-packages/modal/_load_context.py', '.venv/lib/python3.11/site-packages/typer/params.py', '.venv/lib/python3.11/site-packages/hyperframe/exceptions.py', '.venv/lib/python3.11/site-packages/modal/_utils/logger.py', '.venv/lib/python3.11/site-packages/cbor2/_decoder.py', '.venv/lib/python3.11/site-packages/modal_proto/task_command_router_grpc.py', '.venv/lib/python3.11/site-packages/grpclib/health/v1/health_pb2.py', '.venv/lib/python3.11/site-packages/h2/connection.py', '.venv/lib/python3.11/site-packages/h2/events.py', '.venv/lib/python3.11/site-packages/grpclib/__init__.py', '.venv/lib/python3.11/site-packages/modal/cli/entry_point.py', '.venv/lib/python3.11/site-packages/modal/_runtime/telemetry.py', '.venv/lib/python3.11/site-packages/modal/cli/profile.py', '.venv/lib/python3.11/site-packages/modal/file_io.py', '.venv/lib/python3.11/site-packages/synchronicity/callback.py', '.venv/lib/python3.11/site-packages/modal/partial_function.py', '.venv/lib/python3.11/site-packages/grpclib/protocol.py', '.venv/lib/python3.11/site-packages/h2/exceptions.py', '.venv/lib/python3.11/site-packages/hpack/table.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [40646]
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.4.2 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "<string>", line 1, in <module>
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 2, in <module>
+    from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/__init__.py", line 1, in <module>
+    from .meetings import router as meetings
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/meetings.py", line 9, in <module>
+    from app.tasks import enqueue_recording_processing
+  File "/Users/benita/development/edensummariser/backend/app/tasks.py", line 1, in <module>
+    from . import ai
+  File "/Users/benita/development/edensummariser/backend/app/ai/__init__.py", line 2, in <module>
+    from . import pipeline
+  File "/Users/benita/development/edensummariser/backend/app/ai/pipeline.py", line 13, in <module>
+    from app.ai import transcribe
+  File "/Users/benita/development/edensummariser/backend/app/ai/transcribe.py", line 5, in <module>
+    import torch
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/__init__.py", line 1477, in <module>
+    from .functional import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/functional.py", line 9, in <module>
+    import torch.nn.functional as F
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [42597]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'modal_worker.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [42597]
+WARNING:  WatchFiles detected changes in 'modal_worker.py'. Reloading...
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.4.2 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "<string>", line 1, in <module>
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 2, in <module>
+    from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/__init__.py", line 1, in <module>
+    from .meetings import router as meetings
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/meetings.py", line 9, in <module>
+    from app.tasks import enqueue_recording_processing
+  File "/Users/benita/development/edensummariser/backend/app/tasks.py", line 1, in <module>
+    from . import ai
+  File "/Users/benita/development/edensummariser/backend/app/ai/__init__.py", line 2, in <module>
+    from . import pipeline
+  File "/Users/benita/development/edensummariser/backend/app/ai/pipeline.py", line 13, in <module>
+    from app.ai import transcribe
+  File "/Users/benita/development/edensummariser/backend/app/ai/transcribe.py", line 5, in <module>
+    import torch
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/__init__.py", line 1477, in <module>
+    from .functional import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/functional.py", line 9, in <module>
+    import torch.nn.functional as F
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [43435]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.4.2 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "<string>", line 1, in <module>
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 2, in <module>
+    from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/__init__.py", line 1, in <module>
+    from .meetings import router as meetings
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/meetings.py", line 9, in <module>
+    from app.tasks import enqueue_recording_processing
+  File "/Users/benita/development/edensummariser/backend/app/tasks.py", line 1, in <module>
+    from . import ai
+  File "/Users/benita/development/edensummariser/backend/app/ai/__init__.py", line 2, in <module>
+    from . import pipeline
+  File "/Users/benita/development/edensummariser/backend/app/ai/pipeline.py", line 13, in <module>
+    from app.ai import transcribe
+  File "/Users/benita/development/edensummariser/backend/app/ai/transcribe.py", line 5, in <module>
+    import torch
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/__init__.py", line 1477, in <module>
+    from .functional import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/functional.py", line 9, in <module>
+    import torch.nn.functional as F
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [43466]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'modal_worker.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [43466]
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.4.2 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "<string>", line 1, in <module>
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 67, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/_compat.py", line 30, in asyncio_run
+    return runner.run(main)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 71, in serve
+    await self._serve(sockets)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/server.py", line 78, in _serve
+    config.load()
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/config.py", line 439, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/local/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/Users/benita/development/edensummariser/backend/app/main.py", line 2, in <module>
+    from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/__init__.py", line 1, in <module>
+    from .meetings import router as meetings
+  File "/Users/benita/development/edensummariser/backend/app/api/routers/meetings.py", line 9, in <module>
+    from app.tasks import enqueue_recording_processing
+  File "/Users/benita/development/edensummariser/backend/app/tasks.py", line 1, in <module>
+    from . import ai
+  File "/Users/benita/development/edensummariser/backend/app/ai/__init__.py", line 2, in <module>
+    from . import pipeline
+  File "/Users/benita/development/edensummariser/backend/app/ai/pipeline.py", line 13, in <module>
+    from app.ai import transcribe
+  File "/Users/benita/development/edensummariser/backend/app/ai/transcribe.py", line 5, in <module>
+    import torch
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/__init__.py", line 1477, in <module>
+    from .functional import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/functional.py", line 9, in <module>
+    import torch.nn.functional as F
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/benita/development/edensummariser/backend/.venv/lib/python3.11/site-packages/pydantic/_internal/_config.py:383: UserWarning: Valid config keys have changed in V2:
+* 'orm_mode' has been renamed to 'from_attributes'
+  warnings.warn(message, UserWarning)
+INFO:     Started server process [43885]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.

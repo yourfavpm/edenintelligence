@@ -28,8 +28,7 @@ class ConsentRead(BaseModel):
     method: Optional[str]
     created_at: Optional[str]
 
-    class Config:
-        orm_mode = True
+    model_config = {"from_attributes": True}
 
 
 @router.post("/", response_model=ConsentRead, status_code=201)

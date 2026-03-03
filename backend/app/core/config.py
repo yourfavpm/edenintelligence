@@ -13,7 +13,10 @@ class Settings(BaseSettings):
     S3_ACCESS_KEY: Optional[str] = None
     S3_SECRET_KEY: Optional[str] = None
     S3_REGION: Optional[str] = None
+    # Celery Configuration
     CELERY_BROKER_URL: Optional[str] = None
+    CELERY_TASK_ALWAYS_EAGER: bool = False
+
     # Email / SMTP
     SMTP_HOST: Optional[str] = None
     SMTP_PORT: Optional[int] = None
@@ -22,12 +25,13 @@ class Settings(BaseSettings):
     EMAIL_FROM: Optional[str] = None
     # Analysis API Keys
     ASSEMBLYAI_API_KEY: Optional[str] = None
+    ASSEMBLYAI_MOCK: bool = False
 
     # Optional symmetric encryption key (Fernet) for encrypting sensitive fields at rest
     ENCRYPTION_KEY: Optional[str] = None
 
     # Storage
-    USE_LOCAL_STORAGE: bool = False
+    USE_LOCAL_STORAGE: bool = True
     STORAGE_PATH: str = "storage_data"
 
     # AI Configuration

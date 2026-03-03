@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from typing import List
+from typing import List, Optional
 
 from app.db import get_db
 from app.schemas import TranslatedTranscriptRead
@@ -10,6 +10,35 @@ from app.core.auth import get_current_user
 from app.tasks import enqueue_translation
 
 router = APIRouter(prefix="/translations", tags=["translations"]) 
+
+
+@router.get("/", response_model=List[TranslatedTranscriptRead])
+async def list_translations(
+    meeting_id: Optional[int] = None, 
+    db: AsyncSession = Depends(get_db), 
+    current_user: User = Depends(get_current_user)
+):
+    query = select(TranslatedTranscript)
+    if meeting_id:
+        query = query.filter(TranslatedTranscript.meeting_id == meeting_id)
+        
+        # Access check
+        q_meeting = await db.execute(select(Meeting).filter_by(id=meeting_id))
+        meeting = q_meeting.scalars().first()
+        if not meeting:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Meeting not found")
+        
+        if meeting.organization_id:
+            q_org = await db.execute(select(UserOrganization).filter_by(user_id=current_user.id, organization_id=meeting.organization_id))
+            if not q_org.scalars().first():
+                raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not a member of the organization")
+    else:
+        # Default: user's own translations
+        query = query.join(Meeting).filter(Meeting.organizer_id == current_user.id)
+
+    res = await db.execute(query)
+    items = res.scalars().all()
+    return items
 
 
 @router.post("/", status_code=202)

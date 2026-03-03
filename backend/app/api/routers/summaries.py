@@ -12,6 +12,55 @@ from app.tasks import enqueue_summarization
 router = APIRouter(prefix="/summaries", tags=["summaries"]) 
 
 
+@router.get("/", response_model=List[SummaryRead])
+async def list_summaries(
+    meeting_id: Optional[int] = None,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    query = select(MeetingSummary)
+    if meeting_id:
+        query = query.filter(MeetingSummary.meeting_id == meeting_id)
+        
+        # Access check
+        q_meeting = await db.execute(select(Meeting).filter_by(id=meeting_id))
+        meeting = q_meeting.scalars().first()
+        if not meeting:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Meeting not found")
+        
+        if meeting.organization_id:
+            q_org = await db.execute(select(UserOrganization).filter_by(user_id=current_user.id, organization_id=meeting.organization_id))
+            if not q_org.scalars().first():
+                raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not a member of the organization")
+    else:
+        # Default: user's own summaries
+        query = query.join(Meeting).filter(Meeting.organizer_id == current_user.id)
+
+    res = await db.execute(query)
+    items = res.scalars().all()
+    
+    # Process fields
+    import json
+    results = []
+    for s in items:
+        key_points = json.loads(s.key_points) if s.key_points else []
+        decisions = json.loads(s.decisions) if s.decisions else []
+        risks = json.loads(s.risks) if s.risks else []
+        results.append(SummaryRead(
+            id=s.id, 
+            transcript_id=s.transcript_id, 
+            meeting_id=s.meeting_id, 
+            executive_summary=s.executive_summary, 
+            key_points=key_points, 
+            decisions=decisions, 
+            risks=risks, 
+            length=s.length, 
+            tone=s.tone, 
+            created_at=s.created_at
+        ))
+    return results
+
+
 @router.post("/", status_code=202)
 async def request_summary(payload: SummaryCreate, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     res = await db.execute(select(Transcript).filter_by(id=payload.transcript_id))

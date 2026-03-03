@@ -149,7 +149,7 @@ def enqueue_audio_processing(audio_id: int):
 
 @celery_app.task(bind=True, name="app.tasks.process_transcription")
 def process_transcription(self, audio_id: int):
-    """Download audio bytes, transcribe with WhisperX + pyannote, and persist Transcript record."""
+    """Download audio bytes, transcribe with AssemblyAI, and persist Transcript record."""
     from app.db import SyncSessionLocal
     from app.models.models import AudioFile, Transcript, Meeting
     
@@ -163,22 +163,30 @@ def process_transcription(self, audio_id: int):
             return
         
         try:
-            # Download audio
-            import asyncio
+            # Download audio — sync-safe: read directly for local storage,
+            # or spawn a new event loop in a thread for remote storage.
+            from app.core.config import settings as _settings
             print(f"DEBUG: Downloading audio for transcription: {a.s3_key}")
-            data = asyncio.run(storage.download_to_bytes(a.s3_key))
+            if _settings.USE_LOCAL_STORAGE:
+                import os
+                full_path = os.path.join(os.path.abspath(_settings.STORAGE_PATH), a.s3_key)
+                with open(full_path, "rb") as _f:
+                    data = _f.read()
+            else:
+                import asyncio, concurrent.futures
+                def _run_async():
+                    loop = asyncio.new_event_loop()
+                    try:
+                        return loop.run_until_complete(storage.download_to_bytes(a.s3_key))
+                    finally:
+                        loop.close()
+                with concurrent.futures.ThreadPoolExecutor(max_workers=1) as ex:
+                    data = ex.submit(_run_async).result()
             print(f"DEBUG: Downloaded {len(data)} bytes")
             
-            # Transcribe with WhisperX (internal model handles speaker-aware segments)
-            from app.core.config import settings
-            if settings.USE_MODAL_AI:
-                print(f"DEBUG: Using Modal.com for transcription of audio {audio_id}")
-                import modal
-                f = modal.Function.lookup("eden-ai-worker", "transcribe_audio")
-                result = f.remote(data)
-            else:
-                print(f"DEBUG: Using local worker for transcription of audio {audio_id}")
-                result = transcribe.transcribe_bytes_to_segments(data)
+            # Transcribe with AssemblyAI
+            print(f"DEBUG: Using AssemblyAI for transcription of audio {audio_id}")
+            result = transcribe.transcribe_bytes_to_segments(data)
             
             segments = result.get("segments", [])
             segments_json = json.dumps(segments)

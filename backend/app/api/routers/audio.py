@@ -71,7 +71,11 @@ async def upload_audio(file: UploadFile = File(...), meeting_id: Optional[int] =
         await db.refresh(audio)
 
         # enqueue processing and transcription
-        enqueue_transcription(audio.id)
+        try:
+            enqueue_transcription(audio.id)
+        except Exception as te:
+            print(f"WARNING: Initial transcription enqueuing failed: {str(te)}. The file is saved and will need manual re-processing.")
+            # We don't raise here because the upload was successful and committed.
 
         return audio
     except HTTPException:

@@ -88,44 +88,46 @@ def normalize_statements(segments: List[Dict[str, Any]]) -> List[NormalizedState
 
 def classify_intents(statements: List[NormalizedStatement]) -> List[IntentClassification]:
     """
-    Classify each statement into a strict intent.
+    Classify each statement into a strict intent using GPT-4o.
     """
-    # This requires LLM for accuracy as per requirements
+    if not settings.OPENAI_API_KEY:
+        print("WARNING: OPENAI_API_KEY is missing. Using mock classifications.")
+        return [IntentClassification(segment_id=s.original_segment_id, intent="INFORMATION", confidence=0.5) for s in statements]
+
     prompt = f"""
     Classify the following meeting statements into exactly one of these intents:
     INFORMATION, QUESTION, PROPOSAL, DECISION, ACTION_ASSIGNMENT, RISK, MITIGATION, CLARIFICATION, OFF_TOPIC.
     
     Statements:
-    {[s.normalized_text for s in statements]}
+    {[{"id": s.original_segment_id, "text": s.normalized_text} for s in statements]}
     
-    Return a JSON object with key 'classifications' containing a list of objects with 'text' and 'intent'.
+    Return a JSON object with key 'classifications' containing a list of objects with 'id' and 'intent'.
     """
     system_prompt = "You are a meeting analyst. Classify intents strictly. If unsure, mark as OFF_TOPIC."
     
-    # Mocking for now to avoid blocking if no key, but in production this uses _call_llm
-    classifications = []
-    for s in statements:
-        intent = "INFORMATION"
-        lower_text = s.normalized_text.lower()
-        if "will" in lower_text or "should" in lower_text:
-            intent = "ACTION_ASSIGNMENT"
-        if "decide" in lower_text or "agreed" in lower_text:
-            intent = "DECISION"
-        if "risk" in lower_text or "problem" in lower_text:
-            intent = "RISK"
+    response_text = _call_llm(prompt, system_prompt)
+    try:
+        data = json.loads(response_text)
+        class_list = data.get("classifications", [])
+        class_map = {c["id"]: c["intent"] for c in class_list}
         
-        classifications.append(IntentClassification(
-            segment_id=s.original_segment_id,
-            intent=intent,
-            confidence=0.8
-        ))
-    return classifications
+        return [
+            IntentClassification(
+                segment_id=s.original_segment_id,
+                intent=class_map.get(s.original_segment_id, "INFORMATION"),
+                confidence=0.9
+            ) for s in statements
+        ]
+    except Exception as e:
+        print(f"ERROR: Failed to parse intent classifications: {e}")
+        return [IntentClassification(segment_id=s.original_segment_id, intent="INFORMATION", confidence=0.5) for s in statements]
 
 # --- Layer 4 & 5: Evidence-Based Extraction & Validation ---
 
 def extract_from_segments(segments: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
     Main entry point for the 5-Layer Accuracy Architecture.
+    Uses LLM for structured extraction of actions, decisions, and risks.
     """
     # Layer 2: Normalization
     normalized = normalize_statements(segments)
@@ -133,51 +135,43 @@ def extract_from_segments(segments: List[Dict[str, Any]]) -> Dict[str, Any]:
     # Layer 3: Intent Classification
     intents = classify_intents(normalized)
     
-    # Layer 4: Extraction based on Intents
-    actions = []
-    decisions = []
-    risks = []
-    
+    # Filter statements that are likely interesting
+    interesting_statements = []
     intent_map = {ic.segment_id: ic.intent for ic in intents}
-    
     for s in normalized:
         intent = intent_map.get(s.original_segment_id)
-        
-        if intent == "ACTION_ASSIGNMENT":
-            # Heuristic owner/task extraction or LLM
-            m = re.search(r"([A-Z][a-z]+)\s+will", s.normalized_text)
-            owner = m.group(1) if m else "Unknown"
-            actions.append(ActionItem(
-                owner=owner,
-                task=s.normalized_text,
-                source_segments=[s.original_segment_id]
-            ))
-            
-        elif intent == "DECISION":
-            decisions.append(Decision(
-                decision=s.normalized_text,
-                approved_by=["Participants"],
-                evidence_segments=[s.original_segment_id]
-            ))
-            
-        elif intent == "RISK":
-            risks.append(Risk(
-                risk=s.normalized_text,
-                impact="Potential impact",
-                evidence_segment=s.original_segment_id
-            ))
+        if intent in ["ACTION_ASSIGNMENT", "DECISION", "RISK", "PROPOSAL", "MITIGATION"]:
+            interesting_statements.append({"id": s.original_segment_id, "text": s.normalized_text, "intent": intent})
 
-    # Layer 5: Validation
-    # Rule: No action without owner
-    valid_actions = [a for a in actions if a.owner != "Unknown"]
+    if not interesting_statements:
+        return ExtractionResult(summary="No significant items found.", status="complete").model_dump()
+
+    # Layer 4: Extraction based on Intents
+    prompt = f"""
+    Extract Action Items, Decisions, and Risks from the following classified segments.
     
-    # Rule: No decision without evidence (already handled by extraction logic)
+    Segments:
+    {json.dumps(interesting_statements)}
     
-    return ExtractionResult(
-        actions=valid_actions,
-        decisions=decisions,
-        risks=risks,
-        summary="Summary generated from structured facts.",
-        status="complete" if valid_actions or decisions or risks else "partial",
-        reason="No significant items found" if not (valid_actions or decisions or risks) else None
-    ).model_dump()
+    For each Action Item, identify the 'owner' (person), 'task', and 'source_segments' (list of IDs).
+    For each Decision, identify the 'decision' text, 'approved_by' (list of names), and 'evidence_segments' (list of IDs).
+    For each Risk, identify the 'risk' text, 'impact', and 'evidence_segment' (ID).
+    
+    Return a JSON object matching the ExtractionResult schema.
+    """
+    system_prompt = "You are an expert meeting minute taker. Extract structured data with high precision."
+    
+    response_text = _call_llm(prompt, system_prompt)
+    try:
+        data = json.loads(response_text)
+        
+        # Validation Layer 5: Pydantic handles basic type validation
+        result = ExtractionResult(**data)
+        
+        # Additional custom validation Rule: No action without owner
+        result.actions = [a for a in result.actions if a.owner and a.owner.lower() != "unknown" and a.owner.lower() != "none"]
+        
+        return result.model_dump()
+    except Exception as e:
+        print(f"ERROR: LLM Extraction failed: {e}")
+        return ExtractionResult(summary="Error during LLM extraction.", status="failed", reason=str(e)).model_dump()

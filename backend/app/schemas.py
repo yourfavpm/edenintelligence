@@ -1,7 +1,9 @@
-from pydantic import BaseModel, EmailStr, field_validator, model_validator, ConfigDict
+from pydantic import BaseModel, EmailStr, field_validator, model_validator, ConfigDict, Field, AliasChoices
 from typing import List, Optional, Any
 from datetime import datetime
 import json
+
+# ... (omitted)
 
 class ParticipantCreate(BaseModel):
     email: EmailStr
@@ -247,21 +249,11 @@ class AudioIngestRead(BaseModel):
 
 # --- Transcript schemas ---
 class TranscriptSegment(BaseModel):
-    speaker_id: str
+    speaker_id: str = Field(validation_alias=AliasChoices('speaker_id', 'speaker'))
     start_time: float
     end_time: float
-    original_text: str
+    original_text: str = Field(validation_alias=AliasChoices('original_text', 'text'))
     detected_language: Optional[str] = None
-
-    @model_validator(mode='before')
-    @classmethod
-    def map_legacy_fields(cls, data: Any) -> Any:
-        if isinstance(data, dict):
-            if 'speaker' in data and 'speaker_id' not in data:
-                data['speaker_id'] = data['speaker']
-            if 'text' in data and 'original_text' not in data:
-                data['original_text'] = data['text']
-        return data
 
 class TranscriptRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -286,10 +278,10 @@ class TranscriptRead(BaseModel):
 
 # --- Translation schemas ---
 class TranslatedSegment(BaseModel):
-    speaker_id: str
+    speaker_id: str = Field(validation_alias=AliasChoices('speaker_id', 'speaker'))
     start_time: float
     end_time: float
-    original_text: str
+    original_text: str = Field(validation_alias=AliasChoices('original_text', 'text'))
     translated_text: str
     detected_language: Optional[str] = None
 
@@ -297,14 +289,8 @@ class TranslatedSegment(BaseModel):
     @classmethod
     def map_legacy_fields(cls, data: Any) -> Any:
         if isinstance(data, dict):
-            if 'speaker' in data and 'speaker_id' not in data:
-                data['speaker_id'] = data['speaker']
-            if 'text' in data and 'translated_text' not in data:
-                # Fallback: if 'translated_text' is missing but 'text' is there, use it
-                if 'translated_text' not in data:
-                    data['translated_text'] = data['text']
-            if 'original_text' not in data and 'text' in data:
-                data['original_text'] = data['text']
+             if 'text' in data and 'translated_text' not in data:
+                 data['translated_text'] = data['text']
         return data
 
 class TranslatedTranscriptRead(BaseModel):

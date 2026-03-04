@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request, HTTPException, status
 from fastapi.responses import JSONResponse
-from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy
+from app.api.routers import meetings, auth, organizations, listeners, audio, translations, summaries, extractions, transcripts, dashboard, consents, privacy, upload
 from app.core.config import settings
 from app.db import init_db
 from fastapi.middleware.cors import CORSMiddleware
@@ -46,7 +46,7 @@ async def require_api_token(request: Request, call_next):
         return await call_next(request)
 
     # User-facing paths (secured by get_current_user)
-    user_paths = ["/meetings", "/audio", "/transcripts", "/summaries", "/extractions", "/organizations", "/listeners", "/dashboard", "/consents", "/privacy"]
+    user_paths = ["/meetings", "/audio", "/transcripts", "/summaries", "/extractions", "/organizations", "/listeners", "/dashboard", "/consents", "/privacy", "/upload"]
     for path in user_paths:
         if request.url.path.startswith(path):
             return await call_next(request)
@@ -81,6 +81,7 @@ app.include_router(transcripts)
 app.include_router(dashboard)
 app.include_router(consents)
 app.include_router(privacy)
+app.include_router(upload)
 
 # Register CORSMiddleware LAST so it wraps everything else and adds headers even for failed requests
 app.add_middleware(

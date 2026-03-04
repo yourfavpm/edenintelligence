@@ -254,6 +254,87 @@ export async function uploadAudio(
   onProgress?: (progress: number) => void,
   title?: string
 ): Promise<{ id: number; s3_key: string }> {
+  try {
+    // STEP 1: Request presigned URL
+    const presignPayload = {
+      filename: file.name,
+      content_type: file.type || 'application/octet-stream',
+      title: title,
+      meeting_id: meetingId ? String(meetingId) : undefined,
+    };
+
+    let presignRes;
+    try {
+      presignRes = await apiFetch<{ upload_url: string; s3_key: string }>('/upload/presign', {
+        method: 'POST',
+        body: JSON.stringify(presignPayload),
+      });
+    } catch (e: any) {
+      // If presigning isn't supported (e.g. USE_LOCAL_STORAGE=true), fall back to original direct upload
+      if (e.message && e.message.includes('not supported')) {
+        console.warn('Presigned URLs not supported by backend (local mode?), falling back to direct upload');
+        return fallbackUploadAudio(file, meetingId, onProgress, title);
+      }
+      throw e;
+    }
+
+    const { upload_url, s3_key } = presignRes;
+
+    // STEP 2: Upload directly to S3 using XHR (to track progress)
+    await new Promise<void>((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      
+      xhr.upload.addEventListener('progress', (e) => {
+        if (e.lengthComputable && onProgress) {
+          onProgress(Math.round((e.loaded / e.total) * 100));
+        }
+      });
+
+      xhr.addEventListener('load', () => {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          resolve();
+        } else {
+          reject(new Error(`S3 upload failed with status ${xhr.status}`));
+        }
+      });
+
+      xhr.addEventListener('error', () => reject(new Error('S3 upload failed due to network error')));
+
+      xhr.open('PUT', upload_url);
+      xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+      xhr.send(file);
+    });
+
+    // STEP 3: Confirm upload with backend
+    const confirmPayload = {
+      s3_key,
+      filename: file.name,
+      content_type: file.type || 'application/octet-stream',
+      size_bytes: file.size,
+      title: title,
+      meeting_id: meetingId ? String(meetingId) : undefined,
+    };
+
+    const confirmRes = await apiFetch<{ audio_id: string; meeting_id: string; message: string }>('/upload/confirm', {
+      method: 'POST',
+      body: JSON.stringify(confirmPayload),
+    });
+
+    return { id: parseInt(confirmRes.audio_id, 10), s3_key };
+
+  } catch (error) {
+    console.error('Presigned upload flow failed:', error);
+    throw error;
+  }
+}
+
+// Fallback method for local development without S3
+async function fallbackUploadAudio(
+  file: File,
+  meetingId?: number,
+  onProgress?: (progress: number) => void,
+  title?: string
+): Promise<{ id: number; s3_key: string }> {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     const formData = new FormData();
@@ -272,30 +353,21 @@ export async function uploadAudio(
         try {
           resolve(JSON.parse(xhr.responseText));
         } catch (e) {
-          console.error('Failed to parse upload response:', xhr.responseText);
           reject(new Error('Upload succeeded but server response was invalid.'));
         }
       } else {
         let errorMessage = xhr.statusText || 'Upload failed';
         try {
           const errorData = JSON.parse(xhr.responseText);
-          if (errorData.detail) {
-            if (typeof errorData.detail === 'string') {
-              errorMessage = errorData.detail;
-            } else {
-              errorMessage = JSON.stringify(errorData.detail);
-            }
-          }
+          errorMessage = errorData.detail || errorMessage;
         } catch (e) {
-          // ignore JSON parse error
+          // ignore
         }
-        reject(new Error(errorMessage));
+        reject(new Error(typeof errorMessage === 'string' ? errorMessage : JSON.stringify(errorMessage)));
       }
     });
 
-    xhr.addEventListener('error', () => {
-      reject(new Error('Upload failed'));
-    });
+    xhr.addEventListener('error', () => reject(new Error('Upload failed')));
 
     const token = getAccessToken();
     xhr.open('POST', `${API_BASE}/audio/ingest`);
@@ -303,6 +375,7 @@ export async function uploadAudio(
     xhr.send(formData);
   });
 }
+
 
 // =============================================================================
 // Consent API

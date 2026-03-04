@@ -69,6 +69,29 @@ class S3Storage:
                 return False
         return await asyncio.to_thread(_delete)
 
+    async def generate_presigned_upload_url(self, key: str, content_type: str = "application/octet-stream", expires_in: int = 900) -> str:
+        """Generate a presigned PUT URL for direct browser-to-S3 upload.
+
+        Args:
+            key: The S3 object key (path) for the upload.
+            content_type: MIME type of the file being uploaded.
+            expires_in: URL expiration in seconds (default 15 minutes).
+
+        Returns:
+            A presigned URL string that allows a PUT request to upload directly.
+        """
+        def _generate():
+            return self.client.generate_presigned_url(
+                ClientMethod="put_object",
+                Params={
+                    "Bucket": self.bucket,
+                    "Key": key,
+                    "ContentType": content_type,
+                },
+                ExpiresIn=expires_in,
+            )
+        return await asyncio.to_thread(_generate)
+
 
 class LocalStorage:
     def __init__(self, root_dir: str = "storage_data"):

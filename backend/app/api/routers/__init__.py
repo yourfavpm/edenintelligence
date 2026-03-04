@@ -10,3 +10,4 @@ from .transcripts import router as transcripts
 from .dashboard import router as dashboard
 from .consents import router as consents
 from .privacy import router as privacy
+from .upload import router as upload

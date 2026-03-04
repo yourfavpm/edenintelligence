@@ -137,7 +137,7 @@ export default function MeetingsListPage() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-1">
               <h1 className="text-[20px] font-semibold text-neutral-900 tracking-tight">Meetings</h1>
-              <p className="text-[13px] text-neutral-500 font-medium">Full repository of captured knowledge.</p>
+              <p className="text-[13px] text-neutral-500 font-medium">Full list of capture knowledge.</p>
             </div>
             
             <div className="flex items-center gap-2">

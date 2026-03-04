@@ -10,12 +10,14 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label?: string;
     error?: string;
     helperText?: string;
+    rightElement?: React.ReactNode;
 }
 
 export function Input({
     label,
     error,
     helperText,
+    rightElement,
     className = '',
     id,
     ...props
@@ -38,6 +40,7 @@ export function Input({
                     className={`
             block w-full px-3 py-2 text-sm bg-white border rounded-lg shadow-sm transition-all duration-200
             placeholder:text-neutral-400 focus:outline-none focus:ring-2
+            ${rightElement ? 'pr-10' : ''}
             ${error
                             ? 'border-error-300 text-error-900 focus:ring-error-100 placeholder:text-error-300'
                             : 'border-neutral-300 text-neutral-900 focus:ring-primary-100 focus:border-primary-500'
@@ -47,6 +50,11 @@ export function Input({
           `}
                     {...props}
                 />
+                {rightElement && (
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+                        {rightElement}
+                    </div>
+                )}
             </div>
             {(error || helperText) && (
                 <p

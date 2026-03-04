@@ -25,15 +25,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       label: 'Settings',
       href: '/settings',
       icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>,
-    },
-    { id: 'divider', label: '', divider: true },
-    {
-      id: 'logout',
-      label: 'Log out',
-      onClick: logout,
-      danger: true,
-      icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>,
-    },
+    }
   ];
 
   return (
@@ -99,25 +91,43 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           ))}
         </nav>
 
-        {/* User context */}
-        <div className="p-3 border-t border-[#1E293B]">
+        {/* User context & Logout */}
+        <div className="p-3 border-t border-[#1E293B] space-y-2">
           {user && (
-            <DropdownMenu
-              items={userMenuItems}
-              trigger={
-                <button className={`flex items-center w-full rounded-xl hover:bg-[#1E293B] transition-all outline-none group ${isCollapsed ? 'justify-center py-2' : 'p-2 gap-3'}`}>
-                  <div className="w-8 h-8 shrink-0 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center font-bold text-[10px] text-indigo-400">
-                    {user.display_name?.[0] || user.email[0].toUpperCase()}
-                  </div>
-                  {!isCollapsed && (
-                    <div className="flex-1 text-left min-w-0">
-                      <p className="text-[12px] font-bold text-white truncate leading-none mb-0.5">{user.display_name || 'User'}</p>
-                      <p className="text-[10px] text-[#64748B] font-bold uppercase tracking-tighter truncate">Active</p>
+            <>
+              <DropdownMenu
+                items={userMenuItems}
+                trigger={
+                  <button className={`flex items-center w-full rounded-xl hover:bg-[#1E293B] transition-all outline-none group ${isCollapsed ? 'justify-center py-2' : 'p-2 gap-3'}`}>
+                    <div className="w-8 h-8 shrink-0 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center font-bold text-[10px] text-indigo-400">
+                      {user.display_name?.[0] || user.email[0].toUpperCase()}
                     </div>
-                  )}
-                </button>
-              }
-            />
+                    {!isCollapsed && (
+                      <div className="flex-1 text-left min-w-0">
+                        <p className="text-[12px] font-bold text-white truncate leading-none mb-0.5">{user.display_name || 'User'}</p>
+                        <p className="text-[10px] text-[#64748B] font-bold uppercase tracking-tighter truncate">Active</p>
+                      </div>
+                    )}
+                  </button>
+                }
+              />
+              
+              <button 
+                onClick={logout}
+                className={`
+                  flex items-center w-full rounded-xl transition-all outline-none group
+                  text-red-400 hover:bg-red-500/10 hover:text-red-300
+                  ${isCollapsed ? 'justify-center py-2' : 'p-2 gap-3'}
+                `}
+              >
+                <div className={`flex items-center justify-center shrink-0 ${isCollapsed ? 'w-8 h-8' : ''}`}>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                  </svg>
+                </div>
+                {!isCollapsed && <span className="text-[12px] font-bold tracking-wide">Logout</span>}
+              </button>
+            </>
           )}
         </div>
       </aside>

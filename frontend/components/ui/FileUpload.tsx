@@ -95,7 +95,7 @@ export function FileUpload({
                 {uploading ? (
                     <div className="w-full max-w-xs space-y-4">
                         <div className="flex justify-between items-center text-[10px] font-bold text-neutral-500 uppercase tracking-widest">
-                            <span>Ingesting Pipeline</span>
+                            <span>Your file is being uploaded</span>
                             <span>{progress}%</span>
                         </div>
                         <div className="w-full h-1.5 bg-[#E2E8F0] rounded-full overflow-hidden">

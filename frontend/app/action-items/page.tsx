@@ -106,7 +106,7 @@ export default function ActionItemsPage() {
                     {/* Compact Header */}
                     <div className="flex items-center justify-between border-b border-[#E5E7EB] pb-6">
                         <div className="space-y-1">
-                            <h1 className="text-[20px] font-bold text-neutral-900 tracking-tight">Intelligence Index</h1>
+                            <h1 className="text-[20px] font-bold text-neutral-900 tracking-tight">Intelligence Hub</h1>
                             <p className="text-[12px] text-neutral-500 font-medium">Aggregated decisions and action items across all workspaces.</p>
                         </div>
 

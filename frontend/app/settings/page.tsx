@@ -96,7 +96,7 @@ export default function SettingsPage() {
                                         </section>
 
                                         <div className="pt-6">
-                                            <Button className="h-10 bg-[#0F172A] text-white text-[11px] font-bold uppercase tracking-widest px-6 rounded-lg shadow-lg">Commit Changes</Button>
+                                            <Button className="h-10 bg-[#0F172A] text-white text-[11px] font-bold uppercase tracking-widest px-6 rounded-lg shadow-lg">Save Changes</Button>
                                         </div>
                                     </div>
                                 </TabPanel>

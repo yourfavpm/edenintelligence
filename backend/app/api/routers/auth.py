@@ -125,42 +125,9 @@ async def reset_password(payload: ResetPassword, db: AsyncSession = Depends(get_
 
 
 @router.get("/me", response_model=UserRead)
-async def get_current_user(request: Request, db: AsyncSession = Depends(get_db)):
+async def get_my_profile(current_user: User = Depends(get_current_user)):
     """Get the current authenticated user's profile"""
-    
-    # Extract token from Authorization header
-    auth_header = request.headers.get("Authorization")
-    if not auth_header or not auth_header.startswith("Bearer "):
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Not authenticated",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-    
-    token = auth_header.split(" ")[1]
-    try:
-        payload = decode_token(token)
-        user_id = payload.get("sub")
-        if not user_id:
-            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
-        
-        # The user_id in payload.get("sub") is already the UUID string
-        uid = user_id
-
-        q = await db.execute(select(User).filter_by(id=uid))
-        user = q.scalars().first()
-        if not user:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
-        
-        return user
-    except HTTPException:
-        raise
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
+    return current_user
 
 
 @router.post("/google-auth")

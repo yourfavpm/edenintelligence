@@ -11,16 +11,30 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token")
 
 
 async def get_current_user(token: str = Depends(oauth2_scheme), db: AsyncSession = Depends(get_db)) -> User:
+    from uuid import UUID
     try:
         payload = decode_token(token)
-        if payload.get("type") != "access":
-            raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Invalid token type")
-        user_id = str(payload.get("sub"))
-    except Exception:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid authentication credentials")
-    q = await db.execute(select(User).filter_by(id=user_id))
+        user_id_str = payload.get("sub")
+        if not user_id_str:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token: missing subject")
+        
+        # In this app, we primarily use 'access' tokens, but we'll accept 'refresh' 
+        # for /auth/me or similar if they are valid for the user.
+        # However, for security, we usually check type:
+        if payload.get("type") not in ["access", "refresh"]:
+             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token type")
+
+        uid = UUID(user_id_str)
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=f"Authentication failed: {str(e)}")
+    
+    q = await db.execute(select(User).filter_by(id=uid))
     user = q.scalars().first()
-    if not user or not user.is_active:
+    if not user:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
+    if not user.is_active:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Inactive user")
     return user
 

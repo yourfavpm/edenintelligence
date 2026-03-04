@@ -17,20 +17,11 @@ class ParticipantRead(BaseModel):
     is_host: bool
 
 class MeetingCreate(BaseModel):
-    title: str
-    description: Optional[str] = None
-    language: str = "en"
-    start_time: Optional[datetime] = None
-    end_time: Optional[datetime] = None
 
-class MeetingRead(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
-    id: UUID
-    title: str
-    description: Optional[str]
-    language: str
-    participants: List[ParticipantRead] = []
+# --- Basic schemas ---
 
+
+# --- Meeting schemas ---
 class RecordingCreate(BaseModel):
     s3_key: str
     duration_seconds: Optional[int] = None

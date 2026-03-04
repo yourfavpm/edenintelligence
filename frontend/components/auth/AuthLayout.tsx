@@ -18,11 +18,8 @@ export default function AuthLayout({ children, title, subtitle }: AuthLayoutProp
             {/* Left Panel: Branding & Context (Desktop Only) */}
             <div className="hidden lg:flex lg:w-1/2 bg-white flex-col justify-center px-12 xl:px-24 border-r border-neutral-200">
                 <div className="max-w-md">
-                    <div className="flex items-center gap-3 mb-16">
-                        <img src="/logo.png" alt="PraxiomNotes" className="h-10 w-auto" />
-                        <span className="text-xl font-semibold text-[#111827] tracking-tighter">
-                            PraxiomNotes
-                        </span>
+                    <div className="flex items-center mb-16">
+                        <img src="/logo.png" alt="Logo" className="h-14 w-auto" />
                     </div>
                     <h2 className="text-3xl md:text-4xl font-semibold text-[#111827] mb-6 leading-tight tracking-tight">
                         Meeting intelligence for <br/>teams that cannot miss.
@@ -59,11 +56,8 @@ export default function AuthLayout({ children, title, subtitle }: AuthLayoutProp
                 <div className="mx-auto w-full max-w-[420px]">
                     {/* Mobile Brand */}
                     <div className="lg:hidden mb-12">
-                        <div className="flex items-center gap-3">
-                            <img src="/logo.png" alt="PraxiomNotes" className="h-8 w-auto" />
-                            <span className="text-xl font-bold text-[#111827] tracking-tighter">
-                                PraxiomNotes
-                            </span>
+                        <div className="flex items-center">
+                            <img src="/logo.png" alt="Logo" className="h-12 w-auto" />
                         </div>
                     </div>
 

@@ -37,9 +37,8 @@ export default function LandingPage() {
         scrolled ? 'bg-white/80 backdrop-blur-md border-b border-[#E5E7EB] h-16' : 'bg-transparent h-20'
       } flex items-center`}>
         <div className="max-w-[1400px] mx-auto w-full px-6 md:px-12 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
-            <img src="/logo.png" alt="PraxiomNotes Logo" className="h-9 w-auto" />
-            <span className="font-semibold text-xl tracking-tighter">PraxiomNotes</span>
+          <Link href="/" className="flex items-center group">
+            <img src="/logo.png" alt="Logo" className="h-11 w-auto transition-transform group-hover:scale-105" />
           </Link>
           
           <div className="hidden lg:flex items-center gap-10">
@@ -109,7 +108,7 @@ export default function LandingPage() {
                 Clarity from every <span className="text-neutral-400">meeting.</span>
               </h1>
               <p className="text-lg md:text-xl text-[#4B5563] leading-relaxed font-normal max-w-[540px]">
-                PraxiomNotes records meetings, transcribes conversations, and converts discussions into simple summaries, decisions, and action items.
+                The platform records meetings, transcribes conversations, and converts discussions into simple summaries, decisions, and action items.
               </p>
               <div className="flex flex-col sm:flex-row gap-5 pt-4">
                 <Link href="/auth/signup">
@@ -181,7 +180,7 @@ export default function LandingPage() {
               <div className="w-16 h-1 bg-[#111827] rounded-full" />
               <h3 className="text-3xl md:text-4xl font-semibold tracking-tighter text-[#111827] leading-[1.2]">The conversation, <br/>perfectly recorded.</h3>
               <p className="text-lg md:text-xl text-[#4B5563] leading-relaxed">
-                PraxiomNotes records the full context of conversations with accurate transcription and instant speaker identification.
+                The intelligent system records the full context of conversations with accurate transcription and instant speaker identification.
               </p>
               <div className="flex items-center gap-6 pt-4">
                 <div className="space-y-1">
@@ -428,7 +427,7 @@ export default function LandingPage() {
                <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
                   <Link href="/auth/signup">
                     <Button className="h-14 px-8 text-base bg-white hover:bg-neutral-100 text-[#111827] rounded-full shadow-2xl shadow-blue-500/10 font-semibold transition-all transform hover:scale-105 active:scale-95">
-                      Start using PraxiomNotes
+                      Start recording
                     </Button>
                   </Link>
                   <Button className="h-14 px-8 text-base bg-white/10 hover:bg-white/20 text-white rounded-full border border-white/10 font-semibold backdrop-blur-md transition-all">
@@ -447,10 +446,9 @@ export default function LandingPage() {
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] gap-20">
             <div className="space-y-10">
-              <div className="flex items-center gap-3">
-                <img src="/logo.png" alt="PraxiomNotes Logo" className="h-9 w-auto brightness-0 invert" />
-                <span className="font-semibold text-2xl tracking-tighter text-[#111827]">PraxiomNotes</span>
-              </div>
+              <Link href="/" className="flex items-center mb-8">
+                <img src="/logo.png" alt="Logo" className="h-12 w-auto brightness-0 invert opacity-90" />
+              </Link>
               <p className="text-lg text-[#6B7280] leading-relaxed max-w-sm font-medium">
                 Infrastructure for teams that rely on accurate decisions. Meeting intelligence that works for you.
               </p>
@@ -496,7 +494,7 @@ export default function LandingPage() {
           </div>
           
           <div className="pt-24 mt-24 border-t border-neutral-100 flex flex-col md:flex-row justify-between items-center gap-8 text-[13px] text-[#9CA3AF] font-semibold uppercase tracking-widest">
-            <span>&copy; 2026 PraxiomNotes. Crafted for clarity.</span>
+            <span>&copy; 2026. Crafted for clarity.</span>
             <div className="flex gap-8">
                <a href="#" className="hover:text-[#111827] transition-colors">Status</a>
                <a href="#" className="hover:text-[#111827] transition-colors">Sitemap</a>

@@ -2,7 +2,7 @@ import { AuthProvider } from '../components/auth/AuthContext';
 import './globals.css';
 
 export const metadata = {
-  title: 'PraxiomNotes',
+  title: 'Dashboard',
   description: 'Enterprise Meeting Intelligence Platform',
 }
 

@@ -12,7 +12,7 @@ class ParticipantCreate(BaseModel):
 
 class ParticipantRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: int
+    id: str
     email: EmailStr
     display_name: Optional[str]
     is_host: bool
@@ -26,7 +26,7 @@ class MeetingCreate(BaseModel):
 
 class MeetingRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: int
+    id: str
     title: str
     description: Optional[str]
     language: str
@@ -38,13 +38,13 @@ class RecordingCreate(BaseModel):
 
 class RecordingRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: int
+    id: str
     s3_key: str
     duration_seconds: Optional[int]
     processed: bool
     processing_status: Optional[str]
     processing_error: Optional[str]
-    transcript_id: Optional[int]
+    transcript_id: Optional[str]
 
 # --- Meeting schemas ---
 from enum import Enum as PyEnum
@@ -58,8 +58,8 @@ class MeetingCreate(BaseModel):
     description: Optional[str] = None
     start_time: Optional[datetime] = None
     duration_minutes: Optional[int] = None
-    organizer_id: Optional[int] = None
-    organization_id: Optional[int] = None
+    organizer_id: Optional[str] = None
+    organization_id: Optional[str] = None
     meeting_type: MeetingType = MeetingType.NATIVE
     external_link: Optional[str] = None
     ai_transcription: Optional[bool] = False
@@ -83,13 +83,13 @@ class MeetingUpdate(BaseModel):
 
 class MeetingRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: int
+    id: str
     title: str
     description: Optional[str]
     start_time: Optional[datetime]
     duration_minutes: Optional[int]
-    organizer_id: Optional[int]
-    organization_id: Optional[int]
+    organizer_id: Optional[str]
+    organization_id: Optional[str]
     meeting_type: MeetingType
     external_link: Optional[str]
     ai_transcription: bool
@@ -117,7 +117,7 @@ class TokenRefresh(BaseModel):
 
 class UserRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: int
+    id: str
     email: EmailStr
     display_name: Optional[str]
     is_active: bool
@@ -151,20 +151,20 @@ class OrganizationCreate(BaseModel):
 
 class OrganizationRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: int
+    id: str
     name: str
 
 class MembershipRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: int
-    user_id: int
-    organization_id: int
+    id: str
+    user_id: str
+    organization_id: str
     role: str
 
 class EmailDeliveryRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: int
-    user_id: int
+    id: str
+    user_id: str
     to_email: str
     subject: str
     body: str
@@ -183,7 +183,7 @@ class ListenerStatus(str, PyEnum):
     FAILED = "failed"
 
 class ListenerSessionCreate(BaseModel):
-    meeting_id: Optional[int] = None
+    meeting_id: Optional[str] = None
     external_link: Optional[str] = None
     scheduled_at: Optional[datetime] = None
     consent: Optional[Any] = None
@@ -195,7 +195,7 @@ class ListenerSessionUpdate(BaseModel):
 
 class ListenerSessionRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: int
+    id: str
     meeting_id: Optional[int]
     external_link: Optional[str]
     scheduled_at: Optional[datetime]
@@ -206,14 +206,14 @@ class ListenerSessionRead(BaseModel):
 
 # --- Audio ingestion schemas ---
 class AudioIngestCreate(BaseModel):
-    meeting_id: Optional[int] = None
+    meeting_id: Optional[str] = None
     filename: Optional[str] = None
     content_type: Optional[str] = None
     meta: Optional[dict] = None
 
 class AudioIngestRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: int
+    id: str
     meeting_id: Optional[int]
     s3_key: str
     content_type: Optional[str]
@@ -257,9 +257,9 @@ class TranscriptSegment(BaseModel):
 
 class TranscriptRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: int
-    audio_file_id: int
-    meeting_id: Optional[int]
+    id: str
+    audio_file_id: str
+    meeting_id: Optional[str]
     segments: List[TranscriptSegment]
     detected_language: Optional[str]
     created_at: Optional[datetime]
@@ -295,8 +295,8 @@ class TranslatedSegment(BaseModel):
 
 class TranslatedTranscriptRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: int
-    transcript_id: int
+    id: str
+    transcript_id: str
     audio_file_id: Optional[int]
     meeting_id: Optional[int]
     target_language: str
@@ -317,15 +317,15 @@ class TranslatedTranscriptRead(BaseModel):
 
 # --- Summarization schemas ---
 class SummaryCreate(BaseModel):
-    transcript_id: int
+    transcript_id: str
     length: Optional[str] = "short"  # short|medium|long
     tone: Optional[str] = "formal"   # formal|conversational
 
 class SummaryRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: int
-    transcript_id: Optional[int]
-    meeting_id: Optional[int]
+    id: str
+    transcript_id: Optional[str]
+    meeting_id: Optional[str]
     executive_summary: str
     key_points: List[str] = []
     decisions: List[str] = []
@@ -356,9 +356,9 @@ class ExtractionItem(BaseModel):
 
 class ExtractionRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: int
-    transcript_id: int
-    meeting_id: Optional[int]
+    id: str
+    transcript_id: str
+    meeting_id: Optional[str]
     items: List[ExtractionItem]
     confidence: Optional[float]
     created_at: Optional[datetime]

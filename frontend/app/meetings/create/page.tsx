@@ -230,7 +230,7 @@ export default function CreateMeetingPage() {
                                     />
                                     <Toggle
                                         label="AI Recording"
-                                        description="Allow the PraxiomNotes AI listener to record the meeting audio."
+                                        description="Allow the AI listener to record the meeting audio."
                                         checked={formData.ai_recording}
                                         onChange={(checked) => handleInputChange('ai_recording', checked)}
                                     />
@@ -254,7 +254,7 @@ export default function CreateMeetingPage() {
                                     <div className="space-y-4">
                                         <h3 className="text-xs uppercase tracking-wider font-bold text-neutral-400">Basic Info</h3>
                                         <div>
-                                            <p className="text-sm font-bold text-neutral-900">{formData.title}</p>
+                                                <h3 className="text-[20px] font-bold text-neutral-900 tracking-tight">Enterprise Cloud</h3>
                                             <p className="text-sm text-neutral-500">{formData.description || 'No description'}</p>
                                         </div>
                                         <div>

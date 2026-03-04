@@ -51,12 +51,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         `}
       >
         {/* Branding */}
-        <div className={`h-16 flex items-center ${isCollapsed ? 'justify-center' : 'px-5 gap-3'}`}>
-          <Link href="/dashboard" className="flex items-center gap-2.5 transition-opacity hover:opacity-80">
-            <div className="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center shadow-lg shadow-indigo-500/20 shrink-0">
-               <img src="/logo.png" alt="P" className="h-5 w-auto brightness-0 invert" />
+        <div className={`h-20 flex items-center ${isCollapsed ? 'justify-center' : 'px-6'}`}>
+          <Link href="/dashboard" className="flex items-center transition-transform hover:scale-105 active:scale-95">
+            <div className={`
+              ${isCollapsed ? 'w-10 h-10' : 'w-12 h-12'} 
+              bg-white/5 rounded-xl flex items-center justify-center 
+              border border-white/10 shadow-2xl shadow-black/20 shrink-0
+            `}>
+               <img src="/logo.png" alt="P" className={`${isCollapsed ? 'h-6' : 'h-8'} w-auto brightness-110 contrast-125`} />
             </div>
-            {!isCollapsed && <span className="text-[15px] font-bold tracking-tight text-white uppercase italic">Praxiom</span>}
           </Link>
         </div>
 

@@ -10,13 +10,26 @@ from app.core.config import settings
 class S3Storage:
     def __init__(self, bucket: Optional[str] = None):
         self.bucket = bucket or settings.S3_BUCKET
-        self.client = boto3.client(
-            "s3",
-            aws_access_key_id=settings.S3_ACCESS_KEY,
-            aws_secret_access_key=settings.S3_SECRET_KEY,
-            endpoint_url=settings.S3_ENDPOINT or None,
-            region_name=settings.S3_REGION or None,
-        )
+        endpoint = settings.S3_ENDPOINT
+        
+        # Guard against placeholder brackets [ID] which cause "Invalid IPv6 URL"
+        if endpoint and "[" in endpoint and "]" in endpoint:
+            print(f"WARNING: S3_ENDPOINT contains placeholder brackets: {endpoint}. This will cause a crash.")
+            endpoint = None
+
+        print(f"DEBUG: Initializing S3Storage with bucket={self.bucket}, endpoint={endpoint}")
+        
+        try:
+            self.client = boto3.client(
+                "s3",
+                aws_access_key_id=settings.S3_ACCESS_KEY,
+                aws_secret_access_key=settings.S3_SECRET_KEY,
+                endpoint_url=endpoint or None,
+                region_name=settings.S3_REGION or None,
+            )
+        except Exception as e:
+            print(f"CRITICAL ERROR: Failed to initialize Boto3 client: {str(e)}")
+            raise
 
     async def upload_fileobj(self, file_obj: BinaryIO, key: str, content_type: Optional[str] = None) -> str:
         """Upload file-like object to S3 under `key`. Returns the key."""

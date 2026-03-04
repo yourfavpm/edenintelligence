@@ -22,8 +22,9 @@ async def health_check():
 
 @app.on_event("startup")
 async def on_startup():
-    if settings.USE_LOCAL_STORAGE:
-        await init_db()
+    # Always attempt to initialize tables (Base.metadata.create_all is idempodent)
+    # This prevents 'relation users does not exist' if migrations weren't run.
+    await init_db()
 
 @app.middleware("http")
 async def require_api_token(request: Request, call_next):

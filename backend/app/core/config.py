@@ -45,6 +45,9 @@ class Settings(BaseSettings):
     DOMAIN: str = "localhost"
     CORS_ORIGINS: List[str] = [
         "http://localhost:3000",
+        "http://localhost:3001",
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:3001",
         "https://edenintelligence.vercel.app",
         "https://praxiomnotes.vercel.app"
     ]

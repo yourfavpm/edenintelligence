@@ -15,7 +15,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: AsyncSession
         payload = decode_token(token)
         if payload.get("type") != "access":
             raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Invalid token type")
-        user_id = int(payload.get("sub"))
+        user_id = str(payload.get("sub"))
     except Exception:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid authentication credentials")
     q = await db.execute(select(User).filter_by(id=user_id))

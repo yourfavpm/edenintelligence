@@ -66,10 +66,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="h-16 flex items-center px-6 border-b border-white/10">
           <Link href="/dashboard" className="flex items-center gap-2">
             <div className="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">E</span>
+              <span className="text-white font-bold text-sm">P</span>
             </div>
             <span className="text-lg font-semibold tracking-tight">
-              Eden Intelligence
+              PraxiomNotes
             </span>
           </Link>
         </div>

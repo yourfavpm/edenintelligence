@@ -20,10 +20,10 @@ export default function AuthLayout({ children, title, subtitle }: AuthLayoutProp
                 <div className="max-w-md">
                     <div className="flex items-center gap-3 mb-12">
                         <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center shadow-sm">
-                            <span className="text-white font-bold text-xl">E</span>
+                            <span className="text-white font-bold text-xl">P</span>
                         </div>
                         <span className="text-2xl font-bold text-neutral-900 tracking-tight">
-                            Eden Summarizer
+                            PraxiomNotes
                         </span>
                     </div>
                     <h2 className="text-4xl font-bold text-neutral-900 mb-6 leading-tight">
@@ -63,10 +63,10 @@ export default function AuthLayout({ children, title, subtitle }: AuthLayoutProp
                     <div className="lg:hidden mb-12">
                         <div className="flex items-center gap-2">
                             <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
-                                <span className="text-white font-bold text-sm">E</span>
+                                <span className="text-white font-bold text-sm">P</span>
                             </div>
                             <span className="text-xl font-bold text-neutral-900 tracking-tight">
-                                Eden Summarizer
+                                PraxiomNotes
                             </span>
                         </div>
                     </div>

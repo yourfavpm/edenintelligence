@@ -114,7 +114,7 @@ export default function SettingsPage() {
                                         <div className="p-8 bg-neutral-50 rounded-2xl border border-neutral-100 flex items-center justify-between">
                                             <div>
                                                 <p className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-1">Current Organization</p>
-                                                <h3 className="text-2xl font-bold text-neutral-900">Eden Default Org</h3>
+                                                <h3 className="text-2xl font-bold text-neutral-900">PraxiomNotes Default Org</h3>
                                                 <p className="text-neutral-500 mt-1">Free Tier Plan</p>
                                             </div>
                                             <Button variant="secondary" size="sm">Manage Billing</Button>

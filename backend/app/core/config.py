@@ -4,7 +4,7 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "Meeting Intelligence"
+    PROJECT_NAME: str = "PraxiomNotes"
     API_TOKEN: Optional[str] = None
     DATABASE_URL: Optional[str] = None
     REDIS_URL: str = "redis://localhost:6379/0"

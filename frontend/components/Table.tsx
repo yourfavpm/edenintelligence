@@ -3,7 +3,7 @@
 import React from 'react';
 
 // =============================================================================
-// Table Component - Standardized for Eden Summarizer
+// Table Component - Standardized for PraxiomNotes
 // =============================================================================
 
 export interface Column<T> {

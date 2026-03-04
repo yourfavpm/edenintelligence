@@ -2,8 +2,8 @@ import { AuthProvider } from '../components/auth/AuthContext';
 import './globals.css';
 
 export const metadata = {
-  title: 'Eden Intelligence',
-  description: 'AI Meeting Intelligence App',
+  title: 'PraxiomNotes',
+  description: 'Enterprise Meeting Intelligence Platform',
 }
 
 export default function RootLayout({

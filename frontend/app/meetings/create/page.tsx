@@ -230,7 +230,7 @@ export default function CreateMeetingPage() {
                                     />
                                     <Toggle
                                         label="AI Recording"
-                                        description="Allow the Eden AI listener to record the meeting audio."
+                                        description="Allow the PraxiomNotes AI listener to record the meeting audio."
                                         checked={formData.ai_recording}
                                         onChange={(checked) => handleInputChange('ai_recording', checked)}
                                     />

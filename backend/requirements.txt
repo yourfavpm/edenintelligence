@@ -20,3 +20,5 @@ openai
 matplotlib
 psycopg2-binary
 assemblyai>=0.15.0
+pydantic-settings
+cryptography

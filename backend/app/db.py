@@ -4,11 +4,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base, Session
 from sqlalchemy import create_engine
 from app.core.config import settings
 
-DATABASE_URL = settings.DATABASE_URL or "sqlite+aiosqlite:///./dev.db"
-
-# Ensure the URL is correctly formatted for asyncpg
-if DATABASE_URL.startswith("postgresql://"):
-    DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://", 1)
+DATABASE_URL = settings.ASYNC_DATABASE_URL or "sqlite+aiosqlite:///./dev.db"
 
 # Async engine for FastAPI endpoints
 engine: AsyncEngine = create_async_engine(DATABASE_URL, echo=False)

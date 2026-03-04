@@ -22,7 +22,8 @@ async def health_check():
 
 @app.on_event("startup")
 async def on_startup():
-    await init_db()
+    if settings.USE_LOCAL_STORAGE:
+        await init_db()
 
 @app.middleware("http")
 async def require_api_token(request: Request, call_next):

@@ -1,374 +1,487 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '../components/ui';
 
+// =============================================================================
+// PraxiomNotes - Editorial Landing Page
+// ===================================
+// A premium, intentional, and structured design following a "product story"
+// approach. Focuses on Inter typography, whitespace, and product-focused visuals.
+// =============================================================================
+
 export default function LandingPage() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-white text-[#111827] font-inter selection:bg-blue-100">
+    <div className="min-h-screen bg-white text-[#111827] font-inter selection:bg-blue-100 antialiased">
       
-      {/* 1. Navigation Bar */}
-      <nav className="fixed top-0 w-full z-50 bg-white border-b border-[#E5E7EB] h-[72px] flex items-center">
-        <div className="max-w-[1200px] mx-auto w-full px-6 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#2563EB] rounded-lg flex items-center justify-center font-bold text-white text-sm">
+      {/* --- NAVIGATION --- */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? 'bg-white/80 backdrop-blur-md border-b border-[#E5E7EB] h-16' : 'bg-transparent h-20'
+      } flex items-center`}>
+        <div className="max-w-[1400px] mx-auto w-full px-6 md:px-12 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 bg-[#111827] rounded-lg flex items-center justify-center font-semibold text-white text-lg">
               P
             </div>
-            <span className="font-semibold text-xl tracking-tight">PraxiomNotes</span>
+            <span className="font-semibold text-xl tracking-tighter">PraxiomNotes</span>
           </div>
           
-          <div className="hidden lg:flex items-center gap-8 border-x border-transparent">
-            <a href="#product" className="text-sm font-medium text-[#4B5563] hover:text-[#111827] transition-colors">Product</a>
-            <a href="#how-it-works" className="text-sm font-medium text-[#4B5563] hover:text-[#111827] transition-colors">How It Works</a>
-            <a href="#use-cases" className="text-sm font-medium text-[#4B5563] hover:text-[#111827] transition-colors">Use Cases</a>
-            <a href="#security" className="text-sm font-medium text-[#4B5563] hover:text-[#111827] transition-colors">Security</a>
-            <a href="#pricing" className="text-sm font-medium text-[#4B5563] hover:text-[#111827] transition-colors">Pricing</a>
+          <div className="hidden lg:flex items-center gap-10">
+            <a href="#vision" className="text-[13px] font-medium text-[#4B5563] hover:text-[#111827] transition-colors uppercase tracking-widest">Vision</a>
+            <a href="#capabilities" className="text-[13px] font-medium text-[#4B5563] hover:text-[#111827] transition-colors uppercase tracking-widest">Capabilities</a>
+            <a href="#workflow" className="text-[13px] font-medium text-[#4B5563] hover:text-[#111827] transition-colors uppercase tracking-widest">Workflow</a>
+            <a href="#trust" className="text-[13px] font-medium text-[#4B5563] hover:text-[#111827] transition-colors uppercase tracking-widest">Trust</a>
           </div>
 
-          <div className="flex items-center gap-4">
-            <Link href="/auth/login" className="text-sm font-semibold text-[#4B5563] hover:text-[#111827] px-4 py-2 transition-colors">
-              Login
+          <div className="flex items-center gap-6">
+            <Link href="/auth/login" className="text-sm font-semibold text-[#4B5563] hover:text-[#111827] transition-colors">
+              Sign In
             </Link>
             <Link href="/auth/signup">
-              <Button className="bg-[#2563EB] hover:bg-[#1D4ED8] text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-all">
-                Start using PraxiomNotes
+              <Button className="bg-[#111827] hover:bg-neutral-800 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-xl shadow-black/5">
+                Get Started
               </Button>
             </Link>
           </div>
         </div>
       </nav>
 
-      {/* 2. Hero Section */}
-      <section className="pt-[160px] pb-[120px] px-6">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-8">
-            <h1 className="text-5xl lg:text-[64px] font-semibold tracking-tight leading-[1.1] text-[#111827]">
-              Turn conversations into structured meeting intelligence
-            </h1>
-            <p className="text-lg lg:text-xl text-[#4B5563] leading-relaxed max-w-[540px]">
-              PraxiomNotes captures meetings, transcribes discussions, and converts conversations into clear summaries, decisions, and action items your team can rely on.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Link href="/auth/signup">
-                <Button className="h-14 px-8 text-lg bg-[#2563EB] hover:bg-[#1D4ED8] text-white rounded-lg shadow-sm font-semibold">
-                  Start using PraxiomNotes
+      {/* --- HERO SECTION --- */}
+      <section className="relative pt-32 pb-24 md:pt-48 md:pb-40 overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-20 items-center">
+            <div className="space-y-10 max-w-2xl">
+              <div className="inline-flex items-center px-3 py-1 bg-neutral-100 rounded-full text-[12px] font-semibold tracking-[0.2em] text-[#6B7280] uppercase">
+                Enterprise Meeting Intelligence
+              </div>
+              <h1 className="text-4xl md:text-6xl font-semibold tracking-[-0.03em] leading-[1.1] text-[#111827]">
+                Clarity from every <span className="text-neutral-400">conversation.</span>
+              </h1>
+              <p className="text-lg md:text-xl text-[#4B5563] leading-relaxed font-normal max-w-[540px]">
+                PraxiomNotes captures meetings, transcribes conversations, and converts discussions into structured summaries, decisions, and action items your team can rely on.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-5 pt-4">
+                <Link href="/auth/signup">
+                  <Button className="h-14 px-8 text-base bg-[#111827] hover:bg-neutral-800 text-white rounded-full shadow-2xl shadow-black/10 font-semibold transition-all transform hover:-translate-y-0.5">
+                    Start using PraxiomNotes
+                  </Button>
+                </Link>
+                <Button variant="ghost" className="h-14 px-8 text-base text-[#111827] font-semibold border-2 border-neutral-100 rounded-full hover:bg-neutral-50 hover:border-neutral-200 transition-all">
+                  See how it works
                 </Button>
-              </Link>
-              <Button variant="ghost" className="h-14 px-8 text-lg text-[#111827] font-semibold border border-[#E5E7EB] rounded-lg hover:bg-[#F8FAFC]">
-                Request demo
-              </Button>
+              </div>
             </div>
-          </div>
 
-          {/* Product UI Preview */}
-          <div className="relative">
-            <div className="bg-[#F8FAFC] rounded-2xl border border-[#E5E7EB] shadow-2xl p-6 overflow-hidden aspect-[4/3] flex flex-col gap-4">
-              <div className="flex items-center justify-between border-b border-[#E5E7EB] pb-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-400" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                  <div className="w-3 h-3 rounded-full bg-green-400" />
-                </div>
-                <div className="h-2 w-32 bg-[#E5E7EB] rounded-full" />
+            <div className="relative group perspective-1000">
+              <div className="relative z-10 p-2 bg-white/50 backdrop-blur-xl rounded-[32px] border border-white/20 shadow-[0_32px_120px_-20px_rgba(0,0,0,0.15)] transform transition-transform duration-700 hover:scale-[1.02]">
+                <img 
+                  src="/hero_ui_mockup.png" 
+                  alt="PraxiomNotes Interface" 
+                  className="rounded-[24px] w-full h-auto"
+                />
               </div>
-              <div className="space-y-4">
-                <div className="w-2/3 h-4 bg-[#E5E7EB] rounded-lg" />
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="h-24 bg-white rounded-xl border border-[#E5E7EB] p-4 space-y-2">
-                    <div className="w-8 h-8 rounded bg-blue-50" />
-                    <div className="w-full h-2 bg-neutral-100 rounded" />
-                  </div>
-                  <div className="h-24 bg-white rounded-xl border border-[#E5E7EB] p-4 space-y-2">
-                    <div className="w-8 h-8 rounded bg-green-50" />
-                    <div className="w-full h-2 bg-neutral-100 rounded" />
-                  </div>
-                  <div className="h-24 bg-white rounded-xl border border-[#E5E7EB] p-4 space-y-2">
-                    <div className="w-8 h-8 rounded bg-amber-50" />
-                    <div className="w-full h-2 bg-neutral-100 rounded" />
-                  </div>
-                </div>
-                <div className="w-full h-32 bg-white rounded-xl border border-[#E5E7EB] p-4 space-y-3">
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-full bg-blue-600" />
-                    <div className="w-1/4 h-2 bg-neutral-200 rounded" />
-                  </div>
-                  <div className="w-full h-2 bg-neutral-100 rounded" />
-                  <div className="w-5/6 h-2 bg-neutral-100 rounded" />
-                </div>
-              </div>
+              {/* Decorative Blur */}
+              <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue-100/50 rounded-full blur-[100px] -z-10 animate-pulse" />
+              <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-neutral-100/50 rounded-full blur-[100px] -z-10 animate-pulse" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. Product Explanation Section */}
-      <section id="product" className="py-[100px] bg-[#F8FAFC]">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-4xl font-semibold tracking-tight text-[#111827]">Understand every meeting without manual notes</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="space-y-4">
-              <div className="w-12 h-12 bg-white rounded-xl shadow-sm border border-[#E5E7EB] flex items-center justify-center text-[#2563EB]">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" /></svg>
-              </div>
-              <h3 className="text-xl font-semibold">Accurate transcription</h3>
-              <p className="text-[#4B5563] leading-relaxed">Meetings are transcribed with speaker identification and timestamps.</p>
-            </div>
-            <div className="space-y-4">
-              <div className="w-12 h-12 bg-white rounded-xl shadow-sm border border-[#E5E7EB] flex items-center justify-center text-[#2563EB]">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
-              </div>
-              <h3 className="text-xl font-semibold">Structured summaries</h3>
-              <p className="text-[#4B5563] leading-relaxed">PraxiomNotes converts conversations into concise summaries highlighting key topics and outcomes.</p>
-            </div>
-            <div className="space-y-4">
-              <div className="w-12 h-12 bg-white rounded-xl shadow-sm border border-[#E5E7EB] flex items-center justify-center text-[#2563EB]">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>
-              </div>
-              <h3 className="text-xl font-semibold">Actionable insights</h3>
-              <p className="text-[#4B5563] leading-relaxed">Decisions and responsibilities are automatically extracted so teams leave meetings with clear next steps.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. How It Works Section */}
-      <section id="how-it-works" className="py-[120px]">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <h2 className="text-3xl font-semibold tracking-tight text-center mb-20 text-[#111827]">How PraxiomNotes works</h2>
-          
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute top-6 left-0 w-full h-px bg-[#E5E7EB] hidden md:block" />
-            
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-              {[
-                { step: 'Step 1', title: 'Record or upload meetings', text: 'PraxiomNotes captures audio from live sessions or external files.' },
-                { step: 'Step 2', title: 'Accurate speech to text', text: 'Speech is converted into structured transcripts with speaker identification.' },
-                { step: 'Step 3', title: 'AI insight extraction', text: 'AI extracts summaries, action items, and strategic decisions.' },
-                { step: 'Step 4', title: 'Automatic distribution', text: 'Meeting insights are shared with your team automatically.' },
-              ].map((item, i) => (
-                <div key={i} className="relative space-y-6">
-                  <div className="w-12 h-12 bg-white border border-[#E5E7EB] rounded-full flex items-center justify-center text-sm font-semibold text-[#2563EB] relative z-10 shadow-sm">
-                    {i + 1}
-                  </div>
-                  <div className="space-y-2">
-                    <span className="text-[12px] font-bold text-[#6B7280] uppercase tracking-widest">{item.step}</span>
-                    <h4 className="text-lg font-semibold">{item.title}</h4>
-                    <p className="text-sm text-[#4B5563] leading-relaxed">{item.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Product Capabilities Section */}
-      <section className="py-[120px] bg-[#F8FAFC]">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <h2 className="text-3xl font-semibold tracking-tight text-center mb-20 text-[#111827]">Built for teams that rely on accurate decisions</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { title: 'Speaker diarization', text: 'Automatically separate and label individual voices across discussions.' },
-              { title: 'Structured summaries', text: 'Transform hour-long meetings into 5-minute actionable executive summaries.' },
-              { title: 'Decision detection', text: 'Never miss a commitment. PraxiomNotes flags all decisions made in real-time.' },
-              { title: 'Action item extraction', text: 'Automatic task assignment with owners and context pulled directly from the audio.' },
-              { title: 'Searchable meeting archive', text: 'A central library for all team knowledge. Search across every conversation.' },
-              { title: 'Exportable transcripts', text: 'Download or sync transcripts and insights to your existing CRM or documentation hex.' },
-            ].map((feature, i) => (
-              <div key={i} className="bg-white p-8 rounded-2xl border border-[#E5E7EB] shadow-sm hover:border-[#CBD5E1] transition-all">
-                <h4 className="text-lg font-semibold mb-3">{feature.title}</h4>
-                <p className="text-sm text-[#4B5563] leading-relaxed">{feature.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Workflow Benefits Section */}
-      <section className="py-[120px]">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <h2 className="text-3xl font-semibold tracking-tight text-center mb-20 text-[#111827]">Replace manual meeting notes with structured intelligence</h2>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 border border-[#E5E7EB] rounded-2xl overflow-hidden shadow-sm">
-            <div className="p-12 lg:border-r border-[#E5E7EB] bg-white">
-              <h4 className="text-lg font-semibold mb-8 text-[#6B7280] uppercase tracking-wider text-sm">Traditional meetings</h4>
-              <ul className="space-y-6">
-                {['Manual note taking', 'Important details missed', 'Unclear responsibilities', 'Decisions forgotten'].map((item, i) => (
-                  <li key={i} className="flex items-center gap-4 text-[#4B5563] font-medium">
-                    <div className="w-5 h-5 rounded-full border border-red-200 bg-red-50 flex items-center justify-center">
-                      <svg className="w-3 h-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" /></svg>
-                    </div>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="p-12 bg-[#F8FAFC]">
-              <h4 className="text-lg font-semibold mb-8 text-[#2563EB] uppercase tracking-wider text-sm">With PraxiomNotes</h4>
-              <ul className="space-y-6">
-                {['Automatic transcription', 'Structured summaries', 'Clear ownership of tasks', 'Persistent meeting knowledge'].map((item, i) => (
-                  <li key={i} className="flex items-center gap-4 text-[#111827] font-medium">
-                    <div className="w-5 h-5 rounded-full border border-green-200 bg-green-50 flex items-center justify-center">
-                      <svg className="w-3 h-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-                    </div>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. Use Case Section */}
-      <section id="use-cases" className="py-[120px] bg-[#F8FAFC]">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <h2 className="text-3xl font-semibold tracking-tight text-center mb-20 text-[#111827]">Used across critical team conversations</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-10 rounded-2xl border border-[#E5E7EB] shadow-sm space-y-4">
-              <h4 className="text-xl font-semibold">Leadership meetings</h4>
-              <p className="text-[#4B5563] text-sm leading-relaxed font-medium">Capture and track strategic decisions across executive discussions to ensure alignment across the organization.</p>
-            </div>
-            <div className="bg-white p-10 rounded-2xl border border-[#E5E7EB] shadow-sm space-y-4">
-              <h4 className="text-xl font-semibold">Product development</h4>
-              <p className="text-[#4B5563] text-sm leading-relaxed font-medium">Ensure product discussions, technical constraints, and requirements are documented with 100% accuracy.</p>
-            </div>
-            <div className="bg-white p-10 rounded-2xl border border-[#E5E7EB] shadow-sm space-y-4">
-              <h4 className="text-xl font-semibold">Customer conversations</h4>
-              <p className="text-[#4B5563] text-sm leading-relaxed font-medium">Extract voice-of-customer insights from sales calls and user interviews without manual synthesis.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Trust Section */}
-      <section id="security" className="py-[120px]">
-        <div className="max-w-[1200px] mx-auto px-6 text-center">
-          <h2 className="text-3xl font-semibold tracking-tight text-[#111827] mb-20 font-medium">Built for reliability</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-            {[
-              { title: 'Secure infrastructure', text: 'Encrypted storage at rest and in transit.' },
-              { title: 'Private by design', text: 'You control all meeting and team data.' },
-              { title: 'Enterprise-grade', text: 'Built on a global, redundant architecture.' },
-              { title: 'Audit ready', text: 'Complete logs of all meeting intelligence.' },
-            ].map((item, i) => (
-              <div key={i} className="space-y-3">
-                <div className="flex justify-center mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-neutral-50 border border-neutral-100 flex items-center justify-center text-[#2563EB]">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-                  </div>
-                </div>
-                <h5 className="font-semibold text-[#111827]">{item.title}</h5>
-                <p className="text-sm text-[#4B5563] font-medium leading-relaxed">{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 9. Testimonials Section */}
-      <section className="py-[120px] bg-[#F8FAFC]">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <h2 className="text-3xl font-semibold tracking-tight text-center mb-20 text-[#111827]">Trusted by teams that rely on accurate decisions</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { quote: "PraxiomNotes eliminated the need for manual meeting notes across our product team. We now have a reliable record of decisions.", name: "Sarah Chen", role: "Head of Product", company: "Aether Systems" },
-              { quote: "The accuracy of the transcription and automated summaries is unmatched. It has saved us at least 10 hours a week.", name: "James Miller", role: "Chief of Staff", company: "Stratford & Co." },
-              { quote: "Meeting documentation used to be a point of friction. Now, insights are distributed before the next meeting even starts.", name: "Linda Rodriguez", role: "Operations Lead", company: "NexGen Logistics" }
-            ].map((item, i) => (
-              <div key={i} className="bg-white p-10 rounded-2xl border border-[#E5E7EB] flex flex-col justify-between shadow-sm">
-                <p className="text-[#4B5563] italic leading-relaxed font-medium">"{item.quote}"</p>
-                <div className="mt-8 pt-8 border-t border-[#E5E7EB]">
-                  <p className="font-semibold text-[#111827]">{item.name}</p>
-                  <p className="text-sm text-[#6B7280]">{item.role}, {item.company}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 10. Final Call-to-Action Section */}
-      <section className="py-[120px] bg-[#111827] text-white">
-        <div className="max-w-[1200px] mx-auto px-6 text-center space-y-8">
-          <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight">Bring structure to every meeting</h2>
-          <p className="text-lg text-neutral-400 max-w-2xl mx-auto">
-            Replace fragmented meeting notes with reliable meeting intelligence your team can act on.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-            <Link href="/auth/signup">
-              <Button className="h-14 px-8 text-lg bg-[#2563EB] hover:bg-[#1D4ED8] text-white rounded-lg shadow-xl shadow-blue-500/10 font-semibold border-none">
-                Start using PraxiomNotes
-              </Button>
-            </Link>
-            <Button className="h-14 px-8 text-lg bg-white/10 hover:bg-white/20 text-white rounded-lg border border-white/20 font-semibold transition-all backdrop-blur-sm">
-              Request demo
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* 11. Footer */}
-      <footer className="py-[100px] bg-[#111827] text-[#9CA3AF] border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-16 md:gap-8">
-          <div className="space-y-6">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center font-bold text-white text-sm border border-white/10">
-                P
-              </div>
-              <span className="font-semibold text-xl tracking-tight text-white">PraxiomNotes</span>
-            </div>
-            <p className="text-sm leading-relaxed max-w-[240px]">
-              Meeting intelligence infrastructure for teams that rely on accurate decisions.
+      {/* --- PRODUCT MOMENT --- */}
+      <section id="vision" className="bg-[#111827] py-32 md:py-48 overflow-hidden rounded-[48px] mx-4 md:mx-6 my-12">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="text-center max-w-4xl mx-auto mb-24 space-y-6">
+            <span className="text-[11px] font-semibold tracking-[0.25em] text-white/40 uppercase">Product Experience</span>
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-white leading-[1.1]">Every meeting becomes structured knowledge.</h2>
+            <p className="text-lg text-white/50 max-w-2xl mx-auto leading-relaxed">
+              We've redesigned the meeting experience to prioritize outcome over output. No more hunting for recorded links or forgotten commitments.
             </p>
           </div>
-
-          <div className="space-y-6">
-            <h6 className="text-xs font-bold uppercase tracking-widest text-white">Product</h6>
-            <ul className="space-y-3 text-sm">
-              <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">How It Works</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Integrations</a></li>
-            </ul>
-          </div>
-
-          <div className="space-y-6">
-            <h6 className="text-xs font-bold uppercase tracking-widest text-white">Company</h6>
-            <ul className="space-y-3 text-sm">
-              <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-            </ul>
-          </div>
-
-          <div className="space-y-6">
-            <h6 className="text-xs font-bold uppercase tracking-widest text-white">Resources</h6>
-            <ul className="space-y-3 text-sm">
-              <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Security</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Terms</a></li>
-            </ul>
+          
+          <div className="relative max-w-6xl mx-auto">
+            <div className="bg-white/5 border border-white/10 rounded-[40px] p-4 md:p-8 backdrop-blur-sm shadow-2xl">
+              <img 
+                src="/hero_ui_mockup.png" 
+                alt="Immersive Experience" 
+                className="w-full rounded-[24px] shadow-2xl transform hover:scale-[1.01] transition-transform duration-700" 
+              />
+            </div>
+            
+            {/* Floating UI Elements (Abstracted) */}
+            <div className="absolute -right-12 top-1/4 hidden xl:block w-72 p-6 bg-white rounded-3xl shadow-2xl border border-neutral-100 transform rotate-3 animate-float-slow">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-2 h-2 rounded-full bg-green-500" />
+                <span className="text-xs font-semibold text-neutral-400">DECISION DETECTED</span>
+              </div>
+              <p className="text-sm font-semibold text-neutral-800 leading-snug">"Finalize the Q3 product roadmap by end of week."</p>
+            </div>
           </div>
         </div>
-        
-        <div className="max-w-[1200px] mx-auto px-6 pt-12 mt-20 border-t border-white/5 flex justify-between items-center text-xs text-[#4B5563] font-medium tracking-wide">
-          <span>&copy; 2026 PraxiomNotes. All rights reserved.</span>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-[#9CA3AF] transition-colors">Twitter</a>
-            <a href="#" className="hover:text-[#9CA3AF] transition-colors">LinkedIn</a>
+      </section>
+
+      {/* --- STORY SECTIONS (Alternating) --- */}
+      <section id="capabilities" className="py-32 md:py-48 bg-white overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 space-y-48">
+          
+          {/* Section 1: Capture */}
+          <div className="flex flex-col lg:flex-row items-center gap-24">
+            <div className="lg:w-1/2 space-y-8">
+              <div className="w-16 h-1 bg-[#111827] rounded-full" />
+              <h3 className="text-3xl md:text-4xl font-semibold tracking-tighter text-[#111827] leading-[1.2]">The conversation, <br/>perfectly captured.</h3>
+              <p className="text-lg md:text-xl text-[#4B5563] leading-relaxed">
+                PraxiomNotes captures the full context of conversations with accurate transcription and instant speaker identification. No detail is lost in the noise.
+              </p>
+              <div className="flex items-center gap-6 pt-4">
+                <div className="space-y-1">
+                  <p className="text-3xl font-semibold">99.2%</p>
+                  <p className="text-xs font-semibold text-[#6B7280] uppercase tracking-wider">Accuracy rate</p>
+                </div>
+                <div className="w-px h-12 bg-neutral-200" />
+                <div className="space-y-1">
+                  <p className="text-3xl font-semibold">&lt; 3min</p>
+                  <p className="text-xs font-semibold text-[#6B7280] uppercase tracking-wider">Processing time</p>
+                </div>
+              </div>
+            </div>
+            <div className="lg:w-1/2 relative">
+               <div className="aspect-[4/3] bg-neutral-50 rounded-[48px] p-8 flex items-center justify-center border border-neutral-100 overflow-hidden group">
+                  <div className="w-full h-full bg-white rounded-[32px] shadow-2xl p-8 space-y-6 transform translate-x-12 translate-y-12 rotate-[-5deg] transition-all group-hover:rotate-0 group-hover:translate-x-0 group-hover:translate-y-0 duration-700">
+                    <div className="flex items-center gap-4 border-b border-neutral-100 pb-6">
+                       <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-semibold">AM</div>
+                       <div className="space-y-1">
+                          <p className="text-sm font-semibold">Alice Morgan</p>
+                          <p className="text-[10px] text-neutral-400 font-medium">10:02 AM • 1:34s</p>
+                       </div>
+                    </div>
+                    <p className="text-lg text-neutral-600 leading-relaxed font-medium">"We need to ensure the Q3 roadmap aligns with our core performance objectives. Let's prioritize the API scalability layer before moving to the UI polish..."</p>
+                    <div className="w-1/2 h-4 bg-neutral-50 rounded-full" />
+                  </div>
+               </div>
+               <div className="absolute -top-10 -right-10 w-40 h-40 bg-blue-50/50 rounded-full blur-3xl -z-10" />
+            </div>
+          </div>
+
+          {/* Section 2: Summaries */}
+          <div className="flex flex-col lg:flex-row-reverse items-center gap-24">
+            <div className="lg:w-1/2 space-y-8">
+               <div className="w-16 h-1 bg-[#111827] rounded-full" />
+               <h3 className="text-3xl md:text-4xl font-semibold tracking-tighter text-[#111827] leading-[1.2]">Structure from <br/>complexity.</h3>
+               <p className="text-lg md:text-xl text-[#4B5563] leading-relaxed">
+                 Meetings are automatically condensed into clear, actionable summaries. We strip away the filler and highlight the most important outcomes from your discussions.
+               </p>
+               <Button className="h-12 px-6 rounded-full border-2 border-neutral-100 font-semibold bg-white text-[#111827] hover:bg-neutral-50 transition-all shadow-none">
+                 How summaries work
+               </Button>
+            </div>
+            <div className="lg:w-1/2 relative">
+               <div className="aspect-[4/3] bg-neutral-50 rounded-[48px] p-8 flex items-center justify-center border border-neutral-100 overflow-hidden group">
+                  <div className="w-full h-full bg-white rounded-[32px] shadow-2xl p-10 space-y-8 transform -translate-x-12 translate-y-12 rotate-[5deg] transition-all group-hover:rotate-0 group-hover:translate-x-0 group-hover:translate-y-0 duration-700">
+                    <div className="space-y-2">
+                       <p className="text-xs font-semibold text-blue-600 uppercase tracking-widest">Executive Summary</p>
+                       <h4 className="text-2xl font-semibold">Product Strategy Sync</h4>
+                    </div>
+                    <div className="space-y-4">
+                       <div className="flex gap-4">
+                          <div className="w-1 h-12 bg-blue-600 rounded-full" />
+                          <p className="text-sm font-medium text-neutral-600 leading-relaxed">Aligned on Q3 technical roadmap with a focus on API stability and data encryption protocols.</p>
+                       </div>
+                       <div className="flex gap-4">
+                          <div className="w-1 h-12 bg-neutral-200 rounded-full" />
+                          <p className="text-sm font-medium text-neutral-400 leading-relaxed">Agreed to defer the dashboard redesign until initial load-testing is completed in August.</p>
+                       </div>
+                    </div>
+                  </div>
+               </div>
+            </div>
+          </div>
+
+          {/* Section 3: Action Items */}
+          <div className="flex flex-col lg:flex-row items-center gap-24">
+            <div className="lg:w-1/2 space-y-8">
+               <div className="w-16 h-1 bg-[#111827] rounded-full" />
+               <h3 className="text-3xl md:text-4xl font-semibold tracking-tighter text-[#111827] leading-[1.2]">Decisions that <br/>stay decided.</h3>
+               <p className="text-lg md:text-xl text-[#4B5563] leading-relaxed">
+                 Action items and strategic decisions are automatically extracted. Teams leave meetings with clear next steps, owners, and zero ambiguity.
+               </p>
+            </div>
+            <div className="lg:w-1/2 relative">
+               <div className="aspect-[4/3] bg-neutral-50 rounded-[48px] p-8 flex items-center justify-center border border-neutral-100 overflow-hidden group">
+                  <div className="w-full max-w-sm bg-white rounded-[40px] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] p-10 space-y-6 relative z-10">
+                    <h5 className="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-6">Action Items (4)</h5>
+                    <div className="space-y-5">
+                       {[
+                         { title: 'Finalize API Spec', owner: 'Sarah J.', date: 'Mar 18' },
+                         { title: 'Complete Load Testing', owner: 'Ben K.', date: 'Mar 20' },
+                         { title: 'Update Documentation', owner: 'Alice M.', date: 'Mar 22' },
+                       ].map((task, i) => (
+                         <div key={i} className="flex items-center justify-between p-4 bg-neutral-50 rounded-2xl border border-neutral-100">
+                           <div className="space-y-1">
+                             <p className="text-sm font-semibold text-neutral-800">{task.title}</p>
+                             <p className="text-[10px] text-neutral-400 font-semibold uppercase tracking-tight">Assigned to {task.owner}</p>
+                           </div>
+                           <div className="w-6 h-6 rounded-full border-2 border-neutral-200" />
+                         </div>
+                       ))}
+                    </div>
+                  </div>
+                  {/* Decorative element */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full border-2 border-dashed border-neutral-200 rounded-[60px] transform scale-[1.1]" />
+               </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* --- WORKFLOW EXPERIENCE --- */}
+      <section id="workflow" className="py-32 md:py-48 bg-neutral-50">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 text-center">
+          <div className="max-w-3xl mx-auto mb-32 space-y-6">
+            <span className="text-[11px] font-semibold tracking-[0.25em] text-[#2563EB] uppercase">The Platform</span>
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#111827]">Seamless workflow. <br/>Intelligent results.</h2>
+          </div>
+
+          <div className="relative">
+             {/* Horizontal Connection */}
+             <div className="absolute top-14 left-0 w-full h-px bg-neutral-200 hidden lg:block" />
+             
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 relative">
+                {[
+                  { step: '01', title: 'Capture', desc: 'Securely record in-person or remote sessions.' },
+                  { step: '02', title: 'Transcribe', desc: 'Instant conversion with 99%+ accuracy.' },
+                  { step: '03', title: 'Understand', desc: 'AI extracts context, decisions, and tasks.' },
+                  { step: '04', title: 'Share', desc: 'Insights distributed to your team workspace.' }
+                ].map((item, i) => (
+                  <div key={i} className="space-y-8 flex flex-col items-center group">
+                     <div className="w-24 h-24 bg-white rounded-[28px] border border-neutral-100 shadow-xl flex items-center justify-center transform transition-transform group-hover:scale-105 group-hover:-translate-y-1 duration-500">
+                        <span className="text-2xl font-semibold text-[#111827]">{item.step}</span>
+                     </div>
+                     <div className="space-y-3">
+                        <h4 className="text-xl font-semibold text-[#111827]">{item.title}</h4>
+                        <p className="text-[#6B7280] font-medium text-sm leading-relaxed max-w-[180px] mx-auto">{item.desc}</p>
+                     </div>
+                  </div>
+                ))}
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- SHOWCASE GALLERY --- */}
+      <section className="py-32 md:py-48 bg-white overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-24 items-center">
+             <div className="space-y-12">
+                <div className="space-y-6">
+                   <h2 className="text-3xl md:text-4xl font-semibold tracking-tighter text-[#111827] leading-[1.2]">Designed for the <br/>modern enterprise.</h2>
+                   <p className="text-lg text-[#4B5563] leading-relaxed">
+                     Every pixel is intentional. We've built an interface that's powerful enough for complex legal reviews but simple enough for daily stand-ups.
+                   </p>
+                </div>
+                
+                <div className="space-y-6 border-l-2 border-neutral-100 pl-8">
+                   <div className="space-y-1">
+                      <p className="font-semibold text-[#111827]">Searchable Archive</p>
+                      <p className="text-sm text-[#6B7280] font-medium leading-relaxed">Every word ever spoken across your organization is indexed and searchable.</p>
+                   </div>
+                   <div className="space-y-1">
+                      <p className="font-semibold text-[#111827]">Privacy First</p>
+                      <p className="text-sm text-[#6B7280] font-medium leading-relaxed">SOC-2 compliant infrastructure with end-to-end encryption for all audio files.</p>
+                   </div>
+                </div>
+             </div>
+
+             <div className="relative flex items-center justify-center py-20">
+                <div className="w-full max-w-lg aspect-square relative">
+                   <div className="absolute top-0 right-0 w-80 h-96 bg-white rounded-[40px] shadow-2xl border border-neutral-100 z-20 p-8 transform rotate-3 hover:rotate-0 transition-all duration-700">
+                      <div className="w-full h-full bg-neutral-50 rounded-2xl border border-neutral-100 border-dashed" />
+                   </div>
+                   <div className="absolute top-20 left-0 w-80 h-96 bg-white rounded-[40px] shadow-2xl border border-neutral-100 z-10 p-8 transform -rotate-6 hover:rotate-0 transition-all duration-700">
+                      <div className="w-full h-full bg-neutral-50 rounded-2xl border border-neutral-100 border-dashed" />
+                   </div>
+                   <div className="absolute -bottom-10 left-1/4 w-80 h-96 bg-[#111827] rounded-[40px] shadow-2xl z-0 transform translate-x-12 translate-y-12" />
+                </div>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- USE CASE NARRATIVES --- */}
+      <section id="trust" className="py-32 md:py-48 bg-[#F8FAFC]">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+            <div className="space-y-8">
+               <h4 className="text-2xl font-semibold tracking-tight">Leadership Meetings</h4>
+               <p className="text-base text-[#4B5563] leading-relaxed font-medium">Capture and track strategic decisions across executive discussions to ensure alignment across the organization. Never lose track of a commitment made in the boardroom.</p>
+               <Link href="/auth/signup" className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:gap-4 transition-all">
+                  Read leadership case study
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+               </Link>
+            </div>
+            <div className="space-y-8">
+               <h4 className="text-3xl font-semibold tracking-tight">Product Development</h4>
+               <p className="text-lg text-[#4B5563] leading-relaxed font-medium">Ensure product discussions, technical constraints, and requirements are documented with 100% accuracy. Bridge the gap between engineering and design effortlessly.</p>
+               <Link href="/auth/signup" className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:gap-4 transition-all">
+                  Product workflow guide
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+               </Link>
+            </div>
+            <div className="space-y-8">
+               <h4 className="text-3xl font-semibold tracking-tight">Customer Conversations</h4>
+               <p className="text-lg text-[#4B5563] leading-relaxed font-medium">Extract voice-of-customer insights from sales calls and user interviews without manual synthesis. Feed the direct feedback loop into your development cycle.</p>
+               <Link href="/auth/signup" className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:gap-4 transition-all">
+                  Sales intelligence ebook
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- TESTIMONIALS (LARGE QUOTE) --- */}
+      <section className="py-32 md:py-64 bg-white">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 text-center">
+           <div className="max-w-5xl mx-auto space-y-16">
+              <div className="text-neutral-200">
+                <svg className="w-16 h-16 mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H14.017L14.017 5H19.017C21.2261 5 23.017 6.79086 23.017 9V15C23.017 18.3137 20.3307 21 17.017 21H14.017ZM1 15V9C1 6.79086 2.79086 5 5 5H10V8H5C4.44772 8 4 8.44772 4 9V15C4 15.5523 4.44772 16 5 16H8C9.10457 16 10 16.8954 10 18V21H7C3.68629 21 1 18.3137 1 15ZM10 18H5.017L5.017 21H8.017C9.12157 21 10.017 20.1046 10.017 19V18Z" /></svg>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#111827] leading-[1.2]">
+                "PraxiomNotes eliminated the need for manual meeting notes across our entire organization. We finally have a reliable record of truth."
+              </h2>
+              <div className="space-y-4 pt-12">
+                 <div className="w-20 h-20 mx-auto bg-neutral-100 rounded-full border border-neutral-200 overflow-hidden">
+                    <div className="w-full h-full bg-blue-500 flex items-center justify-center text-white font-semibold text-2xl">SC</div>
+                 </div>
+                 <div>
+                   <p className="text-2xl font-semibold text-[#111827]">Sarah Chen</p>
+                   <p className="text-[14px] font-semibold text-[#6B7280] uppercase tracking-widest">Head of Product at Aether Systems</p>
+                 </div>
+              </div>
+           </div>
+        </div>
+      </section>
+
+      {/* --- FINAL CTA --- */}
+      <section className="pb-32 md:pb-48 px-6 md:px-12">
+         <div className="max-w-[1400px] mx-auto bg-[#111827] rounded-[64px] py-24 md:py-40 px-6 text-center space-y-12 relative overflow-hidden group">
+            {/* Background Texture */}
+            <div className="absolute top-0 left-0 w-full h-full opacity-40 mix-blend-overlay pointer-events-none" 
+                 style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)', backgroundSize: '24px 24px' }} />
+            
+            <div className="relative z-10 max-w-3xl mx-auto space-y-8">
+               <h2 className="text-4xl md:text-6xl font-semibold tracking-tighter text-white leading-[1.1]">Bring structure to <br/>every meeting.</h2>
+               <p className="text-lg md:text-xl text-white/50 leading-relaxed font-normal">
+                 Replace fragmented notes and forgotten follow-ups with reliable meeting intelligence your team can act on today.
+               </p>
+               <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+                  <Link href="/auth/signup">
+                    <Button className="h-14 px-8 text-base bg-white hover:bg-neutral-100 text-[#111827] rounded-full shadow-2xl shadow-blue-500/10 font-semibold transition-all transform hover:scale-105 active:scale-95">
+                      Start using PraxiomNotes
+                    </Button>
+                  </Link>
+                  <Button className="h-14 px-8 text-base bg-white/10 hover:bg-white/20 text-white rounded-full border border-white/10 font-semibold backdrop-blur-md transition-all">
+                    Request demo
+                  </Button>
+               </div>
+            </div>
+            
+            {/* Decorative Blurs */}
+            <div className="absolute -bottom-1/2 left-1/2 -translate-x-1/2 w-full h-full bg-blue-500/20 blur-[120px] rounded-full pointer-events-none" />
+         </div>
+      </section>
+
+      {/* --- FOOTER --- */}
+      <footer className="py-32 md:py-48 bg-white border-t border-neutral-100">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] gap-20">
+            <div className="space-y-10">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 bg-[#111827] rounded-lg flex items-center justify-center font-semibold text-white text-lg">
+                  P
+                </div>
+                <span className="font-semibold text-2xl tracking-tighter text-[#111827]">PraxiomNotes</span>
+              </div>
+              <p className="text-lg text-[#6B7280] leading-relaxed max-w-sm font-medium">
+                Infrastructure for teams that rely on accurate decisions. Meeting intelligence that works for you.
+              </p>
+              <div className="flex gap-6">
+                 <a href="#" className="w-10 h-10 rounded-full border border-neutral-100 flex items-center justify-center text-neutral-400 hover:text-[#111827] hover:border-neutral-200 transition-all">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                 </a>
+                 <a href="#" className="w-10 h-10 rounded-full border border-neutral-100 flex items-center justify-center text-neutral-400 hover:text-[#111827] hover:border-neutral-200 transition-all">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                 </a>
+              </div>
+            </div>
+
+            <div className="space-y-8">
+              <h6 className="text-[12px] font-semibold uppercase tracking-[0.2em] text-[#111827]">Product</h6>
+              <ul className="space-y-4 text-lg text-[#6B7280] font-medium">
+                <li><a href="#" className="hover:text-[#111827] transition-colors">Features</a></li>
+                <li><a href="#" className="hover:text-[#111827] transition-colors">How It Works</a></li>
+                <li><a href="#" className="hover:text-[#111827] transition-colors">Pricing</a></li>
+                <li><a href="#" className="hover:text-[#111827] transition-colors">Integrations</a></li>
+              </ul>
+            </div>
+
+            <div className="space-y-8">
+              <h6 className="text-[12px] font-semibold uppercase tracking-[0.2em] text-[#111827]">Company</h6>
+              <ul className="space-y-4 text-lg text-[#6B7280] font-medium">
+                <li><a href="#" className="hover:text-[#111827] transition-colors">About</a></li>
+                <li><a href="#" className="hover:text-[#111827] transition-colors">Careers</a></li>
+                <li><a href="#" className="hover:text-[#111827] transition-colors">Blog</a></li>
+                <li><a href="#" className="hover:text-[#111827] transition-colors">Contact</a></li>
+              </ul>
+            </div>
+
+            <div className="space-y-8">
+              <h6 className="text-[12px] font-semibold uppercase tracking-[0.2em] text-[#111827]">Resources</h6>
+              <ul className="space-y-4 text-lg text-[#6B7280] font-medium">
+                <li><a href="#" className="hover:text-[#111827] transition-colors">Documentation</a></li>
+                <li><a href="#" className="hover:text-[#111827] transition-colors">Security</a></li>
+                <li><a href="#" className="hover:text-[#111827] transition-colors">Privacy</a></li>
+                <li><a href="#" className="hover:text-[#111827] transition-colors">Terms</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="pt-24 mt-24 border-t border-neutral-100 flex flex-col md:flex-row justify-between items-center gap-8 text-[13px] text-[#9CA3AF] font-semibold uppercase tracking-widest">
+            <span>&copy; 2026 PraxiomNotes. Crafted for clarity.</span>
+            <div className="flex gap-8">
+               <a href="#" className="hover:text-[#111827] transition-colors">Status</a>
+               <a href="#" className="hover:text-[#111827] transition-colors">Sitemap</a>
+               <a href="#" className="hover:text-[#111827] transition-colors">Cookie Policy</a>
+            </div>
           </div>
         </div>
       </footer>
+
+      {/* --- ADD CUSTOM STYLES FOR ANIMATIONS --- */}
+      <style jsx global>{`
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0) rotate(3deg); }
+          50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        .animate-float-slow {
+          animation: float-slow 8s ease-in-out infinite;
+        }
+        .perspective-1000 {
+          perspective: 2000px;
+        }
+        html {
+          scroll-behavior: smooth;
+        }
+      `}</style>
     </div>
   );
 }

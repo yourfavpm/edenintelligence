@@ -77,19 +77,19 @@ class MeetingRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
     id: UUID
     title: str
-    description: Optional[str]
-    start_time: Optional[datetime]
-    duration_minutes: Optional[int]
-    organizer_id: Optional[UUID]
-    organization_id: Optional[UUID]
-    meeting_type: MeetingType
-    external_link: Optional[str]
-    ai_transcription: bool
-    ai_translation: bool
-    ai_recording: bool
+    description: Optional[str] = None
+    start_time: Optional[datetime] = None
+    duration_minutes: Optional[int] = None
+    organizer_id: Optional[UUID] = None
+    organization_id: Optional[UUID] = None
+    meeting_type: Optional[MeetingType] = None
+    external_link: Optional[str] = None
+    ai_transcription: Optional[bool] = False
+    ai_translation: Optional[bool] = False
+    ai_recording: Optional[bool] = False
     participants: List[ParticipantRead] = []
     recordings: List[RecordingRead] = []
-    created_at: Optional[datetime]
+    created_at: Optional[datetime] = None
 
 # --- Auth & Organization schemas ---
 class UserCreate(BaseModel):

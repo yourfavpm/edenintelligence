@@ -1,9 +1,8 @@
 from pydantic import BaseModel, EmailStr, field_validator, model_validator, ConfigDict, Field, AliasChoices
 from typing import List, Optional, Any
 from datetime import datetime
+from uuid import UUID
 import json
-
-# ... (omitted)
 
 class ParticipantCreate(BaseModel):
     email: EmailStr
@@ -12,7 +11,7 @@ class ParticipantCreate(BaseModel):
 
 class ParticipantRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: str
+    id: UUID
     email: EmailStr
     display_name: Optional[str]
     is_host: bool
@@ -26,7 +25,7 @@ class MeetingCreate(BaseModel):
 
 class MeetingRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: str
+    id: UUID
     title: str
     description: Optional[str]
     language: str
@@ -38,13 +37,13 @@ class RecordingCreate(BaseModel):
 
 class RecordingRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: str
+    id: UUID
     s3_key: str
     duration_seconds: Optional[int]
     processed: bool
     processing_status: Optional[str]
     processing_error: Optional[str]
-    transcript_id: Optional[str]
+    transcript_id: Optional[UUID]
 
 # --- Meeting schemas ---
 from enum import Enum as PyEnum
@@ -58,8 +57,8 @@ class MeetingCreate(BaseModel):
     description: Optional[str] = None
     start_time: Optional[datetime] = None
     duration_minutes: Optional[int] = None
-    organizer_id: Optional[str] = None
-    organization_id: Optional[str] = None
+    organizer_id: Optional[UUID] = None
+    organization_id: Optional[UUID] = None
     meeting_type: MeetingType = MeetingType.NATIVE
     external_link: Optional[str] = None
     ai_transcription: Optional[bool] = False
@@ -83,13 +82,13 @@ class MeetingUpdate(BaseModel):
 
 class MeetingRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: str
+    id: UUID
     title: str
     description: Optional[str]
     start_time: Optional[datetime]
     duration_minutes: Optional[int]
-    organizer_id: Optional[str]
-    organization_id: Optional[str]
+    organizer_id: Optional[UUID]
+    organization_id: Optional[UUID]
     meeting_type: MeetingType
     external_link: Optional[str]
     ai_transcription: bool
@@ -131,7 +130,7 @@ class TokenRefresh(BaseModel):
 
 class UserRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: str
+    id: UUID
     email: EmailStr
     display_name: Optional[str]
     is_active: bool
@@ -165,20 +164,20 @@ class OrganizationCreate(BaseModel):
 
 class OrganizationRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: str
+    id: UUID
     name: str
 
 class MembershipRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: str
-    user_id: str
-    organization_id: str
+    id: UUID
+    user_id: UUID
+    organization_id: UUID
     role: str
 
 class EmailDeliveryRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: str
-    user_id: str
+    id: UUID
+    user_id: UUID
     to_email: str
     subject: str
     body: str
@@ -197,7 +196,7 @@ class ListenerStatus(str, PyEnum):
     FAILED = "failed"
 
 class ListenerSessionCreate(BaseModel):
-    meeting_id: Optional[str] = None
+    meeting_id: Optional[UUID] = None
     external_link: Optional[str] = None
     scheduled_at: Optional[datetime] = None
     consent: Optional[Any] = None
@@ -209,8 +208,8 @@ class ListenerSessionUpdate(BaseModel):
 
 class ListenerSessionRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: str
-    meeting_id: Optional[int]
+    id: UUID
+    meeting_id: Optional[UUID]
     external_link: Optional[str]
     scheduled_at: Optional[datetime]
     join_at: Optional[datetime]
@@ -220,15 +219,15 @@ class ListenerSessionRead(BaseModel):
 
 # --- Audio ingestion schemas ---
 class AudioIngestCreate(BaseModel):
-    meeting_id: Optional[str] = None
+    meeting_id: Optional[UUID] = None
     filename: Optional[str] = None
     content_type: Optional[str] = None
     meta: Optional[dict] = None
 
 class AudioIngestRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: str
-    meeting_id: Optional[int]
+    id: UUID
+    meeting_id: Optional[UUID]
     s3_key: str
     content_type: Optional[str]
     size_bytes: Optional[int]
@@ -271,9 +270,9 @@ class TranscriptSegment(BaseModel):
 
 class TranscriptRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: str
-    audio_file_id: str
-    meeting_id: Optional[str]
+    id: UUID
+    audio_file_id: UUID
+    meeting_id: Optional[UUID]
     segments: List[TranscriptSegment]
     detected_language: Optional[str]
     created_at: Optional[datetime]
@@ -309,10 +308,10 @@ class TranslatedSegment(BaseModel):
 
 class TranslatedTranscriptRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: str
-    transcript_id: str
-    audio_file_id: Optional[int]
-    meeting_id: Optional[int]
+    id: UUID
+    transcript_id: UUID
+    audio_file_id: Optional[UUID]
+    meeting_id: Optional[UUID]
     target_language: str
     segments: List[TranslatedSegment]
     created_at: Optional[datetime]
@@ -331,15 +330,15 @@ class TranslatedTranscriptRead(BaseModel):
 
 # --- Summarization schemas ---
 class SummaryCreate(BaseModel):
-    transcript_id: str
+    transcript_id: UUID
     length: Optional[str] = "short"  # short|medium|long
     tone: Optional[str] = "formal"   # formal|conversational
 
 class SummaryRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: str
-    transcript_id: Optional[str]
-    meeting_id: Optional[str]
+    id: UUID
+    transcript_id: Optional[UUID]
+    meeting_id: Optional[UUID]
     executive_summary: str
     key_points: List[str] = []
     decisions: List[str] = []
@@ -370,9 +369,9 @@ class ExtractionItem(BaseModel):
 
 class ExtractionRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    id: str
-    transcript_id: str
-    meeting_id: Optional[str]
+    id: UUID
+    transcript_id: UUID
+    meeting_id: Optional[UUID]
     items: List[ExtractionItem]
     confidence: Optional[float]
     created_at: Optional[datetime]

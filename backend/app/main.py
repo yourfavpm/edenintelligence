@@ -8,13 +8,7 @@ from app.core.audit import record_audit
 
 app = FastAPI(title=settings.PROJECT_NAME)
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# Middleware registration moved to bottom of file to ensure CORSMiddleware is the outermost layer
 
 @app.get("/health")
 async def health_check():
@@ -72,3 +66,12 @@ app.include_router(transcripts)
 app.include_router(dashboard)
 app.include_router(consents)
 app.include_router(privacy)
+
+# Register CORSMiddleware LAST so it wraps everything else and adds headers even for failed requests
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.CORS_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)

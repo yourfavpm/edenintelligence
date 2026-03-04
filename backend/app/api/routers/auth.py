@@ -144,11 +144,8 @@ async def get_current_user(request: Request, db: AsyncSession = Depends(get_db))
         if not user_id:
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
         
-        # Fetch user from database
-        try:
-            uid = int(user_id)
-        except ValueError:
-             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token subject")
+        # The user_id in payload.get("sub") is already the UUID string
+        uid = user_id
 
         q = await db.execute(select(User).filter_by(id=uid))
         user = q.scalars().first()

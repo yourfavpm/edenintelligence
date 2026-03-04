@@ -413,31 +413,24 @@ export default function LandingPage() {
       </section>
 
       {/* --- FINAL CTA --- */}
-      <section className="pb-32 md:pb-48 px-6 md:px-12">
-         <div className="max-w-[1400px] mx-auto bg-[#111827] rounded-[64px] py-24 md:py-40 px-6 text-center space-y-12 relative overflow-hidden group">
-            {/* Background Texture */}
-            <div className="absolute top-0 left-0 w-full h-full opacity-40 mix-blend-overlay pointer-events-none" 
-                 style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)', backgroundSize: '24px 24px' }} />
-            
-            <div className="relative z-10 max-w-3xl mx-auto space-y-8">
-               <h2 className="text-4xl md:text-6xl font-semibold tracking-tighter text-white leading-[1.1]">Bring structure to <br/>every meeting.</h2>
-               <p className="text-lg md:text-xl text-white/50 leading-relaxed font-normal">
+      <section className="pb-24 md:pb-32 px-6 md:px-12">
+         <div className="max-w-[1400px] mx-auto bg-neutral-50 rounded-[40px] py-16 md:py-24 px-6 text-center space-y-8 relative overflow-hidden group border border-neutral-100">
+            <div className="relative z-10 max-w-2xl mx-auto space-y-6">
+               <h2 className="text-3xl md:text-5xl font-semibold tracking-tighter text-[#111827] leading-[1.2]">Bring structure to <br/>every meeting.</h2>
+               <p className="text-base md:text-lg text-[#6B7280] leading-relaxed font-normal">
                  Replace fragmented notes and forgotten follow-ups with reliable meeting intelligence your team can act on today.
                </p>
-               <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
                   <Link href="/auth/signup">
-                    <Button className="h-14 px-8 text-base bg-white hover:bg-neutral-100 text-[#111827] rounded-full shadow-2xl shadow-blue-500/10 font-semibold transition-all transform hover:scale-105 active:scale-95">
+                    <Button className="h-12 px-8 text-sm bg-[#111827] hover:bg-neutral-800 text-white rounded-full shadow-lg shadow-black/5 font-semibold transition-all">
                       Start recording
                     </Button>
                   </Link>
-                  <Button className="h-14 px-8 text-base bg-white/10 hover:bg-white/20 text-white rounded-full border border-white/10 font-semibold backdrop-blur-md transition-all">
+                  <Button variant="ghost" className="h-12 px-8 text-sm text-[#4B5563] font-semibold border border-neutral-200 rounded-full hover:bg-neutral-100 transition-all">
                     Request demo
                   </Button>
                </div>
             </div>
-            
-            {/* Decorative Blurs */}
-            <div className="absolute -bottom-1/2 left-1/2 -translate-x-1/2 w-full h-full bg-blue-500/20 blur-[120px] rounded-full pointer-events-none" />
          </div>
       </section>
 

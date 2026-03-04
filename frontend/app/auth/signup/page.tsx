@@ -16,9 +16,28 @@ export default function SignupPage() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
+  const validatePassword = (pass: string) => {
+    return {
+      length: pass.length >= 8,
+      uppercase: /[A-Z]/.test(pass),
+      lowercase: /[a-z]/.test(pass),
+      number: /[0-9]/.test(pass),
+      special: /[^A-Za-z0-9]/.test(pass),
+    };
+  };
+
+  const passwordStatus = validatePassword(password);
+  const isPasswordValid = Object.values(passwordStatus).every(Boolean);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+
+    if (!isPasswordValid) {
+      setError('Please fulfill all password requirements.');
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -36,6 +55,13 @@ export default function SignupPage() {
       setLoading(false);
     }
   };
+
+  const ValidationItem = ({ label, met }: { label: string; met: boolean }) => (
+    <div className={`flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider transition-colors ${met ? 'text-green-600' : 'text-neutral-400'}`}>
+      <div className={`w-1 h-1 rounded-full ${met ? 'bg-green-600' : 'bg-neutral-300'}`} />
+      {label}
+    </div>
+  );
 
   return (
     <AuthLayout
@@ -62,26 +88,35 @@ export default function SignupPage() {
           autoComplete="email"
         />
 
-        <Input
-          label="Password"
-          type="password"
-          placeholder="Min. 8 characters"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          autoComplete="new-password"
-          helperText="Must contain at least 8 characters."
-        />
+        <div className="space-y-3">
+          <Input
+            label="Password"
+            type="password"
+            placeholder="········"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            autoComplete="new-password"
+          />
+
+          <div className="grid grid-cols-2 gap-x-4 gap-y-2 px-1">
+            <ValidationItem label="8+ Characters" met={passwordStatus.length} />
+            <ValidationItem label="Uppercase" met={passwordStatus.uppercase} />
+            <ValidationItem label="Lowercase" met={passwordStatus.lowercase} />
+            <ValidationItem label="Number" met={passwordStatus.number} />
+            <ValidationItem label="Special Char" met={passwordStatus.special} />
+          </div>
+        </div>
 
         {error && (
-          <div className="p-3 bg-error-50 border border-error-100 rounded-lg">
-            <p className="text-xs text-error-600 font-medium text-center">
+          <div className="p-3 bg-red-50 border border-red-100 rounded-lg">
+            <p className="text-xs text-red-600 font-medium text-center">
               {error}
             </p>
           </div>
         )}
 
-        <Button type="submit" block loading={loading} className="h-12 text-sm">
+        <Button type="submit" block loading={loading} className="h-12 text-sm" disabled={password.length > 0 && !isPasswordValid}>
           Create account
         </Button>
       </form>

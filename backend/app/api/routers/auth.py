@@ -3,6 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from fastapi.security import OAuth2PasswordRequestForm
 from app.db import get_db
+from app.core.auth import get_current_user
 from app.schemas import (
     UserCreate, AuthResponse, TokenRefresh, UserRead, 
     EmailVerificationRequest, VerifyEmail, ForgotPasswordRequest, ResetPassword, GoogleAuthRequest

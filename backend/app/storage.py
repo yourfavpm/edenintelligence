@@ -7,6 +7,8 @@ import boto3
 
 from app.core.config import settings
 
+from botocore.client import Config
+
 class S3Storage:
     def __init__(self, bucket: Optional[str] = None):
         self.bucket = bucket or settings.S3_BUCKET
@@ -26,6 +28,7 @@ class S3Storage:
                 aws_secret_access_key=settings.S3_SECRET_KEY,
                 endpoint_url=endpoint or None,
                 region_name=settings.S3_REGION or None,
+                config=Config(signature_version="s3v4", s3={"addressing_style": "path"})
             )
         except Exception as e:
             print(f"CRITICAL ERROR: Failed to initialize Boto3 client: {str(e)}")

@@ -218,7 +218,7 @@ class ConsentRecord(Base):
 class AuditLog(Base):
     __tablename__ = "audit_logs"
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    user_id = Column(String, ForeignKey("users.id"), nullable=True)
+    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=True)
     action = Column(String, nullable=False)
     object_type = Column(String, nullable=True)
     object_id = Column(String, nullable=True)

@@ -11,7 +11,7 @@ import { ExtractionRead } from '../../types/api';
 import Link from 'next/link';
 
 // =============================================================================
-// Action Items Page (Aggregated View)
+// Action Items Aggregator - High-Density Enterprise Redesign
 // =============================================================================
 
 export default function ActionItemsPage() {
@@ -19,6 +19,7 @@ export default function ActionItemsPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [searchQuery, setSearchQuery] = useState('');
+    const [activeFilter, setActiveFilter] = useState('ALL');
 
     useEffect(() => {
         const fetchExtractions = async () => {
@@ -28,68 +29,70 @@ export default function ActionItemsPage() {
                 setExtractions(data);
             } catch (err: any) {
                 console.error(err);
-                setError('Failed to load action items.');
+                setError('Failed to synchronize task index.');
             } finally {
                 setLoading(false);
             }
         };
-
         fetchExtractions();
     }, []);
 
-    // Flatten extractions into individual items for the table
     const flattenedItems = useMemo(() => {
         return extractions.flatMap(ex => (ex.items || []).map(item => ({
             ...item,
             meeting_id: ex.meeting_id,
-            id: `${ex.id}-${item.text.substring(0, 10)}` // Unique key
+            id: `${ex.id}-${item.text.substring(0, 10)}`
         })));
     }, [extractions]);
 
-    // Filter logic
     const filteredItems = useMemo(() => {
-        return flattenedItems.filter((item) =>
-            item.text.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            item.owner?.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-    }, [flattenedItems, searchQuery]);
+        return flattenedItems.filter((item) => {
+            const matchesSearch = item.text.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                               item.owner?.toLowerCase().includes(searchQuery.toLowerCase());
+            const matchesFilter = activeFilter === 'ALL' || 
+                               (activeFilter === 'DECISIONS' && item.decision) || 
+                               (activeFilter === 'TASKS' && !item.decision);
+            return matchesSearch && matchesFilter;
+        });
+    }, [flattenedItems, searchQuery, activeFilter]);
 
     const columns: Column<any>[] = [
         {
             key: 'text',
-            label: 'Task Details',
-            render: (val) => (
-                <div className="flex gap-3 max-w-xl">
-                    <div className="mt-1 w-4 h-4 rounded-full border-2 border-primary-400 flex-shrink-0" />
-                    <span className="text-neutral-800 font-medium leading-relaxed">{val}</span>
+            label: 'Task Definition',
+            render: (val, row) => (
+                <div className="flex gap-2.5 max-w-2xl py-0.5">
+                    <div className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${row.decision ? 'bg-indigo-500' : 'bg-emerald-500'}`} />
+                    <span className="text-[13px] font-medium text-neutral-800 leading-normal">{val}</span>
                 </div>
             ),
         },
         {
             key: 'decision',
-            label: 'Type',
+            label: 'Classification',
             render: (val) => (
-                <span className={`px-2.5 py-1 rounded-lg text-[11px] font-bold uppercase tracking-wider ${val ? 'bg-indigo-50 text-indigo-700 border border-indigo-100' : 'bg-neutral-100 text-neutral-500 border border-neutral-200'}`}>
-                    {val ? 'Decision' : 'Action Item'}
+                <span className={`text-[10px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded border ${val ? 'bg-indigo-50 text-indigo-700 border-indigo-100' : 'bg-emerald-50 text-emerald-700 border-emerald-100'}`}>
+                    {val ? 'Decision' : 'Task'}
                 </span>
             ),
         },
         {
             key: 'owner',
             label: 'Owner',
-            render: (val) => val || <span className="text-neutral-400 italic">Unassigned</span>,
+            render: (val) => val ? (
+                <span className="text-[12px] font-bold text-neutral-700">{val}</span>
+            ) : (
+                <span className="text-[11px] text-neutral-400 font-medium">Unassigned</span>
+            ),
         },
         {
             key: 'meeting_id',
-            label: 'Meeting',
+            label: 'Context',
             render: (val) => (
-                <Link
-                    href={`/meetings/${val}`}
-                    className="text-primary-600 hover:text-primary-700 font-medium text-xs flex items-center gap-1"
-                >
-                    View Meeting
-                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <Link href={`/meetings/${val}`} className="group flex items-center gap-1.5 text-[11px] font-bold text-neutral-400 hover:text-[#4F46E5] transition-colors uppercase tracking-wider">
+                    Source
+                    <svg className="w-3 h-3 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                 </Link>
             ),
@@ -99,65 +102,68 @@ export default function ActionItemsPage() {
     return (
         <ProtectedRoute>
             <Layout>
-                <div className="max-w-7xl mx-auto space-y-8 animate-fade-in">
-                    {/* Header */}
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-neutral-100">
-                        <div>
-                            <h1 className="text-3xl font-bold text-neutral-900">Action Items</h1>
-                            <p className="text-neutral-500 font-medium">All tasks and follow-ups extracted from your meetings.</p>
+                <div className="max-w-[1400px] mx-auto space-y-6 animate-fade-in py-2">
+                    {/* Compact Header */}
+                    <div className="flex items-center justify-between border-b border-[#E5E7EB] pb-6">
+                        <div className="space-y-1">
+                            <h1 className="text-[20px] font-bold text-neutral-900 tracking-tight">Intelligence Index</h1>
+                            <p className="text-[12px] text-neutral-500 font-medium">Aggregated decisions and action items across all workspaces.</p>
                         </div>
 
-                        <div className="flex items-center gap-3">
-                            <div className="w-72">
+                        <div className="flex items-center gap-4">
+                            <div className="w-64">
                                 <Input
-                                    placeholder="Filter by keyword, owner, or category..."
+                                    placeholder="Filter by keyword or owner..."
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="!py-1.5"
+                                    className="!h-9 !text-[12px] bg-[#F8FAFC]"
                                 />
                             </div>
-                            <Button variant="secondary">
-                                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                                </svg>
-                                Export CSV
+                            <Button className="h-9 px-4 bg-white border border-[#E5E7EB] text-neutral-700 hover:bg-neutral-50 shadow-sm text-[11px] font-bold uppercase tracking-wider">
+                                Export Data
                             </Button>
                         </div>
                     </div>
 
-                    {/* Quick Filters Placeholder */}
-                    <div className="flex gap-2">
-                        {['All Items', 'High Priority', 'General', 'Legal', 'Product'].map((tag) => (
+                    {/* Filter Strip */}
+                    <div className="flex gap-1 bg-[#F1F5F9] p-1 rounded-lg w-fit">
+                        {[
+                            { id: 'ALL', label: 'All Items' },
+                            { id: 'TASKS', label: 'Tasks Only' },
+                            { id: 'DECISIONS', label: 'Decisions Only' },
+                        ].map((filter) => (
                             <button
-                                key={tag}
-                                className={`px-4 py-1.5 rounded-full text-xs font-bold tracking-wide border transition-all ${tag === 'All Items'
-                                    ? 'bg-primary-600 border-primary-600 text-white shadow-sm'
-                                    : 'bg-white border-neutral-200 text-neutral-500 hover:border-neutral-300'
-                                    }`}
+                                key={filter.id}
+                                onClick={() => setActiveFilter(filter.id)}
+                                className={`px-4 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-widest transition-all ${
+                                    activeFilter === filter.id
+                                        ? 'bg-white text-neutral-900 shadow-sm'
+                                        : 'text-neutral-500 hover:text-neutral-700'
+                                }`}
                             >
-                                {tag.toUpperCase()}
+                                {filter.label}
                             </button>
                         ))}
                     </div>
 
                     {/* Table Area */}
-                    <div className="space-y-4">
+                    <div className="bg-white rounded-xl border border-[#E5E7EB] shadow-sm overflow-hidden">
                         {loading ? (
-                            <div className="bg-white rounded-2xl border border-neutral-200 p-8 shadow-sm">
-                                <TableSkeleton rows={10} columns={4} />
+                            <div className="p-8">
+                                <TableSkeleton rows={12} columns={4} />
                             </div>
                         ) : error ? (
-                            <div className="p-12 text-center bg-error-50 rounded-2xl border border-error-100">
-                                <p className="text-error-600 font-bold">{error}</p>
+                            <div className="p-16 text-center">
+                                <p className="text-red-600 text-[13px] font-bold">{error}</p>
                                 <Button variant="secondary" size="sm" className="mt-4" onClick={() => window.location.reload()}>
-                                    Try Again
+                                    Reconnect
                                 </Button>
                             </div>
                         ) : (
                             <Table
                                 columns={columns}
                                 data={filteredItems}
-                                emptyMessage={searchQuery ? "No action items match your filters." : "No action items have been extracted yet."}
+                                emptyMessage={searchQuery ? "No intelligence units match current filters." : "No action items have been indexed."}
                             />
                         )}
                     </div>

@@ -7,11 +7,11 @@ import { Table, Column } from '../../components/Table';
 import { DashboardSkeleton } from '../../components/Skeletons';
 import { StatusBadge, Button } from '../../components/ui';
 import { apiService } from '../../services/api';
-import { Meeting, MeetingDetail, ExtractionRead } from '../../types/api';
+import { Meeting, ExtractionRead } from '../../types/api';
 import Link from 'next/link';
 
 // =============================================================================
-// Dashboard Page
+// Dashboard Page - Master Redesign
 // =============================================================================
 
 export default function DashboardPage() {
@@ -26,7 +26,7 @@ export default function DashboardPage() {
       try {
         const [meetingsData, extractionsData] = await Promise.all([
           apiService.getMeetings(),
-          apiService.getAllExtractions(), // Get recent extractions for action items
+          apiService.getAllExtractions(),
         ]);
         setMeetings(meetingsData);
         setExtractions(extractionsData);
@@ -41,34 +41,19 @@ export default function DashboardPage() {
     fetchData();
   }, []);
 
-  // Stats calculation
+  // Stats calculation - Compact operational style
   const stats = useMemo(() => {
     const totalMeetings = meetings.length;
-    const processing = meetings.filter(m => m.ai_transcription === false).length; // Simplified check
-    const pendingActions = extractions.length;
+    const processing = meetings.filter(m => {
+       if (m.audio_files && m.audio_files.length > 0) return !m.audio_files[0].processed;
+       return !m.ai_transcription;
+    }).length;
+    const totalActions = extractions.flatMap(ex => ex.items || []).length;
 
     return [
-      {
-        label: 'Total Meetings', value: totalMeetings, icon: (
-          <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-        )
-      },
-      {
-        label: 'Active Tasks', value: processing, icon: (
-          <svg className="w-5 h-5 text-warning-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-        )
-      },
-      {
-        label: 'Action Items', value: pendingActions, icon: (
-          <svg className="w-5 h-5 text-success-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-          </svg>
-        )
-      },
+      { label: 'Meetings', value: totalMeetings, trend: 'Total' },
+      { label: 'Active Tasks', value: processing, trend: 'In Progress' },
+      { label: 'Action Items', value: totalActions, trend: 'Pending' },
     ];
   }, [meetings, extractions]);
 
@@ -78,9 +63,9 @@ export default function DashboardPage() {
       label: 'Meeting',
       render: (val, item) => (
         <div className="flex flex-col">
-          <span className="font-semibold text-neutral-900">{val}</span>
-          <span className="text-xs text-neutral-500 truncate max-w-[200px]">
-            {item.description || 'No description'}
+          <span className="font-semibold text-neutral-900 text-[13.5px]">{val}</span>
+          <span className="text-[11px] text-neutral-400 truncate max-w-[240px]">
+            {item.description || 'No description provided'}
           </span>
         </div>
       ),
@@ -88,47 +73,37 @@ export default function DashboardPage() {
     {
       key: 'start_time',
       label: 'Date',
+      className: 'w-32',
       render: (_, item) => {
         const dateStr = item.start_time || item.created_at;
-        return dateStr ? new Date(dateStr).toLocaleDateString() : 'N/A';
+        return <span className="text-[12px] text-neutral-500">{dateStr ? new Date(dateStr).toLocaleDateString() : 'N/A'}</span>;
       },
-    },
-    {
-      key: 'meeting_type',
-      label: 'Type',
-      render: (val) => <span className="capitalize">{val}</span>,
     },
     {
       key: 'status',
       label: 'Status',
+      className: 'w-24',
       render: (_, item) => {
-        // Check audio_files first (new upload system)
         if (item.audio_files && item.audio_files.length > 0) {
           const audioFile = item.audio_files[0];
-          return audioFile.processed ? <StatusBadge status="processed" /> : <StatusBadge status="processing" />;
+          return <StatusBadge status={audioFile.processed ? "processed" : "processing"} />;
         }
-
-        // Fall back to recordings (legacy system)
-        if (item.ai_transcription && item.recordings && item.recordings.length > 0) {
-          const isProcessing = item.recordings.some(r => !r.processed && r.processing_status !== 'failed');
-          const isFailed = item.recordings.some(r => r.processing_status === 'failed');
-          if (isProcessing) return <StatusBadge status="processing" />;
-          if (isFailed) return <StatusBadge status="failed" />;
-          return <StatusBadge status="processed" />;
-        }
-
-        return <StatusBadge status="scheduled" />;
+        return <StatusBadge status={item.ai_transcription ? "processed" : "scheduled"} />;
       },
     },
     {
       key: 'actions',
-      label: 'Actions',
+      label: '',
+      className: 'w-10 text-right',
       render: (_, item) => (
         <Link
           href={`/meetings/${item.id}`}
-          className="text-primary-600 hover:text-primary-700 font-medium text-xs"
+          className="p-1.5 text-neutral-300 hover:text-[#4F46E5] transition-colors inline-block"
+          title="View Details"
         >
-          View Details
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
         </Link>
       ),
     },
@@ -147,88 +122,82 @@ export default function DashboardPage() {
   return (
     <ProtectedRoute>
       <Layout>
-        <div className="max-w-7xl mx-auto space-y-8 animate-fade-in">
-          {/* Header */}
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-neutral-900">Dashboard</h1>
-              <p className="text-neutral-500">Welcome back. Here is what is happening today.</p>
-            </div>
-            <Link href="/uploads">
-              <Button>
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                </svg>
-                New Upload
-              </Button>
-            </Link>
-          </div>
-
-          {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="space-y-10 animate-fade-in">
+          {/* Metrics Strip - Compact operational widgets */}
+          <div className="flex flex-wrap gap-4 overflow-x-auto no-scrollbar">
             {stats.map((stat, i) => (
-              <div key={i} className="bg-white p-6 rounded-xl border border-neutral-200 shadow-sm">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-medium text-neutral-500">{stat.label}</span>
-                  <div className="p-2 bg-neutral-50 rounded-lg">
-                    {stat.icon}
-                  </div>
+              <div key={i} className="flex-1 min-w-[180px] bg-white p-4 rounded-lg border border-[#E5E7EB] shadow-sm flex items-center justify-between">
+                <div>
+                  <p className="text-[11px] font-semibold text-neutral-500 uppercase tracking-widest leading-none mb-2">{stat.label}</p>
+                  <p className="text-2xl font-semibold text-neutral-900 leading-none">{stat.value}</p>
                 </div>
-                <div className="text-3xl font-bold text-neutral-900">{stat.value}</div>
+                <div className="text-[10px] px-2 py-0.5 bg-neutral-50 text-neutral-400 rounded-full font-medium border border-neutral-100 italic">
+                  {stat.trend}
+                </div>
               </div>
             ))}
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Recent Meetings Table */}
-            <div className="lg:col-span-2 space-y-4">
-              <h2 className="text-lg font-bold text-neutral-900">Recent Meetings</h2>
+          <div className="grid grid-cols-1 xl:grid-cols-[1fr_360px] gap-10 items-start">
+            {/* Left Column: Recent Meetings operational panel */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between px-2">
+                <h2 className="text-[16px] font-semibold text-neutral-900">Recent Meetings</h2>
+                <Link href="/meetings" className="text-[11px] font-semibold text-[#4F46E5] hover:underline tracking-tight uppercase">
+                  View Full Directory
+                </Link>
+              </div>
               <Table
                 columns={columns}
-                data={meetings.slice(0, 5)}
-                emptyMessage="You haven't uploaded any meetings yet."
+                data={meetings.slice(0, 8)}
+                emptyMessage="No meeting data available."
               />
-              {meetings.length > 5 && (
-                <div className="text-center">
-                  <Link href="/meetings" className="text-sm text-primary-600 hover:underline font-medium">
-                    View all meetings
-                  </Link>
-                </div>
-              )}
             </div>
 
-            {/* Recent Action Items */}
+            {/* Right Column: Active Action Items panel */}
             <div className="space-y-4">
-              <h2 className="text-lg font-bold text-neutral-900">Recent Action Items</h2>
-              <div className="bg-white rounded-xl border border-neutral-200 shadow-sm overflow-hidden">
-                <div className="divide-y divide-neutral-100">
+              <div className="flex items-center justify-between px-2">
+                <h2 className="text-[16px] font-semibold text-neutral-900">Action Items</h2>
+                <Link href="/action-items" className="text-[11px] font-semibold text-[#4F46E5] hover:underline tracking-tight uppercase">
+                  Manage Tasks
+                </Link>
+              </div>
+              <div className="bg-white rounded-lg border border-[#E5E7EB] shadow-sm overflow-hidden min-h-[400px]">
+                <div className="divide-y divide-[#F1F5F9]">
                   {extractions.flatMap(ex => ex.items || []).length === 0 ? (
-                    <div className="p-8 text-center text-neutral-500 italic text-sm">
-                      No action items found yet.
+                    <div className="flex flex-col items-center justify-center py-20 px-6 text-center">
+                      <div className="w-10 h-10 bg-neutral-50 rounded-full flex items-center justify-center mb-4 border border-neutral-100 text-neutral-300">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <p className="text-[13px] text-neutral-500 font-medium">Clear for now</p>
+                      <p className="text-[11px] text-neutral-400 mt-1">New action items will appear here.</p>
                     </div>
                   ) : (
-                    extractions.flatMap(ex => (ex.items || []).map(item => ({ ...item, meeting_id: ex.meeting_id }))).slice(0, 8).map((item, idx) => (
-                      <div key={idx} className="p-4 hover:bg-neutral-50 transition-colors">
+                    extractions.flatMap(ex => (ex.items || []).map(item => ({ ...item, meeting_title: ex.meeting_id })))
+                      .slice(0, 10).map((item, idx) => (
+                      <div key={idx} className="group p-4 hover:bg-[#F8FAFC] transition-all cursor-default relative">
                         <div className="flex gap-3">
-                          <div className={`mt-1 w-4 h-4 rounded-full border-2 flex-shrink-0 ${item.decision ? 'border-indigo-400' : 'border-primary-400'}`} />
+                          <button className="mt-0.5 w-4 h-4 rounded-md border border-neutral-300 group-hover:border-[#4F46E5] transition-colors flex items-center justify-center shrink-0">
+                            <div className="w-1.5 h-1.5 bg-[#4F46E5] rounded-sm opacity-0 group-hover:opacity-20 translate-y-0.5 group-hover:translate-y-0 transition-all" />
+                          </button>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm text-neutral-900 line-clamp-2">{item.text}</p>
-                            <p className="text-[10px] text-neutral-400 mt-1 uppercase font-bold tracking-wider">
-                              {item.decision ? 'Decision' : 'Action Item'} • {item.owner || 'Unassigned'}
-                            </p>
+                            <p className="text-[13px] text-neutral-800 leading-snug group-hover:text-black transition-colors">{item.text}</p>
+                            <div className="flex items-center gap-2 mt-2">
+                              <span className={`text-[9px] px-1.5 py-0.5 rounded uppercase font-bold tracking-wider ${item.decision ? 'bg-indigo-50 text-indigo-600' : 'bg-blue-50 text-blue-600'}`}>
+                                {item.decision ? 'Decision' : 'Action'}
+                              </span>
+                              <span className="text-[10px] text-neutral-400">
+                                {item.owner || 'Unassigned'}
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
                     ))
                   )}
                 </div>
-                {extractions.length > 8 && (
-                  <div className="p-3 bg-neutral-50 text-center border-t border-neutral-100">
-                    <Link href="/action-items" className="text-xs text-primary-600 hover:underline font-medium">
-                      View all items
-                    </Link>
-                  </div>
-                )}
               </div>
             </div>
           </div>

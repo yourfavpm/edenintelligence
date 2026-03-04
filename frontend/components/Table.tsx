@@ -40,7 +40,7 @@ export function Table<T extends Record<string, any>>({
               {columns.map((col) => (
                 <th
                   key={col.key}
-                  className={`px-6 py-4 font-semibold text-neutral-500 uppercase tracking-[0.15em] text-[10px] ${col.headerClassName || ''
+                  className={`px-4 py-2.5 font-semibold text-neutral-500 uppercase tracking-[0.2em] text-[10px] ${col.headerClassName || ''
                     } ${col.className || ''}`}
                 >
                   {col.label}
@@ -72,7 +72,7 @@ export function Table<T extends Record<string, any>>({
                   {columns.map((col) => (
                     <td
                       key={col.key}
-                      className={`px-6 py-4 text-neutral-700 ${col.className || ''}`}
+                      className={`px-4 py-3 text-neutral-700 ${col.className || ''}`}
                     >
                       {col.render
                         ? col.render(item[col.key], item)

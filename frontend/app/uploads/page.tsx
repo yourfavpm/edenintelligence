@@ -8,7 +8,7 @@ import { FileUpload, Button } from '../../components/ui';
 import { apiService } from '../../services/api';
 
 // =============================================================================
-// Upload Recording Page
+// Upload Recording Page - Master Redesign
 // =============================================================================
 
 export default function UploadPage() {
@@ -30,7 +30,7 @@ export default function UploadPage() {
             setSuccess(true);
         } catch (err: any) {
             console.error(err);
-            setError(err.message || 'Upload failed.');
+            setError(err.message || 'Transmission failed.');
         } finally {
             setUploading(false);
         }
@@ -39,45 +39,40 @@ export default function UploadPage() {
     return (
         <ProtectedRoute>
             <Layout>
-                <div className="max-w-4xl mx-auto py-8 px-4">
+                <div className="max-w-4xl mx-auto py-12 px-4 animate-fade-in">
                     {/* Header */}
-                    <div className="text-center mb-8">
-                        <h1 className="text-2xl font-extrabold text-neutral-900 tracking-tight mb-2">
-                            Upload Meeting Recording
-                        </h1>
-                        <p className="text-sm text-neutral-500 max-w-xl mx-auto font-medium">
-                            Turn your recordings into actionable insights. Simply drop your audio or video file here.
+                    <div className="text-center mb-12 space-y-2">
+                        <h1 className="text-[24px] font-bold text-neutral-900 tracking-tight">Upload Meeting</h1>
+                        <p className="text-[13px] text-neutral-500 font-medium max-w-md mx-auto leading-relaxed">
+                            Upload your recordings and let AI extract summary, decisions, and tasks.
                         </p>
                     </div>
 
-                    <div className="bg-white rounded-2xl border border-neutral-200 shadow-lg overflow-hidden min-h-[400px] flex flex-col items-center justify-center p-6 md:p-12">
+                    <div className="bg-white rounded-2xl border border-[#E5E7EB] shadow-xl overflow-hidden min-h-[460px] flex flex-col items-center justify-center p-8 md:p-14">
                         {!success ? (
-                            <div className="w-full max-w-xl space-y-8 animate-fade-in">
-                                <div className="bg-primary-50 p-6 rounded-2xl flex items-start gap-4 border border-primary-100 mb-8">
-                                    <div className="p-2 bg-primary-100 rounded-lg text-primary-600">
-                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
+                            <div className="w-full max-w-lg space-y-8 animate-fade-in">
+                                
+                                {/* Info Panel */}
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="p-4 bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl">
+                                        <h3 className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-1">Formats</h3>
+                                        <p className="text-[12px] font-bold text-neutral-700">MP3, WAV, M4A, MP4</p>
                                     </div>
-                                    <div>
-                                        <h3 className="text-sm font-bold text-primary-900">Supported Formats</h3>
-                                        <p className="text-xs text-primary-700 mt-1 leading-relaxed">
-                                            We support MP3, WAV, M4A, and MP4 files. Maximum file size is 500MB.
-                                        </p>
+                                    <div className="p-4 bg-[#F8FAFC] border border-[#E5E7EB] rounded-xl">
+                                        <h3 className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-1">Capacity</h3>
+                                        <p className="text-[12px] font-bold text-neutral-700">Up to 500MB / File</p>
                                     </div>
                                 </div>
 
                                 {/* Title Input */}
-                                <div className="space-y-4 mb-6">
-                                    <label className="block text-sm font-medium text-neutral-700">
-                                        Recording Name (Optional)
-                                    </label>
+                                <div className="space-y-1.5 focus-within:text-[#4F46E5] transition-colors">
+                                    <label className="text-[11px] font-bold uppercase tracking-wider ml-1 text-inherit">Meeting Title</label>
                                     <input
                                         type="text"
-                                        placeholder="e.g. Q4 Strategy Meeting"
+                                        placeholder="e.g. Weekly Sync"
                                         value={customTitle}
                                         onChange={(e) => setCustomTitle(e.target.value)}
-                                        className="block w-full rounded-xl border-neutral-200 shadow-sm focus:border-primary-500 focus:ring-primary-500 bg-neutral-50"
+                                        className="w-full h-11 px-4 bg-[#F8FAFC] border border-[#E5E7EB] rounded-lg text-[14px] font-medium focus:outline-none focus:ring-1 focus:ring-[#4F46E5] transition-all"
                                         disabled={uploading}
                                     />
                                 </div>
@@ -90,54 +85,52 @@ export default function UploadPage() {
                                 />
 
                                 {uploading && (
-                                    <div className="text-center space-y-2 animate-pulse">
-                                        <p className="text-sm font-bold text-neutral-700">AI is preparing your processing pipeline...</p>
-                                        <p className="text-xs text-neutral-400">Please do not close this window until the upload is complete.</p>
+                                    <div className="text-center py-2 animate-pulse">
+                                        <p className="text-[11px] font-bold text-[#4F46E5] uppercase tracking-[0.2em]">Uploading file...</p>
                                     </div>
                                 )}
                             </div>
                         ) : (
                             <div className="text-center space-y-10 animate-slide-up w-full max-w-md">
-                                <div className="w-24 h-24 bg-success-100 rounded-full flex items-center justify-center mx-auto shadow-sm">
-                                    <svg className="w-12 h-12 text-success-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                <div className="w-16 h-16 bg-success-50 border border-success-100 rounded-full flex items-center justify-center mx-auto shadow-sm text-success-600">
+                                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                                     </svg>
                                 </div>
 
-                                <div className="space-y-3">
-                                    <h2 className="text-2xl font-bold text-neutral-900">Upload Complete!</h2>
-                                    <p className="text-sm text-neutral-500 font-medium">
-                                        Your recording has been successfully uploaded and is now being processed by our AI engines.
+                                <div className="space-y-2">
+                                    <h2 className="text-[20px] font-bold text-neutral-900 tracking-tight">Upload Successful</h2>
+                                    <p className="text-[13px] text-neutral-500 font-medium leading-relaxed">
+                                        Your recording is now in the queue. AI processing usually takes 2-5 minutes depending on the length.
                                     </p>
                                 </div>
 
-                                <div className="p-6 bg-neutral-50 rounded-2xl border border-neutral-100 space-y-4">
-                                    <div className="flex justify-between text-sm">
-                                        <span className="text-neutral-500">File ID</span>
-                                        <span className="font-mono text-neutral-900">{result?.id}</span>
+                                <div className="p-6 bg-[#F8FAFC] rounded-xl border border-[#E5E7EB] space-y-4">
+                                    <div className="flex justify-between items-center text-[11px] font-bold uppercase tracking-wider">
+                                        <span className="text-neutral-400">Meeting ID</span>
+                                        <span className="text-neutral-900 font-mono tracking-normal">{result?.id}</span>
                                     </div>
-                                    <div className="flex justify-between text-sm">
-                                        <span className="text-neutral-500">Status</span>
-                                        <span className="flex items-center gap-1.5 text-warning-600 font-bold">
-                                            <div className="w-2 h-2 bg-warning-500 rounded-full animate-pulse" />
-                                            Analyzing Audio
+                                    <div className="flex justify-between items-center text-[11px] font-bold uppercase tracking-wider">
+                                        <span className="text-neutral-400">Status</span>
+                                        <span className="flex items-center gap-1.5 text-indigo-600">
+                                            <div className="w-1.5 h-1.5 bg-indigo-600 rounded-full animate-pulse" />
+                                            AI Processing
                                         </span>
                                     </div>
                                 </div>
 
-                                <div className="flex gap-4 pt-4">
-                                    <Button
-                                        variant="secondary"
-                                        block
+                                <div className="grid grid-cols-2 gap-4 pt-4">
+                                    <button
+                                        className="h-11 text-[11px] font-bold uppercase tracking-widest text-neutral-400 hover:text-neutral-900 transition-colors"
                                         onClick={() => { setSuccess(false); setProgress(0); }}
                                     >
-                                        Upload Another
-                                    </Button>
+                                        Upload More
+                                    </button>
                                     <Button
-                                        block
+                                        className="h-11 bg-[#0F172A] text-white text-[11px] font-bold uppercase tracking-widest rounded-lg shadow-lg hover:bg-black transition-all"
                                         onClick={() => router.push('/meetings')}
                                     >
-                                        Go to Meetings
+                                        View Meetings
                                     </Button>
                                 </div>
                             </div>

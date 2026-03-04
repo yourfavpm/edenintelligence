@@ -27,19 +27,19 @@ export default function SummaryTab({ meeting }: SummaryTabProps) {
     }
 
     return (
-        <div className="py-6 space-y-8 animate-fade-in">
+        <div className="space-y-6 animate-fade-in">
             {/* Executive Summary */}
-            <section className="space-y-3">
-                <h3 className="text-sm uppercase tracking-wider font-bold text-primary-600">Executive Summary</h3>
-                <p className="text-neutral-800 leading-relaxed text-lg">
+            <section className="space-y-2">
+                <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#4F46E5]">Executive Summary</h3>
+                <p className="text-neutral-800 leading-relaxed text-[14px]">
                     {summary.executive_summary}
                 </p>
             </section>
 
             {/* Structured Sections */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <section className="space-y-4">
-                    <h3 className="text-sm uppercase tracking-wider font-bold text-neutral-400">Key Points</h3>
+            <div className="grid grid-cols-1 gap-6">
+                <section className="space-y-3">
+                    <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400">Key Takeaways</h3>
                     <ul className="space-y-2">
                         {summary.key_points?.map((point: string, i: number) => (
                             <li key={i} className="flex gap-3 text-neutral-700">

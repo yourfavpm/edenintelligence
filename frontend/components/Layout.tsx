@@ -7,10 +7,9 @@ import sidebarSections from './navigation';
 import { DropdownMenu } from './ui/DropdownMenu';
 import { useAuth } from './auth/AuthContext';
 import SearchBar from './SearchBar';
-import ActionDropdown from './ActionDropdown';
 
 // =============================================================================
-// Layout Component - Enterprise Edition
+// Layout Component - Praxiom Master Redesign (Final Polish)
 // =============================================================================
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -18,73 +17,59 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const { user, logout } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const userMenuItems = [
     {
       id: 'profile',
-      label: 'Profile Settings',
+      label: 'Settings',
       href: '/settings',
-      icon: (
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-        </svg>
-      ),
+      icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>,
     },
     { id: 'divider', label: '', divider: true },
     {
       id: 'logout',
-      label: 'Sign out',
+      label: 'Log out',
       onClick: logout,
       danger: true,
-      icon: (
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-        </svg>
-      ),
+      icon: <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>,
     },
   ];
 
   return (
-    <div className="min-h-screen flex bg-neutral-50 text-neutral-900">
-      {/* Mobile sidebar overlay */}
-      {sidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-30 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
+    <div className="min-h-screen flex bg-[#F8FAFC] text-neutral-900 font-sans selection:bg-indigo-100 selection:text-indigo-900">
+      {/* Mobile Overlay */}
+      {sidebarOpen && <div className="fixed inset-0 bg-[#0F172A]/40 backdrop-blur-sm z-50 lg:hidden transition-all" onClick={() => setSidebarOpen(false)} />}
 
-      {/* Sidebar - Redesigned */}
+      {/* Sidebar: Institutional Navy */}
       <aside
         className={`
-          fixed lg:static inset-y-0 left-0 z-40 w-64 bg-neutral-900 text-white flex flex-col
-          transform transition-transform duration-200 lg:translate-x-0
-          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+          fixed lg:static inset-y-0 left-0 z-50 bg-[#0F172A] text-[#CBD5F5] flex flex-col
+          transition-all duration-300 ease-in-out border-r border-[#1E293B]
+          ${isCollapsed ? 'w-16' : 'w-[230px]'}
+          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         `}
       >
-        {/* Logo */}
-        <div className="h-20 flex items-center px-6 border-b border-white/5">
-          <Link href="/dashboard" className="flex items-center gap-3 transition-opacity hover:opacity-90">
-            <img src="/logo.png" alt="PraxiomNotes" className="h-8 w-auto brightness-0 invert" />
-            <span className="text-lg font-semibold tracking-tighter text-white">
-              PraxiomNotes
-            </span>
+        {/* Branding */}
+        <div className={`h-16 flex items-center ${isCollapsed ? 'justify-center' : 'px-5 gap-3'}`}>
+          <Link href="/dashboard" className="flex items-center gap-2.5 transition-opacity hover:opacity-80">
+            <div className="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center shadow-lg shadow-indigo-500/20 shrink-0">
+               <img src="/logo.png" alt="P" className="h-5 w-auto brightness-0 invert" />
+            </div>
+            {!isCollapsed && <span className="text-[15px] font-bold tracking-tight text-white uppercase italic">Praxiom</span>}
           </Link>
         </div>
 
-        {/* Navigation - Sectioned */}
-        <nav className="flex-1 py-6 px-3 space-y-6 overflow-y-auto">
-          {sidebarSections.map((section, sectionIndex) => (
-            <div key={section.title}>
-              {/* Section Header */}
-              <div className="px-3 mb-3">
-                <h3 className="text-[10px] font-semibold text-neutral-500 uppercase tracking-[0.2em]">
+        {/* Navigation */}
+        <nav className="flex-1 py-4 space-y-7 overflow-y-auto no-scrollbar">
+          {sidebarSections.map((section) => (
+            <div key={section.title} className="px-3">
+              {!isCollapsed && (
+                <h3 className="px-3 mb-2 text-[10px] font-bold text-[#64748B] uppercase tracking-[0.25em]">
                   {section.title}
                 </h3>
-              </div>
-
-              {/* Section Items */}
-              <div className="space-y-1">
+              )}
+              <div className="space-y-0.5">
                 {section.items.map((item) => {
                   const isActive = pathname === item.href || pathname?.startsWith(`${item.href}/`);
                   return (
@@ -93,132 +78,87 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       href={item.href}
                       onClick={() => setSidebarOpen(false)}
                       className={`
-                        flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition-all relative
-                        ${isActive
-                          ? 'bg-white/10 text-white'
-                          : 'text-neutral-400 hover:bg-white/5 hover:text-white'
-                        }
+                        flex items-center rounded-lg font-bold text-[12px] transition-all h-9 relative group
+                        ${isCollapsed ? 'justify-center' : 'px-3 gap-3'}
+                        ${isActive ? 'bg-[#1E293B] text-white' : 'text-[#94A3B8] hover:text-white hover:bg-[#1E293B]/50'}
                       `}
                     >
-                      {/* Active indicator */}
-                      {isActive && (
-                        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-blue-500 rounded-r-full" />
-                      )}
-                      <span className={isActive ? 'text-blue-400' : ''}>{item.icon}</span>
-                      {item.label}
+                      <span className={`shrink-0 transition-colors ${isActive ? 'text-indigo-400' : 'text-[#64748B] group-hover:text-[#94A3B8]'}`}>
+                        {React.isValidElement(item.icon) ? React.cloneElement(item.icon as React.ReactElement<any>, { className: 'w-[18px] h-[18px]' }) : item.icon}
+                      </span>
+                      {!isCollapsed && <span className="truncate tracking-wide">{item.label}</span>}
+                      {isActive && !isCollapsed && <div className="ml-auto w-1 h-1 rounded-full bg-indigo-500" />}
                     </Link>
                   );
                 })}
               </div>
-
-              {/* Divider between sections (except last) */}
-              {sectionIndex < sidebarSections.length - 1 && (
-                <div className="mt-6 border-t border-white/10" />
-              )}
             </div>
           ))}
         </nav>
 
-        {/* User info at bottom */}
-        {user && (
-          <div className="p-4 border-t border-white/10">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center text-white font-medium text-sm">
-                {user.display_name?.[0] || user.email[0].toUpperCase()}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-white truncate">
-                  {user.display_name || 'User'}
-                </p>
-                <p className="text-xs text-neutral-400 truncate">{user.email}</p>
-              </div>
-            </div>
-          </div>
-        )}
+        {/* User context */}
+        <div className="p-3 border-t border-[#1E293B]">
+          {user && (
+            <DropdownMenu
+              items={userMenuItems}
+              trigger={
+                <button className={`flex items-center w-full rounded-xl hover:bg-[#1E293B] transition-all outline-none group ${isCollapsed ? 'justify-center py-2' : 'p-2 gap-3'}`}>
+                  <div className="w-8 h-8 shrink-0 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center font-bold text-[10px] text-indigo-400">
+                    {user.display_name?.[0] || user.email[0].toUpperCase()}
+                  </div>
+                  {!isCollapsed && (
+                    <div className="flex-1 text-left min-w-0">
+                      <p className="text-[12px] font-bold text-white truncate leading-none mb-0.5">{user.display_name || 'User'}</p>
+                      <p className="text-[10px] text-[#64748B] font-bold uppercase tracking-tighter truncate">Active</p>
+                    </div>
+                  )}
+                </button>
+              }
+            />
+          )}
+        </div>
       </aside>
 
-      {/* Main content area */}
-      <div className="flex-1 flex flex-col min-h-screen lg:min-w-0">
-        {/* Top header */}
-        <header className="h-20 flex items-center justify-between px-4 lg:px-8 bg-white border-b border-neutral-200 sticky top-0 z-20 gap-4">
+      {/* Workspace */}
+      <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden overflow-y-auto">
+        <header className="h-16 shrink-0 flex items-center justify-between px-6 bg-white border-b border-[#E5E7EB] sticky top-0 z-30 gap-10">
           <div className="flex items-center gap-4 flex-1">
-            {/* Mobile menu button */}
             <button
-              onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-2 -ml-2 text-neutral-600 hover:text-neutral-900"
+              onClick={() => {
+                if (window.innerWidth < 1024) setSidebarOpen(true);
+                else setIsCollapsed(!isCollapsed);
+              }}
+              className="p-1.5 text-neutral-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-md transition-all"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
             </button>
-
-            {/* Search Bar - Moved to header */}
-            <div className="hidden md:block flex-1 max-w-md">
-              <SearchBar />
+            <div className="hidden md:block flex-1 max-w-lg">
+              <SearchBar placeholder="Search meetings and notes..." />
             </div>
           </div>
 
-          {/* Page title placeholder - removed spacer */}
-
-          {/* Right side actions */}
           <div className="flex items-center gap-3">
-            {/* Quick Record - Moved to header & Restyled */}
-            <button
-              onClick={() => router.push('/record')}
-              className="group relative flex items-center justify-center w-10 h-10 bg-error-50 text-error-600 rounded-full hover:bg-error-100 hover:text-error-700 transition-all border border-error-100 shadow-sm overflow-hidden"
-              title="Quick Record"
-            >
-              <div className="absolute inset-0 bg-error-600/10 animate-pulse group-hover:animate-none" />
-              <svg className="w-5 h-5 relative z-10" fill="currentColor" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="6" />
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-              </svg>
-            </button>
-
-            {/* Action Dropdown - Moved to header */}
-            <div className="hidden sm:block">
-              <ActionDropdown />
+            <div className="flex items-center gap-2">
+              <button onClick={() => router.push('/record')} className="hidden sm:flex items-center gap-2 px-3.5 h-9 bg-white border border-[#E5E7EB] rounded-lg text-[11px] font-bold text-neutral-900 uppercase tracking-widest hover:bg-neutral-50 transition-all shadow-sm">
+                <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                Record
+              </button>
+              <button onClick={() => router.push('/uploads')} className="flex items-center gap-2 px-3.5 h-9 bg-[#0F172A] rounded-lg text-[11px] font-bold text-white uppercase tracking-widest hover:bg-black transition-all shadow-md shadow-black/5">
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" /></svg>
+                Upload
+              </button>
             </div>
-
-            {/* Divider */}
-            <div className="h-6 w-px bg-neutral-200 mx-1 hidden sm:block" />
-
-            {/* Notifications placeholder */}
-            <button className="p-2 text-neutral-500 hover:text-neutral-700 transition-colors bg-neutral-50 rounded-lg border border-neutral-100">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-              </svg>
+            <div className="h-4 w-px bg-neutral-200 mx-1 hidden sm:block" />
+            <button className="p-2 text-neutral-400 hover:text-indigo-600 transition-colors relative">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+              <span className="absolute top-2 right-2 w-1.5 h-1.5 bg-indigo-500 rounded-full ring-2 ring-white" />
             </button>
-
-            {/* User menu */}
-            {user && (
-              <DropdownMenu
-                items={userMenuItems}
-                trigger={
-                  <button className="flex items-center gap-3 p-1 rounded-xl hover:bg-neutral-50 transition-all border border-transparent hover:border-neutral-200">
-                    <div className="w-8 h-8 rounded-full bg-neutral-100 text-neutral-700 flex items-center justify-center font-semibold text-xs border border-neutral-200">
-                      {user.display_name?.[0] || user.email[0].toUpperCase()}
-                    </div>
-                    <span className="hidden lg:block text-sm font-semibold text-[#111827]">
-                      {user.display_name?.split(' ')[0] || user.email.split('@')[0]}
-                    </span>
-                    <svg className="w-3 h-3 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                }
-              />
-            )}
           </div>
         </header>
 
-        {/* Mobile Search - Visible only on small screens */}
-        <div className="md:hidden bg-white border-b border-neutral-200 px-4 py-3 sticky top-20 z-10">
-          <SearchBar />
-        </div>
-
-        {/* Page content */}
-        <main className="flex-1 p-4 lg:p-8">{children}</main>
+        <main className="flex-1 w-full max-w-[1600px] mx-auto p-6 lg:p-10">
+          {children}
+        </main>
       </div>
     </div>
   );

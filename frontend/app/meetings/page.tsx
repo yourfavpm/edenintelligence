@@ -11,7 +11,7 @@ import { apiService } from '../../services/api';
 import { Meeting } from '../../types/api';
 
 // =============================================================================
-// Meetings List Page
+// Meetings List Page - Praxiom Redesign
 // =============================================================================
 
 export default function MeetingsListPage() {
@@ -37,7 +37,6 @@ export default function MeetingsListPage() {
     fetchMeetings();
   }, []);
 
-  // Filter logic
   const filteredMeetings = useMemo(() => {
     return meetings.filter((m) =>
       m.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -48,12 +47,12 @@ export default function MeetingsListPage() {
   const columns: Column<Meeting>[] = [
     {
       key: 'title',
-      label: 'Meeting',
+      label: 'Meeting Name',
       render: (val, item) => (
         <div className="flex flex-col">
-          <span className="font-semibold text-neutral-900">{val}</span>
-          <span className="text-xs text-neutral-500 truncate max-w-[300px]">
-            {item.description || 'No description'}
+          <span className="font-semibold text-neutral-900 text-[14px] leading-tight">{val}</span>
+          <span className="text-[11px] text-neutral-400 truncate max-w-[320px] mt-0.5">
+            {item.description || 'No description provided'}
           </span>
         </div>
       ),
@@ -61,60 +60,62 @@ export default function MeetingsListPage() {
     {
       key: 'start_time',
       label: 'Date',
+      className: 'w-40',
       render: (val, item) => {
         const dateStr = val || item.created_at;
-        return dateStr ? new Date(dateStr).toLocaleDateString(undefined, {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-        }) : 'N/A';
+        return dateStr ? (
+          <div className="text-[12px] text-neutral-600 flex flex-col">
+            <span className="font-medium">{new Date(dateStr).toLocaleDateString()}</span>
+            <span className="text-[10px] text-neutral-400 uppercase tracking-tight">
+              {new Date(dateStr).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            </span>
+          </div>
+        ) : <span className="text-neutral-300">N/A</span>;
       },
     },
     {
       key: 'meeting_type',
       label: 'Type',
-      render: (val) => <span className="capitalize">{val}</span>,
+      className: 'w-24',
+      render: (val) => <span className="text-[11px] font-semibold text-neutral-500 uppercase tracking-widest">{val || 'Other'}</span>,
     },
     {
       key: 'status',
       label: 'Status',
+      className: 'w-28',
       render: (_, item) => {
-        // Check audio_files first
         if (item.audio_files && item.audio_files.length > 0) {
           const audioFile = item.audio_files[0];
-          return audioFile.processed ? <StatusBadge status="processed" /> : <StatusBadge status="processing" />;
+          return <StatusBadge status={audioFile.processed ? "processed" : "processing"} />;
         }
-        // Fall back to recordings
-        if (item.recordings && item.recordings.length > 0) {
-          const isProcessing = item.recordings.some(r => !r.processed);
-          return isProcessing ? <StatusBadge status="processing" /> : <StatusBadge status="processed" />;
-        }
-        return <StatusBadge status="scheduled" />;
+        return <StatusBadge status={item.ai_transcription ? "processed" : "scheduled"} />;
       },
     },
     {
       key: 'actions',
-      label: 'Actions',
+      label: '',
+      className: 'w-20 text-right',
       render: (_, item) => (
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-end gap-1">
           <Link
             href={`/meetings/${item.id}`}
-            className="text-primary-600 hover:text-primary-700 font-medium text-xs"
+            className="p-1.5 text-neutral-400 hover:text-[#4F46E5] hover:bg-neutral-50 rounded-md transition-all"
+            title="View Intelligence"
           >
-            View
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
           </Link>
           <button
-            className="text-neutral-400 hover:text-error-600 transition-colors"
+            className="p-1.5 text-neutral-400 hover:text-red-500 hover:bg-neutral-50 rounded-md transition-all"
             onClick={async (e) => {
               e.stopPropagation();
-              if (confirm(`Are you sure you want to delete "${item.title}"? This action cannot be undone.`)) {
+              if (confirm(`Delete roadmap and data for "${item.title}"?`)) {
                 try {
                   await apiService.deleteMeeting(item.id);
                   setMeetings(meetings.filter(m => m.id !== item.id));
                 } catch (err) {
-                  alert('Failed to delete meeting');
+                  alert('Delete failed');
                 }
               }
             }}
@@ -131,56 +132,58 @@ export default function MeetingsListPage() {
   return (
     <ProtectedRoute>
       <Layout>
-        <div className="max-w-7xl mx-auto space-y-8 animate-fade-in">
+        <div className="space-y-6 animate-fade-in">
           {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <h1 className="text-2xl font-semibold text-[#111827] tracking-tight">Meetings</h1>
-              <p className="text-sm text-[#6B7280] font-medium">Manage and review your meeting intelligence.</p>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <h1 className="text-[20px] font-semibold text-neutral-900 tracking-tight">Meetings</h1>
+              <p className="text-[13px] text-neutral-500 font-medium">Full repository of captured knowledge.</p>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-64">
-                <Input
-                  placeholder="Search meetings..."
+            
+            <div className="flex items-center gap-2">
+              <div className="relative w-full sm:w-64">
+                <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none text-neutral-400">
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Filter by name..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="!py-1.5"
+                  className="w-full pl-8 pr-3 h-9 bg-white border border-[#E5E7EB] rounded-lg text-[13px] font-medium placeholder-neutral-400 focus:outline-none focus:ring-1 focus:ring-[#4F46E5] focus:border-transparent transition-all"
                 />
               </div>
-              <Link href="/meetings/create">
-                <Button>
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                  </svg>
-                  Create Meeting
+              <Link href="/record">
+                <Button className="h-9 px-4 bg-[#4F46E5] text-white rounded-lg text-[13px] font-semibold shadow-sm hover:bg-indigo-700">
+                  Record New
                 </Button>
               </Link>
             </div>
           </div>
 
-          {/* Table */}
-          <div className="space-y-4">
+          {/* Directory Table */}
+          <div className="mt-8">
             {loading ? (
-              <div className="bg-white rounded-xl border border-neutral-200 p-6 shadow-sm">
-                <TableSkeleton rows={8} columns={5} />
+              <div className="space-y-4">
+                <TableSkeleton rows={12} columns={5} />
               </div>
             ) : error ? (
-              <div className="p-12 text-center bg-error-50 rounded-xl border border-error-100">
-                <p className="text-error-600 font-medium">{error}</p>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="mt-4"
-                  onClick={() => window.location.reload()}
-                >
-                  Try Again
-                </Button>
+              <div className="p-10 text-center bg-white rounded-lg border border-red-100 flex flex-col items-center">
+                <div className="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-500 mb-4">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                </div>
+                <p className="text-[14px] text-neutral-800 font-semibold">{error}</p>
+                <button onClick={() => window.location.reload()} className="mt-4 text-[12px] font-bold text-[#4F46E5] hover:underline uppercase tracking-wider">Retry Connection</button>
               </div>
             ) : (
               <Table
                 columns={columns}
                 data={filteredMeetings}
-                emptyMessage={searchQuery ? "No meetings match your search." : "You haven't uploaded any meetings yet."}
+                emptyMessage={searchQuery ? "No matches for your query." : "Knowledge base is currently empty."}
                 onRowClick={(m) => window.location.href = `/meetings/${m.id}`}
               />
             )}

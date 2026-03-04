@@ -23,9 +23,16 @@ module.exports = {
         },
         // Sidebar and dark UI elements
         sidebar: {
-          DEFAULT: '#1a2341',
-          hover: '#232e4d',
-          active: '#2d3a5f',
+          DEFAULT: '#0F172A',
+          hover: '#1e293b',
+          active: '#334155',
+          text: '#CBD5F5',
+        },
+        praxiom: {
+          bg: '#F8FAFC',
+          accent: '#4F46E5',
+          border: '#E5E7EB',
+          navy: '#0F172A',
         },
         // Neutral grays for backgrounds and text
         neutral: {

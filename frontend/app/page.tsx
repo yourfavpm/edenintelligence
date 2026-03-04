@@ -43,9 +43,9 @@ export default function LandingPage() {
           </Link>
           
           <div className="hidden lg:flex items-center gap-10">
-            <a href="#vision" className="text-[13px] font-medium text-[#4B5563] hover:text-[#111827] transition-colors uppercase tracking-widest">Vision</a>
-            <a href="#capabilities" className="text-[13px] font-medium text-[#4B5563] hover:text-[#111827] transition-colors uppercase tracking-widest">Capabilities</a>
-            <a href="#workflow" className="text-[13px] font-medium text-[#4B5563] hover:text-[#111827] transition-colors uppercase tracking-widest">Workflow</a>
+            <a href="#vision" className="text-[13px] font-medium text-[#4B5563] hover:text-[#111827] transition-colors uppercase tracking-widest">Our Goal</a>
+            <a href="#capabilities" className="text-[13px] font-medium text-[#4B5563] hover:text-[#111827] transition-colors uppercase tracking-widest">Features</a>
+            <a href="#workflow" className="text-[13px] font-medium text-[#4B5563] hover:text-[#111827] transition-colors uppercase tracking-widest">How it Works</a>
             <a href="#trust" className="text-[13px] font-medium text-[#4B5563] hover:text-[#111827] transition-colors uppercase tracking-widest">Trust</a>
           </div>
 
@@ -74,12 +74,12 @@ export default function LandingPage() {
         </div>
 
         {/* Mobile Menu Overlay */}
-        <div className={`fixed inset-0 bg-white z-50 lg:hidden transition-transform duration-500 ease-in-out ${mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
+        <div className={`fixed inset-0 bg-white z-[100] lg:hidden transition-all duration-500 ease-in-out ${mobileMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-full pointer-events-none'}`}>
           <div className="flex flex-col h-full pt-32 px-10 space-y-10">
             <div className="flex flex-col space-y-8">
-              <a href="#vision" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-semibold tracking-tighter text-[#111827]">Vision</a>
-              <a href="#capabilities" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-semibold tracking-tighter text-[#111827]">Capabilities</a>
-              <a href="#workflow" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-semibold tracking-tighter text-[#111827]">Workflow</a>
+              <a href="#vision" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-semibold tracking-tighter text-[#111827]">Our Goal</a>
+              <a href="#capabilities" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-semibold tracking-tighter text-[#111827]">Features</a>
+              <a href="#workflow" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-semibold tracking-tighter text-[#111827]">How it Works</a>
               <a href="#trust" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-semibold tracking-tighter text-[#111827]">Trust</a>
             </div>
             
@@ -106,10 +106,10 @@ export default function LandingPage() {
                 Enterprise Meeting Intelligence
               </div>
               <h1 className="text-4xl md:text-6xl font-semibold tracking-[-0.03em] leading-[1.1] text-[#111827]">
-                Clarity from every <span className="text-neutral-400">conversation.</span>
+                Clarity from every <span className="text-neutral-400">meeting.</span>
               </h1>
               <p className="text-lg md:text-xl text-[#4B5563] leading-relaxed font-normal max-w-[540px]">
-                PraxiomNotes captures meetings, transcribes conversations, and converts discussions into structured summaries, decisions, and action items your team can rely on.
+                PraxiomNotes records meetings, transcribes conversations, and converts discussions into simple summaries, decisions, and action items.
               </p>
               <div className="flex flex-col sm:flex-row gap-5 pt-4">
                 <Link href="/auth/signup">
@@ -143,10 +143,10 @@ export default function LandingPage() {
       <section id="vision" className="bg-[#111827] py-32 md:py-48 overflow-hidden rounded-[48px] mx-4 md:mx-6 my-12">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="text-center max-w-4xl mx-auto mb-24 space-y-6">
-            <span className="text-[11px] font-semibold tracking-[0.25em] text-white/40 uppercase">Product Experience</span>
-            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-white leading-[1.1]">Every meeting becomes structured knowledge.</h2>
+            <span className="text-[11px] font-semibold tracking-[0.25em] text-white/40 uppercase">The Experience</span>
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-white leading-[1.1]">Every meeting becomes useful knowledge.</h2>
             <p className="text-lg text-white/50 max-w-2xl mx-auto leading-relaxed">
-              We've redesigned the meeting experience to prioritize outcome over output. No more hunting for recorded links or forgotten commitments.
+              We've redesigned the meeting experience to prioritize results. No more hunting for links or forgotten tasks.
             </p>
           </div>
           
@@ -179,9 +179,9 @@ export default function LandingPage() {
           <div className="flex flex-col lg:flex-row items-center gap-24">
             <div className="lg:w-1/2 space-y-8">
               <div className="w-16 h-1 bg-[#111827] rounded-full" />
-              <h3 className="text-3xl md:text-4xl font-semibold tracking-tighter text-[#111827] leading-[1.2]">The conversation, <br/>perfectly captured.</h3>
+              <h3 className="text-3xl md:text-4xl font-semibold tracking-tighter text-[#111827] leading-[1.2]">The conversation, <br/>perfectly recorded.</h3>
               <p className="text-lg md:text-xl text-[#4B5563] leading-relaxed">
-                PraxiomNotes captures the full context of conversations with accurate transcription and instant speaker identification. No detail is lost in the noise.
+                PraxiomNotes records the full context of conversations with accurate transcription and instant speaker identification.
               </p>
               <div className="flex items-center gap-6 pt-4">
                 <div className="space-y-1">
@@ -299,10 +299,10 @@ export default function LandingPage() {
              
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 relative">
                 {[
-                  { step: '01', title: 'Capture', desc: 'Securely record in-person or remote sessions.' },
-                  { step: '02', title: 'Transcribe', desc: 'Instant conversion with 99%+ accuracy.' },
-                  { step: '03', title: 'Understand', desc: 'AI extracts context, decisions, and tasks.' },
-                  { step: '04', title: 'Share', desc: 'Insights distributed to your team workspace.' }
+                  { step: '01', title: 'Record', desc: 'Securely record your sessions.' },
+                  { step: '02', title: 'Transcribe', desc: 'Instant conversion to text.' },
+                  { step: '03', title: 'Understand', desc: 'AI extracts notes, decisions, and tasks.' },
+                  { step: '04', title: 'Share', desc: 'Insights sent to your team.' }
                 ].map((item, i) => (
                   <div key={i} className="space-y-8 flex flex-col items-center group">
                      <div className="w-24 h-24 bg-white rounded-[28px] border border-neutral-100 shadow-xl flex items-center justify-center transform transition-transform group-hover:scale-105 group-hover:-translate-y-1 duration-500">

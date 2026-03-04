@@ -12,7 +12,11 @@ interface SearchResult {
     href: string;
 }
 
-export default function SearchBar() {
+interface SearchBarProps {
+    placeholder?: string;
+}
+
+export default function SearchBar({ placeholder }: SearchBarProps) {
     const router = useRouter();
     const [query, setQuery] = useState('');
     const [isOpen, setIsOpen] = useState(false);
@@ -136,11 +140,11 @@ export default function SearchBar() {
                 <input
                     ref={inputRef}
                     type="text"
-                    placeholder="Search meetings, action items... (⌘K)"
+                    placeholder={placeholder || "Search meetings, action items... (⌘K)"}
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     onFocus={() => setIsOpen(true)}
-                    className="block w-full pl-10 pr-3 py-2.5 border border-neutral-300 rounded-lg text-sm placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                    className="block w-full pl-10 pr-3 py-2 border border-neutral-300 rounded-lg text-sm placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
                 />
                 {loading && (
                     <div className="absolute inset-y-0 right-0 pr-3 flex items-center">

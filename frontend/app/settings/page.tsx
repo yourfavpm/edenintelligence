@@ -7,14 +7,14 @@ import { Button, Input, Toggle, Tabs, TabPanel } from '../../components/ui';
 import { useAuth } from '../../components/auth/AuthContext';
 
 // =============================================================================
-// Settings Page
+// Settings - High-Density Enterprise Redesign
 // =============================================================================
 
 export default function SettingsPage() {
     const { user } = useAuth();
 
     const [profileData, setProfileData] = useState({
-        displayName: user?.email.split('@')[0] || '', // Fallback
+        displayName: user?.email.split('@')[0] || 'Administrator',
         email: user?.email || '',
         language: 'English (US)',
     });
@@ -31,137 +31,132 @@ export default function SettingsPage() {
     };
 
     const tabs = [
-        {
-            id: 'profile', label: 'Profile', icon: (
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-            )
-        },
-        {
-            id: 'organization', label: 'Organization', icon: (
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-            )
-        },
-        {
-            id: 'notifications', label: 'Notifications', icon: (
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
-            )
-        },
+        { id: 'profile', label: 'Identity' },
+        { id: 'organization', label: 'Organization' },
+        { id: 'notifications', label: 'Intelligence Alerts' },
     ];
 
     return (
         <ProtectedRoute>
             <Layout>
-                <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
+                <div className="max-w-[1000px] mx-auto space-y-8 animate-fade-in py-2">
                     {/* Header */}
-                    <div>
-                        <h1 className="text-3xl font-bold text-neutral-900">Settings</h1>
-                        <p className="text-neutral-500">Manage your profile, organization, and preferences.</p>
+                    <div className="border-b border-[#E5E7EB] pb-6">
+                        <h1 className="text-[20px] font-bold text-neutral-900 tracking-tight">System Configuration</h1>
+                        <p className="text-[12px] text-neutral-500 font-medium">Manage your personal credentials, workspace parameters, and alert protocols.</p>
                     </div>
 
-                    <div className="bg-white rounded-2xl border border-neutral-200 shadow-sm overflow-hidden">
+                    <div className="bg-white rounded-xl border border-[#E5E7EB] shadow-sm overflow-hidden">
                         <div className="px-6">
                             <Tabs tabs={tabs}>
                                 <TabPanel id="profile">
-                                    <div className="py-8 space-y-8 max-w-xl">
-                                        <section className="space-y-4">
-                                            <h3 className="text-lg font-bold text-neutral-900">Profile Information</h3>
-                                            <div className="space-y-4">
-                                                <Input
-                                                    label="Display Name"
-                                                    value={profileData.displayName}
-                                                    onChange={(e) => setProfileData(prev => ({ ...prev, displayName: e.target.value }))}
-                                                />
-                                                <Input
-                                                    label="Email Address"
-                                                    value={profileData.email}
-                                                    disabled
-                                                    helperText="Email address cannot be changed."
-                                                />
+                                    <div className="py-8 space-y-10 max-w-lg">
+                                        <section className="space-y-6">
+                                            <div className="space-y-1">
+                                                <h3 className="text-[14px] font-bold text-neutral-900 uppercase tracking-wider">Identity Profile</h3>
+                                                <p className="text-[11px] text-neutral-400 font-medium">This information is visible across the institution.</p>
+                                            </div>
+                                            
+                                            <div className="space-y-5">
+                                                <div className="space-y-1.5 focus-within:text-[#4F46E5] transition-colors">
+                                                    <label className="text-[10px] font-bold uppercase tracking-widest text-inherit ml-1">Display Name</label>
+                                                    <Input
+                                                        value={profileData.displayName}
+                                                        onChange={(e) => setProfileData(prev => ({ ...prev, displayName: e.target.value }))}
+                                                        className="!h-10 bg-[#F8FAFC]"
+                                                    />
+                                                </div>
+                                                <div className="space-y-1.5 opacity-60">
+                                                    <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 ml-1">Terminal Email</label>
+                                                    <Input
+                                                        value={profileData.email}
+                                                        disabled
+                                                        className="!h-10 bg-[#F1F5F9]"
+                                                    />
+                                                    <p className="text-[9px] text-neutral-400 ml-1 font-bold italic uppercase tracking-tighter">Read-only field.</p>
+                                                </div>
                                             </div>
                                         </section>
 
-                                        <section className="space-y-4">
-                                            <h3 className="text-lg font-bold text-neutral-900">Regional Settings</h3>
-                                            <div>
-                                                <label className="block text-sm font-medium text-neutral-700 mb-1.5">Preferred Language</label>
+                                        <section className="space-y-4 pt-6 border-t border-[#F1F5F9]">
+                                            <div className="space-y-1">
+                                                <h3 className="text-[14px] font-bold text-neutral-900 uppercase tracking-wider">Localization</h3>
+                                                <p className="text-[11px] text-neutral-400 font-medium">Set your preferred regional interface defaults.</p>
+                                            </div>
+                                            <div className="w-full">
                                                 <select
-                                                    className="block w-full px-3 py-2 text-sm bg-white border border-neutral-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-primary-500"
+                                                    className="w-full h-10 px-3 py-2 text-[13px] font-bold text-neutral-700 bg-[#F8FAFC] border border-[#E5E7EB] rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-[#4F46E5] appearance-none"
                                                     value={profileData.language}
                                                     onChange={(e) => setProfileData(prev => ({ ...prev, language: e.target.value }))}
                                                 >
                                                     <option>English (US)</option>
-                                                    <option>Spanish</option>
-                                                    <option>French</option>
-                                                    <option>German</option>
+                                                    <option>Global Standard API</option>
                                                 </select>
                                             </div>
                                         </section>
 
-                                        <div className="pt-4 border-t border-neutral-100">
-                                            <Button>Save Changes</Button>
+                                        <div className="pt-6">
+                                            <Button className="h-10 bg-[#0F172A] text-white text-[11px] font-bold uppercase tracking-widest px-6 rounded-lg shadow-lg">Commit Changes</Button>
                                         </div>
                                     </div>
                                 </TabPanel>
 
                                 <TabPanel id="organization">
-                                    <div className="py-8 space-y-8">
-                                        <div className="p-8 bg-neutral-50 rounded-2xl border border-neutral-100 flex items-center justify-between">
+                                    <div className="py-8 space-y-10">
+                                        <div className="p-8 bg-[#F8FAFC] rounded-2xl border border-[#E5E7EB] flex items-center justify-between shadow-sm">
                                             <div>
-                                                <p className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-1">Current Organization</p>
-                                                <h3 className="text-2xl font-bold text-neutral-900">PraxiomNotes Default Org</h3>
-                                                <p className="text-neutral-500 mt-1">Free Tier Plan</p>
+                                                <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-[0.2em] mb-1.5">Operational Tier</p>
+                                                <h3 className="text-[20px] font-bold text-neutral-900 tracking-tight">Praxiom Enterprise Cloud</h3>
+                                                <p className="text-[12px] text-neutral-500 font-medium mt-1 uppercase tracking-wider">Unlimited Neural Cycles • Unlimited Workspace Nodes</p>
                                             </div>
-                                            <Button variant="secondary" size="sm">Manage Billing</Button>
+                                            <Button className="h-9 px-4 bg-white border border-[#E5E7EB] text-neutral-800 text-[10px] font-bold uppercase tracking-widest rounded-lg shadow-sm hover:bg-neutral-50 transition-all">Billing Portal</Button>
                                         </div>
 
-                                        <section className="space-y-4">
-                                            <h3 className="text-lg font-bold text-neutral-900">Invite Members</h3>
-                                            <div className="flex gap-3 max-w-xl">
-                                                <Input placeholder="Enter email address..." className="flex-1" />
-                                                <Button variant="secondary">Invite</Button>
+                                        <section className="space-y-6 max-w-lg">
+                                            <div className="space-y-1">
+                                                <h3 className="text-[14px] font-bold text-neutral-900 uppercase tracking-wider">Participant Ingestion</h3>
+                                                <p className="text-[11px] text-neutral-400 font-medium">Rapidly provision access to external system actors.</p>
+                                            </div>
+                                            <div className="flex gap-2">
+                                                <Input placeholder="Enter email address..." className="flex-1 !h-10 bg-[#F8FAFC]" />
+                                                <Button className="h-10 px-5 bg-[#F1F5F9] border border-[#E2E8F0] text-neutral-700 text-[10px] font-bold uppercase tracking-widest rounded-lg shadow-sm hover:bg-white transition-all">Invite</Button>
                                             </div>
                                         </section>
                                     </div>
                                 </TabPanel>
 
                                 <TabPanel id="notifications">
-                                    <div className="py-8 space-y-8 max-w-xl">
-                                        <section className="space-y-6">
-                                            <h3 className="text-lg font-bold text-neutral-900">Email Notifications</h3>
-                                            <Toggle
-                                                label="Meeting Summaries"
-                                                description="Receive an executive summary via email after every meeting."
-                                                checked={notifications.emailSummary}
-                                                onChange={() => handleToggleNotification('emailSummary')}
-                                            />
-                                            <Toggle
-                                                label="New Action Items"
-                                                description="Get notified when the AI assigns you a new action item."
-                                                checked={notifications.newActionItems}
-                                                onChange={() => handleToggleNotification('newActionItems')}
-                                            />
-                                            <Toggle
-                                                label="Processing Complete"
-                                                description="Get notified when AI processing for your recording is finished."
-                                                checked={notifications.processingComplete}
-                                                onChange={() => handleToggleNotification('processingComplete')}
-                                            />
-                                            <Toggle
-                                                label="Marketing & Updates"
-                                                description="Stay up to date with new features and best practices."
-                                                checked={notifications.marketingEmails}
-                                                onChange={() => handleToggleNotification('marketingEmails')}
-                                            />
+                                    <div className="py-8 space-y-10 max-w-xl">
+                                        <section className="space-y-8">
+                                            <div className="space-y-1">
+                                                <h3 className="text-[14px] font-bold text-neutral-900 uppercase tracking-wider">Transmission Rules</h3>
+                                                <p className="text-[11px] text-neutral-400 font-medium">Control when and how the system communicates critical events.</p>
+                                            </div>
+
+                                            <div className="space-y-8">
+                                                <Toggle
+                                                    label="Automated Executive Summaries"
+                                                    description="Dispatch neural summaries to terminal email after every synchronous event."
+                                                    checked={notifications.emailSummary}
+                                                    onChange={() => handleToggleNotification('emailSummary')}
+                                                />
+                                                <Toggle
+                                                    label="Task Vector Alerts"
+                                                    description="Notify when new operational tasks are extracted and assigned to your actor ID."
+                                                    checked={notifications.newActionItems}
+                                                    onChange={() => handleToggleNotification('newActionItems')}
+                                                />
+                                                <Toggle
+                                                    label="Ingestion Lifecycle Updates"
+                                                    description="Confirm when asynchronous recordings have finished deep transcription."
+                                                    checked={notifications.processingComplete}
+                                                    onChange={() => handleToggleNotification('processingComplete')}
+                                                />
+                                            </div>
                                         </section>
 
-                                        <div className="pt-4 border-t border-neutral-100">
-                                            <Button>Save Preferences</Button>
+                                        <div className="pt-6 border-t border-[#F1F5F9]">
+                                            <Button className="h-10 bg-[#0F172A] text-white text-[11px] font-bold uppercase tracking-widest px-6 rounded-lg shadow-lg">Synchronize Preferences</Button>
                                         </div>
                                     </div>
                                 </TabPanel>

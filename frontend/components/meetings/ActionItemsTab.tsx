@@ -35,19 +35,13 @@ export default function ActionItemsTab({ meeting }: ActionItemsTabProps) {
     }
 
     return (
-        <div className="py-6 space-y-6 animate-fade-in">
-            <div className="flex items-center justify-between pb-4 border-b border-neutral-100">
-                <h3 className="text-lg font-bold text-neutral-900">Extracted Action Items</h3>
-                <button className="text-xs font-bold uppercase tracking-widest text-primary-600 hover:text-primary-700">
-                    Sync with CRM
-                </button>
-            </div>
+        <div className="space-y-4 animate-fade-in">
 
             <div className="space-y-4">
                 {allItems.map((item) => (
                     <div
                         key={item.id}
-                        className="flex items-start gap-4 p-5 bg-neutral-50 border border-neutral-100 rounded-2xl hover:border-primary-200 transition-all hover:shadow-sm group"
+                        className="flex items-start gap-3 p-4 bg-white border border-neutral-100 rounded-xl hover:border-[#4F46E5]/30 transition-all hover:shadow-sm group"
                     >
                         <div className="mt-1">
                             <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 group-hover:bg-opacity-50 transition-colors cursor-pointer ${item.decision ? 'border-indigo-500 hover:bg-indigo-50' : 'border-primary-500 hover:bg-primary-50'}`}>
@@ -55,8 +49,8 @@ export default function ActionItemsTab({ meeting }: ActionItemsTabProps) {
                             </div>
                         </div>
 
-                        <div className="flex-1 space-y-2">
-                            <p className="text-[15px] text-neutral-800 leading-relaxed font-medium">
+                        <div className="flex-1 min-w-0">
+                            <p className="text-[13.5px] text-neutral-800 leading-snug font-medium group-hover:text-black transition-colors">
                                 {item.text}
                             </p>
 

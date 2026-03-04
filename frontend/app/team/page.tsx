@@ -6,7 +6,7 @@ import ProtectedRoute from '../../components/ProtectedRoute';
 import { Button, Input } from '../../components/ui';
 
 // =============================================================================
-// Team Management Page
+// Team Management - High-Density Enterprise Redesign
 // =============================================================================
 
 interface TeamMember {
@@ -16,10 +16,8 @@ interface TeamMember {
     role: 'Admin' | 'Member' | 'Viewer';
     status: 'Active' | 'Pending';
     lastActive?: string;
-    avatar?: string;
 }
 
-// Mock data
 const mockTeamMembers: TeamMember[] = [
     {
         id: 1,
@@ -40,7 +38,6 @@ export default function TeamPage() {
 
     const handleInvite = () => {
         if (!inviteEmail) return;
-
         const newMember: TeamMember = {
             id: members.length + 1,
             name: inviteEmail.split('@')[0],
@@ -48,17 +45,9 @@ export default function TeamPage() {
             role: inviteRole,
             status: 'Pending',
         };
-
         setMembers([...members, newMember]);
         setInviteEmail('');
-        setInviteRole('Member');
         setShowInviteModal(false);
-    };
-
-    const handleRemoveMember = (id: number) => {
-        if (confirm('Are you sure you want to remove this team member?')) {
-            setMembers(members.filter(m => m.id !== id));
-        }
     };
 
     const filteredMembers = members.filter(member =>
@@ -66,181 +55,138 @@ export default function TeamPage() {
         member.email.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    const getRoleBadgeColor = (role: string) => {
-        switch (role) {
-            case 'Admin':
-                return 'bg-purple-100 text-purple-700';
-            case 'Member':
-                return 'bg-blue-100 text-blue-700';
-            case 'Viewer':
-                return 'bg-neutral-100 text-neutral-700';
-            default:
-                return 'bg-neutral-100 text-neutral-700';
-        }
-    };
-
-    const getStatusBadgeColor = (status: string) => {
-        return status === 'Active'
-            ? 'bg-success-100 text-success-700'
-            : 'bg-warning-100 text-warning-700';
-    };
-
     return (
         <ProtectedRoute>
             <Layout>
-                <div className="max-w-6xl mx-auto">
+                <div className="max-w-[1200px] mx-auto space-y-6 animate-fade-in py-2">
                     {/* Header */}
-                    <div className="mb-8">
-                        <h1 className="text-3xl font-bold text-neutral-900 mb-2">Team Members</h1>
-                        <p className="text-neutral-500">Manage your team and control access permissions</p>
-                    </div>
-
-                    {/* Actions Bar */}
-                    <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                        {/* Search */}
-                        <div className="flex-1">
-                            <div className="relative">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg className="w-5 h-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                    </svg>
-                                </div>
-                                <input
-                                    type="text"
-                                    placeholder="Search members..."
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="block w-full pl-10 pr-3 py-2.5 border border-neutral-300 rounded-lg text-sm placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                                />
-                            </div>
+                    <div className="flex items-center justify-between border-b border-[#E5E7EB] pb-6">
+                        <div className="space-y-1">
+                            <h1 className="text-[20px] font-bold text-neutral-900 tracking-tight">Identity & Access</h1>
+                            <p className="text-[12px] text-neutral-500 font-medium">Manage institutional permissions and workspace participants.</p>
                         </div>
-
-                        {/* Invite Button */}
-                        <Button onClick={() => setShowInviteModal(true)}>
-                            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                        <Button 
+                            onClick={() => setShowInviteModal(true)}
+                            className="h-9 px-4 bg-[#0F172A] text-white text-[11px] font-bold uppercase tracking-widest rounded-lg shadow-sm hover:bg-black transition-all"
+                        >
+                            <svg className="w-3.5 h-3.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
                             </svg>
-                            Invite Member
+                            Add Participant
                         </Button>
                     </div>
 
-                    {/* Team Members List */}
-                    <div className="bg-white rounded-xl border border-neutral-200 shadow-sm overflow-hidden">
-                        {filteredMembers.length === 0 ? (
-                            <div className="p-12 text-center">
-                                <svg className="w-16 h-16 text-neutral-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                                </svg>
-                                <h3 className="text-lg font-semibold text-neutral-900 mb-2">No team members found</h3>
-                                <p className="text-neutral-500 mb-4">Get started by inviting your first team member</p>
-                                <Button onClick={() => setShowInviteModal(true)}>Invite Member</Button>
-                            </div>
-                        ) : (
-                            <div className="overflow-x-auto">
-                                <table className="w-full">
-                                    <thead className="bg-neutral-50 border-b border-neutral-200">
-                                        <tr>
-                                            <th className="px-6 py-3 text-left text-xs font-semibold text-neutral-600 uppercase tracking-wider">Member</th>
-                                            <th className="px-6 py-3 text-left text-xs font-semibold text-neutral-600 uppercase tracking-wider">Role</th>
-                                            <th className="px-6 py-3 text-left text-xs font-semibold text-neutral-600 uppercase tracking-wider">Status</th>
-                                            <th className="px-6 py-3 text-left text-xs font-semibold text-neutral-600 uppercase tracking-wider">Last Active</th>
-                                            <th className="px-6 py-3 text-right text-xs font-semibold text-neutral-600 uppercase tracking-wider">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-neutral-200">
-                                        {filteredMembers.map((member) => (
-                                            <tr key={member.id} className="hover:bg-neutral-50 transition-colors">
-                                                <td className="px-6 py-4">
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="w-10 h-10 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center font-medium text-sm">
-                                                            {member.name[0].toUpperCase()}
-                                                        </div>
-                                                        <div>
-                                                            <div className="text-sm font-medium text-neutral-900">{member.name}</div>
-                                                            <div className="text-sm text-neutral-500">{member.email}</div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td className="px-6 py-4">
-                                                    <span className={`inline-flex px-2.5 py-1 rounded-full text-xs font-medium ${getRoleBadgeColor(member.role)}`}>
-                                                        {member.role}
-                                                    </span>
-                                                </td>
-                                                <td className="px-6 py-4">
-                                                    <span className={`inline-flex px-2.5 py-1 rounded-full text-xs font-medium ${getStatusBadgeColor(member.status)}`}>
-                                                        {member.status}
-                                                    </span>
-                                                </td>
-                                                <td className="px-6 py-4 text-sm text-neutral-500">
-                                                    {member.lastActive ? new Date(member.lastActive).toLocaleDateString() : 'Never'}
-                                                </td>
-                                                <td className="px-6 py-4 text-right">
-                                                    <button
-                                                        onClick={() => handleRemoveMember(member.id)}
-                                                        className="text-error-600 hover:text-error-700 text-sm font-medium"
-                                                    >
-                                                        Remove
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        )}
+                    {/* Filter Strip */}
+                    <div className="flex items-center gap-4">
+                        <div className="w-72">
+                            <Input
+                                placeholder="Search by name or email..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="!h-9 !text-[12px] bg-[#F8FAFC]"
+                            />
+                        </div>
                     </div>
 
-                    {/* Invite Modal */}
-                    {showInviteModal && (
-                        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-                            <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-6 animate-fade-in">
-                                <div className="flex items-center justify-between mb-6">
-                                    <h2 className="text-xl font-bold text-neutral-900">Invite Team Member</h2>
-                                    <button
-                                        onClick={() => setShowInviteModal(false)}
-                                        className="text-neutral-400 hover:text-neutral-600"
-                                    >
-                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
-                                    </button>
-                                </div>
+                    {/* Table Area */}
+                    <div className="bg-white rounded-xl border border-[#E5E7EB] shadow-sm overflow-hidden">
+                        <table className="w-full text-left">
+                            <thead>
+                                <tr className="bg-[#F8FAFC] border-b border-[#E5E7EB]">
+                                    <th className="px-6 py-3 text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Participant</th>
+                                    <th className="px-6 py-3 text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Authority</th>
+                                    <th className="px-6 py-3 text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Condition</th>
+                                    <th className="px-6 py-3 text-[10px] font-bold text-neutral-400 uppercase tracking-widest text-right">Terminal Activity</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-[#F1F5F9]">
+                                {filteredMembers.map((member) => (
+                                    <tr key={member.id} className="hover:bg-[#F8FAFC] transition-colors group">
+                                        <td className="px-6 py-3.5">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-8 h-8 rounded-lg bg-[#F1F5F9] border border-[#E5E7EB] flex items-center justify-center text-[11px] font-bold text-neutral-600">
+                                                    {member.name[0].toUpperCase()}
+                                                </div>
+                                                <div>
+                                                    <div className="text-[13px] font-bold text-neutral-900">{member.name}</div>
+                                                    <div className="text-[11px] text-neutral-400 font-medium">{member.email}</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td className="px-6 py-3.5">
+                                            <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded border ${
+                                                member.role === 'Admin' ? 'bg-indigo-50 text-indigo-700 border-indigo-100' : 'bg-neutral-50 text-neutral-600 border-neutral-100'
+                                            }`}>
+                                                {member.role}
+                                            </span>
+                                        </td>
+                                        <td className="px-6 py-3.5">
+                                            <div className="flex items-center gap-2">
+                                                <div className={`w-1.5 h-1.5 rounded-full ${member.status === 'Active' ? 'bg-emerald-500' : 'bg-amber-400'}`} />
+                                                <span className="text-[11px] font-bold text-neutral-700 uppercase tracking-wide">{member.status}</span>
+                                            </div>
+                                        </td>
+                                        <td className="px-6 py-3.5 text-right font-mono text-[10px] text-neutral-400">
+                                            {member.lastActive ? new Date(member.lastActive).toLocaleDateString() : '—'}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-                                <div className="space-y-4">
+                {/* Invite Modal */}
+                {showInviteModal && (
+                    <div className="fixed inset-0 bg-neutral-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                        <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 animate-slide-up border border-[#E5E7EB]">
+                            <div className="flex items-center justify-between mb-8">
+                                <h2 className="text-[18px] font-bold text-neutral-900 tracking-tight">Provision New Access</h2>
+                                <button onClick={() => setShowInviteModal(false)} className="text-neutral-400 hover:text-neutral-900 transition-colors">
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                                </button>
+                            </div>
+
+                            <div className="space-y-6">
+                                <div className="space-y-1.5">
+                                    <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 ml-1">Terminal Email</label>
                                     <Input
-                                        label="Email Address"
                                         type="email"
-                                        placeholder="colleague@company.com"
+                                        placeholder="user@organization.com"
                                         value={inviteEmail}
                                         onChange={(e) => setInviteEmail(e.target.value)}
+                                        className="!h-11 bg-[#F8FAFC]"
                                     />
+                                </div>
 
-                                    <div>
-                                        <label className="block text-sm font-medium text-neutral-700 mb-1.5">Role</label>
-                                        <select
-                                            value={inviteRole}
-                                            onChange={(e) => setInviteRole(e.target.value as any)}
-                                            className="block w-full px-3 py-2 text-sm bg-white border border-neutral-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-primary-500"
-                                        >
-                                            <option value="Viewer">Viewer - Read-only access</option>
-                                            <option value="Member">Member - Can create and edit</option>
-                                            <option value="Admin">Admin - Full access</option>
-                                        </select>
-                                    </div>
+                                <div className="space-y-1.5">
+                                    <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 ml-1">Authority Level</label>
+                                    <select
+                                        value={inviteRole}
+                                        onChange={(e) => setInviteRole(e.target.value as any)}
+                                        className="w-full h-11 px-4 bg-[#F8FAFC] border border-[#E5E7EB] rounded-lg text-[13px] font-bold text-neutral-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBzdHJva2U9IiM2YjcyODAiIHN0cm9rZS13aWR0aD0iMiIgdmlld0JveD0iMCAwIDI0IDI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xOSAxOWwtNy03LTctNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+')] bg-no-repeat bg-[right_1rem_center] bg-[length:1rem]"
+                                    >
+                                        <option value="Viewer">Viewer (Security-focused)</option>
+                                        <option value="Member">Member (Operational)</option>
+                                        <option value="Admin">Administrator (Privileged)</option>
+                                    </select>
+                                </div>
 
-                                    <div className="flex gap-3 pt-4">
-                                        <Button variant="secondary" onClick={() => setShowInviteModal(false)} block>
-                                            Cancel
-                                        </Button>
-                                        <Button onClick={handleInvite} block>
-                                            Send Invite
-                                        </Button>
-                                    </div>
+                                <div className="flex gap-3 pt-6">
+                                    <button 
+                                        onClick={() => setShowInviteModal(false)}
+                                        className="flex-1 h-11 text-[11px] font-bold uppercase tracking-widest text-neutral-400 hover:text-neutral-900 transition-colors"
+                                    >
+                                        Cancel
+                                    </button>
+                                    <Button onClick={handleInvite} className="flex-1 h-11 bg-[#0F172A] text-white text-[11px] font-bold uppercase tracking-widest rounded-lg shadow-lg hover:bg-black transition-all">
+                                        Grant Access
+                                    </Button>
                                 </div>
                             </div>
                         </div>
-                    )}
-                </div>
+                    </div>
+                )}
             </Layout>
         </ProtectedRoute>
     );

@@ -57,7 +57,7 @@ const icons = {
 
 export const sidebarSections: NavSection[] = [
   {
-    title: 'MAIN',
+    title: 'Workspace',
     items: [
       { href: '/dashboard', label: 'Dashboard', icon: icons.dashboard },
       { href: '/meetings', label: 'Meetings', icon: icons.meetings },
@@ -65,21 +65,16 @@ export const sidebarSections: NavSection[] = [
     ],
   },
   {
-    title: 'RECORDING',
+    title: 'Input',
     items: [
       { href: '/record', label: 'Record Meeting', icon: icons.record },
-      { href: '/uploads', label: 'Upload Recording', icon: icons.upload },
+      { href: '/uploads', label: 'Upload Audio', icon: icons.upload },
     ],
   },
   {
-    title: 'TEAM',
+    title: 'System',
     items: [
       { href: '/team', label: 'Team Members', icon: icons.team },
-    ],
-  },
-  {
-    title: 'SETTINGS',
-    items: [
       { href: '/settings', label: 'Settings', icon: icons.settings },
     ],
   },

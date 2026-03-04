@@ -40,7 +40,7 @@ export function Table<T extends Record<string, any>>({
               {columns.map((col) => (
                 <th
                   key={col.key}
-                  className={`px-6 py-4 font-semibold text-neutral-600 uppercase tracking-wider text-[11px] ${col.headerClassName || ''
+                  className={`px-6 py-4 font-semibold text-neutral-500 uppercase tracking-[0.15em] text-[10px] ${col.headerClassName || ''
                     } ${col.className || ''}`}
                 >
                   {col.label}
@@ -64,9 +64,9 @@ export function Table<T extends Record<string, any>>({
                   key={item.id || rowIndex}
                   onClick={() => onRowClick?.(item)}
                   className={`
-                    transition-colors
+                    transition-all duration-200
                     ${onRowClick ? 'cursor-pointer' : ''}
-                    ${hoverable ? 'hover:bg-neutral-50/50' : ''}
+                    ${hoverable ? 'hover:bg-neutral-50/80 hover:shadow-[inset_0_0_0_1px_rgba(0,0,0,0.02)]' : ''}
                   `}
                 >
                   {columns.map((col) => (

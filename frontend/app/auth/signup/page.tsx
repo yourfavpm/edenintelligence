@@ -40,7 +40,7 @@ export default function SignupPage() {
   return (
     <AuthLayout
       title="Create account"
-      subtitle="Start transcribing your meetings today."
+      subtitle="Start your 14-day free trial today."
     >
       <form onSubmit={handleSubmit} className="space-y-5">
         <Input
@@ -81,7 +81,7 @@ export default function SignupPage() {
           </div>
         )}
 
-        <Button type="submit" block loading={loading}>
+        <Button type="submit" block loading={loading} className="h-12 text-sm">
           Create account
         </Button>
       </form>

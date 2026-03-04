@@ -43,7 +43,11 @@ class Settings(BaseSettings):
 
     # Production Configs
     DOMAIN: str = "localhost"
-    CORS_ORIGINS: List[str] = ["http://localhost:3000"]
+    CORS_ORIGINS: List[str] = [
+        "http://localhost:3000",
+        "https://edenintelligence.vercel.app",
+        "https://praxiomnotes.vercel.app"
+    ]
 
     class Config:
         case_sensitive = True

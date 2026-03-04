@@ -57,7 +57,7 @@ export default function LoginPage() {
   return (
     <AuthLayout
       title="Sign in"
-      subtitle="Good to see you again. Enter your details to continue."
+      subtitle="Welcome back. Please enter your details."
     >
       {isSignupSuccess && (
         <div className="mb-6 p-4 bg-success-50 border border-success-100 rounded-xl">
@@ -105,7 +105,7 @@ export default function LoginPage() {
           </div>
         )}
 
-        <Button type="submit" block loading={loading}>
+        <Button type="submit" block loading={loading} className="h-12 text-sm">
           Sign in
         </Button>
       </form>

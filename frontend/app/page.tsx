@@ -13,12 +13,21 @@ import { Button } from '../components/ui';
 
 export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [mobileMenuOpen]);
 
   return (
     <div className="min-h-screen bg-white text-[#111827] font-inter selection:bg-blue-100 antialiased">
@@ -28,12 +37,10 @@ export default function LandingPage() {
         scrolled ? 'bg-white/80 backdrop-blur-md border-b border-[#E5E7EB] h-16' : 'bg-transparent h-20'
       } flex items-center`}>
         <div className="max-w-[1400px] mx-auto w-full px-6 md:px-12 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-[#111827] rounded-lg flex items-center justify-center font-semibold text-white text-lg">
-              P
-            </div>
+          <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
+            <img src="/logo.png" alt="PraxiomNotes Logo" className="h-9 w-auto" />
             <span className="font-semibold text-xl tracking-tighter">PraxiomNotes</span>
-          </div>
+          </Link>
           
           <div className="hidden lg:flex items-center gap-10">
             <a href="#vision" className="text-[13px] font-medium text-[#4B5563] hover:text-[#111827] transition-colors uppercase tracking-widest">Vision</a>
@@ -42,7 +49,7 @@ export default function LandingPage() {
             <a href="#trust" className="text-[13px] font-medium text-[#4B5563] hover:text-[#111827] transition-colors uppercase tracking-widest">Trust</a>
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-6">
             <Link href="/auth/login" className="text-sm font-semibold text-[#4B5563] hover:text-[#111827] transition-colors">
               Sign In
             </Link>
@@ -51,6 +58,41 @@ export default function LandingPage() {
                 Get Started
               </Button>
             </Link>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <button 
+            className="lg:hidden p-2 text-[#111827] relative z-[60]"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        <div className={`fixed inset-0 bg-white z-50 lg:hidden transition-transform duration-500 ease-in-out ${mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
+          <div className="flex flex-col h-full pt-32 px-10 space-y-10">
+            <div className="flex flex-col space-y-8">
+              <a href="#vision" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-semibold tracking-tighter text-[#111827]">Vision</a>
+              <a href="#capabilities" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-semibold tracking-tighter text-[#111827]">Capabilities</a>
+              <a href="#workflow" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-semibold tracking-tighter text-[#111827]">Workflow</a>
+              <a href="#trust" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-semibold tracking-tighter text-[#111827]">Trust</a>
+            </div>
+            
+            <div className="pt-10 border-t border-neutral-100 flex flex-col gap-6">
+              <Link href="/auth/login" onClick={() => setMobileMenuOpen(false)} className="text-xl font-semibold text-[#111827] tracking-tight">
+                Sign In
+              </Link>
+              <Link href="/auth/signup" onClick={() => setMobileMenuOpen(false)}>
+                <Button className="w-full h-14 bg-[#111827] text-white rounded-full text-lg font-semibold shadow-xl shadow-black/10">
+                  Get Started
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
@@ -84,8 +126,8 @@ export default function LandingPage() {
             <div className="relative group perspective-1000">
               <div className="relative z-10 p-2 bg-white/50 backdrop-blur-xl rounded-[32px] border border-white/20 shadow-[0_32px_120px_-20px_rgba(0,0,0,0.15)] transform transition-transform duration-700 hover:scale-[1.02]">
                 <img 
-                  src="/hero_ui_mockup.png" 
-                  alt="PraxiomNotes Interface" 
+                  src="/product_screenshot.png" 
+                  alt="PraxiomNotes Dashboard - Meeting Intelligence in Action" 
                   className="rounded-[24px] w-full h-auto"
                 />
               </div>
@@ -406,9 +448,7 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] gap-20">
             <div className="space-y-10">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 bg-[#111827] rounded-lg flex items-center justify-center font-semibold text-white text-lg">
-                  P
-                </div>
+                <img src="/logo.png" alt="PraxiomNotes Logo" className="h-9 w-auto brightness-0 invert" />
                 <span className="font-semibold text-2xl tracking-tighter text-[#111827]">PraxiomNotes</span>
               </div>
               <p className="text-lg text-[#6B7280] leading-relaxed max-w-sm font-medium">

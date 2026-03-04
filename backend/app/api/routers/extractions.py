@@ -91,7 +91,7 @@ async def list_extractions(
 
 
 @router.post("/", status_code=202)
-async def request_extraction(transcript_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def request_extraction(transcript_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     res = await db.execute(select(Transcript).filter_by(id=transcript_id))
     t = res.scalars().first()
     if not t:
@@ -109,7 +109,7 @@ async def request_extraction(transcript_id: int, db: AsyncSession = Depends(get_
 
 
 @router.get("/{extraction_id}", response_model=ExtractionRead)
-async def get_extraction(extraction_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def get_extraction(extraction_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     q = await db.execute(select(Extraction).filter_by(id=extraction_id))
     ex = q.scalars().first()
     if not ex:

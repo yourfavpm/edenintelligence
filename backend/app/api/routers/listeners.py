@@ -50,7 +50,7 @@ async def schedule_listener(payload: ListenerSessionCreate, db: AsyncSession = D
 
 
 @router.get("/{session_id}", response_model=ListenerSessionRead)
-async def get_session(session_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def get_session(session_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     q = await db.execute(select(ListenerSession).filter_by(id=session_id))
     s = q.scalars().first()
     if not s:
@@ -67,7 +67,7 @@ async def get_session(session_id: int, db: AsyncSession = Depends(get_db), curre
 
 
 @router.get("/org/{org_id}", response_model=List[ListenerSessionRead])
-async def list_org_sessions(org_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def list_org_sessions(org_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     q = await db.execute(select(UserOrganization).filter_by(user_id=current_user.id, organization_id=org_id))
     if not q.scalars().first():
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not a member of the organization")
@@ -77,7 +77,7 @@ async def list_org_sessions(org_id: int, db: AsyncSession = Depends(get_db), cur
 
 
 @router.patch("/{session_id}", response_model=ListenerSessionRead)
-async def update_session(session_id: int, payload: ListenerSessionUpdate, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def update_session(session_id: str, payload: ListenerSessionUpdate, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     q = await db.execute(select(ListenerSession).filter_by(id=session_id))
     s = q.scalars().first()
     if not s:
@@ -104,7 +104,7 @@ async def update_session(session_id: int, payload: ListenerSessionUpdate, db: As
 
 
 @router.post("/{session_id}/cancel")
-async def cancel_session(session_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def cancel_session(session_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     q = await db.execute(select(ListenerSession).filter_by(id=session_id))
     s = q.scalars().first()
     if not s:

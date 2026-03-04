@@ -22,7 +22,7 @@ from app.core import crypto
 logger = get_task_logger(__name__)
 
 
-def process_recording(recording_id: int) -> Dict[str, Any]:
+def process_recording(recording_id: str) -> Dict[str, Any]:
     """Idempotent orchestration for recording processing.
 
     Steps:

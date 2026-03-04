@@ -32,7 +32,7 @@ async def my_orgs(db: AsyncSession = Depends(get_db), current_user: User = Depen
 
 
 @router.get("/{org_id}/members", response_model=List[MembershipRead])
-async def list_members(org_id: int, db: AsyncSession = Depends(get_db), membership: UserOrganization = Depends(require_org_role("org_id", "organizer"))):
+async def list_members(org_id: str, db: AsyncSession = Depends(get_db), membership: UserOrganization = Depends(require_org_role("org_id", "organizer"))):
     q = await db.execute(select(UserOrganization).filter_by(organization_id=org_id))
     members = q.scalars().all()
     return members

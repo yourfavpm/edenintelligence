@@ -81,7 +81,7 @@ async def request_summary(payload: SummaryCreate, db: AsyncSession = Depends(get
 
 
 @router.get("/{summary_id}", response_model=SummaryRead)
-async def get_summary(summary_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def get_summary(summary_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     q = await db.execute(select(MeetingSummary).filter_by(id=summary_id))
     s = q.scalars().first()
     if not s:
@@ -103,7 +103,7 @@ async def get_summary(summary_id: int, db: AsyncSession = Depends(get_db), curre
 
 
 @router.post("/{summary_id}/deliver", status_code=202)
-async def deliver_summary(summary_id: int, user_ids: List[int], include_transcript_link: bool = False, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def deliver_summary(summary_id: str, user_ids: List[str], include_transcript_link: bool = False, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     # require permission on summary's meeting
     q = await db.execute(select(MeetingSummary).filter_by(id=summary_id))
     s = q.scalars().first()

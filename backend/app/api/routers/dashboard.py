@@ -13,7 +13,7 @@ router = APIRouter(prefix="/dashboard", tags=["dashboard"])
 
 
 @router.get("/meetings", response_model=List[MeetingRead])
-async def list_meetings_dashboard(org_id: Optional[int] = Query(None), limit: int = 20, offset: int = 0, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def list_meetings_dashboard(org_id: Optional[str] = Query(None), limit: int = 20, offset: int = 0, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     from app.models.models import AudioFile
     from sqlalchemy.orm import selectinload
     from sqlalchemy import desc
@@ -65,7 +65,7 @@ async def list_meetings_dashboard(org_id: Optional[int] = Query(None), limit: in
 from app.schemas import MeetingRead, ParticipantRead, RecordingRead, TranscriptRead, SummaryRead, ExtractionRead, MeetingDetailRead
 
 @router.get("/meetings/{meeting_id}/detail", response_model=MeetingDetailRead)
-async def meeting_detail(meeting_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def meeting_detail(meeting_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     # fetch meeting with relationships to avoid lazy-loading during serialization
     q = await db.execute(
         select(Meeting)

@@ -90,7 +90,7 @@ async def upload_audio(file: UploadFile = File(...), meeting_id: Optional[int] =
 
 
 @router.get("/{audio_id}", response_model=AudioIngestRead)
-async def get_audio(audio_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def get_audio(audio_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     q = await db.execute(select(AudioFile).filter_by(id=audio_id))
     a = q.scalars().first()
     if not a:
@@ -107,7 +107,7 @@ async def get_audio(audio_id: int, db: AsyncSession = Depends(get_db), current_u
 
 
 @router.get("/{audio_id}/download")
-async def download_audio(audio_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def download_audio(audio_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     """Stream audio file for playback in browser"""
     from fastapi.responses import FileResponse, StreamingResponse
     import io
@@ -165,7 +165,7 @@ async def download_audio(audio_id: int, db: AsyncSession = Depends(get_db), curr
 
 
 @router.delete("/{audio_id}")
-async def delete_audio(audio_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def delete_audio(audio_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     """Delete audio file and all related data"""
     q = await db.execute(select(AudioFile).filter_by(id=audio_id))
     a = q.scalars().first()

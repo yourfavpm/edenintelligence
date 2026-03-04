@@ -26,7 +26,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: AsyncSession
 
 
 def require_org_role(org_id_arg: str, role: str) -> Callable:
-    async def _checker(org_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+    async def _checker(org_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
         q = await db.execute(select(UserOrganization).filter_by(user_id=current_user.id, organization_id=org_id))
         membership = q.scalars().first()
         if not membership:

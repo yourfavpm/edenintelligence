@@ -55,7 +55,7 @@ async def list_transcripts(
 
 
 @router.get("/{transcript_id}", response_model=TranscriptRead)
-async def get_transcript(transcript_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def get_transcript(transcript_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     q = await db.execute(select(Transcript).filter_by(id=transcript_id))
     t = q.scalars().first()
     if not t:
@@ -74,7 +74,7 @@ async def get_transcript(transcript_id: int, db: AsyncSession = Depends(get_db),
 
 
 @router.get("/{transcript_id}/download")
-async def download_transcript(transcript_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def download_transcript(transcript_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     q = await db.execute(select(Transcript).filter_by(id=transcript_id))
     t = q.scalars().first()
     if not t:

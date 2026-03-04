@@ -13,17 +13,17 @@ router = APIRouter(prefix="/consents", tags=["consents"])
 
 
 class ConsentCreate(BaseModel):
-    meeting_id: Optional[int]
-    recording_id: Optional[int]
+    meeting_id: Optional[str]
+    recording_id: Optional[str]
     consent_given: bool
     method: Optional[str]
 
 
 class ConsentRead(BaseModel):
-    id: int
-    user_id: Optional[int]
-    meeting_id: Optional[int]
-    recording_id: Optional[int]
+    id: str
+    user_id: Optional[str]
+    meeting_id: Optional[str]
+    recording_id: Optional[str]
     consent_given: bool
     method: Optional[str]
     created_at: Optional[str]
@@ -50,7 +50,7 @@ async def create_consent(payload: ConsentCreate, request: Request, db: AsyncSess
 
 
 @router.get("/meeting/{meeting_id}", response_model=List[ConsentRead])
-async def list_consents_for_meeting(meeting_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def list_consents_for_meeting(meeting_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     q = await db.execute(select(ConsentRecord).filter_by(meeting_id=meeting_id))
     items = q.scalars().all()
     return items

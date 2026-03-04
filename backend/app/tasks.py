@@ -21,7 +21,7 @@ def debug_log(msg: str):
 logger = logging.getLogger(__name__)
 
 @celery_app.task(bind=True, name="app.tasks.process_recording")
-def process_recording(self, recording_id: int):
+def process_recording(self, recording_id: str):
     """Entry point for processing a recording: download -> transcribe -> translate -> summarize -> store results -> email participants"""
     debug_log(f"START: process_recording for recording {recording_id}")
     try:
@@ -33,12 +33,12 @@ def process_recording(self, recording_id: int):
         raise self.retry(exc=exc, countdown=30, max_retries=3)
 
 # Provide a convenience to enqueue via .delay
-def enqueue_recording_processing(recording_id: int):
+def enqueue_recording_processing(recording_id: str):
     return process_recording.delay(recording_id)
 
 
 @celery_app.task(bind=True, name="app.tasks.process_listener_session")
-def process_listener_session(self, session_id: int):
+def process_listener_session(self, session_id: str):
     """Mocked bot join flow: update status through joining -> joined -> left and record consent if any.
     This runs synchronously inside a Celery worker but uses the async DB session via asyncio.run.
     """
@@ -90,12 +90,12 @@ def process_listener_session(self, session_id: int):
     return asyncio.run(_run())
 
 
-def enqueue_listener_join(session_id: int, countdown: int = 0):
+def enqueue_listener_join(session_id: str, countdown: int = 0):
     return process_listener_session.apply_async(args=(session_id,), countdown=countdown)
 
 
 @celery_app.task(bind=True, name="app.tasks.process_audio_file", max_retries=3)
-def process_audio_file(self, audio_id: int):
+def process_audio_file(self, audio_id: str):
     """Download audio from S3, chunk/process, and mark processed. Retries on failure."""
     from app.db import SyncSessionLocal
     from app.models.models import AudioFile
@@ -143,12 +143,12 @@ def process_audio_file(self, audio_id: int):
 
 
 
-def enqueue_audio_processing(audio_id: int):
+def enqueue_audio_processing(audio_id: str):
     return process_audio_file.delay(audio_id)
 
 
 @celery_app.task(bind=True, name="app.tasks.process_transcription")
-def process_transcription(self, audio_id: int):
+def process_transcription(self, audio_id: str):
     """Download audio bytes, transcribe with AssemblyAI, and persist Transcript record."""
     from app.db import SyncSessionLocal
     from app.models.models import AudioFile, Transcript, Meeting
@@ -230,12 +230,12 @@ def process_transcription(self, audio_id: int):
 
 
 
-def enqueue_transcription(audio_id: int, countdown: int = 0):
+def enqueue_transcription(audio_id: str, countdown: int = 0):
     return process_transcription.apply_async(args=(audio_id,), countdown=countdown)
 
 
 @celery_app.task(bind=True, name="app.tasks.process_translation")
-def process_translation(self, transcript_id: int, target_language: str):
+def process_translation(self, transcript_id: str, target_language: str):
     """Load transcript, translate segments, and persist TranslatedTranscript."""
     import asyncio
     from app.db import AsyncSessionLocal
@@ -265,12 +265,12 @@ def process_translation(self, transcript_id: int, target_language: str):
     return asyncio.run(_run())
 
 
-def enqueue_translation(transcript_id: int, target_language: str, countdown: int = 0):
+def enqueue_translation(transcript_id: str, target_language: str, countdown: int = 0):
     return process_translation.apply_async(args=(transcript_id, target_language), countdown=countdown)
 
 
 @celery_app.task(bind=True, name="app.tasks.process_summarization")
-def process_summarization(self, transcript_id: int, length: str = "short", tone: str = "formal"):
+def process_summarization(self, transcript_id: str, length: str = "short", tone: str = "formal"):
     """Load transcript, run summarizer, and persist MeetingSummary."""
     from app.db import SyncSessionLocal
     from app.models.models import Transcript, MeetingSummary
@@ -330,12 +330,12 @@ def process_summarization(self, transcript_id: int, length: str = "short", tone:
         db.close()
 
 
-def enqueue_summarization(transcript_id: int, length: str = "short", tone: str = "formal", countdown: int = 0):
+def enqueue_summarization(transcript_id: str, length: str = "short", tone: str = "formal", countdown: int = 0):
     return process_summarization.apply_async(args=(transcript_id, length, tone), countdown=countdown)
 
 
 @celery_app.task(bind=True, name="app.tasks.process_extraction")
-def process_extraction(self, transcript_id: int):
+def process_extraction(self, transcript_id: str):
     """Load transcript, run extractor, and persist Extraction record."""
     from app.db import SyncSessionLocal
     from app.models.models import Transcript, Extraction
@@ -378,12 +378,12 @@ def process_extraction(self, transcript_id: int):
         db.close()
 
 
-def enqueue_extraction(transcript_id: int, countdown: int = 0):
+def enqueue_extraction(transcript_id: str, countdown: int = 0):
     return process_extraction.apply_async(args=(transcript_id,), countdown=countdown)
 
 
 @celery_app.task(bind=True, name="app.tasks.process_send_summary", max_retries=3)
-def process_send_summary(self, summary_id: int, user_id: int, include_transcript_link: bool = False):
+def process_send_summary(self, summary_id: str, user_id: str, include_transcript_link: bool = False):
     """Send a meeting summary email to a user and persist EmailDelivery status."""
     import asyncio
     import json
@@ -445,12 +445,12 @@ def process_send_summary(self, summary_id: int, user_id: int, include_transcript
     return asyncio.run(_run())
 
 
-def enqueue_send_summary(summary_id: int, user_id: int, include_transcript_link: bool = False, countdown: int = 0):
+def enqueue_send_summary(summary_id: str, user_id: str, include_transcript_link: bool = False, countdown: int = 0):
     return process_send_summary.apply_async(args=(summary_id, user_id, include_transcript_link), countdown=countdown)
 
 
 @celery_app.task(bind=True, name="app.tasks.process_delete_user")
-def process_delete_user(self, user_id: int):
+def process_delete_user(self, user_id: str):
     """GDPR-style deletion: remove user record, personal data, S3 objects, and audit."""
     import asyncio
     from app.db import AsyncSessionLocal

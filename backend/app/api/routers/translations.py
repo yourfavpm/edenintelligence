@@ -42,7 +42,7 @@ async def list_translations(
 
 
 @router.post("/", status_code=202)
-async def request_translation(transcript_id: int, target_language: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def request_translation(transcript_id: str, target_language: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     # load transcript and basic permission check
     res = await db.execute(select(Transcript).filter_by(id=transcript_id))
     t = res.scalars().first()
@@ -62,7 +62,7 @@ async def request_translation(transcript_id: int, target_language: str, db: Asyn
 
 
 @router.get("/{translated_id}", response_model=TranslatedTranscriptRead)
-async def get_translation(translated_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def get_translation(translated_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     q = await db.execute(select(TranslatedTranscript).filter_by(id=translated_id))
     tr = q.scalars().first()
     if not tr:

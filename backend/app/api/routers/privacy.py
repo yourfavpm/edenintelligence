@@ -10,7 +10,7 @@ router = APIRouter(prefix="/privacy", tags=["privacy"])
 
 
 @router.post("/delete_me/user/{user_id}")
-def request_user_deletion(user_id: int, current_user: User = Depends(get_current_user)):
+def request_user_deletion(user_id: str, current_user: User = Depends(get_current_user)):
     # allow users to request deletion of their own account or admins
     if current_user.id != user_id:
         # TODO: check admin role; for now deny

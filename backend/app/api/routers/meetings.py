@@ -45,7 +45,7 @@ async def create_meeting(payload: MeetingCreate, db: AsyncSession = Depends(get_
 
 
 @router.get("/{meeting_id}", response_model=MeetingRead)
-async def get_meeting(meeting_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def get_meeting(meeting_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     q = await db.execute(select(Meeting).filter_by(id=meeting_id))
     meeting = q.scalars().first()
     if not meeting:
@@ -59,7 +59,7 @@ async def get_meeting(meeting_id: int, db: AsyncSession = Depends(get_db), curre
 
 
 @router.get("/org/{org_id}", response_model=List[MeetingRead])
-async def list_meetings(org_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def list_meetings(org_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     q = await db.execute(select(UserOrganization).filter_by(user_id=current_user.id, organization_id=org_id))
     if not q.scalars().first():
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not a member of the organization")
@@ -69,7 +69,7 @@ async def list_meetings(org_id: int, db: AsyncSession = Depends(get_db), current
 
 
 @router.put("/{meeting_id}", response_model=MeetingRead)
-async def update_meeting(meeting_id: int, payload: MeetingUpdate, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def update_meeting(meeting_id: str, payload: MeetingUpdate, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     q = await db.execute(select(Meeting).filter_by(id=meeting_id))
     meeting = q.scalars().first()
     if not meeting:
@@ -95,7 +95,7 @@ async def update_meeting(meeting_id: int, payload: MeetingUpdate, db: AsyncSessi
 
 
 @router.post("/{meeting_id}/participants", response_model=List[ParticipantRead])
-async def add_participants(meeting_id: int, emails: List[str], db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def add_participants(meeting_id: str, emails: List[str], db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     q = await db.execute(select(Meeting).filter_by(id=meeting_id))
     meeting = q.scalars().first()
     if not meeting:
@@ -117,7 +117,7 @@ async def add_participants(meeting_id: int, emails: List[str], db: AsyncSession 
 
 
 @router.post("/{meeting_id}/recordings", response_model=RecordingRead)
-async def upload_recording(meeting_id: int, payload: RecordingCreate, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def upload_recording(meeting_id: str, payload: RecordingCreate, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     q = await db.execute(select(Meeting).filter_by(id=meeting_id))
     meeting = q.scalars().first()
     if not meeting:
@@ -141,7 +141,7 @@ async def upload_recording(meeting_id: int, payload: RecordingCreate, db: AsyncS
 
 
 @router.get("/{meeting_id}/recordings/{recording_id}", response_model=RecordingRead)
-async def get_recording_status(meeting_id: int, recording_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def get_recording_status(meeting_id: str, recording_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     q = await db.execute(select(Recording).filter_by(id=recording_id, meeting_id=meeting_id))
     rec = q.scalars().first()
     if not rec:
@@ -158,7 +158,7 @@ async def get_recording_status(meeting_id: int, recording_id: int, db: AsyncSess
 
 
 @router.delete("/{meeting_id}")
-async def delete_meeting(meeting_id: int, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+async def delete_meeting(meeting_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
     """Delete meeting and all associated data"""
     from app.models.models import AudioFile, Transcript, MeetingSummary, Extraction, TranslatedTranscript, Participant, Recording, UserOrganization
     from app.storage import storage

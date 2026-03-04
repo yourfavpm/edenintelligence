@@ -17,9 +17,11 @@ class ParticipantRead(BaseModel):
     is_host: bool
 
 class MeetingCreate(BaseModel):
-
-# --- Basic schemas ---
-
+    title: str
+    description: Optional[str] = None
+    language: str = "en"
+    start_time: Optional[datetime] = None
+    end_time: Optional[datetime] = None
 
 # --- Meeting schemas ---
 class RecordingCreate(BaseModel):

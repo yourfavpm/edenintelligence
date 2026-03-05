@@ -154,7 +154,7 @@ export async function getMeetings(
   return apiFetch<Meeting[]>(endpoint);
 }
 
-export async function getMeetingDetail(meetingId: number): Promise<MeetingDetail> {
+export async function getMeetingDetail(meetingId: string | number): Promise<MeetingDetail> {
   return apiFetch<MeetingDetail>(`/dashboard/meetings/${meetingId}/detail`);
 }
 
@@ -170,7 +170,7 @@ export async function createMeeting(data: MeetingCreate): Promise<Meeting> {
 }
 
 export async function updateMeeting(
-  meetingId: number,
+  meetingId: string | number,
   data: MeetingUpdate
 ): Promise<Meeting> {
   return apiFetch<Meeting>(`/meetings/${meetingId}`, {
@@ -179,14 +179,14 @@ export async function updateMeeting(
   });
 }
 
-export async function deleteMeeting(meetingId: number): Promise<void> {
+export async function deleteMeeting(meetingId: string | number): Promise<void> {
   return apiFetch<void>(`/meetings/${meetingId}`, {
     method: 'DELETE',
   });
 }
 
 export async function addParticipants(
-  meetingId: number,
+  meetingId: string | number,
   emails: string[]
 ): Promise<Participant[]> {
   return apiFetch<Participant[]>(`/meetings/${meetingId}/participants`, {
@@ -200,7 +200,7 @@ export async function addParticipants(
 // =============================================================================
 
 export async function getTranscriptsForMeeting(
-  meetingId: number
+  meetingId: string | number
 ): Promise<TranscriptRead[]> {
   return apiFetch<TranscriptRead[]>(`/transcripts?meeting_id=${meetingId}`);
 }
@@ -210,7 +210,7 @@ export async function getTranscriptsForMeeting(
 // =============================================================================
 
 export async function getTranslationsForMeeting(
-  meetingId: number
+  meetingId: string | number
 ): Promise<TranslatedTranscriptRead[]> {
   return apiFetch<TranslatedTranscriptRead[]>(
     `/translations?meeting_id=${meetingId}`
@@ -222,7 +222,7 @@ export async function getTranslationsForMeeting(
 // =============================================================================
 
 export async function getSummaryForMeeting(
-  meetingId: number
+  meetingId: string | number
 ): Promise<SummaryRead | null> {
   const summaries = await apiFetch<SummaryRead[]>(
     `/summaries?meeting_id=${meetingId}`
@@ -235,7 +235,7 @@ export async function getSummaryForMeeting(
 // =============================================================================
 
 export async function getExtractionsForMeeting(
-  meetingId: number
+  meetingId: string | number
 ): Promise<ExtractionRead[]> {
   return apiFetch<ExtractionRead[]>(`/extractions?meeting_id=${meetingId}`);
 }
@@ -250,10 +250,10 @@ export async function getAllExtractions(): Promise<ExtractionRead[]> {
 
 export async function uploadAudio(
   file: File,
-  meetingId?: number,
+  meetingId?: string | number,
   onProgress?: (progress: number) => void,
   title?: string
-): Promise<{ id: number; s3_key: string }> {
+): Promise<{ id: string | number; s3_key: string }> {
   try {
     // STEP 1: Request presigned URL
     const presignPayload = {
@@ -331,10 +331,10 @@ export async function uploadAudio(
 // Fallback method for local development without S3
 async function fallbackUploadAudio(
   file: File,
-  meetingId?: number,
+  meetingId?: string | number,
   onProgress?: (progress: number) => void,
   title?: string
-): Promise<{ id: number; s3_key: string }> {
+): Promise<{ id: string | number; s3_key: string }> {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     const formData = new FormData();

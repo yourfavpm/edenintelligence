@@ -33,7 +33,7 @@ export default function MeetingDetailPage() {
         const fetchDetail = async () => {
             setLoading(true);
             try {
-                const data = await apiService.getMeetingDetail(Number(meetingId));
+                const data = await apiService.getMeetingDetail(String(meetingId));
                 setMeeting(data);
             } catch (err: any) {
                 console.error(err);

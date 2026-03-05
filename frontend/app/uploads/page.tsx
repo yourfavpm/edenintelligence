@@ -17,7 +17,7 @@ export default function UploadPage() {
     const [progress, setProgress] = useState(0);
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState(false);
-    const [result, setResult] = useState<{ id: number; s3_key: string } | null>(null);
+    const [result, setResult] = useState<{ id: string | number; s3_key: string } | null>(null);
     const [customTitle, setCustomTitle] = useState('');
 
     const handleUpload = async (file: File) => {

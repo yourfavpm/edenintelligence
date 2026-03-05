@@ -63,8 +63,13 @@ async def presign_upload(
             detail="Presigned uploads are not supported with local storage. Use /audio/ingest instead.",
         )
 
-    # Generate a unique S3 key
-    s3_key = f"audio/{uuid.uuid4().hex}/{payload.filename}"
+    # Generate a unique URL-safe S3 key to avoid Signature mismatches due to spaces
+    ext = ""
+    if "." in payload.filename:
+        ext = payload.filename[payload.filename.rindex("."):]
+    
+    # We use a purely alphanumeric key. The original filename is still saved in the DB.
+    s3_key = f"audio/{uuid.uuid4().hex}/recording{ext}"
 
     try:
         upload_url = await storage.generate_presigned_upload_url(

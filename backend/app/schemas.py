@@ -57,6 +57,12 @@ class MeetingCreate(BaseModel):
     ai_transcription: Optional[bool] = False
     ai_translation: Optional[bool] = False
     ai_recording: Optional[bool] = False
+    # Scheduling fields
+    reminder_10m: Optional[bool] = False
+    reminder_at_time: Optional[bool] = False
+    calendar_event_id: Optional[str] = None
+    schedule_status: Optional[str] = None
+    participant_names: Optional[List[str]] = []
 
     def validate_external(self):
         if self.meeting_type == MeetingType.EXTERNAL and not self.external_link:
@@ -87,6 +93,11 @@ class MeetingRead(BaseModel):
     ai_transcription: Optional[bool] = False
     ai_translation: Optional[bool] = False
     ai_recording: Optional[bool] = False
+    # Scheduling fields
+    reminder_10m: Optional[bool] = False
+    reminder_at_time: Optional[bool] = False
+    calendar_event_id: Optional[str] = None
+    schedule_status: Optional[str] = None
     participants: List[ParticipantRead] = []
     recordings: List[RecordingRead] = []
     created_at: Optional[datetime] = None

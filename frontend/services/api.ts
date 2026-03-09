@@ -158,6 +158,10 @@ export async function getMeetingDetail(meetingId: string | number): Promise<Meet
   return apiFetch<MeetingDetail>(`/dashboard/meetings/${meetingId}/detail`);
 }
 
+export async function getUpcomingMeetings(): Promise<Meeting[]> {
+  return apiFetch<Meeting[]>('/meetings/upcoming');
+}
+
 // =============================================================================
 // Meetings API
 // =============================================================================
@@ -415,6 +419,7 @@ export const apiService = {
   getSummaryForMeeting,
   getExtractionsForMeeting,
   getAllExtractions,
+  getUpcomingMeetings,
   uploadAudio,
   deleteAudio,
   createConsent,

@@ -37,10 +37,23 @@ async def create_meeting(payload: MeetingCreate, db: AsyncSession = Depends(get_
         ai_transcription=bool(payload.ai_transcription),
         ai_translation=bool(payload.ai_translation),
         ai_recording=bool(payload.ai_recording),
+        reminder_10m=bool(payload.reminder_10m) if payload.reminder_10m else False,
+        reminder_at_time=bool(payload.reminder_at_time) if payload.reminder_at_time else False,
+        calendar_event_id=payload.calendar_event_id,
+        schedule_status=payload.schedule_status or ("upcoming" if payload.start_time else None),
     )
     db.add(meeting)
     await db.commit()
     await db.refresh(meeting)
+
+    # Add participant names as participants
+    if payload.participant_names:
+        for name in payload.participant_names:
+            p = Participant(meeting_id=meeting.id, email="", display_name=name)
+            db.add(p)
+        await db.commit()
+        await db.refresh(meeting)
+
     return meeting
 
 
@@ -65,6 +78,34 @@ async def list_meetings(org_id: str, db: AsyncSession = Depends(get_db), current
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not a member of the organization")
     q2 = await db.execute(select(Meeting).filter_by(organization_id=org_id))
     meetings = q2.scalars().all()
+    return meetings
+
+
+@router.get("/upcoming", response_model=List[MeetingRead])
+async def list_upcoming_meetings(db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+    """List upcoming scheduled meetings for the current user."""
+    from sqlalchemy import or_, desc
+    from sqlalchemy.orm import selectinload
+
+    q = await db.execute(
+        select(Meeting).distinct()
+        .outerjoin(Participant, Meeting.participants)
+        .outerjoin(UserOrganization, Meeting.organization_id == UserOrganization.organization_id)
+        .filter(
+            Meeting.schedule_status.isnot(None),
+            or_(
+                Meeting.organizer_id == current_user.id,
+                Participant.email == current_user.email,
+                UserOrganization.user_id == current_user.id
+            )
+        )
+        .options(
+            selectinload(Meeting.participants),
+            selectinload(Meeting.recordings),
+        )
+        .order_by(desc(Meeting.start_time))
+    )
+    meetings = q.scalars().unique().all()
     return meetings
 
 

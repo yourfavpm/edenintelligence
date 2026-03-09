@@ -42,6 +42,11 @@ class Meeting(Base):
     ai_transcription = Column(Boolean, default=False)
     ai_translation = Column(Boolean, default=False)
     ai_recording = Column(Boolean, default=False)
+    # Scheduling fields
+    reminder_10m = Column(Boolean, default=False)
+    reminder_at_time = Column(Boolean, default=False)
+    calendar_event_id = Column(String, nullable=True)
+    schedule_status = Column(String, nullable=True, default=None)  # upcoming|ready|in_progress|completed|missed
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     participants = relationship("Participant", back_populates="meeting", cascade="all, delete-orphan")
     recordings = relationship("Recording", back_populates="meeting", cascade="all, delete-orphan")

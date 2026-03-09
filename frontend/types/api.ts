@@ -66,9 +66,14 @@ export interface Meeting {
   ai_transcription: boolean;
   ai_translation: boolean;
   ai_recording: boolean;
+  // Scheduling fields
+  reminder_10m?: boolean;
+  reminder_at_time?: boolean;
+  calendar_event_id?: string | null;
+  schedule_status?: string | null;
   participants: Participant[];
   recordings: Recording[];
-  audio_files?: AudioIngestRead[];  // Optional for backwards compatibility
+  audio_files?: AudioIngestRead[];
   created_at: string | null;
 }
 
@@ -84,6 +89,12 @@ export interface MeetingCreate {
   ai_transcription?: boolean;
   ai_translation?: boolean;
   ai_recording?: boolean;
+  // Scheduling fields
+  reminder_10m?: boolean;
+  reminder_at_time?: boolean;
+  calendar_event_id?: string;
+  schedule_status?: string;
+  participant_names?: string[];
 }
 
 export interface MeetingUpdate {

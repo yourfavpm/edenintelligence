@@ -30,6 +30,7 @@ export const sidebarSections: NavSection[] = [
     items: [
       { href: '/dashboard', label: 'Dashboard', icon: <LayoutDashboard size={18} /> },
       { href: '/meetings', label: 'Meetings', icon: <Calendar size={18} /> },
+      { href: '/upcoming-meetings', label: 'Upcoming Meetings', icon: <Calendar size={18} /> },
       { href: '/action-items', label: 'Action Items', icon: <ListTodo size={18} /> },
     ],
   },

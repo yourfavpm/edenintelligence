@@ -126,40 +126,46 @@ def classify_intents(statements: List[NormalizedStatement]) -> List[IntentClassi
 
 def extract_from_segments(segments: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
-    Main entry point for the 5-Layer Accuracy Architecture.
-    Uses LLM for structured extraction of actions, decisions, and risks.
+    Main entry point for the Extraction Architecture.
+    Passes the full context to the LLM for accurate extraction of actions, decisions, and risks.
     """
     # Layer 2: Normalization
     normalized = normalize_statements(segments)
     
-    # Layer 3: Intent Classification
-    intents = classify_intents(normalized)
-    
-    # Filter statements that are likely interesting
-    interesting_statements = []
-    intent_map = {ic.segment_id: ic.intent for ic in intents}
-    for s in normalized:
-        intent = intent_map.get(s.original_segment_id)
-        if intent in ["ACTION_ASSIGNMENT", "DECISION", "RISK", "PROPOSAL", "MITIGATION"]:
-            interesting_statements.append({"id": s.original_segment_id, "text": s.normalized_text, "intent": intent})
+    # We pass the full meeting context. We bypass intent filtering (Layer 3) 
+    # to avoid dropping passively phrased tasks or implicit decisions.
+    statements_data = [{"id": s.original_segment_id, "text": s.normalized_text} for s in normalized]
 
-    if not interesting_statements:
+    if not statements_data:
         return ExtractionResult(summary="No significant items found.", status="complete").model_dump()
 
-    # Layer 4: Extraction based on Intents
+    # Layer 4: Extraction
     prompt = f"""
-    Extract Action Items, Decisions, and Risks from the following classified segments.
+    Based on the following meeting transcript segments, extract all Action Items, Decisions, and Risks.
+    Pay close attention to implied tasks, team-level directives, and passively phrased assignments.
     
     Segments:
-    {json.dumps(interesting_statements)}
+    {json.dumps(statements_data)}
     
-    For each Action Item, identify the 'owner' (person), 'task', and 'source_segments' (list of IDs).
-    For each Decision, identify the 'decision' text, 'approved_by' (list of names), and 'evidence_segments' (list of IDs).
-    For each Risk, identify the 'risk' text, 'impact', and 'evidence_segment' (ID).
+    For each Action Item, identify:
+    - 'owner' (person name, or "Unassigned" / "Team" if not explicitly named)
+    - 'task' (the actual work to be done)
+    - 'deadline' (if mentioned, otherwise null)
+    - 'source_segments' (list of IDs where this was discussed)
     
-    Return a JSON object matching the ExtractionResult schema.
+    For each Decision, identify:
+    - 'decision' (what was decided)
+    - 'approved_by' (list of names, or empty if general consensus)
+    - 'evidence_segments' (list of IDs providing evidence)
+    
+    For each Risk, identify:
+    - 'risk' (the potential issue)
+    - 'impact' (the consequence)
+    - 'evidence_segment' (ID)
+    
+    Return a JSON object matching the ExtractionResult schema containing 'actions', 'decisions', and 'risks'.
     """
-    system_prompt = "You are an expert meeting minute taker. Extract structured data with high precision."
+    system_prompt = "You are an expert meeting minute analyst. Read comprehensively and extract implicit and explicit action items, key decisions, and risks."
     
     response_text = _call_llm(prompt, system_prompt)
     try:
@@ -168,8 +174,8 @@ def extract_from_segments(segments: List[Dict[str, Any]]) -> Dict[str, Any]:
         # Validation Layer 5: Pydantic handles basic type validation
         result = ExtractionResult(**data)
         
-        # Additional custom validation Rule: No action without owner
-        result.actions = [a for a in result.actions if a.owner and a.owner.lower() != "unknown" and a.owner.lower() != "none"]
+        # Note: We intentionally do NOT delete actions with "unknown" owners anymore,
+        # allowing unassigned tasks to be properly drafted.
         
         return result.model_dump()
     except Exception as e:

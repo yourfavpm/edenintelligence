@@ -121,7 +121,7 @@ export default function MeetingDetailPage() {
           <main className="flex-1 bg-white max-w-[1200px] mx-auto w-full">
             {/* Universal Tab Layout */}
             <div className="flex flex-col">
-              <div className="flex border-b border-[#E5E7EB] bg-white sticky top-[73px] z-10 overflow-x-auto no-scrollbar pt-2 px-6">
+              <div className="flex border-b border-[#E5E7EB] bg-white overflow-x-auto no-scrollbar pt-2 px-6">
                 {[
                   { id: 'transcript', label: 'Transcript', icon: <MessageSquare size={14} /> },
                   { id: 'summary', label: 'Intelligence', icon: <BookOpen size={14} /> },

@@ -34,6 +34,14 @@ module.exports = {
           border: '#E5E7EB',
           navy: '#0F172A',
         },
+        // Eden Intelligence Brand Palette
+        eden: {
+          primary: '#0A1B3D', // Deep Blue
+          accent: '#6C63FF',  // Royal Purple
+          soft: '#A5A0FF',    // Lavender
+          bg: '#F7F8FB',      // Soft neutral
+          text: '#1F2937',    // Dark Slate
+        },
         // Neutral grays for backgrounds and text
         neutral: {
           25: '#fcfcfd',

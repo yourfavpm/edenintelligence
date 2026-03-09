@@ -18,7 +18,7 @@ interface TableProps<T> {
   columns: Column<T>[];
   data: T[];
   loading?: boolean;
-  emptyMessage?: string;
+  emptyMessage?: React.ReactNode;
   onRowClick?: (item: T) => void;
   hoverable?: boolean;
 }

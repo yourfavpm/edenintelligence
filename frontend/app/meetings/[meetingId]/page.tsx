@@ -68,7 +68,7 @@ export default function MeetingDetailPage() {
   return (
     <ProtectedRoute>
       <Layout>
-        <div className="flex flex-col h-[calc(100vh-100px)] -m-6 md:-m-8">
+        <div className="flex flex-col min-h-[calc(100vh-100px)] -m-6 md:-m-8 bg-white">
           {/* Zone 1: Page Header */}
           <header className="bg-white border-b border-[#E5E7EB] px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4 shrink-0">
             <div className="flex items-center gap-4">
@@ -106,7 +106,7 @@ export default function MeetingDetailPage() {
 
           {/* Zone 2: Audio Player (Sticky below header) */}
           {displayAudio && (
-            <div className="bg-[#F7F8FB] px-6 py-4 border-b border-[#E5E7EB] shrink-0">
+            <div className="sticky top-0 z-20 bg-[#F7F8FB] px-6 py-4 border-b border-[#E5E7EB] shrink-0">
                <div className="max-w-[1200px] mx-auto w-full">
                 <AudioPlayer 
                   audioId={displayAudio.id} 
@@ -118,9 +118,9 @@ export default function MeetingDetailPage() {
           )}
 
           {/* Zone 3: Intelligence Workspace */}
-          <main className="flex-1 overflow-hidden bg-white">
+          <main className="flex-1 bg-white">
             {/* Desktop 3-Column Layout */}
-            <div className="hidden xl:grid grid-cols-3 h-full divide-x divide-[#F1F5F9]">
+            <div className="hidden xl:grid grid-cols-3 divide-x divide-[#F1F5F9]">
               {/* Column 1: Transcript */}
               <div className="flex flex-col min-w-0">
                 <div className="p-5 border-b border-[#F1F5F9] bg-[#F7F8FB]/30 flex items-center justify-between">
@@ -129,7 +129,7 @@ export default function MeetingDetailPage() {
                     Transcript
                   </h2>
                 </div>
-                <div className="flex-1 overflow-hidden">
+                <div className="flex-1 pb-10">
                   <TranscriptTab 
                     meeting={meeting} 
                     currentTime={currentTime} 
@@ -152,7 +152,7 @@ export default function MeetingDetailPage() {
                     Meeting Intelligence
                   </h2>
                 </div>
-                <div className="flex-1 overflow-hidden">
+                <div className="flex-1 pb-10">
                   <SummaryTab meeting={meeting} />
                 </div>
               </div>
@@ -165,15 +165,15 @@ export default function MeetingDetailPage() {
                     Actionable Insights
                   </h2>
                 </div>
-                <div className="flex-1 overflow-hidden">
+                <div className="flex-1 pb-10">
                   <ActionItemsTab meeting={meeting} />
                 </div>
               </div>
             </div>
 
             {/* Tablet/Mobile Tab Layout */}
-            <div className="xl:hidden flex flex-col h-full">
-              <div className="flex border-b border-[#F1F5F9] sticky top-0 bg-white z-10 overflow-x-auto no-scrollbar">
+            <div className="xl:hidden flex flex-col">
+              <div className="flex border-b border-[#F1F5F9] sticky top-[92px] sm:top-[100px] bg-white z-10 overflow-x-auto no-scrollbar shadow-sm">
                 {[
                   { id: 'transcript', label: 'Transcript', icon: <MessageSquare size={14} /> },
                   { id: 'summary', label: 'Intelligence', icon: <BookOpen size={14} /> },
@@ -193,7 +193,7 @@ export default function MeetingDetailPage() {
                   </button>
                 ))}
               </div>
-              <div className="flex-1 overflow-y-auto">
+              <div className="flex-1 pb-10">
                 {activeTab === 'transcript' && (
                   <TranscriptTab 
                     meeting={meeting} 

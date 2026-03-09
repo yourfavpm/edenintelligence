@@ -67,8 +67,8 @@ export default function SignupPage() {
 
   return (
     <AuthLayout
-      title="Create account"
-      subtitle="Start your 14-day free trial today."
+      title="Create your account."
+      subtitle="Start turning conversations into insights."
     >
       <form onSubmit={handleSubmit} className="space-y-5">
         <Input
@@ -114,12 +114,31 @@ export default function SignupPage() {
             }
           />
 
-          <div className="grid grid-cols-2 gap-x-4 gap-y-2 px-1">
+          <p className="text-[13px] text-neutral-500 font-medium pb-2">Minimum 8 characters.</p>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-2 px-1 bg-[#F7F8FB] p-3 rounded-xl border border-[#E5E7EB]">
             <ValidationItem label="8+ Characters" met={passwordStatus.length} />
             <ValidationItem label="Uppercase" met={passwordStatus.uppercase} />
             <ValidationItem label="Lowercase" met={passwordStatus.lowercase} />
             <ValidationItem label="Number" met={passwordStatus.number} />
             <ValidationItem label="Special Char" met={passwordStatus.special} />
+          </div>
+        </div>
+        
+        {/* Terms Agreement */}
+        <div className="flex items-start gap-3 mt-4">
+          <div className="flex items-center h-5 mt-0.5">
+            <input
+              id="terms"
+              name="terms"
+              type="checkbox"
+              required
+              className="h-[18px] w-[18px] rounded-[6px] border-[#E5E7EB] text-[#6C63FF] focus:ring-[#6C63FF]/30 transition-colors cursor-pointer"
+            />
+          </div>
+          <div className="text-[14px] text-neutral-600 font-medium pb-2">
+            <label htmlFor="terms" className="cursor-pointer">
+              I agree to the <Link href="#" className="text-[#6C63FF] hover:underline">Terms</Link> and <Link href="#" className="text-[#6C63FF] hover:underline">Privacy Policy</Link>.
+            </label>
           </div>
         </div>
 
@@ -138,11 +157,11 @@ export default function SignupPage() {
 
       <div className="relative my-8">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-neutral-200"></div>
+          <div className="w-full border-t border-[#E5E7EB]"></div>
         </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-neutral-50 lg:bg-white px-2 text-neutral-400">
-            Or continue with
+        <div className="relative flex justify-center text-[13px] uppercase font-bold tracking-wider">
+          <span className="bg-white px-3 text-neutral-400">
+            or
           </span>
         </div>
       </div>
@@ -174,17 +193,11 @@ export default function SignupPage() {
         Sign up with Google
       </Button>
 
-      <p className="mt-8 text-center text-sm text-neutral-500 font-normal">
+      <p className="mt-8 text-center text-[14px] text-neutral-500 font-medium">
         Already have an account?{' '}
-        <Link href="/auth/login" className="text-primary-600 hover:text-primary-700 font-medium">
+        <Link href="/auth/login" className="text-[#6C63FF] hover:text-[#5A52D5] font-semibold transition-colors">
           Sign in
         </Link>
-      </p>
-
-      <p className="mt-6 text-center text-[11px] text-neutral-400 font-normal leading-relaxed">
-        By creating an account, you agree to our{' '}
-        <Link href="/terms" className="underline hover:text-neutral-600 transition-colors">Terms of Service</Link> and{' '}
-        <Link href="/privacy" className="underline hover:text-neutral-600 transition-colors">Privacy Policy</Link>.
       </p>
     </AuthLayout>
   );

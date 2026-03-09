@@ -115,8 +115,8 @@ export default function ResetPasswordPage() {
                     </div>
                 )}
 
-                <Button type="submit" block loading={loading}>
-                    Reset password
+                <Button type="submit" block loading={loading} className="mt-2 text-sm">
+                    Update password
                 </Button>
             </form>
         </AuthLayout>

@@ -246,8 +246,8 @@ export default function MeetingsListPage() {
                               </span>
                             </td>
                             <td className="px-6 py-4 align-top text-right">
-                              <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <button className="p-1.5 text-neutral-400 hover:text-[#6C63FF] hover:bg-indigo-50 rounded-lg transition-colors" title="Open Meeting">
+                              <div className="flex items-center justify-end gap-2 text-neutral-400">
+                                <button className="p-1.5 hover:text-[#6C63FF] hover:bg-indigo-50 rounded-lg transition-colors" title="Open Meeting">
                                   <ExternalLink size={18} />
                                 </button>
                                 <button 

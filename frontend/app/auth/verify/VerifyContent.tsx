@@ -65,9 +65,9 @@ export function VerifyContent() {
 
     if (status === 'success') {
         return (
-            <AuthLayout title="Email verified" subtitle="Redirecting you to sign in...">
-                <div className="p-4 bg-success-50 border border-success-100 rounded-lg text-center mb-8">
-                    <p className="text-sm text-success-700 font-medium">{message}</p>
+            <AuthLayout title="Verify your email." subtitle="Redirecting you to sign in...">
+                <div className="p-4 bg-emerald-50 border border-emerald-100 rounded-lg text-center mb-8">
+                    <p className="text-[14px] text-emerald-700 font-medium">{message}</p>
                 </div>
                 <Button onClick={() => router.push('/auth/login')} block>
                     Sign in now
@@ -78,7 +78,7 @@ export function VerifyContent() {
 
     return (
         <AuthLayout
-            title="Check your email"
+            title="Check your email."
             subtitle={`We've sent a verification link to ${email}.`}
         >
             <div className="space-y-8">
@@ -96,7 +96,7 @@ export function VerifyContent() {
                     </div>
                 )}
 
-                <div className="space-y-4">
+                <div className="space-y-4 pt-2">
                     <Button
                         variant="secondary"
                         block
@@ -105,11 +105,12 @@ export function VerifyContent() {
                     >
                         Resend verification email
                     </Button>
-                    <div className="text-center">
+                    <div className="text-center mt-2">
                         <Link
                             href="/auth/login"
-                            className="text-sm text-neutral-500 hover:text-neutral-700 font-medium transition-colors"
+                            className="text-[14px] text-[#6C63FF] hover:text-[#5A52D5] font-semibold transition-colors flex items-center justify-center gap-1.5"
                         >
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
                             Back to sign in
                         </Link>
                     </div>

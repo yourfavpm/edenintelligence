@@ -40,19 +40,22 @@ export default function ForgotPasswordPage() {
                         Please check your inbox and follow the instructions to reset your password.
                     </p>
                 </div>
-                <Link href="/auth/login" className="block">
-                    <Button variant="secondary" block>
+                <div className="mt-6 text-center">
+                    <Link
+                        href="/auth/login"
+                        className="text-[14px] text-[#6C63FF] hover:text-[#5A52D5] font-semibold transition-colors"
+                    >
                         Back to sign in
-                    </Button>
-                </Link>
+                    </Link>
+                </div>
             </AuthLayout>
         );
     }
 
     return (
         <AuthLayout
-            title="Forgot password?"
-            subtitle="Enter your email and we'll send you a reset link."
+            title="Reset your password."
+            subtitle="Enter your email and we'll send a password reset link."
         >
             <form onSubmit={handleSubmit} className="space-y-6">
                 <Input
@@ -76,11 +79,12 @@ export default function ForgotPasswordPage() {
                     Send reset link
                 </Button>
 
-                <div className="text-center">
+                <div className="text-center mt-6">
                     <Link
                         href="/auth/login"
-                        className="text-sm text-primary-600 hover:text-primary-700 font-medium transition-colors"
+                        className="text-[14px] text-[#6C63FF] hover:text-[#5A52D5] font-semibold transition-colors flex items-center justify-center gap-1.5"
                     >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
                         Back to sign in
                     </Link>
                 </div>

@@ -58,8 +58,8 @@ export default function LoginPage() {
 
   return (
     <AuthLayout
-      title="Sign in"
-      subtitle="Welcome back. Please enter your details."
+      title="Welcome back"
+      subtitle="Sign in to continue to Eden Intelligence."
     >
       {isSignupSuccess && (
         <div className="mb-6 p-4 bg-success-50 border border-success-100 rounded-xl">
@@ -105,7 +105,7 @@ export default function LoginPage() {
           <div className="flex justify-end">
             <Link
               href="/auth/forgot-password"
-              className="text-xs text-primary-600 hover:text-primary-700 font-medium"
+              className="text-[13px] text-[#6C63FF] hover:text-[#5A52D5] font-semibold transition-colors"
             >
               Forgot password?
             </Link>
@@ -127,11 +127,11 @@ export default function LoginPage() {
 
       <div className="relative my-8">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-neutral-200"></div>
+          <div className="w-full border-t border-[#E5E7EB]"></div>
         </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-neutral-50 lg:bg-white px-2 text-neutral-400">
-            Or continue with
+        <div className="relative flex justify-center text-[13px] uppercase font-bold tracking-wider">
+          <span className="bg-white px-3 text-neutral-400">
+            or
           </span>
         </div>
       </div>
@@ -163,9 +163,9 @@ export default function LoginPage() {
         Sign in with Google
       </Button>
 
-      <p className="mt-8 text-center text-sm text-neutral-500 font-normal">
+      <p className="mt-8 text-center text-[14px] text-neutral-500 font-medium">
         Don&apos;t have an account?{' '}
-        <Link href="/auth/signup" className="text-primary-600 hover:text-primary-700 font-medium">
+        <Link href="/auth/signup" className="text-[#6C63FF] hover:text-[#5A52D5] font-semibold transition-colors">
           Create an account
         </Link>
       </p>

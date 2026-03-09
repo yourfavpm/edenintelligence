@@ -29,7 +29,7 @@ export function Input({
             {label && (
                 <label
                     htmlFor={inputId}
-                    className="block text-sm font-medium text-neutral-700 mb-1.5"
+                    className="block text-[14px] font-medium text-[#1F2937] mb-2"
                 >
                     {label}
                 </label>
@@ -38,12 +38,12 @@ export function Input({
                 <input
                     id={inputId}
                     className={`
-            block w-full px-3 py-2 text-sm bg-white border rounded-lg shadow-sm transition-all duration-200
-            placeholder:text-neutral-400 focus:outline-none focus:ring-2
+            block w-full h-[44px] px-4 text-[15px] bg-white border border-[#E5E7EB] rounded-[10px] shadow-sm transition-all duration-200
+            placeholder:text-neutral-400 focus:outline-none focus:ring-4
             ${rightElement ? 'pr-10' : ''}
             ${error
                             ? 'border-error-300 text-error-900 focus:ring-error-100 placeholder:text-error-300'
-                            : 'border-neutral-300 text-neutral-900 focus:ring-primary-100 focus:border-primary-500'
+                            : 'text-neutral-900 focus:ring-[#6C63FF]/20 focus:border-[#6C63FF]'
                         }
             disabled:bg-neutral-50 disabled:text-neutral-500 disabled:cursor-not-allowed
             ${className}

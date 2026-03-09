@@ -160,7 +160,7 @@ export default function MeetingDetailPage() {
               {/* Column 3: Actionable Insights */}
               <div className="flex flex-col min-w-0">
                 <div className="p-5 border-b border-[#F1F5F9] bg-[#F7F8FB]/30 flex items-center justify-between">
-                  <h2 className="text-[14px] font-bold text-[#0A1B3D] flex items-center gap-2 text-emerald-600">
+                  <h2 className="text-[14px] font-bold flex items-center gap-2 text-emerald-600">
                     <CheckSquare size={16} />
                     Actionable Insights
                   </h2>

@@ -2,9 +2,10 @@
 
 import React from 'react';
 import { MeetingDetail } from '../../types/api';
+import { Sparkles, User, Tag, ChevronRight } from 'lucide-react';
 
 // =============================================================================
-// Action Items Tab Component
+// Action Items Tab Component - Eden Intelligence
 // =============================================================================
 
 interface ActionItemsTabProps {
@@ -24,58 +25,57 @@ export default function ActionItemsTab({ meeting }: ActionItemsTabProps) {
 
     if (allItems.length === 0) {
         return (
-            <div className="py-12 text-center text-neutral-500">
-                <svg className="w-12 h-12 mx-auto mb-4 text-neutral-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                </svg>
-                <p className="text-lg font-medium">No action items found.</p>
-                <p className="text-sm">The AI will extract tasks and follow-ups once processing is complete.</p>
+            <div className="py-20 text-center flex flex-col items-center">
+                <div className="w-16 h-16 bg-neutral-50 rounded-2xl flex items-center justify-center mb-6 border border-neutral-100 text-neutral-300">
+                    <Sparkles size={32} />
+                </div>
+                <p className="text-[16px] font-bold text-[#0A1B3D]">No action items found</p>
+                <p className="text-[13px] text-neutral-500 mt-2 max-w-[240px]">AI will extract tasks and follow-ups once processing is complete.</p>
             </div>
         );
     }
 
     return (
-        <div className="space-y-4 animate-fade-in">
-
-            <div className="space-y-4">
+        <div className="p-6 space-y-4 animate-fade-in custom-scrollbar overflow-y-auto h-full">
+            <div className="space-y-3">
                 {allItems.map((item) => (
                     <div
                         key={item.id}
-                        className="flex items-start gap-3 p-4 bg-white border border-neutral-100 rounded-xl hover:border-[#4F46E5]/30 transition-all hover:shadow-sm group"
+                        className="flex items-start gap-4 p-5 bg-white border border-[#E5E7EB] rounded-xl hover:border-[#6C63FF]/30 transition-all hover:shadow-md group cursor-default"
                     >
-                        <div className="mt-1">
-                            <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 group-hover:bg-opacity-50 transition-colors cursor-pointer ${item.decision ? 'border-indigo-500 hover:bg-indigo-50' : 'border-primary-500 hover:bg-primary-50'}`}>
-                                {/* Mock checkbox */}
-                            </div>
+                        <div className="mt-1 flex-shrink-0">
+                            <input 
+                                type="checkbox" 
+                                className="w-5 h-5 rounded border-[#E5E7EB] text-[#6C63FF] focus:ring-[#6C63FF] cursor-pointer" 
+                            />
                         </div>
 
                         <div className="flex-1 min-w-0">
-                            <p className="text-[13.5px] text-neutral-800 leading-snug font-medium group-hover:text-black transition-colors">
+                            <p className="text-[14px] text-[#1F2937] leading-relaxed font-medium group-hover:text-black transition-colors">
                                 {item.text}
                             </p>
 
-                            <div className="flex flex-wrap items-center gap-4">
-                                <div className={`flex items-center gap-1.5 px-2.5 py-1 border rounded-lg text-[11px] font-bold uppercase tracking-wider shadow-xs ${item.decision ? 'bg-indigo-50 border-indigo-100 text-indigo-700' : 'bg-white border-neutral-200 text-neutral-500'}`}>
-                                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                                    </svg>
-                                    {item.decision ? 'Decision' : 'Action Item'}
+                            <div className="flex flex-wrap items-center gap-4 mt-3">
+                                <div className={`flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${item.decision ? 'bg-indigo-50 text-indigo-700' : 'bg-[#6C63FF]/10 text-[#6C63FF]'}`}>
+                                    <Tag size={10} />
+                                    {item.decision ? 'Decision' : 'Action'}
                                 </div>
 
-                                <span className="text-[11px] text-neutral-400 flex items-center gap-1">
-                                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                    </svg>
-                                    Assignee: {item.owner || 'AI Identified'}
-                                </span>
+                                <div className="flex items-center gap-2 text-[11px] text-neutral-400 font-medium">
+                                    <User size={12} />
+                                    <span>{item.owner || 'Self'}</span>
+                                </div>
+                                
+                                <div className="flex items-center gap-2 text-[11px] text-amber-500 font-medium">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                                    Pending
+                                </div>
                             </div>
                         </div>
 
-                        <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button className="p-2 text-neutral-400 hover:text-primary-600">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                </svg>
+                        <div className="opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">
+                            <button className="p-1 text-neutral-300 hover:text-[#6C63FF] transition-colors">
+                                <ChevronRight size={18} />
                             </button>
                         </div>
                     </div>

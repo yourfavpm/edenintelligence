@@ -3,75 +3,108 @@
 import React, { useState } from 'react';
 import { MeetingDetail, TranscriptSegment } from '../../types/api';
 import { TranscriptSkeleton } from '../Skeletons';
+import { Search, User, Clock } from 'lucide-react';
 
 // =============================================================================
-// Transcript Tab Component
+// Transcript Tab Component - Eden Intelligence
 // =============================================================================
 
 interface TranscriptTabProps {
     meeting: MeetingDetail;
+    currentTime?: number;
+    onSeek?: (time: number) => void;
 }
 
-export default function TranscriptTab({ meeting }: TranscriptTabProps) {
-    const [showTranslated, setShowTranslated] = useState(false);
+export default function TranscriptTab({ meeting, currentTime, onSeek }: TranscriptTabProps) {
+    const [searchQuery, setSearchQuery] = useState('');
+    const [autoScroll, setAutoScroll] = useState(true);
 
     const transcript = meeting.transcripts?.[0];
-    const translation: any = null; // Translations fetched separately if needed
 
     if (!transcript) {
         return (
-            <div className="py-12 text-center text-neutral-500">
-                <svg className="w-12 h-12 mx-auto mb-4 text-neutral-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                </svg>
-                <p className="text-lg font-medium">No transcript available yet.</p>
-                <p className="text-sm">Transcription is currently in progress.</p>
-                <div className="max-w-md mx-auto mt-8">
+            <div className="py-20 text-center flex flex-col items-center">
+                <div className="w-16 h-16 bg-neutral-50 rounded-2xl flex items-center justify-center mb-6 border border-neutral-100 text-neutral-300">
+                    <Clock size={32} />
+                </div>
+                <p className="text-[16px] font-bold text-[#0A1B3D]">No transcript available</p>
+                <p className="text-[13px] text-neutral-500 mt-2 max-w-[240px]">Transcription is currently in progress. It will appear here shortly.</p>
+                <div className="w-full max-w-sm mt-10">
                     <TranscriptSkeleton />
                 </div>
             </div>
         );
     }
 
-    const segments = showTranslated && translation ? translation.segments : transcript.segments;
+    const segments = transcript.segments.filter(s => 
+        s.original_text.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (s as any).speaker_id?.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     return (
-        <div className="space-y-4 animate-fade-in">
-            {/* Search */}
-            <div className="relative pb-4 border-b border-[#F1F5F9]">
-                <svg className="w-3.5 h-3.5 absolute left-3 top-2.5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                <input
-                    type="text"
-                    placeholder="Search dialogue..."
-                    className="w-full pl-9 h-8 text-[12px] bg-neutral-50 border border-neutral-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#4F46E5]"
-                />
+        <div className="flex flex-col h-full animate-fade-in">
+            {/* Transcript Toolbar */}
+            <div className="p-4 border-b border-[#F1F5F9] flex items-center justify-between gap-4 bg-white/50 sticky top-0 z-10">
+                <div className="relative flex-1 max-w-[320px]">
+                    <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400" />
+                    <input
+                        type="text"
+                        placeholder="Search transcript..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full h-9 pl-10 pr-4 bg-[#F7F8FB] border border-[#E5E7EB] rounded-lg text-[13px] outline-none focus:border-[#6C63FF]/30 focus:ring-4 focus:ring-[#6C63FF]/5 transition-all"
+                    />
+                </div>
+                <div className="flex items-center gap-3">
+                    <span className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">Auto-scroll</span>
+                    <button 
+                        onClick={() => setAutoScroll(!autoScroll)}
+                        className={`w-9 h-5 rounded-full relative transition-colors ${autoScroll ? 'bg-[#6C63FF]' : 'bg-neutral-200'}`}
+                    >
+                        <div className={`absolute top-1 w-3 h-3 bg-white rounded-full transition-all ${autoScroll ? 'right-1' : 'left-1'}`} />
+                    </button>
+                </div>
             </div>
 
-            {/* Transcript Segments */}
-            <div className="space-y-6">
-                {Array.isArray(segments) ? segments.map((segment: TranscriptSegment, i: number) => (
-                    <div key={i} className="flex gap-4 group">
-                        {/* Speaker Avatar */}
-                        <div className="w-10 h-10 rounded-full bg-neutral-100 flex-shrink-0 flex items-center justify-center text-neutral-500 font-bold text-xs ring-2 ring-white shadow-sm">
-                            {(segment as any).speaker_id?.charAt(0) || '?'}
-                        </div>
+            {/* Transcript list */}
+            <div className="flex-1 overflow-y-auto p-6 space-y-10 custom-scrollbar">
+                {segments.length > 0 ? segments.map((segment: TranscriptSegment, i: number) => {
+                    const isActive = currentTime !== undefined && 
+                                   currentTime >= segment.start_time && 
+                                   (segments[i + 1] ? currentTime < segments[i + 1].start_time : true);
 
-                        {/* Content */}
-                        <div className="flex-1 space-y-0.5 min-w-0">
-                            <div className="flex items-center gap-2">
-                                <span className="font-bold text-[12px] text-neutral-900 truncate">{(segment as any).speaker_id || 'Unknown'}</span>
-                                <span className="text-[10px] text-neutral-400 font-mono italic">{formatTime(segment.start_time)}</span>
+                    return (
+                        <div 
+                            key={i} 
+                            className={`flex gap-5 group transition-all duration-300 rounded-xl p-3 -m-3 ${isActive ? 'bg-[#A5A0FF]/10 ring-1 ring-[#6C63FF]/20' : 'hover:bg-neutral-50'}`}
+                        >
+                            {/* Speaker Avatar */}
+                            <div className="flex-shrink-0">
+                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-neutral-100 to-neutral-200 flex items-center justify-center text-neutral-500 font-bold text-xs shadow-sm ring-2 ring-white">
+                                    {(segment as any).speaker_id?.charAt(0) || <User size={14} />}
+                                </div>
                             </div>
-                            <p className="text-neutral-700 leading-snug text-[13.5px] group-hover:text-black transition-colors">
-                                {showTranslated ? (segment as any).translated_text : segment.original_text}
-                            </p>
+
+                            {/* Content Block */}
+                            <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-3 mb-1.5">
+                                    <span className="font-bold text-[13px] text-[#0A1B3D]">{(segment as any).speaker_id || 'Speaker'}</span>
+                                    <button 
+                                        onClick={() => onSeek?.(segment.start_time)}
+                                        className="text-[11px] text-neutral-400 font-mono font-medium hover:text-[#6C63FF] hover:underline transition-colors px-1.5 py-0.5 rounded bg-neutral-100 ring-1 ring-neutral-200/50"
+                                    >
+                                        {formatTime(segment.start_time)}
+                                    </button>
+                                </div>
+                                <p className={`text-[14px] leading-relaxed transition-colors ${isActive ? 'text-[#0A1B3D] font-medium' : 'text-neutral-600 group-hover:text-black'}`}>
+                                    {segment.original_text}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                )) : (
-                    <div className="py-12 text-center text-neutral-500">
-                        <p>No segments found in this transcript.</p>
+                    );
+                }) : (
+                    <div className="py-20 text-center text-neutral-400">
+                        <p className="text-[13px]">No matches found for "{searchQuery}"</p>
                     </div>
                 )}
             </div>

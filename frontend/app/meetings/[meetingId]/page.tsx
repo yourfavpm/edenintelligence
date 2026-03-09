@@ -16,157 +16,204 @@ import TranscriptTab from '../../../components/meetings/TranscriptTab';
 import ActionItemsTab from '../../../components/meetings/ActionItemsTab';
 import AudioPlayer from '../../../components/AudioPlayer';
 
+import { 
+  ChevronLeft, 
+  Share2, 
+  Download, 
+  Calendar, 
+  Globe, 
+  MessageSquare, 
+  BookOpen, 
+  CheckSquare 
+} from 'lucide-react';
+
 // =============================================================================
-// Meeting Detail Page - 3-Panel Workspace View
+// Meeting Detail Page - Eden Intelligence Workspace
 // =============================================================================
 
 export default function MeetingDetailPage() {
-    const { meetingId } = useParams();
-    const router = useRouter();
-    const [meeting, setMeeting] = useState<MeetingDetail | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+  const { meetingId } = useParams();
+  const router = useRouter();
+  const [meeting, setMeeting] = useState<MeetingDetail | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<'transcript' | 'summary' | 'tasks'>('transcript');
+  const [currentTime, setCurrentTime] = useState(0);
 
-    useEffect(() => {
-        if (!meetingId) return;
+  useEffect(() => {
+    if (!meetingId) return;
 
-        const fetchDetail = async () => {
-            setLoading(true);
-            try {
-                const data = await apiService.getMeetingDetail(String(meetingId));
-                setMeeting(data);
-            } catch (err: any) {
-                console.error(err);
-                setError(err.message || 'Failed to load meeting details.');
-            } finally {
-                setLoading(false);
-            }
-        };
+    const fetchDetail = async () => {
+      setLoading(true);
+      try {
+        const data = await apiService.getMeetingDetail(String(meetingId));
+        setMeeting(data);
+      } catch (err: any) {
+        console.error(err);
+        setError(err.message || 'Failed to load meeting details.');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-        fetchDetail();
-    }, [meetingId]);
+    fetchDetail();
+  }, [meetingId]);
 
-    if (loading) {
-        return (
-            <ProtectedRoute>
-                <Layout>
-                    <MeetingDetailSkeleton />
-                </Layout>
-            </ProtectedRoute>
-        );
-    }
+  if (loading) return <ProtectedRoute><Layout><MeetingDetailSkeleton /></Layout></ProtectedRoute>;
+  if (error || !meeting) return <ProtectedRoute><Layout><div className="p-10 text-center"><div className="bg-red-50 border border-red-100 p-8 rounded-xl max-w-md mx-auto"><p className="text-red-600 font-medium mb-4">{error || 'Meeting not found.'}</p><Button onClick={() => router.push('/dashboard')}>Return to Dashboard</Button></div></div></Layout></ProtectedRoute>;
 
-    if (error || !meeting) {
-        return (
-            <ProtectedRoute>
-                <Layout>
-                    <div className="py-12 text-center">
-                        <div className="bg-red-50 border border-red-100 p-8 rounded-xl max-w-md mx-auto">
-                            <p className="text-red-600 font-medium mb-4">{error || 'Meeting not found.'}</p>
-                            <Button onClick={() => router.push('/meetings')}>Return to Directory</Button>
-                        </div>
-                    </div>
-                </Layout>
-            </ProtectedRoute>
-        );
-    }
+  const displayAudio = meeting?.audio_files?.[0] || meeting?.recordings?.[0];
+  const m = meeting.meeting;
 
-    const displayAudio = meeting?.audio_files?.[0] || meeting?.recordings?.[0];
-
-    return (
-        <ProtectedRoute>
-            <Layout>
-                <div className="h-[calc(100vh-130px)] flex flex-col gap-6 animate-fade-in">
-                    {/* Compact Workspace Header */}
-                    <div className="flex items-center justify-between px-2">
-                        <div className="flex items-center gap-4">
-                            <Link href="/meetings" className="p-2 text-neutral-400 hover:text-neutral-900 bg-white border border-[#E5E7EB] rounded-lg shadow-sm transition-all">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                                </svg>
-                            </Link>
-                            <div>
-                                <h1 className="text-[20px] font-bold text-neutral-900 tracking-tight leading-tight">{meeting.meeting.title}</h1>
-                                <div className="flex items-center gap-3 text-[11px] text-neutral-500 font-semibold uppercase tracking-wider mt-1">
-                                    <span>{new Date(meeting.meeting.start_time || meeting.meeting.created_at || '').toLocaleDateString()}</span>
-                                    <span>•</span>
-                                    <span>{meeting.meeting.meeting_type || 'General'}</span>
-                                    <span>•</span>
-                                    <StatusBadge status={meeting.meeting.ai_transcription ? "processed" : "processing"} />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Button variant="secondary" className="h-9 text-[13px] font-semibold border-[#E5E7EB]">
-                                <svg className="w-3.5 h-3.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                                </svg>
-                                Share
-                            </Button>
-                            <Button className="h-9 text-[13px] font-semibold bg-[#4F46E5] text-white">
-                                <svg className="w-3.5 h-3.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                                </svg>
-                                Export Data
-                            </Button>
-                        </div>
-                    </div>
-
-                    {/* Compact Audio Player */}
-                    {displayAudio && (
-                        <div className="bg-[#0F172A] rounded-xl p-4 shadow-sm border border-slate-800 flex items-center gap-6">
-                            <div className="p-2 bg-slate-800 rounded-lg text-[#CBD5F5]">
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                                </svg>
-                            </div>
-                            <div className="flex-1">
-                                <AudioPlayer audioId={displayAudio.id} filename={displayAudio.s3_key.split('/').pop()} />
-                            </div>
-                        </div>
-                    )}
-
-                    {/* 3-Panel Workspace Grid */}
-                    <div className="flex-1 grid grid-cols-1 xl:grid-cols-3 gap-6 overflow-hidden min-h-0">
-                        {/* Panel 1: Transcript */}
-                        <div className="bg-white rounded-xl border border-[#E5E7EB] shadow-sm flex flex-col overflow-hidden">
-                            <div className="px-4 py-3 border-b border-[#F1F5F9] bg-[#F8FAFC]/50 flex items-center justify-between">
-                                <h3 className="text-[11px] font-bold text-neutral-500 uppercase tracking-widest">Transcript</h3>
-                                <div className="flex items-center gap-2">
-                                    <span className="text-[10px] text-neutral-400 font-medium">Auto-scrolling</span>
-                                    <div className="w-6 h-3 bg-[#4F46E5] rounded-full relative">
-                                        <div className="absolute right-0.5 top-0.5 w-2 h-2 bg-white rounded-full" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flex-1 overflow-y-auto custom-scrollbar p-6">
-                                <TranscriptTab meeting={meeting} />
-                            </div>
-                        </div>
-
-                        {/* Panel 2: Summary */}
-                        <div className="bg-white rounded-xl border border-[#E5E7EB] shadow-sm flex flex-col overflow-hidden">
-                            <div className="px-4 py-3 border-b border-[#F1F5F9] bg-[#F8FAFC]/50">
-                                <h3 className="text-[11px] font-bold text-neutral-500 uppercase tracking-widest">Meeting Intelligence</h3>
-                            </div>
-                            <div className="flex-1 overflow-y-auto custom-scrollbar p-6">
-                                <SummaryTab meeting={meeting} />
-                            </div>
-                        </div>
-
-                        {/* Panel 3: Action Items */}
-                        <div className="bg-white rounded-xl border border-[#E5E7EB] shadow-sm flex flex-col overflow-hidden">
-                            <div className="px-4 py-3 border-b border-[#F1F5F9] bg-[#F8FAFC]/50 flex items-center justify-between">
-                                <h3 className="text-[11px] font-bold text-neutral-500 uppercase tracking-widest">Actionable Insights</h3>
-                                <button className="text-[10px] font-bold text-[#4F46E5] hover:underline uppercase">Sync with CRM</button>
-                            </div>
-                            <div className="flex-1 overflow-y-auto custom-scrollbar p-6">
-                                <ActionItemsTab meeting={meeting} />
-                            </div>
-                        </div>
-                    </div>
+  return (
+    <ProtectedRoute>
+      <Layout>
+        <div className="flex flex-col h-[calc(100vh-100px)] -m-6 md:-m-8">
+          {/* Zone 1: Page Header */}
+          <header className="bg-white border-b border-[#E5E7EB] px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4 shrink-0">
+            <div className="flex items-center gap-4">
+              <Link href="/meetings" className="p-2 hover:bg-[#F7F8FB] rounded-lg text-neutral-400 transition-colors border border-[#E5E7EB]">
+                <ChevronLeft size={20} />
+              </Link>
+              <div>
+                <h1 className="text-[18px] font-bold text-[#0A1B3D] leading-tight">{m.title}</h1>
+                <div className="flex flex-wrap items-center gap-3 mt-1 text-[11px] font-bold text-neutral-400 uppercase tracking-wider">
+                  <div className="flex items-center gap-1.5">
+                    <Calendar size={12} className="text-[#A5A0FF]" />
+                    {new Date(m.start_time || m.created_at || '').toLocaleDateString()}
+                  </div>
+                  <span className="w-1 h-1 rounded-full bg-neutral-300" />
+                  <div className="flex items-center gap-1.5">
+                    <Globe size={12} className="text-[#A5A0FF]" />
+                    {m.meeting_type || 'General'}
+                  </div>
+                  <span className="w-1 h-1 rounded-full bg-neutral-300" />
+                  <StatusBadge status={m.ai_transcription ? "processed" : "processing"} />
                 </div>
-            </Layout>
-        </ProtectedRoute>
-    );
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <button className="flex items-center gap-2 h-9 px-4 bg-white border border-[#E5E7EB] rounded-lg text-[13px] font-bold text-[#0A1B3D] hover:bg-[#F7F8FB] transition-colors">
+                <Share2 size={16} className="text-[#6C63FF]" />
+                Share
+              </button>
+              <button className="flex items-center gap-2 h-9 px-4 bg-[#6C63FF] text-white rounded-lg text-[13px] font-bold shadow-lg shadow-[#6C63FF]/20 hover:bg-[#A5A0FF] transition-colors">
+                <Download size={16} />
+                Export Data
+              </button>
+            </div>
+          </header>
+
+          {/* Zone 2: Audio Player (Sticky below header) */}
+          {displayAudio && (
+            <div className="bg-[#F7F8FB] px-6 py-4 border-b border-[#E5E7EB] shrink-0">
+               <div className="max-w-[1200px] mx-auto w-full">
+                <AudioPlayer 
+                  audioId={displayAudio.id} 
+                  filename={(displayAudio as any).s3_key?.split('/').pop() || (displayAudio as any).filename} 
+                  onTimeUpdate={setCurrentTime}
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Zone 3: Intelligence Workspace */}
+          <main className="flex-1 overflow-hidden bg-white">
+            {/* Desktop 3-Column Layout */}
+            <div className="hidden xl:grid grid-cols-3 h-full divide-x divide-[#F1F5F9]">
+              {/* Column 1: Transcript */}
+              <div className="flex flex-col min-w-0">
+                <div className="p-5 border-b border-[#F1F5F9] bg-[#F7F8FB]/30 flex items-center justify-between">
+                  <h2 className="text-[14px] font-bold text-[#0A1B3D] flex items-center gap-2">
+                    <MessageSquare size={16} className="text-[#6C63FF]" />
+                    Transcript
+                  </h2>
+                </div>
+                <div className="flex-1 overflow-hidden">
+                  <TranscriptTab 
+                    meeting={meeting} 
+                    currentTime={currentTime} 
+                    onSeek={(time) => {
+                      const audio = document.querySelector('audio') as HTMLAudioElement;
+                      if (audio) {
+                        audio.currentTime = time;
+                        audio.play();
+                      }
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Column 2: Intelligence */}
+              <div className="flex flex-col min-w-0">
+                <div className="p-5 border-b border-[#F1F5F9] bg-[#F7F8FB]/30 flex items-center justify-between">
+                  <h2 className="text-[14px] font-bold text-[#0A1B3D] flex items-center gap-2">
+                    <BookOpen size={16} className="text-[#6C63FF]" />
+                    Meeting Intelligence
+                  </h2>
+                </div>
+                <div className="flex-1 overflow-hidden">
+                  <SummaryTab meeting={meeting} />
+                </div>
+              </div>
+
+              {/* Column 3: Actionable Insights */}
+              <div className="flex flex-col min-w-0">
+                <div className="p-5 border-b border-[#F1F5F9] bg-[#F7F8FB]/30 flex items-center justify-between">
+                  <h2 className="text-[14px] font-bold text-[#0A1B3D] flex items-center gap-2 text-emerald-600">
+                    <CheckSquare size={16} />
+                    Actionable Insights
+                  </h2>
+                </div>
+                <div className="flex-1 overflow-hidden">
+                  <ActionItemsTab meeting={meeting} />
+                </div>
+              </div>
+            </div>
+
+            {/* Tablet/Mobile Tab Layout */}
+            <div className="xl:hidden flex flex-col h-full">
+              <div className="flex border-b border-[#F1F5F9] sticky top-0 bg-white z-10 overflow-x-auto no-scrollbar">
+                {[
+                  { id: 'transcript', label: 'Transcript', icon: <MessageSquare size={14} /> },
+                  { id: 'summary', label: 'Intelligence', icon: <BookOpen size={14} /> },
+                  { id: 'tasks', label: 'Action Items', icon: <CheckSquare size={14} /> }
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id as any)}
+                    className={`flex-1 min-w-[120px] flex items-center justify-center gap-2 py-4 text-[13px] font-bold transition-all border-b-2 ${
+                      activeTab === tab.id 
+                        ? 'border-[#6C63FF] text-[#6C63FF] bg-[#6C63FF]/5' 
+                        : 'border-transparent text-neutral-400 hover:text-neutral-600'
+                    }`}
+                  >
+                    {tab.icon}
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+              <div className="flex-1 overflow-y-auto">
+                {activeTab === 'transcript' && (
+                  <TranscriptTab 
+                    meeting={meeting} 
+                    currentTime={currentTime}
+                    onSeek={(time) => {
+                      const audio = document.querySelector('audio') as HTMLAudioElement;
+                      if (audio) {
+                        audio.currentTime = time;
+                        audio.play();
+                      }
+                    }}
+                  />
+                )}
+                {activeTab === 'summary' && <SummaryTab meeting={meeting} />}
+                {activeTab === 'tasks' && <ActionItemsTab meeting={meeting} />}
+              </div>
+            </div>
+          </main>
+        </div>
+      </Layout>
+    </ProtectedRoute>
+  );
 }

@@ -42,8 +42,8 @@ class RecordingRead(BaseModel):
 from enum import Enum as PyEnum
 
 class MeetingType(str, PyEnum):
-    NATIVE = "native"
-    EXTERNAL = "external"
+    NATIVE = "NATIVE"
+    EXTERNAL = "EXTERNAL"
 
 class MeetingCreate(BaseModel):
     title: str

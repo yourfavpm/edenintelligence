@@ -34,8 +34,8 @@ class Meeting(Base):
     organization_id = Column(UUID(as_uuid=True), ForeignKey("organizations.id"), nullable=True)
     # meeting type
     class MeetingType(Enum):
-        NATIVE = "native"
-        EXTERNAL = "external"
+        NATIVE = "NATIVE"
+        EXTERNAL = "EXTERNAL"
     meeting_type = Column(SQLEnum(MeetingType), default=MeetingType.NATIVE)
     external_link = Column(String, nullable=True)
     # AI feature toggles

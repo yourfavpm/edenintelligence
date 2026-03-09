@@ -104,9 +104,9 @@ export default function MeetingDetailPage() {
             </div>
           </header>
 
-          {/* Zone 2: Audio Player (Sticky below header) */}
+          {/* Zone 2: Audio Player (Inline) */}
           {displayAudio && (
-            <div className="sticky top-0 z-20 bg-[#F7F8FB] px-6 py-4 border-b border-[#E5E7EB] shrink-0">
+            <div className="bg-white px-6 py-6 border-b border-[#E5E7EB] shrink-0">
                <div className="max-w-[1200px] mx-auto w-full">
                 <AudioPlayer 
                   audioId={displayAudio.id} 
@@ -117,63 +117,11 @@ export default function MeetingDetailPage() {
             </div>
           )}
 
-          {/* Zone 3: Intelligence Workspace */}
-          <main className="flex-1 bg-white">
-            {/* Desktop 3-Column Layout */}
-            <div className="hidden xl:grid grid-cols-3 divide-x divide-[#F1F5F9]">
-              {/* Column 1: Transcript */}
-              <div className="flex flex-col min-w-0">
-                <div className="p-5 border-b border-[#F1F5F9] bg-[#F7F8FB]/30 flex items-center justify-between">
-                  <h2 className="text-[14px] font-bold text-[#0A1B3D] flex items-center gap-2">
-                    <MessageSquare size={16} className="text-[#6C63FF]" />
-                    Transcript
-                  </h2>
-                </div>
-                <div className="flex-1 pb-10">
-                  <TranscriptTab 
-                    meeting={meeting} 
-                    currentTime={currentTime} 
-                    onSeek={(time) => {
-                      const audio = document.querySelector('audio') as HTMLAudioElement;
-                      if (audio) {
-                        audio.currentTime = time;
-                        audio.play();
-                      }
-                    }}
-                  />
-                </div>
-              </div>
-
-              {/* Column 2: Intelligence */}
-              <div className="flex flex-col min-w-0">
-                <div className="p-5 border-b border-[#F1F5F9] bg-[#F7F8FB]/30 flex items-center justify-between">
-                  <h2 className="text-[14px] font-bold text-[#0A1B3D] flex items-center gap-2">
-                    <BookOpen size={16} className="text-[#6C63FF]" />
-                    Meeting Intelligence
-                  </h2>
-                </div>
-                <div className="flex-1 pb-10">
-                  <SummaryTab meeting={meeting} />
-                </div>
-              </div>
-
-              {/* Column 3: Actionable Insights */}
-              <div className="flex flex-col min-w-0">
-                <div className="p-5 border-b border-[#F1F5F9] bg-[#F7F8FB]/30 flex items-center justify-between">
-                  <h2 className="text-[14px] font-bold flex items-center gap-2 text-emerald-600">
-                    <CheckSquare size={16} />
-                    Actionable Insights
-                  </h2>
-                </div>
-                <div className="flex-1 pb-10">
-                  <ActionItemsTab meeting={meeting} />
-                </div>
-              </div>
-            </div>
-
-            {/* Tablet/Mobile Tab Layout */}
-            <div className="xl:hidden flex flex-col">
-              <div className="flex border-b border-[#F1F5F9] sticky top-[92px] sm:top-[100px] bg-white z-10 overflow-x-auto no-scrollbar shadow-sm">
+          {/* Zone 3: Intelligence Workspace (Universal Tab Layout) */}
+          <main className="flex-1 bg-white max-w-[1200px] mx-auto w-full">
+            {/* Universal Tab Layout */}
+            <div className="flex flex-col">
+              <div className="flex border-b border-[#E5E7EB] bg-white sticky top-[73px] z-10 overflow-x-auto no-scrollbar pt-2 px-6">
                 {[
                   { id: 'transcript', label: 'Transcript', icon: <MessageSquare size={14} /> },
                   { id: 'summary', label: 'Intelligence', icon: <BookOpen size={14} /> },
@@ -182,10 +130,10 @@ export default function MeetingDetailPage() {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id as any)}
-                    className={`flex-1 min-w-[120px] flex items-center justify-center gap-2 py-4 text-[13px] font-bold transition-all border-b-2 ${
+                    className={`flex items-center gap-2 py-3 px-6 text-[14px] font-bold transition-all border-b-[3px] -mb-[1px] whitespace-nowrap ${
                       activeTab === tab.id 
-                        ? 'border-[#6C63FF] text-[#6C63FF] bg-[#6C63FF]/5' 
-                        : 'border-transparent text-neutral-400 hover:text-neutral-600'
+                        ? 'border-[#6C63FF] text-[#1F2937]' 
+                        : 'border-transparent text-neutral-500 hover:text-neutral-700'
                     }`}
                   >
                     {tab.icon}
@@ -194,21 +142,23 @@ export default function MeetingDetailPage() {
                 ))}
               </div>
               <div className="flex-1 pb-10">
-                {activeTab === 'transcript' && (
-                  <TranscriptTab 
-                    meeting={meeting} 
-                    currentTime={currentTime}
-                    onSeek={(time) => {
-                      const audio = document.querySelector('audio') as HTMLAudioElement;
-                      if (audio) {
-                        audio.currentTime = time;
-                        audio.play();
-                      }
-                    }}
-                  />
-                )}
-                {activeTab === 'summary' && <SummaryTab meeting={meeting} />}
-                {activeTab === 'tasks' && <ActionItemsTab meeting={meeting} />}
+                  <div className="px-6">
+                      {activeTab === 'transcript' && (
+                        <TranscriptTab 
+                          meeting={meeting} 
+                          currentTime={currentTime}
+                          onSeek={(time) => {
+                            const audio = document.querySelector('audio') as HTMLAudioElement;
+                            if (audio) {
+                              audio.currentTime = time;
+                              audio.play();
+                            }
+                          }}
+                        />
+                      )}
+                      {activeTab === 'summary' && <SummaryTab meeting={meeting} />}
+                      {activeTab === 'tasks' && <ActionItemsTab meeting={meeting} />}
+                  </div>
               </div>
             </div>
           </main>

@@ -10,3 +10,4 @@ export { DropdownMenu } from './DropdownMenu';
 export { FileUpload } from './FileUpload';
 export { Button } from './Button';
 export { Input } from './Input';
+export * from './AILoader';

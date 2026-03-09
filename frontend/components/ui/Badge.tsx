@@ -15,17 +15,17 @@ interface BadgeProps {
 }
 
 const variantStyles: Record<BadgeVariant, string> = {
-    success: 'bg-success-100 text-success-700',
-    warning: 'bg-warning-100 text-warning-700',
-    error: 'bg-error-100 text-error-700',
-    neutral: 'bg-neutral-100 text-neutral-700',
-    primary: 'bg-primary-100 text-primary-700',
+    success: 'bg-status-success-bg text-status-success-text',
+    warning: 'bg-status-warning-bg text-status-warning-text',
+    error: 'bg-status-error-bg text-status-error-text',
+    neutral: 'bg-eden-bg text-eden-muted',
+    primary: 'bg-status-info-bg text-status-info-text',
 };
 
 export function Badge({ children, variant = 'neutral', className = '' }: BadgeProps) {
     return (
         <span
-            className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold ${variantStyles[variant]} ${className}`}
+            className={`inline-flex items-center justify-center px-2 py-1 rounded-pill text-[11px] font-medium uppercase tracking-widest min-w-[90px] ${variantStyles[variant]} ${className}`}
         >
             {children}
         </span>

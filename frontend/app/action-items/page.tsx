@@ -83,9 +83,9 @@ export default function ActionItemsPage() {
 
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case 'completed': return { label: 'Completed', color: 'bg-emerald-50 text-emerald-700 border-emerald-200' };
-      case 'in_progress': return { label: 'In Progress', color: 'bg-indigo-50 text-[#6C63FF] border-[#A5A0FF]/30' };
-      default: return { label: 'Pending', color: 'bg-[#F1F5F9] text-neutral-600 border-[#E5E7EB]' };
+      case 'completed': return { label: 'Completed', color: 'bg-status-success-bg text-status-success-text border-transparent' };
+      case 'in_progress': return { label: 'In Progress', color: 'bg-status-info-bg text-status-info-text border-transparent' };
+      default: return { label: 'Pending', color: 'bg-eden-bg text-eden-muted border-transparent' };
     }
   };
 
@@ -99,15 +99,15 @@ export default function ActionItemsPage() {
         <div className="max-w-[1200px] mx-auto flex flex-col h-full min-h-[calc(100vh-100px)]">
           
           {/* Page Header */}
-          <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-6 shrink-0">
+          <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-8 shrink-0">
             <div>
-              <h1 className="text-[22px] font-bold text-[#0A1B3D] tracking-tight">Action Items</h1>
-              <p className="text-[13px] text-neutral-500 font-medium mt-1">
+              <h1 className="text-[24px] font-medium text-eden-text tracking-tight">Action Items</h1>
+              <p className="text-[14px] text-eden-muted mt-1">
                 Tasks and follow-ups extracted from meetings.
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <button className="flex items-center gap-2 h-9 px-4 bg-white border border-[#E5E7EB] rounded-lg text-[13px] font-bold text-[#0A1B3D] hover:bg-[#F7F8FB] transition-colors shadow-sm">
+              <button className="flex items-center gap-2 h-10 px-4 bg-white border border-eden-border rounded-button text-[14px] font-medium text-eden-text hover:bg-eden-bg transition-colors shadow-soft">
                 <Filter size={16} />
                 Filter Tasks
               </button>
@@ -115,9 +115,9 @@ export default function ActionItemsPage() {
           </header>
 
           {/* Page Toolbar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E5E7EB] shrink-0">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-eden-border shrink-0">
             <div className="relative w-full sm:max-w-md">
-              <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-neutral-400">
+              <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-eden-muted">
                 <Search size={16} />
               </div>
               <input
@@ -128,18 +128,18 @@ export default function ActionItemsPage() {
                   setSearchQuery(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="w-full pl-9 pr-4 h-9 bg-[#F7F8FB] border border-transparent focus:bg-white focus:border-[#6C63FF] rounded-lg text-[13px] font-medium placeholder-neutral-400 focus:outline-none transition-all focus:ring-4 focus:ring-[#6C63FF]/10"
+                className="w-full pl-9 pr-4 h-10 bg-eden-bg border border-eden-border focus:bg-white focus:border-eden-primary rounded-input text-[14px] placeholder-eden-muted focus:outline-none transition-all focus:ring-4 focus:ring-eden-primary/5 text-eden-text"
               />
             </div>
             <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 sm:pb-0">
-              <button className="flex items-center gap-1.5 h-8 px-3 bg-white border border-[#E5E7EB] rounded-md text-[12px] font-bold text-neutral-600 hover:bg-[#F7F8FB] whitespace-nowrap">
-                Status <span className="text-neutral-400 ml-1">All</span>
+              <button className="flex items-center gap-1.5 h-9 px-3 bg-white border border-eden-border rounded-lg text-[13px] font-medium text-eden-text hover:bg-eden-bg whitespace-nowrap shadow-soft">
+                Status <span className="text-eden-muted ml-1">All</span>
               </button>
-              <button className="flex items-center gap-1.5 h-8 px-3 bg-white border border-[#E5E7EB] rounded-md text-[12px] font-bold text-neutral-600 hover:bg-[#F7F8FB] whitespace-nowrap">
-                Meeting <span className="text-neutral-400 ml-1">All</span>
+              <button className="flex items-center gap-1.5 h-9 px-3 bg-white border border-eden-border rounded-lg text-[13px] font-medium text-eden-text hover:bg-eden-bg whitespace-nowrap shadow-soft">
+                Meeting <span className="text-eden-muted ml-1">All</span>
               </button>
-              <button className="flex items-center gap-1.5 h-8 px-3 bg-white border border-[#E5E7EB] rounded-md text-[12px] font-bold text-neutral-600 hover:bg-[#F7F8FB] whitespace-nowrap">
-                Assigned user <span className="text-neutral-400 ml-1">Any</span>
+              <button className="flex items-center gap-1.5 h-9 px-3 bg-white border border-eden-border rounded-lg text-[13px] font-medium text-eden-text hover:bg-eden-bg whitespace-nowrap shadow-soft">
+                Assigned <span className="text-eden-muted ml-1">Any</span>
               </button>
             </div>
           </div>
@@ -176,19 +176,19 @@ export default function ActionItemsPage() {
               <div className="flex flex-col h-full animate-fade-in">
                 
                 {/* Desktop Table View */}
-                <div className="hidden md:block flex-1 overflow-auto min-h-0 bg-white border border-[#E5E7EB] rounded-xl shadow-sm">
+                <div className="hidden md:block flex-1 overflow-auto min-h-0 bg-white border border-eden-border rounded-card shadow-soft">
                   <table className="w-full text-left border-collapse">
-                    <thead className="sticky top-0 bg-[#F7F8FB] border-b border-[#E5E7EB] z-10">
+                    <thead className="sticky top-0 bg-eden-bg border-b border-eden-border z-10">
                       <tr>
-                        <th className="px-6 py-3 text-[12px] font-bold text-neutral-500 uppercase tracking-wider w-[40%]">Task</th>
-                        <th className="px-6 py-3 text-[12px] font-bold text-neutral-500 uppercase tracking-wider w-[20%]">Meeting</th>
-                        <th className="px-6 py-3 text-[12px] font-bold text-neutral-500 uppercase tracking-wider">Assigned To</th>
-                        <th className="px-6 py-3 text-[12px] font-bold text-neutral-500 uppercase tracking-wider">Due Date</th>
-                        <th className="px-6 py-3 text-[12px] font-bold text-neutral-500 uppercase tracking-wider text-center">Status</th>
-                        <th className="px-6 py-3 text-[12px] font-bold text-neutral-500 uppercase tracking-wider text-right">Actions</th>
+                        <th className="px-6 py-4 text-[12px] font-medium text-eden-muted uppercase tracking-wider w-[40%]">Task</th>
+                        <th className="px-6 py-4 text-[12px] font-medium text-eden-muted uppercase tracking-wider w-[20%]">Meeting</th>
+                        <th className="px-6 py-4 text-[12px] font-medium text-eden-muted uppercase tracking-wider">Assigned To</th>
+                        <th className="px-6 py-4 text-[12px] font-medium text-eden-muted uppercase tracking-wider">Due Date</th>
+                        <th className="px-6 py-4 text-[12px] font-medium text-eden-muted uppercase tracking-wider text-center">Status</th>
+                        <th className="px-6 py-4 text-[12px] font-medium text-eden-muted uppercase tracking-wider text-right">Actions</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-[#F1F5F9]">
+                    <tbody className="divide-y divide-eden-divider">
                       {paginatedItems.map((item) => {
                         const statusBadge = getStatusBadge(item.status);
                         const overdue = isOverdue(item.due_date);
@@ -196,19 +196,19 @@ export default function ActionItemsPage() {
                         return (
                           <tr 
                             key={item.id}
-                            className="group hover:bg-[#F7F8FB]/50 transition-colors"
+                            className="group hover:bg-eden-bg transition-colors duration-150"
                           >
                             <td className="px-6 py-4 align-top">
-                              <div className="flex items-start gap-3">
-                                <button className="mt-0.5 text-neutral-300 hover:text-[#6C63FF] transition-colors shrink-0">
-                                  {item.status === 'completed' ? <CheckCircle size={18} className="text-emerald-500" /> : <Circle size={18} />}
+                              <div className="flex items-start gap-4">
+                                <button className="mt-[2px] text-eden-muted hover:text-eden-primary transition-colors shrink-0">
+                                  {item.status === 'completed' ? <CheckCircle size={18} className="text-status-success-base" /> : <Circle size={18} />}
                                 </button>
                                 <div>
-                                  <p className={`text-[14px] font-bold text-[#0A1B3D] leading-snug ${item.status === 'completed' ? 'line-through opacity-60' : ''}`}>
+                                  <p className={`text-[14px] font-medium text-eden-text leading-snug ${item.status === 'completed' ? 'line-through opacity-60' : ''}`}>
                                     {item.text}
                                   </p>
                                   {item.decision && (
-                                    <span className="inline-block mt-1.5 px-1.5 py-0.5 rounded bg-indigo-50 border border-indigo-100 text-[10px] font-bold tracking-widest uppercase text-indigo-700">
+                                    <span className="inline-block mt-2 px-2 py-0.5 rounded-pill bg-status-info-bg text-[10px] font-medium tracking-widest uppercase text-status-info-text border border-transparent">
                                       Decision Context
                                     </span>
                                   )}
@@ -218,7 +218,7 @@ export default function ActionItemsPage() {
                             <td className="px-6 py-4 align-top">
                               <Link 
                                 href={`/meetings/${item.meeting_id}`}
-                                className="text-[13px] font-medium text-neutral-600 hover:text-[#6C63FF] hover:underline transition-colors line-clamp-2"
+                                className="text-[13px] font-medium text-eden-muted hover:text-eden-primary transition-colors line-clamp-2"
                               >
                                 {item.meeting_name}
                               </Link>
@@ -226,40 +226,40 @@ export default function ActionItemsPage() {
                             <td className="px-6 py-4 align-top">
                               {item.owner ? (
                                 <div className="flex items-center gap-2">
-                                  <div className="w-6 h-6 rounded-full bg-[#6C63FF]/10 text-[#6C63FF] flex items-center justify-center font-bold text-[10px] uppercase">
+                                  <div className="w-6 h-6 rounded-full bg-eden-bg text-eden-text border border-eden-border flex items-center justify-center font-medium text-[11px]">
                                     {item.owner.charAt(0)}
                                   </div>
-                                  <span className="text-[13px] font-bold text-neutral-700">{item.owner}</span>
+                                  <span className="text-[13px] font-medium text-eden-text">{item.owner}</span>
                                 </div>
                               ) : (
-                                <div className="flex items-center gap-2 text-neutral-400">
-                                  <div className="w-6 h-6 rounded-full bg-neutral-100 flex items-center justify-center">
+                                <div className="flex items-center gap-2 text-eden-muted">
+                                  <div className="w-6 h-6 rounded-full bg-eden-bg border border-eden-border flex items-center justify-center">
                                     <User size={12} />
                                   </div>
-                                  <span className="text-[13px] font-bold">Unassigned</span>
+                                  <span className="text-[13px] font-medium">Unassigned</span>
                                 </div>
                               )}
                             </td>
                             <td className="px-6 py-4 align-top">
-                              <div className={`flex items-center gap-1.5 text-[13px] font-bold ${overdue && item.status !== 'completed' ? 'text-red-600' : 'text-neutral-600'}`}>
-                                <Calendar size={14} className={overdue && item.status !== 'completed' ? 'text-red-500' : 'text-neutral-400'} />
+                              <div className={`flex items-center gap-2 text-[13px] font-medium ${overdue && item.status !== 'completed' ? 'text-status-error-text' : 'text-eden-muted'}`}>
+                                <Calendar size={16} className={overdue && item.status !== 'completed' ? 'text-status-error-base' : 'text-eden-muted'} />
                                 {new Date(item.due_date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
                               </div>
                             </td>
                             <td className="px-6 py-4 align-top text-center">
-                              <span className={`inline-flex items-center px-2 py-1 rounded-full text-[11px] border font-bold uppercase tracking-wider whitespace-nowrap ${statusBadge.color}`}>
+                              <span className={`inline-flex items-center justify-center min-w-[90px] px-2 py-1 rounded-pill text-[10px] border font-medium uppercase tracking-widest whitespace-nowrap ${statusBadge.color}`}>
                                 {statusBadge.label}
                               </span>
                             </td>
                             <td className="px-6 py-4 align-top text-right">
-                              <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <button className="p-1.5 text-neutral-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors" title="Mark Complete">
+                              <div className="flex items-center justify-end gap-1 text-eden-muted opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button className="p-1.5 hover:text-status-success-base hover:bg-eden-bg rounded-lg transition-colors" title="Mark Complete">
                                   <CheckCircle size={16} />
                                 </button>
-                                <button className="p-1.5 text-neutral-400 hover:text-[#6C63FF] hover:bg-indigo-50 rounded-lg transition-colors" title="Edit Task">
+                                <button className="p-1.5 hover:text-eden-primary hover:bg-eden-bg rounded-lg transition-colors" title="Edit Task">
                                   <Edit2 size={16} />
                                 </button>
-                                <button className="p-1.5 text-neutral-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Delete Task">
+                                <button className="p-1.5 hover:text-status-error-base hover:bg-eden-bg rounded-lg transition-colors" title="Delete Task">
                                   <Trash2 size={16} />
                                 </button>
                               </div>

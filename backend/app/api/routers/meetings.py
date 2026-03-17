@@ -1,14 +1,12 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, text
+from sqlalchemy import select, text, or_, desc
+from sqlalchemy.orm import selectinload
 from typing import List
 from app.db import get_db
 from app.schemas import MeetingCreate, MeetingRead, MeetingUpdate, ParticipantCreate, ParticipantRead, RecordingCreate, RecordingRead
-from app.models.models import Meeting, Participant, Recording, UserOrganization, User
+from app.models.models import Meeting, Participant, Recording, UserOrganization, User, ConsentRecord
 from app.core.auth import get_current_user
 from app.tasks import enqueue_recording_processing
-from sqlalchemy import select as _select
-from app.models.models import ConsentRecord
 
 router = APIRouter(prefix="/meetings", tags=["meetings"])
 
@@ -49,36 +47,18 @@ async def create_meeting(payload: MeetingCreate, db: AsyncSession = Depends(get_
     # Add participant names as participants
     if payload.participant_names:
         for name in payload.participant_names:
-            p = Participant(meeting_id=meeting.id, email="", display_name=name)
+            p = Participant(meeting_id=meeting.id, email=None, display_name=name)
             db.add(p)
         await db.commit()
-        await db.refresh(meeting)
-
-    return meeting
-
-
-@router.get("/{meeting_id}", response_model=MeetingRead)
-async def get_meeting(meeting_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
-    q = await db.execute(select(Meeting).filter_by(id=meeting_id))
+    
+    # Reload with participants and recordings for response model
+    q = await db.execute(
+        select(Meeting)
+        .filter_by(id=meeting.id)
+        .options(selectinload(Meeting.participants), selectinload(Meeting.recordings))
+    )
     meeting = q.scalars().first()
-    if not meeting:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Meeting not found")
-    # permission: user must belong to organization if meeting linked
-    if meeting.organization_id:
-        q2 = await db.execute(select(UserOrganization).filter_by(user_id=current_user.id, organization_id=meeting.organization_id))
-        if not q2.scalars().first():
-            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not a member of the organization")
     return meeting
-
-
-@router.get("/org/{org_id}", response_model=List[MeetingRead])
-async def list_meetings(org_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
-    q = await db.execute(select(UserOrganization).filter_by(user_id=current_user.id, organization_id=org_id))
-    if not q.scalars().first():
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not a member of the organization")
-    q2 = await db.execute(select(Meeting).filter_by(organization_id=org_id))
-    meetings = q2.scalars().all()
-    return meetings
 
 
 @router.get("/upcoming", response_model=List[MeetingRead])
@@ -107,6 +87,38 @@ async def list_upcoming_meetings(db: AsyncSession = Depends(get_db), current_use
     )
     meetings = q.scalars().unique().all()
     return meetings
+
+
+@router.get("/org/{org_id}", response_model=List[MeetingRead])
+async def list_meetings(org_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+    q = await db.execute(select(UserOrganization).filter_by(user_id=current_user.id, organization_id=org_id))
+    if not q.scalars().first():
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not a member of the organization")
+    q2 = await db.execute(
+        select(Meeting)
+        .filter_by(organization_id=org_id)
+        .options(selectinload(Meeting.participants), selectinload(Meeting.recordings))
+    )
+    meetings = q2.scalars().all()
+    return meetings
+
+
+@router.get("/{meeting_id}", response_model=MeetingRead)
+async def get_meeting(meeting_id: str, db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
+    q = await db.execute(
+        select(Meeting)
+        .filter_by(id=meeting_id)
+        .options(selectinload(Meeting.participants), selectinload(Meeting.recordings))
+    )
+    meeting = q.scalars().first()
+    if not meeting:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Meeting not found")
+    # permission: user must belong to organization if meeting linked
+    if meeting.organization_id:
+        q2 = await db.execute(select(UserOrganization).filter_by(user_id=current_user.id, organization_id=meeting.organization_id))
+        if not q2.scalars().first():
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not a member of the organization")
+    return meeting
 
 
 @router.put("/{meeting_id}", response_model=MeetingRead)

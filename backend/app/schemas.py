@@ -5,16 +5,16 @@ from uuid import UUID
 import json
 
 class ParticipantCreate(BaseModel):
-    email: EmailStr
+    email: Optional[str] = None
     display_name: Optional[str] = None
     is_host: Optional[bool] = False
 
 class ParticipantRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
     id: UUID
-    email: EmailStr
-    display_name: Optional[str]
-    is_host: bool
+    email: Optional[str] = None
+    display_name: Optional[str] = None
+    is_host: bool = False
 
 class MeetingCreate(BaseModel):
     title: str

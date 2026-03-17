@@ -1,16 +1,51 @@
-from sqlalchemy import Column, String, Integer, ForeignKey, DateTime, Boolean, Text
+from sqlalchemy import Column, String, Integer, ForeignKey, DateTime, Boolean, Text, TypeDecorator, CHAR
 from sqlalchemy import Enum as SQLEnum
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.db import Base
 from enum import Enum
 from sqlalchemy.sql import text
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.dialects.postgresql import UUID as pgUUID
 import uuid
+
+
+class GUID(TypeDecorator):
+    """Platform-independent GUID type.
+    Uses PostgreSQL's UUID type when available, otherwise uses CHAR(32),
+    storing as stringified hex values.
+    """
+    impl = CHAR
+    cache_ok = True
+
+    def load_dialect_impl(self, dialect):
+        if dialect.name == 'postgresql':
+            return dialect.type_descriptor(pgUUID(as_uuid=True))
+        else:
+            return dialect.type_descriptor(CHAR(32))
+
+    def process_bind_param(self, value, dialect):
+        if value is None:
+            return value
+        elif dialect.name == 'postgresql':
+            return str(value) if not isinstance(value, uuid.UUID) else value
+        else:
+            if isinstance(value, uuid.UUID):
+                return value.hex
+            else:
+                # It's already a string; strip hyphens for storage
+                return value.replace('-', '')
+
+    def process_result_value(self, value, dialect):
+        if value is None:
+            return value
+        if isinstance(value, uuid.UUID):
+            return value
+        else:
+            return uuid.UUID(value)
 
 class User(Base):
     __tablename__ = "users"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id = Column(GUID(), primary_key=True, default=uuid.uuid4)
     email = Column(String, unique=True, index=True, nullable=False)
     display_name = Column(String, nullable=True)
     hashed_password = Column(String, nullable=True)
@@ -23,15 +58,15 @@ class User(Base):
 
 class Meeting(Base):
     __tablename__ = "meetings"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id = Column(GUID(), primary_key=True, default=uuid.uuid4)
     title = Column(String, nullable=False)
     description = Column(Text, nullable=True)
     language = Column(String, default="en")
     start_time = Column(DateTime(timezone=True), nullable=True)
     duration_minutes = Column(Integer, nullable=True)
     end_time = Column(DateTime(timezone=True), nullable=True)
-    organizer_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=True)
-    organization_id = Column(UUID(as_uuid=True), ForeignKey("organizations.id"), nullable=True)
+    organizer_id = Column(GUID(), ForeignKey("users.id"), nullable=True)
+    organization_id = Column(GUID(), ForeignKey("organizations.id"), nullable=True)
     # meeting type
     class MeetingType(Enum):
         NATIVE = "NATIVE"
@@ -59,9 +94,9 @@ class Meeting(Base):
 
 class Participant(Base):
     __tablename__ = "participants"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    meeting_id = Column(UUID(as_uuid=True), ForeignKey("meetings.id"), nullable=False)
-    email = Column(String, nullable=False)
+    id = Column(GUID(), primary_key=True, default=uuid.uuid4)
+    meeting_id = Column(GUID(), ForeignKey("meetings.id"), nullable=False)
+    email = Column(String, nullable=True)
     display_name = Column(String, nullable=True)
     is_host = Column(Boolean, default=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
@@ -69,21 +104,21 @@ class Participant(Base):
 
 class Recording(Base):
     __tablename__ = "recordings"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    meeting_id = Column(UUID(as_uuid=True), ForeignKey("meetings.id"), nullable=False)
+    id = Column(GUID(), primary_key=True, default=uuid.uuid4)
+    meeting_id = Column(GUID(), ForeignKey("meetings.id"), nullable=False)
     s3_key = Column(String, nullable=False)
     duration_seconds = Column(Integer, nullable=True)
     uploaded_at = Column(DateTime(timezone=True), server_default=func.now())
     processed = Column(Boolean, default=False)
     processing_status = Column(String, nullable=False, default="uploaded")  # uploaded|processing|processed|failed
     processing_error = Column(Text, nullable=True)
-    transcript_id = Column(UUID(as_uuid=True), ForeignKey("transcripts.id"), nullable=True)
+    transcript_id = Column(GUID(), ForeignKey("transcripts.id"), nullable=True)
     meeting = relationship("Meeting", back_populates="recordings")
 
 
 class Organization(Base):
     __tablename__ = "organizations"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id = Column(GUID(), primary_key=True, default=uuid.uuid4)
     name = Column(String, nullable=False, unique=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     members = relationship("UserOrganization", back_populates="organization")
@@ -91,9 +126,9 @@ class Organization(Base):
 
 class UserOrganization(Base):
     __tablename__ = "user_organizations"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
-    organization_id = Column(UUID(as_uuid=True), ForeignKey("organizations.id"), nullable=False)
+    id = Column(GUID(), primary_key=True, default=uuid.uuid4)
+    user_id = Column(GUID(), ForeignKey("users.id"), nullable=False)
+    organization_id = Column(GUID(), ForeignKey("organizations.id"), nullable=False)
     role = Column(String, nullable=False, default="participant")  # admin|organizer|participant
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     user = relationship("User", back_populates="organizations")
@@ -102,8 +137,8 @@ class UserOrganization(Base):
 
 class ListenerSession(Base):
     __tablename__ = "listener_sessions"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    meeting_id = Column(UUID(as_uuid=True), ForeignKey("meetings.id"), nullable=True)
+    id = Column(GUID(), primary_key=True, default=uuid.uuid4)
+    meeting_id = Column(GUID(), ForeignKey("meetings.id"), nullable=True)
     external_link = Column(String, nullable=True)
     scheduled_at = Column(DateTime(timezone=True), nullable=True)
     join_at = Column(DateTime(timezone=True), nullable=True)
@@ -117,8 +152,8 @@ class ListenerSession(Base):
 
 class AudioFile(Base):
     __tablename__ = "audio_files"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    meeting_id = Column(UUID(as_uuid=True), ForeignKey("meetings.id"), nullable=True)
+    id = Column(GUID(), primary_key=True, default=uuid.uuid4)
+    meeting_id = Column(GUID(), ForeignKey("meetings.id"), nullable=True)
     s3_key = Column(String, nullable=False, unique=True)
     content_type = Column(String, nullable=True)
     size_bytes = Column(Integer, nullable=True)
@@ -131,9 +166,9 @@ class AudioFile(Base):
 
 class Transcript(Base):
     __tablename__ = "transcripts"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    audio_file_id = Column(UUID(as_uuid=True), ForeignKey("audio_files.id"), nullable=False)
-    meeting_id = Column(UUID(as_uuid=True), ForeignKey("meetings.id"), nullable=True)
+    id = Column(GUID(), primary_key=True, default=uuid.uuid4)
+    audio_file_id = Column(GUID(), ForeignKey("audio_files.id"), nullable=False)
+    meeting_id = Column(GUID(), ForeignKey("meetings.id"), nullable=True)
     segments = Column(Text, nullable=False)  # JSON array of segments (may be encrypted)
     encrypted = Column(Boolean, default=False)
     detected_language = Column(String, nullable=True)
@@ -145,10 +180,10 @@ class Transcript(Base):
 
 class TranslatedTranscript(Base):
     __tablename__ = "translated_transcripts"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    transcript_id = Column(UUID(as_uuid=True), ForeignKey("transcripts.id"), nullable=False)
-    audio_file_id = Column(UUID(as_uuid=True), ForeignKey("audio_files.id"), nullable=True)
-    meeting_id = Column(UUID(as_uuid=True), ForeignKey("meetings.id"), nullable=True)
+    id = Column(GUID(), primary_key=True, default=uuid.uuid4)
+    transcript_id = Column(GUID(), ForeignKey("transcripts.id"), nullable=False)
+    audio_file_id = Column(GUID(), ForeignKey("audio_files.id"), nullable=True)
+    meeting_id = Column(GUID(), ForeignKey("meetings.id"), nullable=True)
     target_language = Column(String, nullable=False)
     segments = Column(Text, nullable=False)  # JSON array of translated segments
     encrypted = Column(Boolean, default=False)
@@ -161,9 +196,9 @@ class TranslatedTranscript(Base):
 
 class MeetingSummary(Base):
     __tablename__ = "meeting_summaries"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    transcript_id = Column(UUID(as_uuid=True), ForeignKey("transcripts.id"), nullable=True)
-    meeting_id = Column(UUID(as_uuid=True), ForeignKey("meetings.id"), nullable=True)
+    id = Column(GUID(), primary_key=True, default=uuid.uuid4)
+    transcript_id = Column(GUID(), ForeignKey("transcripts.id"), nullable=True)
+    meeting_id = Column(GUID(), ForeignKey("meetings.id"), nullable=True)
     executive_summary = Column(Text, nullable=False)
     key_points = Column(Text, nullable=True)  # JSON/text array
     decisions = Column(Text, nullable=True)
@@ -179,9 +214,9 @@ class MeetingSummary(Base):
 
 class Extraction(Base):
     __tablename__ = "extractions"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    transcript_id = Column(UUID(as_uuid=True), ForeignKey("transcripts.id"), nullable=False)
-    meeting_id = Column(UUID(as_uuid=True), ForeignKey("meetings.id"), nullable=True)
+    id = Column(GUID(), primary_key=True, default=uuid.uuid4)
+    transcript_id = Column(GUID(), ForeignKey("transcripts.id"), nullable=False)
+    meeting_id = Column(GUID(), ForeignKey("meetings.id"), nullable=True)
     items = Column(Text, nullable=False)  # JSON array of extracted items
     encrypted = Column(Boolean, default=False)
     confidence = Column(String, nullable=True)
@@ -193,8 +228,8 @@ class Extraction(Base):
 
 class EmailDelivery(Base):
     __tablename__ = "email_deliveries"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
+    id = Column(GUID(), primary_key=True, default=uuid.uuid4)
+    user_id = Column(GUID(), ForeignKey("users.id"), nullable=False)
     to_email = Column(String, nullable=False)
     subject = Column(String, nullable=False)
     body = Column(Text, nullable=False)
@@ -208,10 +243,10 @@ class EmailDelivery(Base):
 
 class ConsentRecord(Base):
     __tablename__ = "consent_records"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=True)
-    meeting_id = Column(UUID(as_uuid=True), ForeignKey("meetings.id"), nullable=True)
-    recording_id = Column(UUID(as_uuid=True), ForeignKey("recordings.id"), nullable=True)
+    id = Column(GUID(), primary_key=True, default=uuid.uuid4)
+    user_id = Column(GUID(), ForeignKey("users.id"), nullable=True)
+    meeting_id = Column(GUID(), ForeignKey("meetings.id"), nullable=True)
+    recording_id = Column(GUID(), ForeignKey("recordings.id"), nullable=True)
     consent_given = Column(Boolean, nullable=False, default=False)
     method = Column(String, nullable=True)  # e.g., "web", "checkbox", "spoken"
     ip_address = Column(String, nullable=True)
@@ -222,8 +257,8 @@ class ConsentRecord(Base):
 
 class AuditLog(Base):
     __tablename__ = "audit_logs"
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=True)
+    id = Column(GUID(), primary_key=True, default=uuid.uuid4)
+    user_id = Column(GUID(), ForeignKey("users.id"), nullable=True)
     action = Column(String, nullable=False)
     object_type = Column(String, nullable=True)
     object_id = Column(String, nullable=True)

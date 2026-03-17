@@ -3,11 +3,10 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import Layout from '../../components/Layout';
-import ProtectedRoute from '../../components/ProtectedRoute';
-import { TableSkeleton } from '../../components/Skeletons';
-import { apiService } from '../../services/api';
-import { Meeting } from '../../types/api';
+import { useQuery } from '@tanstack/react-query';
+import { TableSkeleton } from '../../../components/Skeletons';
+import { apiService } from '../../../services/api';
+import { Meeting } from '../../../types/api';
 import { 
   Search, 
   Filter, 
@@ -30,31 +29,19 @@ import {
 
 export default function MeetingsListPage() {
   const router = useRouter();
-  const [meetings, setMeetings] = useState<Meeting[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  
+  const { data: meetings = [], isLoading: loading, error: queryError } = useQuery({
+    queryKey: ['meetings'],
+    queryFn: () => apiService.getMeetings(),
+  });
+
   const [searchQuery, setSearchQuery] = useState('');
   
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
 
-  useEffect(() => {
-    const fetchMeetings = async () => {
-      setLoading(true);
-      try {
-        const data = await apiService.getMeetings();
-        setMeetings(data);
-      } catch (err: any) {
-        console.error(err);
-        setError('Failed to load meetings library.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMeetings();
-  }, []);
+  const error = queryError ? 'Failed to load meetings library.' : null;
 
   const filteredMeetings = useMemo(() => {
     return meetings.filter((m) =>
@@ -96,9 +83,7 @@ export default function MeetingsListPage() {
   };
 
   return (
-    <ProtectedRoute>
-      <Layout>
-        <div className="max-w-[1200px] mx-auto flex flex-col h-full min-h-[calc(100vh-100px)]">
+    <div className="max-w-[1200px] mx-auto flex flex-col h-full min-h-[calc(100vh-100px)]">
           
           {/* Page Header */}
           <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-8 shrink-0">
@@ -357,8 +342,6 @@ export default function MeetingsListPage() {
               </div>
             )}
           </main>
-        </div>
-      </Layout>
-    </ProtectedRoute>
+    </div>
   );
 }

@@ -2,11 +2,10 @@
 
 import React, { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import Layout from '../../components/Layout';
-import ProtectedRoute from '../../components/ProtectedRoute';
-import { TableSkeleton } from '../../components/Skeletons';
-import { apiService } from '../../services/api';
-import { Meeting } from '../../types/api';
+import { useQuery } from '@tanstack/react-query';
+import { TableSkeleton } from '../../../components/Skeletons';
+import { apiService } from '../../../services/api';
+import { Meeting } from '../../../types/api';
 import {
   Search,
   Plus,
@@ -48,28 +47,16 @@ function ScheduleStatusBadge({ status }: { status: string | null | undefined }) 
 
 export default function UpcomingMeetingsPage() {
   const router = useRouter();
-  const [meetings, setMeetings] = useState<Meeting[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [filterMode, setFilterMode] = useState<'all' | 'today' | 'week' | 'upcoming' | 'past'>('all');
   const [sortBy, setSortBy] = useState<'time' | 'name'>('time');
 
-  useEffect(() => {
-    const fetchMeetings = async () => {
-      setLoading(true);
-      try {
-        const data = await apiService.getUpcomingMeetings();
-        setMeetings(data);
-      } catch (err: any) {
-        console.error(err);
-        setError('Failed to load upcoming meetings.');
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchMeetings();
-  }, []);
+  const { data: meetings = [], isLoading: loading, error: queryError, refetch } = useQuery({
+    queryKey: ['meetings-upcoming'],
+    queryFn: () => apiService.getUpcomingMeetings(),
+  });
+
+  const error = queryError ? (queryError as any).message || 'Failed to load upcoming meetings.' : null;
 
   const filteredMeetings = useMemo(() => {
     const now = new Date();
@@ -121,7 +108,7 @@ export default function UpcomingMeetingsPage() {
     if (confirm(`Delete "${title}"?`)) {
       try {
         await apiService.deleteMeeting(id);
-        setMeetings(meetings.filter((m) => m.id !== id));
+        refetch();
       } catch {
         alert('Failed to delete meeting');
       }
@@ -166,9 +153,7 @@ export default function UpcomingMeetingsPage() {
   // =========================================================================
 
   return (
-    <ProtectedRoute>
-      <Layout>
-        <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6">
           {/* Page Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
@@ -393,8 +378,6 @@ export default function UpcomingMeetingsPage() {
               </div>
             </>
           )}
-        </div>
-      </Layout>
-    </ProtectedRoute>
+    </div>
   );
 }

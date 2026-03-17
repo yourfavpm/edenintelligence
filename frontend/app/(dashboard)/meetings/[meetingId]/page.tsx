@@ -2,8 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import Layout from '../../../components/Layout';
-import ProtectedRoute from '../../../components/ProtectedRoute';
+import { useQuery } from '@tanstack/react-query';
 import { StatusBadge, Button } from '../../../components/ui';
 import { MeetingDetailSkeleton } from '../../../components/Skeletons';
 import { apiService } from '../../../services/api';
@@ -34,41 +33,26 @@ import {
 export default function MeetingDetailPage() {
   const { meetingId } = useParams();
   const router = useRouter();
-  const [meeting, setMeeting] = useState<MeetingDetail | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+
+  const { data: meeting, isLoading: loading, error: queryError } = useQuery({
+    queryKey: ['meeting', meetingId],
+    queryFn: () => apiService.getMeetingDetail(String(meetingId)),
+    enabled: !!meetingId,
+  });
+
   const [activeTab, setActiveTab] = useState<'transcript' | 'summary' | 'tasks'>('transcript');
   const [currentTime, setCurrentTime] = useState(0);
 
-  useEffect(() => {
-    if (!meetingId) return;
+  const error = queryError ? (queryError as any).message || 'Failed to load meeting details.' : null;
 
-    const fetchDetail = async () => {
-      setLoading(true);
-      try {
-        const data = await apiService.getMeetingDetail(String(meetingId));
-        setMeeting(data);
-      } catch (err: any) {
-        console.error(err);
-        setError(err.message || 'Failed to load meeting details.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchDetail();
-  }, [meetingId]);
-
-  if (loading) return <ProtectedRoute><Layout><MeetingDetailSkeleton /></Layout></ProtectedRoute>;
-  if (error || !meeting) return <ProtectedRoute><Layout><div className="p-10 text-center"><div className="bg-red-50 border border-red-100 p-8 rounded-xl max-w-md mx-auto"><p className="text-red-600 font-medium mb-4">{error || 'Meeting not found.'}</p><Button onClick={() => router.push('/dashboard')}>Return to Dashboard</Button></div></div></Layout></ProtectedRoute>;
+  if (loading) return <MeetingDetailSkeleton />;
+  if (error || !meeting) return <div className="p-10 text-center"><div className="bg-red-50 border border-red-100 p-8 rounded-xl max-w-md mx-auto"><p className="text-red-600 font-medium mb-4">{error || 'Meeting not found.'}</p><Button onClick={() => router.push('/dashboard')}>Return to Dashboard</Button></div></div>;
 
   const displayAudio = meeting?.audio_files?.[0] || meeting?.recordings?.[0];
   const m = meeting.meeting;
 
   return (
-    <ProtectedRoute>
-      <Layout>
-        <div className="flex flex-col min-h-[calc(100vh-100px)] -m-6 lg:-m-10 bg-eden-bg">
+    <div className="flex flex-col min-h-[calc(100vh-100px)] -m-6 lg:-m-10 bg-eden-bg">
           {/* Zone 1: Page Header */}
           <header className="bg-white border-b border-eden-border px-6 lg:px-10 py-6 flex flex-col md:flex-row md:items-center justify-between gap-6 shrink-0 shadow-soft z-10 relative">
             <div className="flex items-center gap-5">
@@ -162,8 +146,6 @@ export default function MeetingDetailPage() {
               </div>
             </div>
           </main>
-        </div>
-      </Layout>
-    </ProtectedRoute>
+    </div>
   );
 }

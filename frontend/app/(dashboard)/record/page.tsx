@@ -2,12 +2,10 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Layout from '../../components/Layout';
-import ProtectedRoute from '../../components/ProtectedRoute';
-import { Button, Input } from '../../components/ui';
-import AudioVisualizer from '../../components/AudioVisualizer';
-import { useMediaRecorder } from '../../hooks/useMediaRecorder';
-import { apiService } from '../../services/api';
+import { Button, Input } from '../../../components/ui';
+import AudioVisualizer from '../../../components/AudioVisualizer';
+import { useMediaRecorder } from '../../../hooks/useMediaRecorder';
+import { apiService } from '../../../services/api';
 
 // =============================================================================
 // Record Meeting Page - Master Redesign
@@ -81,23 +79,17 @@ export default function RecordPage() {
 
     if (!isSupported) {
         return (
-            <ProtectedRoute>
-                <Layout>
-                    <div className="max-w-2xl mx-auto py-20 text-center">
-                        <div className="bg-red-50 border border-red-100 rounded-xl p-10">
-                            <h2 className="text-xl font-bold text-red-900 mb-2">Browser Incompatible</h2>
-                            <p className="text-red-700 text-sm">Recording is not supported in this environment.</p>
-                        </div>
-                    </div>
-                </Layout>
-            </ProtectedRoute>
+            <div className="max-w-2xl mx-auto py-20 text-center">
+                <div className="bg-red-50 border border-red-100 rounded-xl p-10">
+                    <h2 className="text-xl font-bold text-red-900 mb-2">Browser Incompatible</h2>
+                    <p className="text-red-700 text-sm">Recording is not supported in this environment.</p>
+                </div>
+            </div>
         );
     }
 
     return (
-        <ProtectedRoute>
-            <Layout>
-                <div className="max-w-5xl mx-auto py-10 animate-fade-in">
+        <div className="max-w-5xl mx-auto py-10 animate-fade-in">
                     {/* Header */}
                     <div className="mb-10 text-center space-y-2">
                         <h1 className="text-[24px] font-bold text-neutral-900 tracking-tight">Record Meeting</h1>
@@ -223,9 +215,7 @@ export default function RecordPage() {
                                 Secure End-to-End Processing
                             </div>
                         </div>
-                    </div>
-                </div>
-            </Layout>
-        </ProtectedRoute>
+            </div>
+        </div>
     );
 }

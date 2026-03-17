@@ -2,11 +2,9 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Layout from '../../../components/Layout';
-import ProtectedRoute from '../../../components/ProtectedRoute';
-import { Button, Input, Toggle } from '../../../components/ui';
-import { createMeeting, addParticipants } from '../../../services/api';
-import { MeetingType } from '../../../types/api';
+import { Button, Input, Toggle } from '../../../../components/ui';
+import { createMeeting, addParticipants } from '../../../../services/api';
+import { MeetingType } from '../../../../types/api';
 
 // =============================================================================
 // Create Meeting Page - Multi-step Form
@@ -86,9 +84,7 @@ export default function CreateMeetingPage() {
     const prevStep = () => setStep(step - 1);
 
     return (
-        <ProtectedRoute>
-            <Layout>
-                <div className="max-w-3xl mx-auto py-8">
+        <div className="max-w-3xl mx-auto py-8">
                     {/* Header */}
                     <div className="mb-8">
                         <h1 className="text-3xl font-bold text-neutral-900">Create New Meeting</h1>
@@ -311,7 +307,5 @@ export default function CreateMeetingPage() {
                         </div>
                     </div>
                 </div>
-            </Layout>
-        </ProtectedRoute>
     );
 }

@@ -2,10 +2,8 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Layout from '../../components/Layout';
-import ProtectedRoute from '../../components/ProtectedRoute';
-import { FileUpload, Button, AILoader } from '../../components/ui';
-import { apiService } from '../../services/api';
+import { FileUpload, Button, AILoader } from '../../../components/ui';
+import { apiService } from '../../../services/api';
 
 // =============================================================================
 // Upload Recording Page - Master Redesign
@@ -37,9 +35,7 @@ export default function UploadPage() {
     };
 
     return (
-        <ProtectedRoute>
-            <Layout>
-                <div className="max-w-[800px] mx-auto py-16 px-4 animate-fade-in">
+        <div className="max-w-[800px] mx-auto py-16 px-4 animate-fade-in">
                     {/* Centered Page Header */}
                     {!uploading && !success && (
                         <div className="text-center mb-12 space-y-3">
@@ -99,7 +95,5 @@ export default function UploadPage() {
                         )}
                     </div>
                 </div>
-            </Layout>
-        </ProtectedRoute>
     );
 }

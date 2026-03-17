@@ -1,9 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Layout from '../../components/Layout';
-import ProtectedRoute from '../../components/ProtectedRoute';
-import { Button, Input } from '../../components/ui';
+import { Button, Input } from '../../../components/ui';
 
 // =============================================================================
 // Team Management - High-Density Enterprise Redesign
@@ -56,9 +54,7 @@ export default function TeamPage() {
     );
 
     return (
-        <ProtectedRoute>
-            <Layout>
-                <div className="max-w-[1200px] mx-auto space-y-6 animate-fade-in py-2">
+        <div className="max-w-[1200px] mx-auto space-y-6 animate-fade-in py-2">
                     {/* Header */}
                     <div className="flex items-center justify-between border-b border-[#E5E7EB] pb-6">
                         <div className="space-y-1">
@@ -134,7 +130,8 @@ export default function TeamPage() {
                             </tbody>
                         </table>
                     </div>
-                </div>
+
+
 
                 {/* Invite Modal */}
                 {showInviteModal && (
@@ -187,7 +184,6 @@ export default function TeamPage() {
                         </div>
                     </div>
                 )}
-            </Layout>
-        </ProtectedRoute>
+            </div>
     );
 }

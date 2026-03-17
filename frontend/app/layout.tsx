@@ -1,4 +1,5 @@
 import { AuthProvider } from '../components/auth/AuthContext';
+import QueryProvider from '../components/providers/QueryProvider';
 import './globals.css';
 
 export const metadata = {
@@ -14,9 +15,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-inter bg-[#F9FAFB] text-gray-900">
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+        <QueryProvider>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </QueryProvider>
       </body>
     </html>
   )

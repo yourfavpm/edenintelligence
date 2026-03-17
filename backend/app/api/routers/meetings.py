@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, text, or_, desc
 from sqlalchemy.orm import selectinload
 from typing import List

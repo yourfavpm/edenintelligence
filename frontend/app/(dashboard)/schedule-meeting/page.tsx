@@ -2,9 +2,7 @@
 
 import React, { useState, KeyboardEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import Layout from '../../components/Layout';
-import ProtectedRoute from '../../components/ProtectedRoute';
-import { apiService } from '../../services/api';
+import { apiService } from '../../../services/api';
 import {
   ArrowLeft,
   Calendar,
@@ -132,9 +130,7 @@ export default function ScheduleMeetingPage() {
 
   if (success) {
     return (
-      <ProtectedRoute>
-        <Layout>
-          <div className="flex items-center justify-center min-h-[60vh]">
+      <div className="flex items-center justify-center min-h-[60vh]">
             <div className="text-center max-w-sm">
               <div className="w-16 h-16 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <CheckCircle2 size={32} className="text-emerald-500" />
@@ -174,8 +170,6 @@ export default function ScheduleMeetingPage() {
               </div>
             </div>
           </div>
-        </Layout>
-      </ProtectedRoute>
     );
   }
 
@@ -184,9 +178,7 @@ export default function ScheduleMeetingPage() {
   // =========================================================================
 
   return (
-    <ProtectedRoute>
-      <Layout>
-        <div className="max-w-[680px] mx-auto">
+    <div className="max-w-[680px] mx-auto">
           {/* Back + Title */}
           <div className="flex items-center gap-3 mb-8">
             <button
@@ -423,9 +415,7 @@ export default function ScheduleMeetingPage() {
                 )}
               </button>
             </div>
-          </form>
-        </div>
-      </Layout>
-    </ProtectedRoute>
+      </form>
+    </div>
   );
 }

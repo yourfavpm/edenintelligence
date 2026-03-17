@@ -1,11 +1,10 @@
 'use client';
 
 import React, { useEffect, useState, useMemo } from 'react';
-import Layout from '../../components/Layout';
-import ProtectedRoute from '../../components/ProtectedRoute';
-import { TableSkeleton } from '../../components/Skeletons';
-import { apiService } from '../../services/api';
-import { ExtractionRead } from '../../types/api';
+import { useQuery } from '@tanstack/react-query';
+import { TableSkeleton } from '../../../components/Skeletons';
+import { apiService } from '../../../services/api';
+import { ExtractionRead } from '../../../types/api';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { 
@@ -29,30 +28,19 @@ import {
 
 export default function ActionItemsPage() {
   const router = useRouter();
-  const [extractions, setExtractions] = useState<ExtractionRead[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  
+  const { data: extractions = [], isLoading: loading, error: queryError } = useQuery({
+    queryKey: ['extractions', 'all'],
+    queryFn: () => apiService.getAllExtractions(),
+  });
+
   const [searchQuery, setSearchQuery] = useState('');
   
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
 
-  useEffect(() => {
-    const fetchExtractions = async () => {
-      setLoading(true);
-      try {
-        const data = await apiService.getAllExtractions();
-        setExtractions(data);
-      } catch (err: any) {
-        console.error(err);
-        setError('Failed to synchronize task index.');
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchExtractions();
-  }, []);
+  const error = queryError ? 'Failed to synchronize task index.' : null;
 
   const flattenedItems = useMemo(() => {
     return extractions.flatMap(ex => (ex.items || []).map(item => ({
@@ -94,9 +82,7 @@ export default function ActionItemsPage() {
   };
 
   return (
-    <ProtectedRoute>
-      <Layout>
-        <div className="max-w-[1200px] mx-auto flex flex-col h-full min-h-[calc(100vh-100px)]">
+    <div className="max-w-[1200px] mx-auto flex flex-col h-full min-h-[calc(100vh-100px)]">
           
           {/* Page Header */}
           <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-8 shrink-0">
@@ -381,8 +367,6 @@ export default function ActionItemsPage() {
               </div>
             )}
           </main>
-        </div>
-      </Layout>
-    </ProtectedRoute>
+    </div>
   );
 }

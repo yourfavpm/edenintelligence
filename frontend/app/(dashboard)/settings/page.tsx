@@ -1,10 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import Layout from '../../components/Layout';
-import ProtectedRoute from '../../components/ProtectedRoute';
-import { Button, Input, Toggle, Tabs, TabPanel } from '../../components/ui';
-import { useAuth } from '../../components/auth/AuthContext';
+import { Button, Input, Toggle, Tabs, TabPanel } from '../../../components/ui';
+import { useAuth } from '../../../components/auth/AuthContext';
 
 // =============================================================================
 // Settings - High-Density Enterprise Redesign
@@ -37,9 +35,7 @@ export default function SettingsPage() {
     ];
 
     return (
-        <ProtectedRoute>
-            <Layout>
-                <div className="max-w-[1000px] mx-auto space-y-8 animate-fade-in py-2">
+        <div className="max-w-[1000px] mx-auto space-y-8 animate-fade-in py-2">
                     {/* Header */}
                     <div className="border-b border-[#E5E7EB] pb-6">
                         <h1 className="text-[20px] font-bold text-neutral-900 tracking-tight">System Configuration</h1>
@@ -164,7 +160,5 @@ export default function SettingsPage() {
                         </div>
                     </div>
                 </div>
-            </Layout>
-        </ProtectedRoute>
     );
 }

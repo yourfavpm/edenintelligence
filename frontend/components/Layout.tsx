@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import sidebarSections from './navigation';
 import { useAuth } from './auth/AuthContext';
+import { useUIStore } from '../store/useUIStore';
 import SearchBar from './SearchBar';
 import { 
   Menu, 
@@ -27,8 +28,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const { user, logout } = useAuth();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  
+  const { 
+    sidebarOpen, 
+    setSidebarOpen, 
+    isCollapsed, 
+    setIsCollapsed,
+    toggleSidebar,
+    toggleCollapsed
+  } = useUIStore();
 
   return (
     <div className="min-h-screen flex bg-eden-bg text-eden-text font-sans selection:bg-eden-accent/20 selection:text-eden-primary">
@@ -57,7 +65,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             )}
           </Link>
           <button 
-            onClick={() => setIsCollapsed(!isCollapsed)}
+            onClick={toggleCollapsed}
             className="hidden lg:flex p-1 rounded-md text-eden-muted hover:text-eden-primary transition-colors hover:bg-eden-bg"
           >
             {isCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
@@ -139,7 +147,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <header className="h-16 shrink-0 flex items-center justify-between px-6 bg-white border-b border-eden-border sticky top-0 z-30 shadow-soft">
           <div className="flex items-center gap-6 flex-1">
             <button
-              onClick={() => setSidebarOpen(true)}
+              onClick={toggleSidebar}
               className="lg:hidden p-2 text-eden-muted hover:text-eden-primary hover:bg-eden-bg rounded-lg transition-all"
             >
               <Menu size={20} />

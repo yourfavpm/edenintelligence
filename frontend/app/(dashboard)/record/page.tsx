@@ -2,10 +2,10 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button, Input } from '../../../components/ui';
-import AudioVisualizer from '../../../components/AudioVisualizer';
+import { Button, Input } from '@/components/ui';
+import AudioVisualizer from '@/components/AudioVisualizer';
 import { useMediaRecorder } from '../../../hooks/useMediaRecorder';
-import { apiService } from '../../../services/api';
+import { apiService } from '@/services/api';
 
 // =============================================================================
 // Record Meeting Page - Master Redesign

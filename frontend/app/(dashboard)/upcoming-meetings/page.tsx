@@ -3,9 +3,9 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
-import { TableSkeleton } from '../../../components/Skeletons';
-import { apiService } from '../../../services/api';
-import { Meeting } from '../../../types/api';
+import { TableSkeleton } from '@/components/Skeletons';
+import { apiService } from '@/services/api';
+import { Meeting } from '@/types/api';
 import {
   Search,
   Plus,

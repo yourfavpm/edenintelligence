@@ -3,10 +3,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import AuthLayout from '../../../components/auth/AuthLayout';
-import { Input, Button } from '../../../components/ui';
-import { authService } from '../../../services/auth';
-import { getErrorMessage } from '../../../types/auth';
+import AuthLayout from '@/components/auth/AuthLayout';
+import { Input, Button } from '@/components/ui';
+import { authService } from '@/services/auth';
+import { getErrorMessage } from '@/types/auth';
 
 export default function SignupPage() {
   const [displayName, setDisplayName] = useState('');

@@ -1,12 +1,12 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { Table, Column } from '../../../components/Table';
-import { DashboardSkeleton } from '../../../components/Skeletons';
-import { StatusBadge, Button } from '../../../components/ui';
-import { useAuth } from '../../../components/auth/AuthContext';
-import { apiService } from '../../../services/api';
-import { Meeting, ExtractionRead } from '../../../types/api';
+import { Table, Column } from '@/components/Table';
+import { DashboardSkeleton } from '@/components/Skeletons';
+import { StatusBadge, Button } from '@/components/ui';
+import { useAuth } from '@/components/auth/AuthContext';
+import { apiService } from '@/services/api';
+import { Meeting, ExtractionRead } from '@/types/api';
 import Link from 'next/link';
 import { 
   ArrowRight, 

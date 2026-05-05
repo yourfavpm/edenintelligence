@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button, Input, Toggle } from '../../../../components/ui';
-import { createMeeting, addParticipants } from '../../../../services/api';
-import { MeetingType } from '../../../../types/api';
+import { Button, Input, Toggle } from '@/components/ui';
+import { createMeeting, addParticipants } from '@/services/api';
+import { MeetingType } from '@/types/api';
 
 // =============================================================================
 // Create Meeting Page - Multi-step Form

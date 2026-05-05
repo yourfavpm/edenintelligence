@@ -3,10 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import AuthLayout from '../../../components/auth/AuthLayout';
-import { Button } from '../../../components/ui';
-import { authService } from '../../../services/auth';
-import { getErrorMessage } from '../../../types/auth';
+import AuthLayout from '@/components/auth/AuthLayout';
+import { Button } from '@/components/ui';
+import { authService } from '@/services/auth';
+import { getErrorMessage } from '@/types/auth';
 
 export function VerifyContent() {
     const searchParams = useSearchParams();

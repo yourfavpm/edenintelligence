@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { FileUpload, Button, AILoader } from '../../../components/ui';
-import { apiService } from '../../../services/api';
+import { FileUpload, Button, AILoader } from '@/components/ui';
+import { apiService } from '@/services/api';
 
 // =============================================================================
 // Upload Recording Page - Master Redesign

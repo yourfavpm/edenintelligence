@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import AuthLayout from '../../../components/auth/AuthLayout';
-import { Input, Button } from '../../../components/ui';
-import { authService } from '../../../services/auth';
-import { getErrorMessage } from '../../../types/auth';
+import AuthLayout from '@/components/auth/AuthLayout';
+import { Input, Button } from '@/components/ui';
+import { authService } from '@/services/auth';
+import { getErrorMessage } from '@/types/auth';
 
 export default function ResetPasswordPage() {
     const searchParams = useSearchParams();

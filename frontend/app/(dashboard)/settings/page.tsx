@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button, Input, Toggle, Tabs, TabPanel } from '../../../components/ui';
-import { useAuth } from '../../../components/auth/AuthContext';
+import { Button, Input, Toggle, Tabs, TabPanel } from '@/components/ui';
+import { useAuth } from '@/components/auth/AuthContext';
 
 // =============================================================================
 // Settings - High-Density Enterprise Redesign

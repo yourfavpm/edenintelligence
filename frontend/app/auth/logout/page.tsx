@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useAuth } from '../../../components/auth/AuthContext';
-import AuthLayout from '../../../components/auth/AuthLayout';
+import { useAuth } from '@/components/auth/AuthContext';
+import AuthLayout from '@/components/auth/AuthLayout';
 
 export default function LogoutPage() {
   const { logout } = useAuth();

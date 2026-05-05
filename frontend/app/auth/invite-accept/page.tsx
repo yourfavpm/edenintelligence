@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import AuthLayout from '../../../components/auth/AuthLayout';
-import { Input, Button } from '../../../components/ui';
+import AuthLayout from '@/components/auth/AuthLayout';
+import { Input, Button } from '@/components/ui';
 
 export default function InviteAcceptPage() {
     const [fullName, setFullName] = useState('');

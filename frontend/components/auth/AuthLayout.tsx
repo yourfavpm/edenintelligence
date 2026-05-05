@@ -25,14 +25,7 @@ export default function AuthLayout({ children, title, subtitle }: AuthLayoutProp
                 <div className="max-w-xl relative z-10 text-white pt-10 pb-20">
                     <div className="flex items-center mb-16 opacity-90">
                         {/* Make logo bolder/whiter to stand out on dark background */}
-                        <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center mr-3 shadow-lg shadow-white/10">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#0A1B3D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                <path d="M2 17L12 22L22 17" stroke="#0A1B3D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                <path d="M2 12L12 17L22 12" stroke="#0A1B3D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                        </div>
-                        <span className="text-xl font-bold tracking-tight">Claeron</span>
+                        <img src="/logo.png" alt="Logo" className="h-10 w-auto object-contain mr-3" />
                     </div>
                     
                     <h2 className="text-[28px] md:text-[36px] font-bold mb-6 leading-[1.2] tracking-tight text-white/95">
@@ -92,14 +85,7 @@ export default function AuthLayout({ children, title, subtitle }: AuthLayoutProp
                 <div className="mx-auto w-full max-w-[420px]">
                     {/* Mobile Brand */}
                     <div className="lg:hidden mb-12 flex flex-col items-center">
-                        <div className="w-12 h-12 bg-[#0A1B3D] rounded-2xl flex items-center justify-center mb-4 shadow-md">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                <path d="M2 17L12 22L22 17" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                <path d="M2 12L12 17L22 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                        </div>
-                        <span className="text-[18px] font-bold text-[#0A1B3D] tracking-tight">Claeron</span>
+                        <img src="/logo.png" alt="Logo" className="h-12 w-auto object-contain mb-4" />
                     </div>
 
                     <div className="bg-white p-8 sm:p-10 rounded-2xl border border-[#E5E7EB] shadow-sm">

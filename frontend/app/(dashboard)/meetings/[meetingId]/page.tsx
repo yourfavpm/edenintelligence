@@ -3,17 +3,17 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
-import { StatusBadge, Button } from '../../../components/ui';
-import { MeetingDetailSkeleton } from '../../../components/Skeletons';
-import { apiService } from '../../../services/api';
-import { MeetingDetail } from '../../../types/api';
+import { StatusBadge, Button } from '@/components/ui';
+import { MeetingDetailSkeleton } from '@/components/Skeletons';
+import { apiService } from '@/services/api';
+import { MeetingDetail } from '@/types/api';
 import Link from 'next/link';
 
 // Sub-panels
-import SummaryTab from '../../../components/meetings/SummaryTab';
-import TranscriptTab from '../../../components/meetings/TranscriptTab';
-import ActionItemsTab from '../../../components/meetings/ActionItemsTab';
-import AudioPlayer from '../../../components/AudioPlayer';
+import SummaryTab from '@/components/meetings/SummaryTab';
+import TranscriptTab from '@/components/meetings/TranscriptTab';
+import ActionItemsTab from '@/components/meetings/ActionItemsTab';
+import AudioPlayer from '@/components/AudioPlayer';
 
 import { 
   ChevronLeft, 

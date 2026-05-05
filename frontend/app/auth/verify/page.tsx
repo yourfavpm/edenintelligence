@@ -2,7 +2,7 @@
 
 import React, { Suspense } from 'react';
 import { VerifyContent } from './VerifyContent';
-import AuthLayout from '../../../components/auth/AuthLayout';
+import AuthLayout from '@/components/auth/AuthLayout';
 
 export default function VerifyPage() {
   return (

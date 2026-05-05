@@ -2,7 +2,7 @@
 
 import React, { useState, KeyboardEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import { apiService } from '../../../services/api';
+import { apiService } from '@/services/api';
 import {
   ArrowLeft,
   Calendar,

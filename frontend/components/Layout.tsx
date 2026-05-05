@@ -57,12 +57,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         {/* Sidebar Header */}
         <div className={`h-16 flex items-center ${isCollapsed ? 'justify-center' : 'px-6 justify-between'}`}>
           <Link href="/dashboard" className="flex items-center gap-3 transition-transform hover:scale-105 active:scale-95 group">
-            <div className="w-8 h-8 bg-claeron-primary rounded-lg flex items-center justify-center shadow-lg shadow-claeron-primary/20">
-               <span className="text-white font-bold text-[15px] tracking-tight">C</span>
-            </div>
-            {!isCollapsed && (
-              <span className="font-semibold text-claeron-text tracking-tight text-[16px]">Claeron</span>
-            )}
+            <img src="/logo.png" alt="Logo" className="h-8 w-auto object-contain" />
           </Link>
           <button 
             onClick={toggleCollapsed}

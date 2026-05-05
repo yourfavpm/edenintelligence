@@ -18,7 +18,7 @@ const variantStyles: Record<BadgeVariant, string> = {
     success: 'bg-status-success-bg text-status-success-text',
     warning: 'bg-status-warning-bg text-status-warning-text',
     error: 'bg-status-error-bg text-status-error-text',
-    neutral: 'bg-eden-bg text-eden-muted',
+    neutral: 'bg-claeron-bg text-claeron-muted',
     primary: 'bg-status-info-bg text-status-info-text',
 };
 

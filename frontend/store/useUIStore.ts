@@ -21,7 +21,7 @@ export const useUIStore = create<UIState>()(
       toggleCollapsed: () => set((state) => ({ isCollapsed: !state.isCollapsed })),
     }),
     {
-      name: 'eden-ui-storage',
+      name: 'claeron-ui-storage',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({ isCollapsed: state.isCollapsed }), // Only persist collapse state
     }

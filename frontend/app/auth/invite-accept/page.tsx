@@ -27,7 +27,7 @@ export default function InviteAcceptPage() {
     return (
         <AuthLayout
             title="You've been invited."
-            subtitle="Join your team on Eden Intelligence."
+            subtitle="Join your team on Claeron."
         >
             {/* Context Card */}
             <div className="bg-[#F7F8FB] border border-[#E5E7EB] rounded-xl p-4 mb-6 flex gap-4 items-center shadow-sm">

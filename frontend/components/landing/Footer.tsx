@@ -7,34 +7,34 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-neutral-50 py-20 px-6 border-t border-eden-primary/5">
+    <footer className="w-full bg-neutral-50 py-20 px-6 border-t border-claeron-primary/5">
       <div className="max-w-[1200px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-20">
           
           {/* Column 1: Logo & Info */}
           <div className="md:col-span-4 flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-8 h-8 bg-eden-primary rounded-lg flex items-center justify-center shadow-sm">
+              <div className="w-8 h-8 bg-claeron-primary rounded-lg flex items-center justify-center shadow-sm">
                 <span className="text-white font-bold text-[15px] tracking-tight">E</span>
               </div>
-              <span className="font-semibold text-[18px] text-eden-primary tracking-tight">
-                Eden Intelligence
+              <span className="font-semibold text-[18px] text-claeron-primary tracking-tight">
+                Claeron
               </span>
             </Link>
-            <p className="text-[14px] text-eden-text/60 leading-relaxed max-w-xs">
+            <p className="text-[14px] text-claeron-text/60 leading-relaxed max-w-xs">
               The enterprise meeting intelligence platform. Automatically capture, transcribe, and analyze every conversation.
             </p>
             <div className="flex items-center gap-4 mt-2">
-               <Link href="#" className="text-eden-text/40 hover:text-eden-accent transition-colors">
+               <Link href="#" className="text-claeron-text/40 hover:text-claeron-accent transition-colors">
                   <Twitter className="w-5 h-5" />
                </Link>
-               <Link href="#" className="text-eden-text/40 hover:text-eden-accent transition-colors">
+               <Link href="#" className="text-claeron-text/40 hover:text-claeron-accent transition-colors">
                   <Linkedin className="w-5 h-5" />
                </Link>
-               <Link href="#" className="text-eden-text/40 hover:text-eden-accent transition-colors">
+               <Link href="#" className="text-claeron-text/40 hover:text-claeron-accent transition-colors">
                   <Github className="w-5 h-5" />
                </Link>
-               <Link href="#" className="text-eden-text/40 hover:text-eden-accent transition-colors">
+               <Link href="#" className="text-claeron-text/40 hover:text-claeron-accent transition-colors">
                   <Slack className="w-5 h-5" />
                </Link>
             </div>
@@ -42,51 +42,51 @@ export default function Footer() {
 
           {/* Column 2: Product */}
           <div className="md:col-span-2 flex flex-col gap-6">
-            <h4 className="text-[14px] font-bold text-eden-primary uppercase tracking-widest">Product</h4>
+            <h4 className="text-[14px] font-bold text-claeron-primary uppercase tracking-widest">Product</h4>
             <div className="flex flex-col gap-3">
-              <Link href="#features" className="text-[14px] text-eden-text/60 hover:text-eden-primary transition-colors">Features</Link>
-              <Link href="/record" className="text-[14px] text-eden-text/60 hover:text-eden-primary transition-colors">Record Meetings</Link>
-              <Link href="/uploads" className="text-[14px] text-eden-text/60 hover:text-eden-primary transition-colors">Upload Recordings</Link>
-              <Link href="/search" className="text-[14px] text-eden-text/60 hover:text-eden-primary transition-colors">Search Conversations</Link>
-              <Link href="/insights" className="text-[14px] text-eden-text/60 hover:text-eden-primary transition-colors">Meeting Insights</Link>
+              <Link href="#features" className="text-[14px] text-claeron-text/60 hover:text-claeron-primary transition-colors">Features</Link>
+              <Link href="/record" className="text-[14px] text-claeron-text/60 hover:text-claeron-primary transition-colors">Record Meetings</Link>
+              <Link href="/uploads" className="text-[14px] text-claeron-text/60 hover:text-claeron-primary transition-colors">Upload Recordings</Link>
+              <Link href="/search" className="text-[14px] text-claeron-text/60 hover:text-claeron-primary transition-colors">Search Conversations</Link>
+              <Link href="/insights" className="text-[14px] text-claeron-text/60 hover:text-claeron-primary transition-colors">Meeting Insights</Link>
             </div>
           </div>
 
           {/* Column 3: Company */}
           <div className="md:col-span-3 flex flex-col gap-6">
-            <h4 className="text-[14px] font-bold text-eden-primary uppercase tracking-widest">Company</h4>
+            <h4 className="text-[14px] font-bold text-claeron-primary uppercase tracking-widest">Company</h4>
             <div className="flex flex-col gap-3">
-              <Link href="#" className="text-[14px] text-eden-text/60 hover:text-eden-primary transition-colors">About Us</Link>
-              <Link href="#security" className="text-[14px] text-eden-text/60 hover:text-eden-primary transition-colors">Security</Link>
-              <Link href="#" className="text-[14px] text-eden-text/60 hover:text-eden-primary transition-colors">Careers</Link>
-              <Link href="#" className="text-[14px] text-eden-text/60 hover:text-eden-primary transition-colors">Blog</Link>
-              <Link href="#" className="text-[14px] text-eden-text/60 hover:text-eden-primary transition-colors">Brand Assets</Link>
+              <Link href="#" className="text-[14px] text-claeron-text/60 hover:text-claeron-primary transition-colors">About Us</Link>
+              <Link href="#security" className="text-[14px] text-claeron-text/60 hover:text-claeron-primary transition-colors">Security</Link>
+              <Link href="#" className="text-[14px] text-claeron-text/60 hover:text-claeron-primary transition-colors">Careers</Link>
+              <Link href="#" className="text-[14px] text-claeron-text/60 hover:text-claeron-primary transition-colors">Blog</Link>
+              <Link href="#" className="text-[14px] text-claeron-text/60 hover:text-claeron-primary transition-colors">Brand Assets</Link>
             </div>
           </div>
 
           {/* Column 4: Resources */}
           <div className="md:col-span-3 flex flex-col gap-6">
-            <h4 className="text-[14px] font-bold text-eden-primary uppercase tracking-widest">Resources</h4>
+            <h4 className="text-[14px] font-bold text-claeron-primary uppercase tracking-widest">Resources</h4>
             <div className="flex flex-col gap-3">
-              <Link href="#" className="text-[14px] text-eden-text/60 hover:text-eden-primary transition-colors">Documentation</Link>
-              <Link href="#" className="text-[14px] text-eden-text/60 hover:text-eden-primary transition-colors">Help Center</Link>
-              <Link href="#" className="text-[14px] text-eden-text/60 hover:text-eden-primary transition-colors">API Reference</Link>
-              <Link href="#" className="text-[14px) text-eden-text/60 hover:text-eden-primary transition-colors">Contact Sales</Link>
-              <Link href="#" className="text-[14px] text-eden-text/60 hover:text-eden-primary transition-colors">Privacy Privacy</Link>
+              <Link href="#" className="text-[14px] text-claeron-text/60 hover:text-claeron-primary transition-colors">Documentation</Link>
+              <Link href="#" className="text-[14px] text-claeron-text/60 hover:text-claeron-primary transition-colors">Help Center</Link>
+              <Link href="#" className="text-[14px] text-claeron-text/60 hover:text-claeron-primary transition-colors">API Reference</Link>
+              <Link href="#" className="text-[14px) text-claeron-text/60 hover:text-claeron-primary transition-colors">Contact Sales</Link>
+              <Link href="#" className="text-[14px] text-claeron-text/60 hover:text-claeron-primary transition-colors">Privacy Privacy</Link>
             </div>
           </div>
 
         </div>
 
         {/* Bottom row */}
-        <div className="mt-20 pt-8 border-t border-eden-primary/5 flex flex-col md:flex-row items-center justify-between gap-6">
-           <p className="text-[13px] text-eden-text/40 font-medium">
-             © {currentYear} Eden Intelligence Inc. All rights reserved.
+        <div className="mt-20 pt-8 border-t border-claeron-primary/5 flex flex-col md:flex-row items-center justify-between gap-6">
+           <p className="text-[13px] text-claeron-text/40 font-medium">
+             © {currentYear} Claeron Inc. All rights reserved.
            </p>
            <div className="flex items-center gap-8">
-              <Link href="#" className="text-[13px] text-eden-text/40 hover:text-eden-primary transition-colors font-medium">Privacy Policy</Link>
-              <Link href="#" className="text-[13px] text-eden-text/40 hover:text-eden-primary transition-colors font-medium">Terms of Service</Link>
-              <Link href="#" className="text-[13px] text-eden-text/40 hover:text-eden-primary transition-colors font-medium">Cookie Settings</Link>
+              <Link href="#" className="text-[13px] text-claeron-text/40 hover:text-claeron-primary transition-colors font-medium">Privacy Policy</Link>
+              <Link href="#" className="text-[13px] text-claeron-text/40 hover:text-claeron-primary transition-colors font-medium">Terms of Service</Link>
+              <Link href="#" className="text-[13px] text-claeron-text/40 hover:text-claeron-primary transition-colors font-medium">Cookie Settings</Link>
            </div>
         </div>
       </div>

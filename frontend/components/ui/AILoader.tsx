@@ -47,7 +47,7 @@ export function AILoader() {
              <Cpu size={32} className="relative z-10 animate-pulse" />
         </div>
         <h2 className="text-[22px] font-bold text-[#1F2937] tracking-tight">Analyzing your meeting.</h2>
-        <p className="text-[13px] text-neutral-500 font-medium">Eden is transcribing and extracting insights.</p>
+        <p className="text-[13px] text-neutral-500 font-medium">Claeron is transcribing and extracting insights.</p>
       </div>
 
       {/* Progress Bar Area */}

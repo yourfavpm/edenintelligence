@@ -1,4 +1,4 @@
-# PraxiomNotes Frontend
+# Claeron Frontend
 
 Next.js + TypeScript + Tailwind frontend scaffold for the Meeting Intelligence product.
 

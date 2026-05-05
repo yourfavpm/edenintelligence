@@ -7,8 +7,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Eden Soft Hierarchy System
-        eden: {
+        // Claeron Soft Hierarchy System
+        claeron: {
           primary: '#6C63FF', // Primary Purple
           accent: '#A5A0FF',  // Lavender Accent
           indigo: '#4F46E5',  // Deep Indigo

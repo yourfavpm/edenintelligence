@@ -41,7 +41,7 @@ export default function UploadPage() {
                         <div className="text-center mb-12 space-y-3">
                             <h1 className="text-[22px] font-bold text-[#1F2937] tracking-tight">Upload Recording</h1>
                             <p className="text-[15px] text-neutral-500 font-medium max-w-lg mx-auto leading-relaxed">
-                                Upload your meeting recording and Eden will generate transcripts, summaries and action items.
+                                Upload your meeting recording and Claeron will generate transcripts, summaries and action items.
                             </p>
                         </div>
                     )}
@@ -73,7 +73,7 @@ export default function UploadPage() {
                                 <div className="space-y-3">
                                     <h2 className="text-[22px] font-bold text-[#1F2937] tracking-tight">Your meeting is ready.</h2>
                                     <p className="text-[15px] text-neutral-500 font-medium leading-relaxed">
-                                        Eden has generated transcripts and insights for your recording.
+                                        Claeron has generated transcripts and insights for your recording.
                                     </p>
                                 </div>
 

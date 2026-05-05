@@ -32,7 +32,7 @@ export default function AuthLayout({ children, title, subtitle }: AuthLayoutProp
                                 <path d="M2 12L12 17L22 12" stroke="#0A1B3D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </div>
-                        <span className="text-xl font-bold tracking-tight">Eden Intelligence</span>
+                        <span className="text-xl font-bold tracking-tight">Claeron</span>
                     </div>
                     
                     <h2 className="text-[28px] md:text-[36px] font-bold mb-6 leading-[1.2] tracking-tight text-white/95">
@@ -99,7 +99,7 @@ export default function AuthLayout({ children, title, subtitle }: AuthLayoutProp
                                 <path d="M2 12L12 17L22 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </div>
-                        <span className="text-[18px] font-bold text-[#0A1B3D] tracking-tight">Eden Intelligence</span>
+                        <span className="text-[18px] font-bold text-[#0A1B3D] tracking-tight">Claeron</span>
                     </div>
 
                     <div className="bg-white p-8 sm:p-10 rounded-2xl border border-[#E5E7EB] shadow-sm">

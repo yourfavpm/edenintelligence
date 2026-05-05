@@ -32,10 +32,10 @@ export function Button({
     };
 
     const variants = {
-        primary: "bg-eden-primary text-white hover:bg-eden-indigo focus:ring-eden-primary/20 shadow-soft hover:shadow-hover-soft border border-transparent",
-        secondary: "bg-white border border-eden-border text-eden-text hover:bg-eden-bg focus:ring-eden-primary/10 shadow-soft hover:shadow-hover-soft",
+        primary: "bg-claeron-primary text-white hover:bg-claeron-indigo focus:ring-claeron-primary/20 shadow-soft hover:shadow-hover-soft border border-transparent",
+        secondary: "bg-white border border-claeron-border text-claeron-text hover:bg-claeron-bg focus:ring-claeron-primary/10 shadow-soft hover:shadow-hover-soft",
         danger: "bg-status-error-base text-white hover:opacity-90 focus:ring-status-error-base/20 shadow-soft hover:shadow-hover-soft border border-transparent",
-        ghost: "bg-transparent text-eden-muted hover:bg-eden-bg focus:ring-transparent hover:text-eden-text border border-transparent",
+        ghost: "bg-transparent text-claeron-muted hover:bg-claeron-bg focus:ring-transparent hover:text-claeron-text border border-transparent",
     };
 
     const widthStyle = block ? 'w-full' : '';

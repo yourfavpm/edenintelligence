@@ -27,7 +27,7 @@ import {
 } from 'lucide-react';
 
 // =============================================================================
-// Meeting Detail Page - Eden Intelligence Workspace
+// Meeting Detail Page - Claeron Workspace
 // =============================================================================
 
 export default function MeetingDetailPage() {
@@ -52,36 +52,36 @@ export default function MeetingDetailPage() {
   const m = meeting.meeting;
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-100px)] -m-6 lg:-m-10 bg-eden-bg">
+    <div className="flex flex-col min-h-[calc(100vh-100px)] -m-6 lg:-m-10 bg-claeron-bg">
           {/* Zone 1: Page Header */}
-          <header className="bg-white border-b border-eden-border px-6 lg:px-10 py-6 flex flex-col md:flex-row md:items-center justify-between gap-6 shrink-0 shadow-soft z-10 relative">
+          <header className="bg-white border-b border-claeron-border px-6 lg:px-10 py-6 flex flex-col md:flex-row md:items-center justify-between gap-6 shrink-0 shadow-soft z-10 relative">
             <div className="flex items-center gap-5">
-              <Link href="/meetings" className="p-2.5 hover:bg-eden-bg rounded-lg text-eden-muted hover:text-eden-primary transition-colors border border-eden-border shadow-soft">
+              <Link href="/meetings" className="p-2.5 hover:bg-claeron-bg rounded-lg text-claeron-muted hover:text-claeron-primary transition-colors border border-claeron-border shadow-soft">
                 <ChevronLeft size={20} />
               </Link>
               <div>
-                <h1 className="text-[20px] font-semibold text-eden-text leading-tight">{m.title}</h1>
-                <div className="flex flex-wrap items-center gap-3 mt-2 text-[12px] font-medium text-eden-muted uppercase tracking-widest">
+                <h1 className="text-[20px] font-semibold text-claeron-text leading-tight">{m.title}</h1>
+                <div className="flex flex-wrap items-center gap-3 mt-2 text-[12px] font-medium text-claeron-muted uppercase tracking-widest">
                   <div className="flex items-center gap-1.5">
-                    <Calendar size={14} className="text-eden-muted" />
+                    <Calendar size={14} className="text-claeron-muted" />
                     {new Date(m.start_time || m.created_at || '').toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
                   </div>
-                  <span className="w-1 h-1 rounded-full bg-eden-border" />
+                  <span className="w-1 h-1 rounded-full bg-claeron-border" />
                   <div className="flex items-center gap-1.5">
-                    <Globe size={14} className="text-eden-muted" />
+                    <Globe size={14} className="text-claeron-muted" />
                     {m.meeting_type || 'General'}
                   </div>
-                  <span className="w-1 h-1 rounded-full bg-eden-border" />
+                  <span className="w-1 h-1 rounded-full bg-claeron-border" />
                   <StatusBadge status={m.ai_transcription ? "processed" : "processing"} />
                 </div>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <button className="flex items-center gap-2 h-10 px-4 bg-white border border-eden-border rounded-button text-[14px] font-medium text-eden-text hover:bg-eden-bg transition-shadow shadow-soft hover:shadow-hover-soft">
-                <Share2 size={16} className="text-eden-primary" />
+              <button className="flex items-center gap-2 h-10 px-4 bg-white border border-claeron-border rounded-button text-[14px] font-medium text-claeron-text hover:bg-claeron-bg transition-shadow shadow-soft hover:shadow-hover-soft">
+                <Share2 size={16} className="text-claeron-primary" />
                 Share
               </button>
-              <button className="flex items-center gap-2 h-10 px-4 bg-eden-primary text-white rounded-button text-[14px] font-medium shadow-soft hover:shadow-hover-soft hover:bg-eden-indigo transition-all">
+              <button className="flex items-center gap-2 h-10 px-4 bg-claeron-primary text-white rounded-button text-[14px] font-medium shadow-soft hover:shadow-hover-soft hover:bg-claeron-indigo transition-all">
                 <Download size={16} />
                 Export
               </button>
@@ -90,7 +90,7 @@ export default function MeetingDetailPage() {
 
           {/* Zone 2: Audio Player (Inline) */}
           {displayAudio && (
-            <div className="bg-white px-6 lg:px-10 py-5 border-b border-eden-border shrink-0 z-0">
+            <div className="bg-white px-6 lg:px-10 py-5 border-b border-claeron-border shrink-0 z-0">
                <div className="max-w-[1200px] w-full mx-auto">
                 <AudioPlayer 
                   audioId={displayAudio.id} 
@@ -105,7 +105,7 @@ export default function MeetingDetailPage() {
           <main className="flex-1 max-w-[1200px] mx-auto w-full pt-8">
             {/* Universal Tab Layout */}
             <div className="flex flex-col">
-              <div className="flex overflow-x-auto no-scrollbar px-6 lg:px-10 mb-6 border-b border-eden-border">
+              <div className="flex overflow-x-auto no-scrollbar px-6 lg:px-10 mb-6 border-b border-claeron-border">
                 {[
                   { id: 'transcript', label: 'Transcript', icon: <MessageSquare size={16} /> },
                   { id: 'summary', label: 'Intelligence', icon: <BookOpen size={16} /> },
@@ -116,11 +116,11 @@ export default function MeetingDetailPage() {
                     onClick={() => setActiveTab(tab.id as any)}
                     className={`flex items-center gap-2 py-3 px-6 text-[14px] font-medium transition-all border-b-[3px] -mb-[1.5px] whitespace-nowrap ${
                       activeTab === tab.id 
-                        ? 'border-eden-primary text-eden-text' 
-                        : 'border-transparent text-eden-muted hover:text-eden-text'
+                        ? 'border-claeron-primary text-claeron-text' 
+                        : 'border-transparent text-claeron-muted hover:text-claeron-text'
                     }`}
                   >
-                    <span className={activeTab === tab.id ? 'text-eden-primary' : ''}>{tab.icon}</span>
+                    <span className={activeTab === tab.id ? 'text-claeron-primary' : ''}>{tab.icon}</span>
                     {tab.label}
                   </button>
                 ))}

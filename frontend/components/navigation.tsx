@@ -1,5 +1,5 @@
 // =============================================================================
-// Sidebar Navigation Configuration - Eden Intelligence
+// Sidebar Navigation Configuration - Claeron
 // =============================================================================
 
 import React from 'react';

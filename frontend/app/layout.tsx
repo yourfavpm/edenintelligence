@@ -3,7 +3,7 @@ import QueryProvider from '../components/providers/QueryProvider';
 import './globals.css';
 
 export const metadata = {
-  title: 'Dashboard',
+  title: 'Claeron',
   description: 'Enterprise Meeting Intelligence Platform',
 }
 

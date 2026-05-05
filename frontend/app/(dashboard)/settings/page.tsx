@@ -102,7 +102,7 @@ export default function SettingsPage() {
                                         <div className="p-8 bg-[#F8FAFC] rounded-2xl border border-[#E5E7EB] flex items-center justify-between shadow-sm">
                                             <div>
                                                 <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-[0.2em] mb-1.5">Operational Tier</p>
-                                                <h3 className="text-[20px] font-bold text-neutral-900 tracking-tight">Praxiom Enterprise Cloud</h3>
+                                                <h3 className="text-[20px] font-bold text-neutral-900 tracking-tight">Claeron Enterprise Cloud</h3>
                                                 <p className="text-[12px] text-neutral-500 font-medium mt-1 uppercase tracking-wider">Unlimited Neural Cycles • Unlimited Workspace Nodes</p>
                                             </div>
                                             <Button className="h-9 px-4 bg-white border border-[#E5E7EB] text-neutral-800 text-[10px] font-bold uppercase tracking-widest rounded-lg shadow-sm hover:bg-neutral-50 transition-all">Billing Portal</Button>

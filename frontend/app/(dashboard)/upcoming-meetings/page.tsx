@@ -158,7 +158,7 @@ export default function UpcomingMeetingsPage() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h1 className="text-[20px] font-bold text-[#0A1B3D] leading-tight">Upcoming Meetings</h1>
-              <p className="text-[13px] text-neutral-500 mt-1">Meetings you plan to record with Eden.</p>
+              <p className="text-[13px] text-neutral-500 mt-1">Meetings you plan to record with Claeron.</p>
             </div>
             <button
               onClick={() => router.push('/schedule-meeting')}

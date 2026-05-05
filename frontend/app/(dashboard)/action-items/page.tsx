@@ -73,7 +73,7 @@ export default function ActionItemsPage() {
     switch (status) {
       case 'completed': return { label: 'Completed', color: 'bg-status-success-bg text-status-success-text border-transparent' };
       case 'in_progress': return { label: 'In Progress', color: 'bg-status-info-bg text-status-info-text border-transparent' };
-      default: return { label: 'Pending', color: 'bg-eden-bg text-eden-muted border-transparent' };
+      default: return { label: 'Pending', color: 'bg-claeron-bg text-claeron-muted border-transparent' };
     }
   };
 
@@ -87,13 +87,13 @@ export default function ActionItemsPage() {
           {/* Page Header */}
           <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-8 shrink-0">
             <div>
-              <h1 className="text-[24px] font-medium text-eden-text tracking-tight">Action Items</h1>
-              <p className="text-[14px] text-eden-muted mt-1">
+              <h1 className="text-[24px] font-medium text-claeron-text tracking-tight">Action Items</h1>
+              <p className="text-[14px] text-claeron-muted mt-1">
                 Tasks and follow-ups extracted from meetings.
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <button className="flex items-center gap-2 h-10 px-4 bg-white border border-eden-border rounded-button text-[14px] font-medium text-eden-text hover:bg-eden-bg transition-colors shadow-soft">
+              <button className="flex items-center gap-2 h-10 px-4 bg-white border border-claeron-border rounded-button text-[14px] font-medium text-claeron-text hover:bg-claeron-bg transition-colors shadow-soft">
                 <Filter size={16} />
                 Filter Tasks
               </button>
@@ -101,9 +101,9 @@ export default function ActionItemsPage() {
           </header>
 
           {/* Page Toolbar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-eden-border shrink-0">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-claeron-border shrink-0">
             <div className="relative w-full sm:max-w-md">
-              <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-eden-muted">
+              <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-claeron-muted">
                 <Search size={16} />
               </div>
               <input
@@ -114,18 +114,18 @@ export default function ActionItemsPage() {
                   setSearchQuery(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="w-full pl-9 pr-4 h-10 bg-eden-bg border border-eden-border focus:bg-white focus:border-eden-primary rounded-input text-[14px] placeholder-eden-muted focus:outline-none transition-all focus:ring-4 focus:ring-eden-primary/5 text-eden-text"
+                className="w-full pl-9 pr-4 h-10 bg-claeron-bg border border-claeron-border focus:bg-white focus:border-claeron-primary rounded-input text-[14px] placeholder-claeron-muted focus:outline-none transition-all focus:ring-4 focus:ring-claeron-primary/5 text-claeron-text"
               />
             </div>
             <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 sm:pb-0">
-              <button className="flex items-center gap-1.5 h-9 px-3 bg-white border border-eden-border rounded-lg text-[13px] font-medium text-eden-text hover:bg-eden-bg whitespace-nowrap shadow-soft">
-                Status <span className="text-eden-muted ml-1">All</span>
+              <button className="flex items-center gap-1.5 h-9 px-3 bg-white border border-claeron-border rounded-lg text-[13px] font-medium text-claeron-text hover:bg-claeron-bg whitespace-nowrap shadow-soft">
+                Status <span className="text-claeron-muted ml-1">All</span>
               </button>
-              <button className="flex items-center gap-1.5 h-9 px-3 bg-white border border-eden-border rounded-lg text-[13px] font-medium text-eden-text hover:bg-eden-bg whitespace-nowrap shadow-soft">
-                Meeting <span className="text-eden-muted ml-1">All</span>
+              <button className="flex items-center gap-1.5 h-9 px-3 bg-white border border-claeron-border rounded-lg text-[13px] font-medium text-claeron-text hover:bg-claeron-bg whitespace-nowrap shadow-soft">
+                Meeting <span className="text-claeron-muted ml-1">All</span>
               </button>
-              <button className="flex items-center gap-1.5 h-9 px-3 bg-white border border-eden-border rounded-lg text-[13px] font-medium text-eden-text hover:bg-eden-bg whitespace-nowrap shadow-soft">
-                Assigned <span className="text-eden-muted ml-1">Any</span>
+              <button className="flex items-center gap-1.5 h-9 px-3 bg-white border border-claeron-border rounded-lg text-[13px] font-medium text-claeron-text hover:bg-claeron-bg whitespace-nowrap shadow-soft">
+                Assigned <span className="text-claeron-muted ml-1">Any</span>
               </button>
             </div>
           </div>
@@ -162,19 +162,19 @@ export default function ActionItemsPage() {
               <div className="flex flex-col h-full animate-fade-in">
                 
                 {/* Desktop Table View */}
-                <div className="hidden md:block flex-1 overflow-auto min-h-0 bg-white border border-eden-border rounded-card shadow-soft">
+                <div className="hidden md:block flex-1 overflow-auto min-h-0 bg-white border border-claeron-border rounded-card shadow-soft">
                   <table className="w-full text-left border-collapse">
-                    <thead className="sticky top-0 bg-eden-bg border-b border-eden-border z-10">
+                    <thead className="sticky top-0 bg-claeron-bg border-b border-claeron-border z-10">
                       <tr>
-                        <th className="px-6 py-4 text-[12px] font-medium text-eden-muted uppercase tracking-wider w-[40%]">Task</th>
-                        <th className="px-6 py-4 text-[12px] font-medium text-eden-muted uppercase tracking-wider w-[20%]">Meeting</th>
-                        <th className="px-6 py-4 text-[12px] font-medium text-eden-muted uppercase tracking-wider">Assigned To</th>
-                        <th className="px-6 py-4 text-[12px] font-medium text-eden-muted uppercase tracking-wider">Due Date</th>
-                        <th className="px-6 py-4 text-[12px] font-medium text-eden-muted uppercase tracking-wider text-center">Status</th>
-                        <th className="px-6 py-4 text-[12px] font-medium text-eden-muted uppercase tracking-wider text-right">Actions</th>
+                        <th className="px-6 py-4 text-[12px] font-medium text-claeron-muted uppercase tracking-wider w-[40%]">Task</th>
+                        <th className="px-6 py-4 text-[12px] font-medium text-claeron-muted uppercase tracking-wider w-[20%]">Meeting</th>
+                        <th className="px-6 py-4 text-[12px] font-medium text-claeron-muted uppercase tracking-wider">Assigned To</th>
+                        <th className="px-6 py-4 text-[12px] font-medium text-claeron-muted uppercase tracking-wider">Due Date</th>
+                        <th className="px-6 py-4 text-[12px] font-medium text-claeron-muted uppercase tracking-wider text-center">Status</th>
+                        <th className="px-6 py-4 text-[12px] font-medium text-claeron-muted uppercase tracking-wider text-right">Actions</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-eden-divider">
+                    <tbody className="divide-y divide-claeron-divider">
                       {paginatedItems.map((item) => {
                         const statusBadge = getStatusBadge(item.status);
                         const overdue = isOverdue(item.due_date);
@@ -182,15 +182,15 @@ export default function ActionItemsPage() {
                         return (
                           <tr 
                             key={item.id}
-                            className="group hover:bg-eden-bg transition-colors duration-150"
+                            className="group hover:bg-claeron-bg transition-colors duration-150"
                           >
                             <td className="px-6 py-4 align-top">
                               <div className="flex items-start gap-4">
-                                <button className="mt-[2px] text-eden-muted hover:text-eden-primary transition-colors shrink-0">
+                                <button className="mt-[2px] text-claeron-muted hover:text-claeron-primary transition-colors shrink-0">
                                   {item.status === 'completed' ? <CheckCircle size={18} className="text-status-success-base" /> : <Circle size={18} />}
                                 </button>
                                 <div>
-                                  <p className={`text-[14px] font-medium text-eden-text leading-snug ${item.status === 'completed' ? 'line-through opacity-60' : ''}`}>
+                                  <p className={`text-[14px] font-medium text-claeron-text leading-snug ${item.status === 'completed' ? 'line-through opacity-60' : ''}`}>
                                     {item.text}
                                   </p>
                                   {item.decision && (
@@ -204,7 +204,7 @@ export default function ActionItemsPage() {
                             <td className="px-6 py-4 align-top">
                               <Link 
                                 href={`/meetings/${item.meeting_id}`}
-                                className="text-[13px] font-medium text-eden-muted hover:text-eden-primary transition-colors line-clamp-2"
+                                className="text-[13px] font-medium text-claeron-muted hover:text-claeron-primary transition-colors line-clamp-2"
                               >
                                 {item.meeting_name}
                               </Link>
@@ -212,14 +212,14 @@ export default function ActionItemsPage() {
                             <td className="px-6 py-4 align-top">
                               {item.owner ? (
                                 <div className="flex items-center gap-2">
-                                  <div className="w-6 h-6 rounded-full bg-eden-bg text-eden-text border border-eden-border flex items-center justify-center font-medium text-[11px]">
+                                  <div className="w-6 h-6 rounded-full bg-claeron-bg text-claeron-text border border-claeron-border flex items-center justify-center font-medium text-[11px]">
                                     {item.owner.charAt(0)}
                                   </div>
-                                  <span className="text-[13px] font-medium text-eden-text">{item.owner}</span>
+                                  <span className="text-[13px] font-medium text-claeron-text">{item.owner}</span>
                                 </div>
                               ) : (
-                                <div className="flex items-center gap-2 text-eden-muted">
-                                  <div className="w-6 h-6 rounded-full bg-eden-bg border border-eden-border flex items-center justify-center">
+                                <div className="flex items-center gap-2 text-claeron-muted">
+                                  <div className="w-6 h-6 rounded-full bg-claeron-bg border border-claeron-border flex items-center justify-center">
                                     <User size={12} />
                                   </div>
                                   <span className="text-[13px] font-medium">Unassigned</span>
@@ -227,8 +227,8 @@ export default function ActionItemsPage() {
                               )}
                             </td>
                             <td className="px-6 py-4 align-top">
-                              <div className={`flex items-center gap-2 text-[13px] font-medium ${overdue && item.status !== 'completed' ? 'text-status-error-text' : 'text-eden-muted'}`}>
-                                <Calendar size={16} className={overdue && item.status !== 'completed' ? 'text-status-error-base' : 'text-eden-muted'} />
+                              <div className={`flex items-center gap-2 text-[13px] font-medium ${overdue && item.status !== 'completed' ? 'text-status-error-text' : 'text-claeron-muted'}`}>
+                                <Calendar size={16} className={overdue && item.status !== 'completed' ? 'text-status-error-base' : 'text-claeron-muted'} />
                                 {new Date(item.due_date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
                               </div>
                             </td>
@@ -238,14 +238,14 @@ export default function ActionItemsPage() {
                               </span>
                             </td>
                             <td className="px-6 py-4 align-top text-right">
-                              <div className="flex items-center justify-end gap-1 text-eden-muted opacity-0 group-hover:opacity-100 transition-opacity">
-                                <button className="p-1.5 hover:text-status-success-base hover:bg-eden-bg rounded-lg transition-colors" title="Mark Complete">
+                              <div className="flex items-center justify-end gap-1 text-claeron-muted opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button className="p-1.5 hover:text-status-success-base hover:bg-claeron-bg rounded-lg transition-colors" title="Mark Complete">
                                   <CheckCircle size={16} />
                                 </button>
-                                <button className="p-1.5 hover:text-eden-primary hover:bg-eden-bg rounded-lg transition-colors" title="Edit Task">
+                                <button className="p-1.5 hover:text-claeron-primary hover:bg-claeron-bg rounded-lg transition-colors" title="Edit Task">
                                   <Edit2 size={16} />
                                 </button>
-                                <button className="p-1.5 hover:text-status-error-base hover:bg-eden-bg rounded-lg transition-colors" title="Delete Task">
+                                <button className="p-1.5 hover:text-status-error-base hover:bg-claeron-bg rounded-lg transition-colors" title="Delete Task">
                                   <Trash2 size={16} />
                                 </button>
                               </div>

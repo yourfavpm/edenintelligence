@@ -321,7 +321,7 @@ export default function ScheduleMeetingPage() {
               )}
 
               <p className="text-[11px] text-neutral-400 mt-3">
-                Participants help Eden assign tasks more accurately.
+                Participants help Claeron assign tasks more accurately.
               </p>
             </section>
 

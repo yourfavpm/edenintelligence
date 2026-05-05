@@ -59,7 +59,7 @@ export default function LoginPage() {
   return (
     <AuthLayout
       title="Welcome back"
-      subtitle="Sign in to continue to Eden Intelligence."
+      subtitle="Sign in to continue to Claeron."
     >
       {isSignupSuccess && (
         <div className="mb-6 p-4 bg-success-50 border border-success-100 rounded-xl">

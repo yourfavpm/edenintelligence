@@ -3,7 +3,7 @@
 import React from 'react';
 
 // =============================================================================
-// Table Component - Standardized for PraxiomNotes
+// Table Component - Standardized for Claeron
 // =============================================================================
 
 export interface Column<T> {

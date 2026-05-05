@@ -45,7 +45,7 @@ body {
 /* Focus styles for accessibility */
 @layer base {
   *:focus-visible {
-    @apply outline-none ring-2 ring-eden-primary/50 ring-offset-2;
+    @apply outline-none ring-2 ring-claeron-primary/50 ring-offset-2;
   }
 
   /* Remove focus outline for mouse users */
@@ -58,7 +58,7 @@ body {
 @layer components {
   /* Card styles */
   .card {
-    @apply bg-white rounded-[16px] border border-eden-border shadow-soft;
+    @apply bg-white rounded-[16px] border border-claeron-border shadow-soft;
   }
 
   .card-hover {
@@ -97,7 +97,7 @@ body {
 
   /* Form input focus */
   .input-focus {
-    @apply focus:border-eden-primary focus:ring-1 focus:ring-eden-primary/10;
+    @apply focus:border-claeron-primary focus:ring-1 focus:ring-claeron-primary/10;
   }
 }
 

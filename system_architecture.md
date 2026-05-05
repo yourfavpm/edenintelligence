@@ -1,6 +1,6 @@
-# System Architecture - PraxiomNotes
+# System Architecture - Claeron
 
-PraxiomNotes is an enterprise-grade AI meeting intelligence platform designed for high-precision transcription and summarization.
+Claeron is an enterprise-grade AI meeting intelligence platform designed for high-precision transcription and summarization.
 
 ## Technical Stack
 

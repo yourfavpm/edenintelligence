@@ -28,7 +28,7 @@ import {
 function ScheduleStatusBadge({ status }: { status: string | null | undefined }) {
   const config: Record<string, { label: string; color: string }> = {
     upcoming: { label: 'Upcoming', color: 'bg-neutral-100 text-neutral-600 border-neutral-200' },
-    ready: { label: 'Ready to start', color: 'bg-[#6C63FF]/10 text-[#6C63FF] border-[#6C63FF]/20' },
+    ready: { label: 'Ready to start', color: 'bg-[#D41E82]/10 text-[#D41E82] border-[#D41E82]/20' },
     in_progress: { label: 'In progress', color: 'bg-blue-50 text-blue-700 border-blue-200' },
     completed: { label: 'Completed', color: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
     missed: { label: 'Missed', color: 'bg-red-50 text-red-600 border-red-200' },
@@ -132,7 +132,7 @@ export default function UpcomingMeetingsPage() {
   const EmptyState = () => (
     <div className="flex flex-col items-center justify-center py-20 text-center">
       <div className="w-16 h-16 bg-[#F7F8FB] border border-[#E5E7EB] rounded-2xl flex items-center justify-center mb-6">
-        <Calendar size={28} className="text-[#6C63FF]/60" />
+        <Calendar size={28} className="text-[#D41E82]/60" />
       </div>
       <h3 className="text-[16px] font-bold text-[#1F2937] mb-2">No meetings scheduled yet</h3>
       <p className="text-[13px] text-neutral-500 max-w-xs mb-6">
@@ -140,7 +140,7 @@ export default function UpcomingMeetingsPage() {
       </p>
       <button
         onClick={() => router.push('/schedule-meeting')}
-        className="flex items-center gap-2 px-5 h-10 bg-[#6C63FF] text-white rounded-xl text-[13px] font-bold shadow-lg shadow-[#6C63FF]/20 hover:bg-[#5B54E0] transition-all active:scale-95"
+        className="flex items-center gap-2 px-5 h-10 bg-[#D41E82] text-white rounded-xl text-[13px] font-bold shadow-lg shadow-[#D41E82]/20 hover:bg-[#B81570] transition-all active:scale-95"
       >
         <Plus size={16} />
         Schedule Meeting
@@ -162,7 +162,7 @@ export default function UpcomingMeetingsPage() {
             </div>
             <button
               onClick={() => router.push('/schedule-meeting')}
-              className="flex items-center gap-2 px-5 h-10 bg-[#6C63FF] text-white rounded-xl text-[13px] font-bold shadow-lg shadow-[#6C63FF]/20 hover:bg-[#5B54E0] transition-all active:scale-95 self-start sm:self-auto"
+              className="flex items-center gap-2 px-5 h-10 bg-[#D41E82] text-white rounded-xl text-[13px] font-bold shadow-lg shadow-[#D41E82]/20 hover:bg-[#B81570] transition-all active:scale-95 self-start sm:self-auto"
             >
               <Plus size={16} />
               Schedule Meeting
@@ -173,13 +173,13 @@ export default function UpcomingMeetingsPage() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
             {/* Search */}
             <div className="relative flex-1 w-full sm:max-w-xs group">
-              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 group-focus-within:text-[#6C63FF] transition-colors" />
+              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 group-focus-within:text-[#D41E82] transition-colors" />
               <input
                 type="text"
                 placeholder="Search scheduled meetings…"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full h-9 pl-9 pr-4 bg-white border border-[#E5E7EB] rounded-lg text-[13px] outline-none focus:border-[#6C63FF]/30 focus:ring-4 focus:ring-[#6C63FF]/5 transition-all"
+                className="w-full h-9 pl-9 pr-4 bg-white border border-[#E5E7EB] rounded-lg text-[13px] outline-none focus:border-[#D41E82]/30 focus:ring-4 focus:ring-[#D41E82]/5 transition-all"
               />
             </div>
             {/* Filter */}
@@ -188,7 +188,7 @@ export default function UpcomingMeetingsPage() {
               <select
                 value={filterMode}
                 onChange={(e) => setFilterMode(e.target.value as any)}
-                className="h-9 pl-8 pr-8 bg-white border border-[#E5E7EB] rounded-lg text-[13px] font-medium text-neutral-700 outline-none focus:border-[#6C63FF]/30 appearance-none cursor-pointer"
+                className="h-9 pl-8 pr-8 bg-white border border-[#E5E7EB] rounded-lg text-[13px] font-medium text-neutral-700 outline-none focus:border-[#D41E82]/30 appearance-none cursor-pointer"
               >
                 <option value="all">All</option>
                 <option value="today">Today</option>
@@ -203,7 +203,7 @@ export default function UpcomingMeetingsPage() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="h-9 pl-8 pr-8 bg-white border border-[#E5E7EB] rounded-lg text-[13px] font-medium text-neutral-700 outline-none focus:border-[#6C63FF]/30 appearance-none cursor-pointer"
+                className="h-9 pl-8 pr-8 bg-white border border-[#E5E7EB] rounded-lg text-[13px] font-medium text-neutral-700 outline-none focus:border-[#D41E82]/30 appearance-none cursor-pointer"
               >
                 <option value="time">Sort by Time</option>
                 <option value="name">Sort by Name</option>
@@ -264,7 +264,7 @@ export default function UpcomingMeetingsPage() {
                                 {m.participants.slice(0, 3).map((p, i) => (
                                   <div
                                     key={i}
-                                    className="w-6 h-6 rounded-full bg-gradient-to-br from-[#6C63FF] to-[#A5A0FF] flex items-center justify-center text-[9px] font-bold text-white ring-2 ring-white"
+                                    className="w-6 h-6 rounded-full bg-gradient-to-br from-[#D41E82] to-[#E85BA8] flex items-center justify-center text-[9px] font-bold text-white ring-2 ring-white"
                                     title={p.display_name || p.email}
                                   >
                                     {(p.display_name || p.email || '?')[0].toUpperCase()}
@@ -299,7 +299,7 @@ export default function UpcomingMeetingsPage() {
                                 e.stopPropagation();
                                 router.push(`/record?meeting=${m.id}&title=${encodeURIComponent(m.title)}`);
                               }}
-                              className="p-2 rounded-lg text-[#6C63FF] hover:bg-[#6C63FF]/10 transition-all"
+                              className="p-2 rounded-lg text-[#D41E82] hover:bg-[#D41E82]/10 transition-all"
                               title="Start Recording"
                             >
                               <Play size={16} />
@@ -348,17 +348,17 @@ export default function UpcomingMeetingsPage() {
                     </div>
                     <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px] text-neutral-500 mb-3">
                       <span className="flex items-center gap-1">
-                        <Calendar size={12} className="text-[#A5A0FF]" />
+                        <Calendar size={12} className="text-[#E85BA8]" />
                         {formatDate(m.start_time)}
                       </span>
                       <span className="flex items-center gap-1">
-                        <Clock size={12} className="text-[#A5A0FF]" />
+                        <Clock size={12} className="text-[#E85BA8]" />
                         {formatTime(m.start_time)}
                         {m.duration_minutes ? ` · ${m.duration_minutes}m` : ''}
                       </span>
                       {m.participants && m.participants.length > 0 && (
                         <span className="flex items-center gap-1">
-                          <Users size={12} className="text-[#A5A0FF]" />
+                          <Users size={12} className="text-[#E85BA8]" />
                           {m.participants.length} participant{m.participants.length !== 1 ? 's' : ''}
                         </span>
                       )}
@@ -368,7 +368,7 @@ export default function UpcomingMeetingsPage() {
                         e.stopPropagation();
                         router.push(`/record?meeting=${m.id}&title=${encodeURIComponent(m.title)}`);
                       }}
-                      className="w-full flex items-center justify-center gap-2 h-9 bg-[#6C63FF] text-white rounded-xl text-[13px] font-bold shadow-lg shadow-[#6C63FF]/20 hover:bg-[#5B54E0] transition-all active:scale-95"
+                      className="w-full flex items-center justify-center gap-2 h-9 bg-[#D41E82] text-white rounded-xl text-[13px] font-bold shadow-lg shadow-[#D41E82]/20 hover:bg-[#B81570] transition-all active:scale-95"
                     >
                       <Play size={14} />
                       Start Recording

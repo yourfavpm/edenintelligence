@@ -43,7 +43,7 @@ export function Input({
             ${rightElement ? 'pr-10' : ''}
             ${error
                             ? 'border-error-300 text-error-900 focus:ring-error-100 placeholder:text-error-300'
-                            : 'text-neutral-900 focus:ring-[#6C63FF]/20 focus:border-[#6C63FF]'
+                            : 'text-neutral-900 focus:ring-[#D41E82]/20 focus:border-[#D41E82]'
                         }
             disabled:bg-neutral-50 disabled:text-neutral-500 disabled:cursor-not-allowed
             ${className}

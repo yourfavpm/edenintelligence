@@ -115,7 +115,7 @@ export default function ScheduleMeetingPage() {
         role="switch"
         aria-checked={checked}
         onClick={() => onChange(!checked)}
-        className={`relative w-11 h-6 rounded-full transition-all duration-200 ${checked ? 'bg-[#6C63FF]' : 'bg-neutral-200'}`}
+        className={`relative w-11 h-6 rounded-full transition-all duration-200 ${checked ? 'bg-[#D41E82]' : 'bg-neutral-200'}`}
       >
         <span
           className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${checked ? 'translate-x-5' : 'translate-x-0'}`}
@@ -143,7 +143,7 @@ export default function ScheduleMeetingPage() {
                 {createdMeetingId && (
                   <button
                     onClick={() => router.push(`/upcoming-meetings`)}
-                    className="flex items-center gap-2 px-5 h-10 bg-[#6C63FF] text-white rounded-xl text-[13px] font-bold shadow-lg shadow-[#6C63FF]/20 hover:bg-[#5B54E0] transition-all active:scale-95"
+                    className="flex items-center gap-2 px-5 h-10 bg-[#D41E82] text-white rounded-xl text-[13px] font-bold shadow-lg shadow-[#D41E82]/20 hover:bg-[#B81570] transition-all active:scale-95"
                   >
                     View Meetings
                   </button>
@@ -194,8 +194,8 @@ export default function ScheduleMeetingPage() {
             {/* Section 1: Basic Information */}
             <section className="bg-white border border-[#E5E7EB] rounded-2xl p-6">
               <div className="flex items-center gap-2 mb-5">
-                <div className="w-7 h-7 rounded-lg bg-[#6C63FF]/10 flex items-center justify-center">
-                  <Calendar size={14} className="text-[#6C63FF]" />
+                <div className="w-7 h-7 rounded-lg bg-[#D41E82]/10 flex items-center justify-center">
+                  <Calendar size={14} className="text-[#D41E82]" />
                 </div>
                 <h2 className="text-[15px] font-bold text-[#1F2937]">Basic Information</h2>
               </div>
@@ -211,7 +211,7 @@ export default function ScheduleMeetingPage() {
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="Weekly Product Sync"
                     required
-                    className="w-full h-11 px-4 bg-[#F7F8FB] border border-[#E5E7EB] rounded-xl text-[14px] outline-none focus:border-[#6C63FF]/30 focus:ring-4 focus:ring-[#6C63FF]/5 transition-all text-[#1F2937] placeholder:text-neutral-400"
+                    className="w-full h-11 px-4 bg-[#F7F8FB] border border-[#E5E7EB] rounded-xl text-[14px] outline-none focus:border-[#D41E82]/30 focus:ring-4 focus:ring-[#D41E82]/5 transition-all text-[#1F2937] placeholder:text-neutral-400"
                   />
                 </div>
                 <div>
@@ -223,7 +223,7 @@ export default function ScheduleMeetingPage() {
                     onChange={(e) => setNotes(e.target.value)}
                     placeholder="Agenda, topics, or any pre-meeting context…"
                     rows={3}
-                    className="w-full px-4 py-3 bg-[#F7F8FB] border border-[#E5E7EB] rounded-xl text-[14px] outline-none focus:border-[#6C63FF]/30 focus:ring-4 focus:ring-[#6C63FF]/5 transition-all text-[#1F2937] placeholder:text-neutral-400 resize-none"
+                    className="w-full px-4 py-3 bg-[#F7F8FB] border border-[#E5E7EB] rounded-xl text-[14px] outline-none focus:border-[#D41E82]/30 focus:ring-4 focus:ring-[#D41E82]/5 transition-all text-[#1F2937] placeholder:text-neutral-400 resize-none"
                   />
                 </div>
               </div>
@@ -232,8 +232,8 @@ export default function ScheduleMeetingPage() {
             {/* Section 2: Timing */}
             <section className="bg-white border border-[#E5E7EB] rounded-2xl p-6">
               <div className="flex items-center gap-2 mb-5">
-                <div className="w-7 h-7 rounded-lg bg-[#6C63FF]/10 flex items-center justify-center">
-                  <Clock size={14} className="text-[#6C63FF]" />
+                <div className="w-7 h-7 rounded-lg bg-[#D41E82]/10 flex items-center justify-center">
+                  <Clock size={14} className="text-[#D41E82]" />
                 </div>
                 <h2 className="text-[15px] font-bold text-[#1F2937]">Timing</h2>
               </div>
@@ -245,7 +245,7 @@ export default function ScheduleMeetingPage() {
                     type="date"
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
-                    className="w-full h-11 px-4 bg-[#F7F8FB] border border-[#E5E7EB] rounded-xl text-[14px] outline-none focus:border-[#6C63FF]/30 focus:ring-4 focus:ring-[#6C63FF]/5 transition-all text-[#1F2937]"
+                    className="w-full h-11 px-4 bg-[#F7F8FB] border border-[#E5E7EB] rounded-xl text-[14px] outline-none focus:border-[#D41E82]/30 focus:ring-4 focus:ring-[#D41E82]/5 transition-all text-[#1F2937]"
                   />
                 </div>
                 <div>
@@ -254,7 +254,7 @@ export default function ScheduleMeetingPage() {
                     type="time"
                     value={time}
                     onChange={(e) => setTime(e.target.value)}
-                    className="w-full h-11 px-4 bg-[#F7F8FB] border border-[#E5E7EB] rounded-xl text-[14px] outline-none focus:border-[#6C63FF]/30 focus:ring-4 focus:ring-[#6C63FF]/5 transition-all text-[#1F2937]"
+                    className="w-full h-11 px-4 bg-[#F7F8FB] border border-[#E5E7EB] rounded-xl text-[14px] outline-none focus:border-[#D41E82]/30 focus:ring-4 focus:ring-[#D41E82]/5 transition-all text-[#1F2937]"
                   />
                 </div>
               </div>
@@ -269,8 +269,8 @@ export default function ScheduleMeetingPage() {
                       onClick={() => setDuration(d)}
                       className={`px-4 h-9 rounded-xl text-[13px] font-bold border transition-all ${
                         duration === d
-                          ? 'bg-[#6C63FF] text-white border-[#6C63FF] shadow-lg shadow-[#6C63FF]/20'
-                          : 'bg-white text-neutral-600 border-[#E5E7EB] hover:border-[#6C63FF]/30'
+                          ? 'bg-[#D41E82] text-white border-[#D41E82] shadow-lg shadow-[#D41E82]/20'
+                          : 'bg-white text-neutral-600 border-[#E5E7EB] hover:border-[#D41E82]/30'
                       }`}
                     >
                       {d < 60 ? `${d} min` : `${d / 60} hr`}
@@ -287,8 +287,8 @@ export default function ScheduleMeetingPage() {
             {/* Section 3: Participants */}
             <section className="bg-white border border-[#E5E7EB] rounded-2xl p-6">
               <div className="flex items-center gap-2 mb-5">
-                <div className="w-7 h-7 rounded-lg bg-[#6C63FF]/10 flex items-center justify-center">
-                  <Users size={14} className="text-[#6C63FF]" />
+                <div className="w-7 h-7 rounded-lg bg-[#D41E82]/10 flex items-center justify-center">
+                  <Users size={14} className="text-[#D41E82]" />
                 </div>
                 <h2 className="text-[15px] font-bold text-[#1F2937]">Participants</h2>
               </div>
@@ -300,7 +300,7 @@ export default function ScheduleMeetingPage() {
                   onChange={(e) => setParticipantInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Add participant name and press Enter"
-                  className="w-full h-11 px-4 bg-[#F7F8FB] border border-[#E5E7EB] rounded-xl text-[14px] outline-none focus:border-[#6C63FF]/30 focus:ring-4 focus:ring-[#6C63FF]/5 transition-all text-[#1F2937] placeholder:text-neutral-400"
+                  className="w-full h-11 px-4 bg-[#F7F8FB] border border-[#E5E7EB] rounded-xl text-[14px] outline-none focus:border-[#D41E82]/30 focus:ring-4 focus:ring-[#D41E82]/5 transition-all text-[#1F2937] placeholder:text-neutral-400"
                 />
               </div>
 
@@ -309,7 +309,7 @@ export default function ScheduleMeetingPage() {
                   {participants.map((name) => (
                     <span
                       key={name}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#6C63FF]/10 text-[#6C63FF] rounded-full text-[13px] font-medium"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#D41E82]/10 text-[#D41E82] rounded-full text-[13px] font-medium"
                     >
                       {name}
                       <button type="button" onClick={() => removeParticipant(name)} className="hover:text-red-500 transition-colors">
@@ -328,8 +328,8 @@ export default function ScheduleMeetingPage() {
             {/* Section 4: Calendar Integration */}
             <section className="bg-white border border-[#E5E7EB] rounded-2xl p-6">
               <div className="flex items-center gap-2 mb-5">
-                <div className="w-7 h-7 rounded-lg bg-[#6C63FF]/10 flex items-center justify-center">
-                  <Calendar size={14} className="text-[#6C63FF]" />
+                <div className="w-7 h-7 rounded-lg bg-[#D41E82]/10 flex items-center justify-center">
+                  <Calendar size={14} className="text-[#D41E82]" />
                 </div>
                 <h2 className="text-[15px] font-bold text-[#1F2937]">Calendar Integration</h2>
               </div>
@@ -354,7 +354,7 @@ export default function ScheduleMeetingPage() {
                   role="switch"
                   aria-checked={addToCalendar}
                   onClick={() => setAddToCalendar(!addToCalendar)}
-                  className={`relative w-11 h-6 rounded-full transition-all duration-200 ${addToCalendar ? 'bg-[#6C63FF]' : 'bg-neutral-200'}`}
+                  className={`relative w-11 h-6 rounded-full transition-all duration-200 ${addToCalendar ? 'bg-[#D41E82]' : 'bg-neutral-200'}`}
                 >
                   <span
                     className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${addToCalendar ? 'translate-x-5' : 'translate-x-0'}`}
@@ -372,8 +372,8 @@ export default function ScheduleMeetingPage() {
             {/* Section 5: Reminders */}
             <section className="bg-white border border-[#E5E7EB] rounded-2xl p-6">
               <div className="flex items-center gap-2 mb-5">
-                <div className="w-7 h-7 rounded-lg bg-[#6C63FF]/10 flex items-center justify-center">
-                  <Bell size={14} className="text-[#6C63FF]" />
+                <div className="w-7 h-7 rounded-lg bg-[#D41E82]/10 flex items-center justify-center">
+                  <Bell size={14} className="text-[#D41E82]" />
                 </div>
                 <h2 className="text-[15px] font-bold text-[#1F2937]">Reminders</h2>
               </div>
@@ -403,7 +403,7 @@ export default function ScheduleMeetingPage() {
               <button
                 type="submit"
                 disabled={submitting || !title.trim()}
-                className="flex items-center gap-2 px-6 h-10 bg-[#6C63FF] text-white rounded-xl text-[13px] font-bold shadow-lg shadow-[#6C63FF]/20 hover:bg-[#5B54E0] transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex items-center gap-2 px-6 h-10 bg-[#D41E82] text-white rounded-xl text-[13px] font-bold shadow-lg shadow-[#D41E82]/20 hover:bg-[#B81570] transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {submitting ? (
                   <>

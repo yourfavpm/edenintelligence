@@ -57,7 +57,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         {/* Sidebar Header */}
         <div className={`h-16 flex items-center ${isCollapsed ? 'justify-center' : 'px-6 justify-between'}`}>
           <Link href="/dashboard" className="flex items-center gap-3 transition-transform hover:scale-105 active:scale-95 group">
-            <img src="/logo.png" alt="Logo" className="h-8 w-auto object-contain" />
+            <img src="/logo.png" alt="Logo" className="h-24 w-auto object-contain" />
           </Link>
           <button 
             onClick={toggleCollapsed}

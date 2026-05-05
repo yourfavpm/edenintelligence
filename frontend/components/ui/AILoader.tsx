@@ -42,8 +42,8 @@ export function AILoader() {
     <div className="w-full max-w-md mx-auto space-y-12 animate-fade-in p-6 bg-white rounded-2xl shadow-xl border border-[#E5E7EB]">
       {/* Title section */}
       <div className="text-center space-y-2">
-        <div className="w-16 h-16 bg-[#6C63FF]/10 text-[#6C63FF] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm border border-[#6C63FF]/20 relative overflow-hidden">
-             <div className="absolute inset-0 bg-[#6C63FF]/5 animate-pulse" />
+        <div className="w-16 h-16 bg-[#D41E82]/10 text-[#D41E82] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm border border-[#D41E82]/20 relative overflow-hidden">
+             <div className="absolute inset-0 bg-[#D41E82]/5 animate-pulse" />
              <Cpu size={32} className="relative z-10 animate-pulse" />
         </div>
         <h2 className="text-[22px] font-bold text-[#1F2937] tracking-tight">Analyzing your meeting.</h2>
@@ -54,12 +54,12 @@ export function AILoader() {
       <div className="space-y-4">
          <div className="w-full h-1.5 bg-[#F7F8FB] rounded-full overflow-hidden">
              <div 
-                className="h-full bg-gradient-to-r from-[#6C63FF] to-[#A5A0FF] transition-all duration-[2000ms] ease-linear" 
+                className="h-full bg-gradient-to-r from-[#D41E82] to-[#E85BA8] transition-all duration-[2000ms] ease-linear" 
                 style={{ width: `${progress}%` }} 
              />
          </div>
          <div className="flex justify-between items-center px-1">
-             <span className="text-[11px] font-bold text-[#6C63FF] uppercase tracking-widest animate-pulse">
+             <span className="text-[11px] font-bold text-[#D41E82] uppercase tracking-widest animate-pulse">
                 {STAGES[currentStage].title}
              </span>
              <span className="text-[11px] font-bold text-neutral-400 font-mono">
@@ -85,7 +85,7 @@ export function AILoader() {
               }`}
             >
               <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-colors duration-500 ${
-                  isActive ? 'bg-[#6C63FF] text-white shadow-md shadow-[#6C63FF]/20' : 
+                  isActive ? 'bg-[#D41E82] text-white shadow-md shadow-[#D41E82]/20' : 
                   isPast ? 'bg-[#10B981] text-white' : 
                   'bg-neutral-100 text-neutral-400'
               }`}>

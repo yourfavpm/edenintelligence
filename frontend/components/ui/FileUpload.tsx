@@ -85,8 +85,8 @@ export function FileUpload({
                 disabled={disabled || uploading}
                 className={`
                     w-full min-h-[160px] border-2 border-dashed rounded-2xl transition-all flex flex-col items-center justify-center p-6
-                    ${isDragging ? 'border-[#6C63FF] bg-[#6C63FF]/5' : 'border-[#E5E7EB] bg-[#F7F8FB]'}
-                    ${disabled || uploading ? 'cursor-not-allowed opacity-60' : 'cursor-pointer hover:border-[#6C63FF]/40 hover:bg-white active:scale-[0.99]'}
+                    ${isDragging ? 'border-[#D41E82] bg-[#D41E82]/5' : 'border-[#E5E7EB] bg-[#F7F8FB]'}
+                    ${disabled || uploading ? 'cursor-not-allowed opacity-60' : 'cursor-pointer hover:border-[#D41E82]/40 hover:bg-white active:scale-[0.99]'}
                     ${displayError ? 'border-red-200 bg-red-50/50' : ''}
                 `}
             >
@@ -104,7 +104,7 @@ export function FileUpload({
                     </div>
                 ) : (
                     <div className="space-y-3">
-                        <div className="w-12 h-12 bg-white border border-[#E5E7EB] rounded-2xl shadow-sm flex items-center justify-center mx-auto text-[#6C63FF]">
+                        <div className="w-12 h-12 bg-white border border-[#E5E7EB] rounded-2xl shadow-sm flex items-center justify-center mx-auto text-[#D41E82]">
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                             </svg>
@@ -116,7 +116,7 @@ export function FileUpload({
                             </div>
                         ) : (
                             <div className="text-center">
-                                <p className="text-[14px] font-bold text-[#1F2937]">Drag recording here or <span className="text-[#6C63FF] hover:underline">browse</span></p>
+                                <p className="text-[14px] font-bold text-[#1F2937]">Drag recording here or <span className="text-[#D41E82] hover:underline">browse</span></p>
                                 <p className="text-[11px] text-neutral-400 font-bold uppercase tracking-widest mt-1.5">MP3, WAV, M4A, MP4 (Max 500MB)</p>
                             </div>
                         )}

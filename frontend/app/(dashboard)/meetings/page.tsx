@@ -155,14 +155,14 @@ export default function MeetingsListPage() {
               /* Empty State */
               <div className="flex-1 flex flex-col items-center justify-center p-8 text-center animate-fade-in">
                 <div className="w-24 h-24 mb-6 rounded-3xl bg-[#F7F8FB] border border-[#E5E7EB] flex items-center justify-center shadow-inner">
-                  <Video size={32} className="text-[#A5A0FF]" />
+                  <Video size={32} className="text-[#E85BA8]" />
                 </div>
                 <h3 className="text-[18px] font-bold text-[#0A1B3D] mb-2">No meetings yet</h3>
                 <p className="text-[15px] text-neutral-500 mb-8 max-w-sm">
                   Upload or record a meeting to start generating insights.
                 </p>
                 <div className="flex items-center gap-3">
-                  <Link href="/record" className="flex items-center gap-2 h-10 px-6 bg-[#6C63FF] text-white rounded-xl text-[14px] font-bold shadow-lg shadow-[#6C63FF]/20 hover:bg-[#A5A0FF] transition-all hover:-translate-y-0.5">
+                  <Link href="/record" className="flex items-center gap-2 h-10 px-6 bg-[#D41E82] text-white rounded-xl text-[14px] font-bold shadow-lg shadow-[#D41E82]/20 hover:bg-[#E85BA8] transition-all hover:-translate-y-0.5">
                     Record Meeting
                   </Link>
                   <Link href="/uploads" className="flex items-center gap-2 h-10 px-6 bg-white border border-[#E5E7EB] text-[#0A1B3D] rounded-xl text-[14px] font-bold hover:bg-[#F7F8FB] transition-all shadow-sm">
@@ -261,7 +261,7 @@ export default function MeetingsListPage() {
                       <div 
                         key={meeting.id}
                         onClick={() => router.push(`/meetings/${meeting.id}`)}
-                        className="bg-white border border-[#E5E7EB] rounded-xl p-4 shadow-sm hover:border-[#6C63FF] transition-colors cursor-pointer flex flex-col gap-3"
+                        className="bg-white border border-[#E5E7EB] rounded-xl p-4 shadow-sm hover:border-[#D41E82] transition-colors cursor-pointer flex flex-col gap-3"
                       >
                         <div className="flex justify-between items-start gap-4">
                           <div>
@@ -319,7 +319,7 @@ export default function MeetingsListPage() {
                             onClick={() => setCurrentPage(i + 1)}
                             className={`w-8 h-8 rounded-lg text-[13px] font-bold ${
                               currentPage === i + 1 
-                                ? 'bg-[#6C63FF] text-white shadow-md' 
+                                ? 'bg-[#D41E82] text-white shadow-md' 
                                 : 'text-neutral-600 hover:bg-[#F7F8FB]'
                             }`}
                           >

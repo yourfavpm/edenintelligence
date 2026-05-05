@@ -108,7 +108,7 @@ export function VerifyContent() {
                     <div className="text-center mt-2">
                         <Link
                             href="/auth/login"
-                            className="text-[14px] text-[#6C63FF] hover:text-[#5A52D5] font-semibold transition-colors flex items-center justify-center gap-1.5"
+                            className="text-[14px] text-[#D41E82] hover:text-[#B81570] font-semibold transition-colors flex items-center justify-center gap-1.5"
                         >
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
                             Back to sign in

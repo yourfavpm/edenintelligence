@@ -9,9 +9,9 @@ module.exports = {
       colors: {
         // Claeron Soft Hierarchy System
         claeron: {
-          primary: '#6C63FF', // Primary Purple
-          accent: '#A5A0FF',  // Lavender Accent
-          indigo: '#4F46E5',  // Deep Indigo
+          primary: '#D41E82', // Primary Magenta
+          accent: '#E85BA8',  // Light Magenta Accent
+          indigo: '#B81570',  // Deep Magenta
           bg: '#F7F8FB',      // Neutral Global Background
           card: '#FFFFFF',    // Card Background
           text: '#1F2937',    // Primary Text

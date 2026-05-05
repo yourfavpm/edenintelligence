@@ -174,7 +174,7 @@ export default function AudioPlayer({ audioId, filename, onTimeUpdate }: AudioPl
             <button
                 onClick={togglePlay}
                 disabled={loading}
-                className="flex-shrink-0 w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center bg-[#6C63FF] hover:bg-[#5A52D5] disabled:bg-[#E5E7EB] text-white rounded-full transition-all shadow-md shadow-[#6C63FF]/20 hover:scale-105 active:scale-95"
+                className="flex-shrink-0 w-12 h-12 lg:w-14 lg:h-14 flex items-center justify-center bg-[#D41E82] hover:bg-[#B81570] disabled:bg-[#E5E7EB] text-white rounded-full transition-all shadow-md shadow-[#D41E82]/20 hover:scale-105 active:scale-95"
             >
                 {loading ? (
                     <div className="animate-spin rounded-full h-5 w-5 lg:h-6 lg:w-6 border-2 border-white/30 border-t-white" />
@@ -212,7 +212,7 @@ export default function AudioPlayer({ audioId, filename, onTimeUpdate }: AudioPl
                     />
                     {/* Track Fill */}
                     <div 
-                        className="absolute left-0 top-0 bottom-0 bg-[#6C63FF] rounded-full pointer-events-none transition-all duration-100"
+                        className="absolute left-0 top-0 bottom-0 bg-[#D41E82] rounded-full pointer-events-none transition-all duration-100"
                         style={{ width: `${(currentTime / (duration || 1)) * 100}%` }}
                     />
                 </div>
@@ -243,7 +243,7 @@ export default function AudioPlayer({ audioId, filename, onTimeUpdate }: AudioPl
              <button
                 onClick={togglePlay}
                 disabled={loading}
-                className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-[#6C63FF] hover:bg-[#5A52D5] text-white rounded-full transition-all shadow-md shadow-[#6C63FF]/20"
+                className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-[#D41E82] hover:bg-[#B81570] text-white rounded-full transition-all shadow-md shadow-[#D41E82]/20"
             >
                 {loading ? (
                     <div className="animate-spin rounded-full h-4 w-4 border-2 border-white/30 border-t-white" />
@@ -270,7 +270,7 @@ export default function AudioPlayer({ audioId, filename, onTimeUpdate }: AudioPl
                     />
                     <div className="absolute left-0 right-0 h-1 bg-[#F7F8FB] rounded-full border border-[#E5E7EB]" />
                     <div 
-                        className="absolute left-0 top-0 bottom-0 bg-[#6C63FF] rounded-full pointer-events-none transition-all duration-100"
+                        className="absolute left-0 top-0 bottom-0 bg-[#D41E82] rounded-full pointer-events-none transition-all duration-100"
                         style={{ width: `${(currentTime / (duration || 1)) * 100}%` }}
                     />
                 </div>

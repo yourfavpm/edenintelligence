@@ -19,31 +19,31 @@ export default function AuthLayout({ children, title, subtitle }: AuthLayoutProp
             {/* Left Panel: Branding & Context (Desktop Only) */}
             <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-[#0A1B3D] to-[#122A59] flex-col justify-center px-12 xl:px-24 relative overflow-hidden">
                 {/* Background Decor */}
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#6C63FF] opacity-10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#A5A0FF] opacity-10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4 pointer-events-none" />
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#D41E82] opacity-10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#E85BA8] opacity-10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4 pointer-events-none" />
 
                 <div className="max-w-xl relative z-10 text-white pt-10 pb-20">
                     <div className="flex items-center mb-16 opacity-90">
                         {/* Make logo bolder/whiter to stand out on dark background */}
-                        <img src="/logo.png" alt="Logo" className="h-10 w-auto object-contain mr-3" />
+                        <img src="/logo.png" alt="Logo" className="h-[120px] w-auto object-contain mr-3" />
                     </div>
                     
                     <h2 className="text-[28px] md:text-[36px] font-bold mb-6 leading-[1.2] tracking-tight text-white/95">
                         Turn Every Meeting Into Actionable Intelligence.
                     </h2>
-                    <p className="text-[15px] md:text-[16px] text-[#A5A0FF] font-medium leading-relaxed max-w-md">
+                    <p className="text-[15px] md:text-[16px] text-[#E85BA8] font-medium leading-relaxed max-w-md">
                         Record or upload meetings and automatically generate transcripts, summaries, and action items.
                     </p>
 
                     {/* UI Mockup Preview */}
                     <div className="mt-16 bg-[#0A1B3D]/50 border border-white/10 rounded-2xl p-6 shadow-2xl backdrop-blur-sm relative rotate-[1deg] hover:rotate-0 transition-transform duration-500 max-w-[480px]">
-                        <div className="absolute -left-3 top-6 w-1 hover:w-2 h-12 bg-[#6C63FF] rounded-r-md transition-all duration-300" />
+                        <div className="absolute -left-3 top-6 w-1 hover:w-2 h-12 bg-[#D41E82] rounded-r-md transition-all duration-300" />
                         
                         <div className="space-y-4">
                             {/* Mock Summary Panel */}
                             <div className="bg-white/5 border border-white/5 rounded-xl p-4 flex gap-4">
-                                <div className="mt-1 w-6 h-6 rounded-md bg-[#6C63FF]/20 flex items-center justify-center shrink-0">
-                                    <Target size={14} className="text-[#A5A0FF]" />
+                                <div className="mt-1 w-6 h-6 rounded-md bg-[#D41E82]/20 flex items-center justify-center shrink-0">
+                                    <Target size={14} className="text-[#E85BA8]" />
                                 </div>
                                 <div className="space-y-2 flex-1">
                                     <div className="h-2.5 bg-white/20 rounded-full w-1/3" />
@@ -85,7 +85,7 @@ export default function AuthLayout({ children, title, subtitle }: AuthLayoutProp
                 <div className="mx-auto w-full max-w-[420px]">
                     {/* Mobile Brand */}
                     <div className="lg:hidden mb-12 flex flex-col items-center">
-                        <img src="/logo.png" alt="Logo" className="h-12 w-auto object-contain mb-4" />
+                        <img src="/logo.png" alt="Logo" className="h-36 w-auto object-contain mb-4" />
                     </div>
 
                     <div className="bg-white p-8 sm:p-10 rounded-2xl border border-[#E5E7EB] shadow-sm">

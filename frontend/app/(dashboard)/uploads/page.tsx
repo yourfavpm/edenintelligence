@@ -79,7 +79,7 @@ export default function UploadPage() {
 
                                 <div className="flex flex-col gap-3 pt-6">
                                     <Button
-                                        className="h-12 bg-[#6C63FF] text-white text-[15px] font-bold rounded-lg shadow-sm hover:bg-[#5A52D5] transition-all"
+                                        className="h-12 bg-[#D41E82] text-white text-[15px] font-bold rounded-lg shadow-sm hover:bg-[#B81570] transition-all"
                                         onClick={() => router.push(`/meetings`)}
                                     >
                                         View Meeting Intelligence

@@ -132,12 +132,12 @@ export default function SignupPage() {
               name="terms"
               type="checkbox"
               required
-              className="h-[18px] w-[18px] rounded-[6px] border-[#E5E7EB] text-[#6C63FF] focus:ring-[#6C63FF]/30 transition-colors cursor-pointer"
+              className="h-[18px] w-[18px] rounded-[6px] border-[#E5E7EB] text-[#D41E82] focus:ring-[#D41E82]/30 transition-colors cursor-pointer"
             />
           </div>
           <div className="text-[14px] text-neutral-600 font-medium pb-2">
             <label htmlFor="terms" className="cursor-pointer">
-              I agree to the <Link href="#" className="text-[#6C63FF] hover:underline">Terms</Link> and <Link href="#" className="text-[#6C63FF] hover:underline">Privacy Policy</Link>.
+              I agree to the <Link href="#" className="text-[#D41E82] hover:underline">Terms</Link> and <Link href="#" className="text-[#D41E82] hover:underline">Privacy Policy</Link>.
             </label>
           </div>
         </div>
@@ -195,7 +195,7 @@ export default function SignupPage() {
 
       <p className="mt-8 text-center text-[14px] text-neutral-500 font-medium">
         Already have an account?{' '}
-        <Link href="/auth/login" className="text-[#6C63FF] hover:text-[#5A52D5] font-semibold transition-colors">
+        <Link href="/auth/login" className="text-[#D41E82] hover:text-[#B81570] font-semibold transition-colors">
           Sign in
         </Link>
       </p>

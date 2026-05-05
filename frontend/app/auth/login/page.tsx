@@ -105,7 +105,7 @@ export default function LoginPage() {
           <div className="flex justify-end">
             <Link
               href="/auth/forgot-password"
-              className="text-[13px] text-[#6C63FF] hover:text-[#5A52D5] font-semibold transition-colors"
+              className="text-[13px] text-[#D41E82] hover:text-[#B81570] font-semibold transition-colors"
             >
               Forgot password?
             </Link>
@@ -165,7 +165,7 @@ export default function LoginPage() {
 
       <p className="mt-8 text-center text-[14px] text-neutral-500 font-medium">
         Don&apos;t have an account?{' '}
-        <Link href="/auth/signup" className="text-[#6C63FF] hover:text-[#5A52D5] font-semibold transition-colors">
+        <Link href="/auth/signup" className="text-[#D41E82] hover:text-[#B81570] font-semibold transition-colors">
           Create an account
         </Link>
       </p>

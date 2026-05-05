@@ -151,7 +151,7 @@ export default function ActionItemsPage() {
               /* Empty State */
               <div className="flex-1 flex flex-col items-center justify-center p-8 text-center animate-fade-in">
                 <div className="w-24 h-24 mb-6 rounded-3xl bg-[#F7F8FB] border border-[#E5E7EB] flex items-center justify-center shadow-inner">
-                  <ListTodo size={32} className="text-[#A5A0FF]" />
+                  <ListTodo size={32} className="text-[#E85BA8]" />
                 </div>
                 <h3 className="text-[18px] font-bold text-[#0A1B3D] mb-2">No action items yet</h3>
                 <p className="text-[15px] text-neutral-500 max-w-sm">
@@ -269,7 +269,7 @@ export default function ActionItemsPage() {
                         className="bg-white border border-[#E5E7EB] rounded-xl p-4 shadow-sm"
                       >
                         <div className="flex items-start gap-3 mb-3">
-                          <button className="mt-0.5 text-neutral-300 hover:text-[#6C63FF] transition-colors shrink-0">
+                          <button className="mt-0.5 text-neutral-300 hover:text-[#D41E82] transition-colors shrink-0">
                             {item.status === 'completed' ? <CheckCircle size={20} className="text-emerald-500" /> : <Circle size={20} />}
                           </button>
                           <div className="flex-1">
@@ -278,7 +278,7 @@ export default function ActionItemsPage() {
                             </h3>
                             <Link 
                               href={`/meetings/${item.meeting_id}`}
-                              className="inline-block mt-2 text-[12px] font-medium text-neutral-500 hover:text-[#6C63FF] transition-colors"
+                              className="inline-block mt-2 text-[12px] font-medium text-neutral-500 hover:text-[#D41E82] transition-colors"
                             >
                               Source: {item.meeting_name}
                             </Link>
@@ -290,7 +290,7 @@ export default function ActionItemsPage() {
                             <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest">Assignee</span>
                             {item.owner ? (
                               <div className="flex items-center gap-1.5">
-                                <div className="w-5 h-5 rounded-full bg-[#6C63FF]/10 text-[#6C63FF] flex items-center justify-center font-bold text-[9px] uppercase">
+                                <div className="w-5 h-5 rounded-full bg-[#D41E82]/10 text-[#D41E82] flex items-center justify-center font-bold text-[9px] uppercase">
                                   {item.owner.charAt(0)}
                                 </div>
                                 <span className="text-[12px] font-bold text-neutral-700 line-clamp-1">{item.owner}</span>
@@ -313,7 +313,7 @@ export default function ActionItemsPage() {
                             {statusBadge.label}
                           </span>
                           <div className="flex items-center gap-1">
-                            <button className="p-1.5 text-neutral-400 hover:text-[#6C63FF] rounded-lg transition-colors"><Edit2 size={16} /></button>
+                            <button className="p-1.5 text-neutral-400 hover:text-[#D41E82] rounded-lg transition-colors"><Edit2 size={16} /></button>
                             <button className="p-1.5 text-neutral-400 hover:text-red-600 rounded-lg transition-colors"><Trash2 size={16} /></button>
                           </div>
                         </div>
@@ -344,7 +344,7 @@ export default function ActionItemsPage() {
                             onClick={() => setCurrentPage(i + 1)}
                             className={`w-8 h-8 rounded-lg text-[13px] font-bold ${
                               currentPage === i + 1 
-                                ? 'bg-[#6C63FF] text-white shadow-md' 
+                                ? 'bg-[#D41E82] text-white shadow-md' 
                                 : 'text-neutral-600 hover:bg-[#F7F8FB]'
                             }`}
                           >

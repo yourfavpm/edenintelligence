@@ -30,7 +30,7 @@ import {
 export default function MeetingsListPage() {
   const router = useRouter();
   
-  const { data: meetings = [], isLoading: loading, error: queryError } = useQuery({
+  const { data: meetings = [], isLoading: loading, error: queryError, refetch } = useQuery({
     queryKey: ['meetings'],
     queryFn: () => apiService.getMeetings(),
   });
@@ -62,7 +62,7 @@ export default function MeetingsListPage() {
     if (confirm(`Are you sure you want to delete the meeting "${title}"?`)) {
       try {
         await apiService.deleteMeeting(id);
-        setMeetings(meetings.filter(m => m.id !== id));
+        refetch();
       } catch (err) {
         alert('Failed to delete meeting');
       }

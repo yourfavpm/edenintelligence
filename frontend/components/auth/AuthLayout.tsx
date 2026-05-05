@@ -25,7 +25,7 @@ export default function AuthLayout({ children, title, subtitle }: AuthLayoutProp
                 <div className="max-w-xl relative z-10 text-white pt-10 pb-20">
                     <div className="flex items-center mb-16 opacity-90">
                         {/* Make logo bolder/whiter to stand out on dark background */}
-                        <img src="/logo.png" alt="Logo" className="h-[120px] w-auto object-contain mr-3" />
+                        <img src="/logo.png" alt="Logo" className="h-40 w-auto object-contain mr-3" />
                     </div>
                     
                     <h2 className="text-[28px] md:text-[36px] font-bold mb-6 leading-[1.2] tracking-tight text-white/95">
@@ -85,7 +85,7 @@ export default function AuthLayout({ children, title, subtitle }: AuthLayoutProp
                 <div className="mx-auto w-full max-w-[420px]">
                     {/* Mobile Brand */}
                     <div className="lg:hidden mb-12 flex flex-col items-center">
-                        <img src="/logo.png" alt="Logo" className="h-36 w-auto object-contain mb-4" />
+                        <img src="/logo.png" alt="Logo" className="h-48 w-auto object-contain mb-4" />
                     </div>
 
                     <div className="bg-white p-8 sm:p-10 rounded-2xl border border-[#E5E7EB] shadow-sm">

@@ -13,13 +13,8 @@ export default function Footer() {
           
           {/* Column 1: Logo & Info */}
           <div className="md:col-span-4 flex flex-col gap-6">
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-8 h-8 bg-claeron-primary rounded-lg flex items-center justify-center shadow-sm">
-                <span className="text-white font-bold text-[15px] tracking-tight">E</span>
-              </div>
-              <span className="font-semibold text-[18px] text-claeron-primary tracking-tight">
-                Claeron
-              </span>
+            <Link href="/" className="flex items-center gap-3 group">
+              <img src="/logo.png" alt="Logo" className="h-20 w-auto object-contain" />
             </Link>
             <p className="text-[14px] text-claeron-text/60 leading-relaxed max-w-xs">
               The enterprise meeting intelligence platform. Automatically capture, transcribe, and analyze every conversation.

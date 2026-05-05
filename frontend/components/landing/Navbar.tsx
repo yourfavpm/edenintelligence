@@ -32,7 +32,7 @@ export default function Navbar() {
         <div className="max-w-[1200px] mx-auto h-full px-6 flex items-center justify-between">
           {/* Left: Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <img src="/logo.png" alt="Logo" className="h-8 w-auto object-contain" />
+            <img src="/logo.png" alt="Logo" className="h-16 w-auto object-contain" />
           </Link>
 
           {/* Center: Desktop Links */}
@@ -87,7 +87,7 @@ export default function Navbar() {
           <div className="relative w-full max-w-xs bg-white h-full shadow-2xl flex flex-col p-6 animate-slide-in-right">
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-2">
-                <img src="/logo.png" alt="Logo" className="h-24 w-auto object-contain" />
+                <img src="/logo.png" alt="Logo" className="h-16 w-auto object-contain" />
               </div>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}

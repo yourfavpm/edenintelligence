@@ -33,12 +33,7 @@ export default function StatisticsCards({ meetings, extractions, isLoading = fal
   const totalActionItems = extractions.reduce((acc, ex) => acc + (ex.items?.length || 0), 0);
   
   const totalMinutes = meetings.reduce((acc, meeting) => {
-    if (meeting.start_time && meeting.end_time) {
-      const start = new Date(meeting.start_time).getTime();
-      const end = new Date(meeting.end_time).getTime();
-      return acc + (end - start) / 60000;
-    }
-    return acc;
+    return acc + (meeting.duration_minutes || 0);
   }, 0);
   
   const totalHours = (totalMinutes / 60).toFixed(1);

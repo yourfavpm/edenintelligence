@@ -7,6 +7,7 @@ import { StatusBadge, Button } from '@/components/ui';
 import { useAuth } from '@/components/auth/AuthContext';
 import { apiService } from '@/services/api';
 import { Meeting, ExtractionRead } from '@/types/api';
+import StatisticsCards from '@/components/StatisticsCards';
 import Link from 'next/link';
 import { 
   ArrowRight, 
@@ -147,6 +148,13 @@ export default function DashboardPage() {
           </Link>
         </div>
       </div>
+
+      {/* Statistics Cards */}
+      <StatisticsCards 
+        meetings={meetings} 
+        extractions={extractions} 
+        isLoading={loading}
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-8 xl:gap-10 items-start">
         
